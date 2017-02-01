@@ -1,0 +1,13 @@
+Just some ideas for the algorithm
+1: Add up all points, rebounds, assists, steals and blocks that a player has. This total will be called "fantasy points".
+A players beginning value will be how many fantasy points he is currently averaging. 
+Example: if LeBron has been averaging 40 fantasy points then to buy LeBron "stock" would cost you $40. 
+Then, for each subsequent game compare the players total fantasy points to his season average. 
+The deviation will be divided by 5 and this will be added to the players stock.
+
+Example: LeBron averages 40 Fantasy points per game. Next game, he has 50 fantasy points. This is 25% more than his season average. 
+So, we update his "stock" by 25/5 = 5%
+his new stock is now $40 * 1.05 = $42 
+
+
+Let me know if you guys like this idea.
