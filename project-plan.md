@@ -2,9 +2,9 @@
 bg: "planning.jpg"
 layout: page
 title: "Project Plan"
-crawlertitle: "How we plan to build BallStreet"
+crawlertitle: "BallStreet | Project Plan"
 permalink: /project-plan/
-summary: "Project Plan for BallStreet"
+summary: "BallStreet | Project Plan"
 active: Project-Plan
 ---
 # Project Plan
