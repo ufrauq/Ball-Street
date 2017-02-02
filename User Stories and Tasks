@@ -1,8 +1,0 @@
-Story 1:
-As a user, I want to be able to see the player's stats and stock price in the last 10 games when I click on his name.
-Acceptance Criteria:
--Show previous 10 games, along with Graph of how player's stock has rose/fallen 
--If player hasn't played 10 games, show all games he has played.
-
-Assigned Team Members: 
-Due date: 
