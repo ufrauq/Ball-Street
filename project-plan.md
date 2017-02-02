@@ -1,5 +1,5 @@
 ---
-bg: "startup-photos (1).jpg"
+bg: "planning.jpg"
 layout: page
 title: "Project Plan"
 crawlertitle: "How we plan to build BallStreet"
