@@ -1,0 +1,14 @@
+---
+bg: "rails.jpg"
+layout: default
+crawlertitle: "CS2212 Team 5"
+title: "TEAM NAME GOES HERE"
+summary: "Welcome to BallStreet: the brainchild of Team 5 for CS2212"
+---
+
+{% for post in site.posts limit: 5 %}
+  <article class="index-page">
+    <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+    {{ post.excerpt }}
+  </article>
+{% endfor %}
