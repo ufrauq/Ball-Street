@@ -12,5 +12,5 @@ We are thinkers, problem-solvers, programmers and creative geniuses. <br>Meet th
 
 <br><br><br>
 
-<img src = "profile.png" align="left"><p> Adbul | Creative Director</p>
+<img src = "profile.png" align="left">Adbul Creative Director
 
