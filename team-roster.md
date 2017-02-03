@@ -10,9 +10,6 @@ active: team-roster
 # Team Roster
 We are thinkers, problem-solvers, programmers and creative geniuses. <br>Meet the team technology wizards behind creation BallStreet.
 
-<br><br><br>
-<img src= "/assets/images/profile.png"  width = "250px" align = "left"  class = "inline" />
-<br><br>
 [![Abdul]({{ site.images }}/profile.png)]({{ site.images }}/profile.png)
 Abdul Creative Director (is it working) *******
 
