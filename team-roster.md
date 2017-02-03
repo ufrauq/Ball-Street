@@ -13,5 +13,5 @@ We are thinkers, problem-solvers, programmers and creative geniuses. <br>Meet th
 <br><br><br>
 
 [![Abdul]({{ site.images }}/profile.png){: width= "250px"}]({{ site.images }}/profile.png)
-Abdul Creative Director -|-90
+Abdul Creative Director -|-90 90
 
