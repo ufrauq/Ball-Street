@@ -12,6 +12,6 @@ We are thinkers, problem-solvers, programmers and creative geniuses. <br>Meet th
 
 <br><br><br>
 
-[![Abdul]({{ site.images }}/profile.png = 250x)]({{ site.images }}/profile.png = 250x)
+[![Abdul]({{ site.images }}/profile.png)]({{ site.images }}/profile.png)
 Abdul Creative Director 
 
