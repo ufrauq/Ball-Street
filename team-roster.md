@@ -13,5 +13,5 @@ We are thinkers, problem-solvers, programmers and creative geniuses. <br>Meet th
 <br><br><br>
 <img src= "https://github.com/zsirohey/CS2212-Team5/tree/gh-pages/assets/images/profile.png" >
 <br><br>
-Adbul Creative Director
+Abdul Creative Director (is it working) 
 
