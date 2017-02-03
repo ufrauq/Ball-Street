@@ -18,7 +18,7 @@ We are thinkers, problem-solvers, programmers and creative geniuses. <br>Meet th
  
  <br><br><br>
 <img src= "/CS2212-Team5/assets/images/profileMichelle.png" width = "250px"  align = "left"/><br><br>
-Michelle | Website Design Ninja
+<br><i>Michelle | Website Design Ninja</i><br>
 Michelle is an markup language expert who produces the studding websites. She, like Abdul, loves cake. She is always willing to lead a helping hand and wants to learn everything he can about programming. Some of her hobbies include -----.<br>
 Programming Languages: Java, Python, C, Unix, Markdown, JavaScript, HTML, CSS, Flask (python web framework), Jekyll, SQLAlchemy, Heroku and d3.js
 
