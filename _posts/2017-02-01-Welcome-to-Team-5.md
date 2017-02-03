@@ -13,5 +13,4 @@ For our web application, we will be combining a passion for sports with a love o
 <br>
 BallStreet will being using a combination of Java, JavaScript and Groovy, all managed on the framework Grails.
 <br>
-
-*(i dont actually know what we are using at the is point. we need to decide on this. we also need to write a description of each langauge and framework i think after reviewing the marking rubric on the course site)*
+*i dont actually know what we are using at the is point. we need to decide on this. we also need to write a description of each langauge and framework i think after reviewing the marking rubric on the course site*
