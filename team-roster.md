@@ -11,5 +11,6 @@ active: team-roster
 We are thinkers, problem-solvers, programmers and creative geniuses. <br>Meet the team technology wizards behind creation BallStreet.
 
 <br><br><br>
-<img src = "profile.png">
+
+<img src = "profile.png" align="left">Adbul | Creative Director
 
