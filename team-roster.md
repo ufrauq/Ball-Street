@@ -11,8 +11,7 @@ active: team-roster
 We are thinkers, problem-solvers, programmers and creative geniuses. <br>Meet the team technology wizards behind creation BallStreet.
 
 <br><br><br>
-Inline-style:
-![alt text](https://zsirohey.github.io/CS2212-Team5/src/assets/images/profile.png "Abdul")
+<img src= "profile.png" >
 <br><br>
 Adbul Creative Director
 
