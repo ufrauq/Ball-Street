@@ -13,6 +13,5 @@ We are thinkers, problem-solvers, programmers and creative geniuses. <br>Meet th
 <br><br><br>
 <img src= "/assets/images/profile.png"  width = "250px" align = "left"  class = "inline" />
 <br><br>
-Abdul Creative Director (is it working) madi was here
-
+Abdul Creative Director (is it working) *******
 
