@@ -41,3 +41,6 @@ sass:
 
 
 images: '/CS2212-Team5/assets/images'
+
+gems:
+- jemoji 
