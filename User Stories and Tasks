@@ -1,8 +1,48 @@
 Story 1:
-As a user, I want to be able to see the player's stats and stock price in the last 10 games when I click on his name.
+User should be able to see the player's stats and stock price in the last 10 games when clicking on player's name.
 Acceptance Criteria:
 -Show previous 10 games, along with Graph of how player's stock has rose/fallen 
 -If player hasn't played 10 games, show all games he has played.
 
 Assigned Team Members: 
 Due date: 
+
+
+Story 2: 
+User should be able to create their own league to play with their friends. This league should be able to be public or private, with a password
+required to join a public league.
+Acceptance Criteria:
+-Allow user to create a league with up to 25 members in the league
+-Allow user to create a password for their league
+-There should be a league page, to show each team in the league and their position in the standings
+Assigned Team Members:
+Due Date:
+
+
+Story 3: 
+User should be able to go to a page where they can see all their current stock and their current balance
+On this page, they should also be able to sell their current stock.
+Acceptance Criteria:
+-Allow user to see what stock they currently own and their current balance
+-Allow user to sell player stock directly from their team home page.
+Assigned Team Members:
+Due Date:
+
+
+Story 4: 
+User should be able to visit a page where they can see all of their past transactions, and the outcom of those transactions.
+Acceptance Criteria:
+-
+-
+Assigned Team Members:
+Due Date: 
+
+
+Story 5:
+User should be able to visit the market page: where they can see all the player's stock they can buy, and the price for each share. 
+Market page should also display how each player's stock has gone up/down, and the user's current balance.
+Acceptance Criteria:
+
+
+Assigned Team Members:
+Due Date: 
