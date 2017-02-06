@@ -4,11 +4,11 @@ layout: page
 title: "Team 5 Roster"
 crawlertitle: "Team 5 Roster"
 permalink: /team-roster/
-summary: "Who's on the team?"
+summary: "Meet the team technology wizards behind creation BallStreet."
 active: team-roster
 ---
 # Team Roster
-We are thinkers, problem-solvers, programmers and creative geniuses. <br>Meet the team technology wizards behind creation BallStreet.
+We are thinkers, problem-solvers, programmers and creative geniuses. <br>
 
  <img src= "/CS2212-Team5/assets/images/profile.png" width = "250px"  align = "left"/><br>
  <br><i>Abdul | Creative Director</i><br>
@@ -34,6 +34,26 @@ Madi is an innovative marketing guru who loves graphic design. She, like Abdul a
 <img src= "/CS2212-Team5/assets/images/tempProfile.png" width = "250px"  align = "left"/>
 <br><br><i>Matthew | Team Overlord</i><br>
 Matthew is the team boss. He, like Abdul, Michelle and Madi, loves cake. He is always willing to lead a helping hand and wants to learn everything he can about computer science. Some of his hobbies include eating cake. <br>
+<i>Programming Languages: </i>Java, Python, HTML, CSS, Unix and JavaScript
+
+
+<br><br>
+<img src= "/CS2212-Team5/assets/images/tempProfile.png" width = "250px"  align = "left"/>
+<br><br><i>Emerson | UML God </i><br>
+Emerson is the master of UML. He, like Abdul, Michelle, Madi and Matthew, loves cake. He is always willing to lead a helping hand and wants to learn everything he can about computer science. Some of his hobbies include eating cake. <br>
+<i>Programming Languages: </i>Java, Python, HTML, CSS, Unix and JavaScript
+
+<br><br>
+<img src= "/CS2212-Team5/assets/images/tempProfile.png" width = "250px"  align = "left"/>
+<br><br><i>Zain | Java Guru </i><br>
+Zain is the king of Java. He, like Abdul, Michelle, Madi, Matthew and Emerson, loves cake. He is always willing to lead a helping hand and wants to learn everything he can about computer science. Some of his hobbies include eating cake. <br>
+<i>Programming Languages: </i>Java, Python, HTML, CSS, Unix and JavaScript
+
+
+<br><br>
+<img src= "/CS2212-Team5/assets/images/tempProfile.png" width = "250px"  align = "left"/>
+<br><br><i>Umar | Guy with the Huge Laptop</i><br>
+Umar is owns the world's largest laptop. He, like Abdul, Michelle, Madi, Matthew, Emerson and Umar, loves cake. He is always willing to lead a helping hand and wants to learn everything he can about computer science. Some of his hobbies include eating cake and gaming. <br>
 <i>Programming Languages: </i>Java, Python, HTML, CSS, Unix and JavaScript
 
 
