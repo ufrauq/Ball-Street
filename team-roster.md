@@ -23,10 +23,17 @@ Michelle is an markup language expert who produces studding websites. She, like 
 <i>Programming Languages:</i> Java, Python, C, Unix, Markdown, JavaScript, HTML, CSS, Flask (python web framework), Jekyll, SQLAlchemy, Heroku and d3.js
 
 
-<br><br><br>
+<br><br>
 <img src= "/CS2212-Team5/assets/images/profileMadi.png" width = "250px"  align = "left"/>
-<br><i>Madi | Marketing Magician</i><br>
+<br><br><i>Madi | Marketing Magician</i><br>
 Madi is an innovative marketing guru who loves graphic design. She, like Abdul and Michelle, loves cake. She is always willing to lead a helping hand and wants to learn everything she can about computer science. <br>
+<i>Programming Languages: </i>Java, Python, HTML, CSS, Unix and JavaScript
+
+
+<br><br>
+<img src= "/CS2212-Team5/assets/images/tempProfile.png" width = "250px"  align = "left"/>
+<br><br><i>Matthew | Team Overlord</i><br>
+Matthew is the team boss. He, like Abdul, Michelle and Madi, loves cake. He is always willing to lead a helping hand and wants to learn everything he can about computer science. Some of his hobbies include eating cake. <br>
 <i>Programming Languages: </i>Java, Python, HTML, CSS, Unix and JavaScript
 
 
