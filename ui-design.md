@@ -1,5 +1,5 @@
 ---
-bg: "rails.jpg"
+bg: "UIDesignImg.jpg"
 layout: page
 title: "UI Design"
 crawlertitle: "UI Design for BallStreet"
