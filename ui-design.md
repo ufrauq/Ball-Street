@@ -28,5 +28,8 @@ The dashboard includes the following pages:
 
 <li> Includes screen layouts of sufficent quality (2 marks) </li> <br>
 Put images here with arrows pointing at different links (put anchors in the site potential to jump between the pages) <br><br>
+
+<img src= "/CS2212-Team5/assets/images/BallStreetLogin.jpg" width = "600px" ><br><br>
+<img src= "/CS2212-Team5/assets/images/BallStreetDashBoard1.jpg" width = "600px" ><br><br>
 <li> Level of detail - must show overall layout, the number of different screens, and how you will navigate between them (6 marks) </li> 
 </ul> 
