@@ -30,7 +30,7 @@ Due Date:
 
 
 Story 4: 
-User should be able to visit a page where they can see all of their past transactions, and the outcom of those transactions.
+User should be able to visit a page where they can see all of their past transactions, and the outcome of those transactions.
 Acceptance Criteria:
 -
 -
@@ -41,6 +41,7 @@ Due Date:
 Story 5:
 User should be able to visit the market page: where they can see all the player's stock they can buy, and the price for each share. 
 Market page should also display how each player's stock has gone up/down, and the user's current balance.
+Market page should also display the next 5 teams the player is playing against, when clicking on his name. 
 Acceptance Criteria:
 
 
