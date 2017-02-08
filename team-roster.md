@@ -51,20 +51,20 @@ Zain is the king of Java. He, like Abdul, Michelle, Madi, Matthew and Emerson, l
 
 
 <br><br>
-<img src= "/CS2212-Team5/assets/images/tempProfile.png" width = "250px"  align = "left"/>
-<br><br><i>Umar | Guy with the Huge Laptop</i><br>
+<img src= "/CS2212-Team5/assets/images/profileUmar.png" width = "250px"  align = "left"/>
+<br><br><i>Umar | UI  Master</i><br>
 Umar is owns the world's largest laptop. He, like Abdul, Michelle, Madi, Matthew, Emerson and Zain, loves cake. He is always willing to lead a helping hand and wants to learn everything he can about computer science. Some of his hobbies include eating cake and gaming. <br>
 <i>Programming Languages: </i>Java, Python, HTML, CSS, Unix and JavaScript
 
 
 <br><br>
 <img src= "/CS2212-Team5/assets/images/tempProfile.png" width = "250px"  align = "left"/>
-<br><br><i>Kris | Idea Generator</i><br>
+<br><br><i>Khris | Idea Generator</i><br>
 Kris is the creative man behind the BallStreet idea. He, like Abdul, Michelle, Madi, Matthew, Emerson, Zain and Umar, loves cake. He is always willing to lead a helping hand and wants to learn everything he can about computer science. Some of his hobbies include eating cake and watching basketball. <br>
 <i>Programming Languages: </i>Java, Python, HTML, CSS, Unix and JavaScript
 
 <br><br>
 <img src= "/CS2212-Team5/assets/images/tempProfile.png" width = "250px"  align = "left"/>
-<br><br><i>Daniel | The Mystery Man</i><br>
+<br><br><i>Daniel | Repo Hero</i><br>
 Daniel is a successful entreprenuer. He, like Abdul, Michelle, Madi, Matthew, Emerson, Zain, Umar and Kris, loves cake. He is always willing to lead a helping hand and wants to learn everything he can about computer science. Some of his hobbies include eating cake. <br>
 <i>Programming Languages: </i>Java, Python, HTML, CSS, Unix and JavaScript
