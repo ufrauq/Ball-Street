@@ -13,6 +13,6 @@ The CS 2212 course is an interactive, skill building course which focuses on dev
 <br><br>
 For our web application, we will be combining a passion for sports with a love of business. BallStreet, or as we like to call it our “brain-child”, incorporates basketball and stocks to produce the ultimate fantasy trading experience for users. By producing a unique algorithm based on player performance, our application generates stock prices of all basketball players. These prices fluctuate throughout the day to give the user the thrill of playing the stock trading game.
 <br><br>
-BallStreet will being using a combination of Java, JavaScript and Groovy, all managed on the framework Grails.
+BallStreet will being using a combination of Java, JavaScript, and Groovy, all managed on the framework Grails. We will be using IntelliJ for our IDE. We will be using API's from Twitter for user authorization and we are using the API from MySportsFeeds.com to get our data to calculate the stock trading algorithm. 
 <br><br>
 *i dont actually know what we are using at the is point. we need to decide on this. we also need to write a description of each langauge and framework i think after reviewing the marking rubric on the course site*
