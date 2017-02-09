@@ -12,28 +12,28 @@ We are thinkers, problem-solvers, programmers and creative geniuses. <br>
 
  <img src= "/CS2212-Team5/assets/images/profile.png" width = "250px"  align = "left"/><br>
  <br><i>Abdul | Creative Director</i><br>
- Abdul is creative, photogenic individual who loves cake. He is always willing to lead a helping hand and wants to learn everything he can about programming. Some of his hobbies include eating cake.<br>
+Abdul is creative, photogenic individual who hates cake. He recognizes that cake tastes good, but thinks there is far too much sugar in it, which he finds very unhealthy. He is always willing to lead a helping hand and wants to learn everything he can about programming. Some of his hobbies include working out, walking his dog, and listening to good music.(link to soundcloud) <br>
 <i>Programming Languages:</i> Java, C, Python, Unix<br><br>
  
  
 <br><br>
 <img src= "/CS2212-Team5/assets/images/profileMichelle.png" width = "250px"  align = "left"/>
 <br><i>Michelle | Website Design Ninja</i><br>
-Michelle is an markup language expert who produces studding websites. She, like Abdul, loves cake. She is always willing to lead a helping hand and wants to learn everything she can about programming. Some of her hobbies include eating cake.<br>
+Michelle is an markdown language expert who produces studding websites. She loves producing website mock-ups and blogging.<br>
 <i>Programming Languages:</i> Java, Python, C, Unix, Markdown, JavaScript, HTML, CSS, Flask (python web framework), Jekyll, SQLAlchemy, Heroku and d3.js
 
 
 <br><br>
 <img src= "/CS2212-Team5/assets/images/profileMadi.png" width = "250px"  align = "left"/>
 <br><br><i>Madi | Marketing Magician</i><br>
-Madi is an innovative marketing guru who loves graphic design. She, like Abdul and Michelle, loves cake. She is always willing to lead a helping hand and wants to learn everything she can about computer science. <br>
+Madi is an innovative marketing guru who loves graphic design. She has been working with Michelle to produce this site, its images and content. Some of Madi's hobbies include running, managing websites and watching movies. <br>
 <i>Programming Languages: </i>Java, Python, HTML, CSS, Unix and JavaScript
 
 
 <br><br>
 <img src= "/CS2212-Team5/assets/images/tempProfile.png" width = "250px"  align = "left"/>
 <br><br><i>Matthew | Team Overlord</i><br>
-Matthew is the team boss. He, like Abdul, Michelle and Madi, loves cake. He is always willing to lead a helping hand and wants to learn everything he can about computer science. Some of his hobbies include eating cake. <br>
+Matthew is the team boss. He is in charge of organizing "The Wolves of BallStreet" team and ensuring deadlines are met. Matthew is an academic who already has degrees in engineering. He is working towards his degree in computer science.<br>
 <i>Programming Languages: </i>Java, Python, HTML, CSS, Unix and JavaScript
 
 
@@ -46,25 +46,25 @@ Emerson is the master of UML. He, like Abdul, Michelle, Madi and Matthew, loves 
 <br><br>
 <img src= "/CS2212-Team5/assets/images/tempProfile.png" width = "250px"  align = "left"/>
 <br><br><i>Zain | Java Guru </i><br>
-Zain is the king of Java. He, like Abdul, Michelle, Madi, Matthew and Emerson, loves cake. He is always willing to lead a helping hand and wants to learn everything he can about computer science. Some of his hobbies include eating cake. <br>
+Zain is the king of Java. He has all the anwsers to about Java. His role on the team includes producing UML diagrams, working on user stories and the back-end. Some of his hobbies include -------. <br>
 <i>Programming Languages: </i>Java, Python, HTML, CSS, Unix and JavaScript
 
 
 <br><br>
 <img src= "/CS2212-Team5/assets/images/profileUmar.png" width = "250px"  align = "left"/>
 <br><br><i>Umar | UI  Master</i><br>
-Umar is owns the world's largest laptop. He, like Abdul, Michelle, Madi, Matthew, Emerson and Zain, loves cake. He is always willing to lead a helping hand and wants to learn everything he can about computer science. Some of his hobbies include eating cake and gaming. <br>
+Umar is owns the world's largest laptop. He is working on the front-end design, including mock-ups and the BallStreet web-application front-end. His favourite pass time is ------. <br>
 <i>Programming Languages: </i>Java, Python, HTML, CSS, Unix and JavaScript
 
 
 <br><br>
 <img src= "/CS2212-Team5/assets/images/tempProfile.png" width = "250px"  align = "left"/>
 <br><br><i>Khris | Idea Generator</i><br>
-Kris is the creative man behind the BallStreet idea. He, like Abdul, Michelle, Madi, Matthew, Emerson, Zain and Umar, loves cake. He is always willing to lead a helping hand and wants to learn everything he can about computer science. Some of his hobbies include eating cake and watching basketball. <br>
+Kris is the creative man behind the BallStreet idea. His love and passion for basketball was enough to persuade the team to pursue the fantasy basketball stock market application. Other then basketball, Khris loves...... <br>
 <i>Programming Languages: </i>Java, Python, HTML, CSS, Unix and JavaScript
 
 <br><br>
 <img src= "/CS2212-Team5/assets/images/tempProfile.png" width = "250px"  align = "left"/>
 <br><br><i>Daniel | Repo Hero</i><br>
-Daniel is a successful entreprenuer. He, like Abdul, Michelle, Madi, Matthew, Emerson, Zain, Umar and Kris, loves cake. He is always willing to lead a helping hand and wants to learn everything he can about computer science. Some of his hobbies include eating cake. <br>
+Daniel is a successful entreprenuer. For this project, he is in charge of he management of the project on GitHub. His passed exerience using GitHub for large programming projects makes him the perfect for this position.<br>
 <i>Programming Languages: </i>Java, Python, HTML, CSS, Unix and JavaScript
