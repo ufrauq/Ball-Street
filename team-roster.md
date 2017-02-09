@@ -73,8 +73,8 @@ Kris is the creative man behind the BallStreet idea. His love and passion for ba
 <br>
 <div>
 <br><br>
-<img src= "/CS2212-Team5/assets/images/tempProfile.png" width = "250px"  align = "left"/>
+<img src= "/CS2212-Team5/assets/images/profileDan.png" width = "250px"  align = "left"/>
 <br><br><i>Daniel | Repo Hero</i><br>
-Daniel is a successful entreprenuer. For this project, he is in charge of he management of the project on GitHub. His passed exerience using GitHub for large programming projects makes him the perfect for this position.<br>
-<i>Programming Languages: </i>Java, Python, HTML, CSS, Unix and JavaScript
+Daniel is the founder of a healthcare IT startup where he is a developer and the Git manager-a role he will reprise in this project as our GitHub master. In his free time, Daniel enjoys keeping track of SpaceX and other players in the spaceflight industry.<br>
+<i>Programming Languages: </i>PHP, JavaScript, SQL, Bash, Python, HTML, CSS, Java
 </div>
