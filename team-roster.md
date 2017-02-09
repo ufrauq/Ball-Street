@@ -7,7 +7,7 @@ permalink: /team-roster/
 summary: "Meet the team technology wizards behind creation BallStreet."
 active: team-roster
 ---
-# Team Roster (waaaaaaaaa) 
+# Team Roster 
 We are thinkers, problem-solvers, programmers and creative geniuses. <br>
 <div >
  <img src= "/CS2212-Team5/assets/images/profile.png" width = "250px"  align = "left"/><br>
@@ -54,7 +54,6 @@ Emerson is the master of UML. He, like Abdul, Michelle, Madi and Matthew, loves 
 Zain is the king of Java. He has all the anwsers to about Java. His role on the team includes producing UML diagrams, working on user stories and the back-end. Some of his hobbies include -------. <br>
 <i>Programming Languages: </i>Java, Python, HTML, CSS, Unix and JavaScript
 </div>
-<br
 <div>
 <br><br>
 <img src= "/CS2212-Team5/assets/images/profileUmar.png" width = "250px"  align = "left"/>
