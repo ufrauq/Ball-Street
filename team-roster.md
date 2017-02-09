@@ -18,7 +18,7 @@ Abdul is creative, photogenic individual who hates cake. He recognizes that cake
 <br>
 <div>
 <img src= "/CS2212-Team5/assets/images/profileMichelle.png" width = "250px"  align = "left"/>
-<br><i>Michelle | Website Design Ninja</i><br>
+<br><br><i>Michelle | Website Design Ninja</i><br>
 Michelle is an markdown language expert who produces studding websites. She loves producing website mock-ups and blogging.<br>
 <i>Programming Languages:</i> Java, Python, C, Unix, Markdown, JavaScript, HTML, CSS, Flask (python web framework), Jekyll, SQLAlchemy, Heroku and d3.js
 </div>
@@ -54,6 +54,7 @@ Emerson is the master of UML. He, like Abdul, Michelle, Madi and Matthew, loves 
 Zain is the king of Java. He has all the anwsers to about Java. His role on the team includes producing UML diagrams, working on user stories and the back-end. Some of his hobbies include -------. <br>
 <i>Programming Languages: </i>Java, Python, HTML, CSS, Unix and JavaScript
 </div>
+<br>
 <div>
 <br><br>
 <img src= "/CS2212-Team5/assets/images/profileUmar.png" width = "250px"  align = "left"/>
