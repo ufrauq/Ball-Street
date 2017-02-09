@@ -7,11 +7,11 @@ permalink: /team-roster/
 summary: "Meet the team technology wizards behind creation BallStreet."
 active: team-roster
 ---
-# Team Roster
+# Team Roster (waaaaaaaaa) 
 We are thinkers, problem-solvers, programmers and creative geniuses. <br>
 <div >
  <img src= "/CS2212-Team5/assets/images/profile.png" width = "250px"  align = "left"/><br>
- <br><i>Abdul | Creative Director</i><br>
+ <i>Abdul | Creative Director</i><br>
 Abdul is creative, photogenic individual who hates cake. He recognizes that cake tastes good, but thinks there is far too much sugar in it, which he finds very unhealthy. He is always willing to lead a helping hand and wants to learn everything he can about programming. Some of his hobbies include working out, walking his dog, and listening to good music.(link to soundcloud) <br>
 <i>Programming Languages:</i> Java, C, Python, Unix<br><br>
 </div> 
