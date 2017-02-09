@@ -43,7 +43,7 @@ Matthew is the team boss. He is in charge of organizing "The Wolves of BallStree
 <br><br>
 <img src= "/CS2212-Team5/assets/images/tempProfile.png" width = "250px"  align = "left"/>
 <br><br><i>Emerson | UML God </i><br>
-Emerson is the master of UML. He, like Abdul, Michelle, Madi and Matthew, loves cake. He is always willing to lead a helping hand and wants to learn everything he can about computer science. Some of his hobbies include eating cake. <br>
+Emerson is the master of UML. He loves technology, and is a huge NBA fan as well. Needless to say project BallStreet is the perfect match for him. Soem of Emerson's hobbies include science and reading. <br>
 <i>Programming Languages: </i>Java, Python, HTML, CSS, Unix and JavaScript
 </div>
 <br>
