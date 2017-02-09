@@ -9,10 +9,9 @@ active: ui-design
 ---
 
 # UI Design
-What this page needs to inlcude: 
 
-<ul> 
-<li> Description of overall look and feel (2 marks) </li><br><br>
+
+
 
 BallStreet's user interface is going to be simplistic and minimalistic to provide an easy to navigate platform and focus on the applications functionality. The colour scheme will be a combination of red and grey with a few additional accent colours such as blue and yellow. The user dashboard has words in addition to small icons to help ease the navigation through the application. <br><br>
 The dashboard includes the following pages: 
@@ -26,10 +25,12 @@ The dashboard includes the following pages:
 <br><br>
 
 
-<li> Includes screen layouts of sufficent quality (2 marks) </li> <br>
-Put images here with arrows pointing at different links (put anchors in the site potential to jump between the pages) <br><br>
+Here are some examples of BallStreets UI: <br>
 
+
+<h2> Login Screen </h2>
 <img src= "/CS2212-Team5/assets/images/BallStreetLogin2.jpg" width = "600px" ><br><br>
+The image above will be used as the login screen for BallStreet. From this screen, the user can select "Sign Up" to create a new user profile. Once this button is clicked, they will be snet to a new screen to create a profile. If the user already has an account set up, the user can login in easily by typing in their username and password and selecting "Login In". The login in process will be powered by the Twitter login authorization API. Once logged in properly, the user will be able to access their account and start making trades. <br><br> 
+<h2> User Dashboard </h2>
 <img src= "/CS2212-Team5/assets/images/BallStreetDashBoard1.jpg" width = "600px" ><br><br>
-<li> Level of detail - must show overall layout, the number of different screens, and how you will navigate between them (6 marks) </li> 
-</ul> 
+<li> Level of detail - must show overall layout, the number of different screens, and how you will navigate between them (6 marks) </li>  
