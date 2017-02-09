@@ -1,10 +1,10 @@
 ---
-bg: "planning.jpg"
+bg: "planningMainImage.jpg"
 layout: page
 title: "Project Plan"
 crawlertitle: "BallStreet | Project Plan"
 permalink: /project-plan/
-summary: "BallStreet | Project Plan"
+summary: "What's the planning behind BallStreet?"
 active: Project-Plan
 ---
 # Project Plan
@@ -20,3 +20,5 @@ Some features of BallStreet include:
 <li> Direct User to User Stock Trades</li>
 <li> Ablility to Enqueue Future Trades</li>
 </ul>
+
+For the authorization of logging in, BallStreet will be using the Twitter User Identification API (link to twitter's api page? ). Additionally, BallStreet will use data collected from the MySportsFeeds.com via their API to determine stock prices of players based on game stats, injuries and team wins. 
