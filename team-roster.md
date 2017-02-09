@@ -34,7 +34,7 @@ Madi is an innovative marketing guru who loves graphic design. She has been work
 <div>
 <br><br>
 <img src= "/CS2212-Team5/assets/images/profileMatt.png" width = "250px"  align = "left"/>
-<br><br><i>Matthew | Team Overlord</i><br>
+<br><i>Matthew | Team Overlord</i><br>
 Matthew is the team boss. He is in charge of organizing "The Wolves of BallStreet" team and ensuring deadlines are met. Matthew is an academic who already has degrees in engineering. He is working towards his degree in computer science.<br>
 <i>Programming Languages: </i>Java, Python, HTML, CSS, Unix and JavaScript
 </div>
