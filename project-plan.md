@@ -18,7 +18,6 @@ The project was started originally in January and the project duration will be a
 <li>Additional feature:  implementation of various financial instruments, such as options and futures using available data (difficulty in implementing:  medium)</li>
 <li>Additional feature:  implementation of machine learning algorithms to assist in optimizing a parameter in the user’s profile, such as maintaining portfolio volatility or maximum portfolio value (difficulty in implementing:  hard)</li></ul><br><br>
 
-<br>
 <a href="https://zsirohey.github.io/CS2212-Team5/assets/images/2212_Project_Plan.pdf">
 <img src= "/CS2212-Team5/assets/images/ganttchart.png" align = "left"/>
 <br>
