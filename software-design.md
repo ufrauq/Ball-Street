@@ -16,5 +16,5 @@ To get BallStreet up and running, a lot of planning was put into all the classes
 
 <br><br>
 
-Indicate Software used to generate Diagram (2 marks and Zain will be writing) 
+This UML was generated using www.draw.io, draw.io is a tool that allows you to easily create and edit UMLs. In addition, and most importantly, draw.io also allows collaborative editing through Google Drive.
 
