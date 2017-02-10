@@ -4,7 +4,7 @@ layout: page
 title: "Team 5 Roster"
 crawlertitle: "Team 5 Roster"
 permalink: /team-roster/
-summary: "Meet the team technology wizards behind creation BallStreet."
+summary: "Meet the Wolves of BallStreet."
 active: team-roster
 ---
 # Team Roster 
