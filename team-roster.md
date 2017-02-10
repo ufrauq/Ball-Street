@@ -19,8 +19,8 @@ Abdul is creative, photogenic individual who hates cake. He recognizes that cake
 <div>
 <img src= "/CS2212-Team5/assets/images/profileMichelle.png" width = "250px"  align = "left"/>
 <br><br><i>Michelle | Website Design Ninja</i><br>
-Michelle is an markdown language expert who produces studding websites. She loves producing website mock-ups and blogging.<br>
-<i>Programming Languages:</i> Java, Python, C, Unix, Markdown, JavaScript, HTML, CSS, Flask (python web framework), Jekyll, SQLAlchemy, Heroku and d3.js
+Michelle is an markdown language expert who produces stunning websites. She loves modified cars, photography, and technology.<br>
+<i>Programming Languages:</i> Java, Python, C, Bash, Markdown, JavaScript, HTML, CSS, Flask, Jekyll, SQLAlchemy, Heroku and d3.js
 </div>
 <br>
 <div>
@@ -59,7 +59,7 @@ Zain is the king of Java. He has all the anwsers to about Java. His role on the 
 <br><br>
 <img src= "/CS2212-Team5/assets/images/profileUmar.png" width = "250px"  align = "left"/>
 <br><br><i>Umar | UI  Master</i><br>
-Umar is owns the world's largest laptop. He is working on the front-end design, including mock-ups and the BallStreet web-application front-end. His favourite pass time is ------. <br>
+Umar is owns the world's largest laptop. He is working on the front-end design, including mock-ups and the BallStreet web-application front-end. His favourite past time is ------. <br>
 <i>Programming Languages: </i>Java, Python, HTML, CSS, Unix and JavaScript
 </div>
 <br>
