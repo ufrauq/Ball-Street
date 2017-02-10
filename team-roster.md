@@ -19,8 +19,8 @@ Abdul is creative, photogenic individual who hates cake. He recognizes that cake
 <div>
 <img src= "/CS2212-Team5/assets/images/profileMichelle.png" width = "250px"  align = "left"/>
 <br><br><i>Michelle | Website Design Ninja</i><br>
-Michelle is an markdown language expert who produces stunning websites. She loves modified cars, photography, and technology.<br>
-<i>Programming Languages:</i> Java, Python, C, Bash, Markdown, JavaScript, HTML, CSS, Flask, Jekyll, SQLAlchemy, Heroku and d3.js
+Michelle is an avid geek who loves all things tech. She is responsible for the Front-end design and layout for BallStreet. She loves modified cars, film photography, and [tracking data about herself](http://www.last.fm/user/bellechelle). She once turned pescetarian for 3 years to prove someone wrong. <br>
+<i>Programming Languages:</i> Java, Python, C, Bash, JavaScript, HTML, CSS,  Markdown, Flask, Jekyll, SQLAlchemy, Heroku and d3.js
 </div>
 <br>
 <div>
