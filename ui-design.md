@@ -62,6 +62,6 @@ From this page, the user will be able to upload a user image, set a new password
 <br><br>
 
 <h3 id="tradeRequests"> Trade Requests </h3>
-<!--<img src= "/CS2212-Team5/assets/images/BallStreetDashBoard1.jpg" width = "600px" ><br><br> -->
+<img src= "/CS2212-Team5/assets/images/stockTradeRequest.jpg" width = "600px" ><br><br>
 On this page, the user will be able to view trade requests from other users and send trade reuqests to other users. 
 <br><br>
