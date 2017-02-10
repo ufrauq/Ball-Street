@@ -51,7 +51,7 @@ On this page, the user will be able to view their stocks. There will be player p
 <br><br>
 
 <h3 id="playerProfilePage"> Player Profile Page </h3>
-<img src= "/CS2212-Team5/assets/images/profile.png" width = "600px" ><br><br>
+<img src= "/CS2212-Team5/assets/images/playerProfile.jpg" width = "600px" ><br><br>
 The player profile page will include a graph showing the stock trends of the player from the last 10 days, their last 10 games stats, their current status (playing or injuried), the current trading price, a profile image and a button to purchase stock. 
 <br><br>
 
