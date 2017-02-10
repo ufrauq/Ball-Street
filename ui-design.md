@@ -2,7 +2,7 @@
 bg: "UIDesignImg.jpg"
 layout: page
 title: "UI Design"
-crawlertitle: "UI Design for BallStreet"
+crawlertitle: "BallStreet | UI Design"
 permalink: /ui-design/
 summary: "How will users interact with BallStreet?"
 active: ui-design
@@ -55,13 +55,9 @@ On this page, the user will be able to view their stocks. There will be player p
 The player profile page will include a graph showing the stock trends of the player from the last 10 days, their last 10 games stats, their current status (playing or injuried), the current trading price, a profile image and a button to purchase stock. 
 <br><br>
 
-<h3 id="playerProfilePage"> Player Profile Page </h3>
-<!--<img src= "/CS2212-Team5/assets/images/BallStreetDashBoard1.jpg" width = "600px" ><br><br> -->
-The player profile page will include a graph showing the stock trends of the player from the last 10 days, their last 10 games stats, their current status (playing or injuried), the current trading price, a profile image and a button to purchase stock. 
-<br><br>
 
 <h3 id="userProfileSettings"> User Profile Settings </h3>
-<!--<img src= "/CS2212-Team5/assets/images/BallStreetDashBoard1.jpg" width = "600px" ><br><br> -->
+<img src= "/CS2212-Team5/assets/images/userSettings.jpeg" width = "600px" ><br><br>
 From this page, the user will be able to upload a user image, set a new password for their account and log out. 
 <br><br>
 
