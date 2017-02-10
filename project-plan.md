@@ -12,7 +12,7 @@ The project was started originally in January and the project duration will be a
 <ul>
 <li><i>User Profile</i></li>
 <ul><li>Integrating with social media, users will be able to login and conduct their trades, and watch the market.</li>
-<li>Additional feature:  using data visualization and reporting tools/APIs, each user will be able to create various dashboards tailored to their needs, based on available data (Difficulty in implementing:  medium)</li></ul>
+<li>Additional feature:  using data visualization and reporting tools/APIs, each user will be able to create various dashboards tailored to their needs, based on available data (Difficulty in implementing:  medium)</li></ul><br><br>
 <li><i>Execution of Trades:</i></li>
 <ul><li>Users will be able to buy, sell, and trade player stock with the market or other users </li>
 <li>Additional feature:  implementation of various financial instruments, such as options and futures using available data (difficulty in implementing:  medium)</li>
