@@ -38,7 +38,7 @@ On this screen, the user will be able to create a new user profile. The user wil
 
 
 <h3 id="userDashboard"> User Dashboard </h3>
-<img src= "/CS2212-Team5/assets/images/BallStreetDashBoard1.jpg" width = "600px" ><br><br>
+<img src= "/CS2212-Team5/assets/images/dashBoard2.jpg" width = "600px" ><br><br>
 The user dashboard will be the main screen for the BallStreet application. The players net worth and woth from the last 10 days will be displayed. From this screen, the user will be able to access the <a herf="#playerStockMarket">player stock market </a>, their <a href="#userStocks">personal stocks </a>, their <a href="#userBalance"> current balance and past transactions </a>, <a herf="#userProfileSettings">profile settings </a> and their <a href="#tradeRequests">current stock trade requests from other users.</a>  <br><br>
 
 <h3 id="playerStockMarket"> Player Stock Market </h3>
