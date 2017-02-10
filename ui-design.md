@@ -31,12 +31,12 @@ The image above will be used as the login screen for BallStreet. From this scree
 
 <h3 id="createNewProfile"> Create New Profile </h3>
 <img src= "/CS2212-Team5/assets/images/userSignUp.jpg" width = "600px" ><br><br>
-On this screen, the user will be able to create a new user profile. The user will be asked to input their first and last names, their email address, and to create a username and password. The Twitter API will enusre that each user has their own unique username. Once all the info is entered, the user can click the "Create Profile" button, which will redirect them to their <a href="#userDashboard">dashboard</a> or will produce an error and ask the user to review the information they entered. Once the user has successfully created, they will be emailed a "Thank You" email which includes their username and password.  <br><br>
+On this screen, the user will be able to create a new user profile. The user will be asked to input their first and last names, their email address, and to create a username and password. The Twitter API will enusre that each user has their own unique username. Once all the info is entered, the user can click the "Sign Up" button, which will redirect them to their <a href="#userDashboard">dashboard</a> or will produce an error and ask the user to review the information they entered. Once the user has successfully created, they will be emailed a "Thank You" email which includes their username and password.  <br><br>
 
 
 <h3 id="userDashboard"> User Dashboard </h3>
 <img src= "/CS2212-Team5/assets/images/dashBoard3.jpg" width = "600px" ><br><br>
-The user dashboard will be the main screen for the BallStreet application. The players net worth and worth from the last 10 days will be displayed. From this screen, the user will be able to access the <a herf="#playerStockMarket">player stock market </a>, their <a href="#userStocks">personal stocks </a>, their <a href="#userBalance"> current balance and past transactions </a>, <a herf="#userProfileSettings">profile settings </a> and their <a href="#tradeRequests">current stock trade requests from other users.</a>  <br><br>
+The user dashboard will be the main screen for the BallStreet application. The users net worth and their net worth from the last 10 days will be displayed. From this screen, the user will be able to access the <a herf="#playerStockMarket">player stock market </a>, their <a href="#userStocks">personal stocks </a>, their <a href="#userBalance"> current balance and past transactions </a>, <a herf="#userProfileSettings">profile settings </a> and their <a href="#tradeRequests">current stock trade requests from other users.</a>  <br><br>
 
 <h3 id="playerStockMarket"> Player Stock Market </h3>
 <img src= "/CS2212-Team5/assets/images/playerStockMarket2.jpg" width = "600px" ><br><br>
