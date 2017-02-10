@@ -57,7 +57,7 @@ The player profile page will include a graph showing the stock trends of the pla
 
 
 <h3 id="userProfileSettings"> User Profile Settings </h3>
-<img src= "/CS2212-Team5/assets/images/userSettings.jpeg" width = "600px" ><br><br>
+<img src= "/CS2212-Team5/assets/images/userSettings.jpg" width = "600px" ><br><br>
 From this page, the user will be able to upload a user image, set a new password for their account and log out. 
 <br><br>
 
