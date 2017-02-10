@@ -65,9 +65,9 @@ Umar is owns the world's largest laptop. He is working on the front-end design, 
 <br>
 <div>
 <br><br>
-<img src= "/CS2212-Team5/assets/images/profileKhirs.png" width = "250px"  align = "left"/>
+<img src= "/CS2212-Team5/assets/images/profileKhris.png" width = "250px"  align = "left"/>
 <br><br><i>Khris | Idea Generator</i><br>
-Kris is the creative man behind the BallStreet idea. His love and passion for basketball was enough to persuade the team to pursue the fantasy basketball stock market application. Other then basketball, Khris loves all sports! <br>
+Khris is the creative man behind the BallStreet idea. His love and passion for basketball was enough to persuade the team to pursue the fantasy basketball stock market application. Other then basketball, Khris loves all sports! <br>
 <i>Programming Languages: </i>Java, Python, C, Unix and SQL
 </div>
 <br>
