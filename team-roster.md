@@ -41,10 +41,10 @@ Matthew is the team boss. He is in charge of organizing "The Wolves of BallStree
 <br>
 <div>
 <br><br>
-<img src= "/CS2212-Team5/assets/images/tempProfile.png" width = "250px"  align = "left"/>
+<img src= "/CS2212-Team5/assets/images/profileEmerson.png" width = "250px"  align = "left"/>
 <br><br><i>Emerson | UML God </i><br>
 Emerson is the master of UML. He loves technology, and is a huge NBA fan as well. Needless to say project BallStreet is the perfect match for him. Soem of Emerson's hobbies include science and reading. <br>
-<i>Programming Languages: </i>Java, Python, HTML, CSS, Unix and JavaScript
+<i>Programming Languages: </i>Java, C, Python, Unix, JavaSwing and Android Studio
 </div>
 <br>
 <div>
@@ -59,16 +59,16 @@ Zain is the king of Java. He has all the anwsers to about Java. His role on the 
 <br><br>
 <img src= "/CS2212-Team5/assets/images/profileUmar.png" width = "250px"  align = "left"/>
 <br><br><i>Umar | UI  Master</i><br>
-Umar is owns the world's largest laptop. He is working on the front-end design, including mock-ups and the BallStreet web-application front-end. His favourite past time is ------. <br>
+Umar is owns the world's largest laptop. He is working on the front-end design, including mock-ups and the BallStreet web-application front-end. His favourite past time is gaming. <br>
 <i>Programming Languages: </i>Java, Python, HTML, CSS, Unix and JavaScript
 </div>
 <br>
 <div>
 <br><br>
-<img src= "/CS2212-Team5/assets/images/tempProfile.png" width = "250px"  align = "left"/>
+<img src= "/CS2212-Team5/assets/images/profileKhirs.png" width = "250px"  align = "left"/>
 <br><br><i>Khris | Idea Generator</i><br>
-Kris is the creative man behind the BallStreet idea. His love and passion for basketball was enough to persuade the team to pursue the fantasy basketball stock market application. Other then basketball, Khris loves...... <br>
-<i>Programming Languages: </i>Java, Python, HTML, CSS, Unix and JavaScript
+Kris is the creative man behind the BallStreet idea. His love and passion for basketball was enough to persuade the team to pursue the fantasy basketball stock market application. Other then basketball, Khris loves all sports! <br>
+<i>Programming Languages: </i>Java, Python, C, Unix and SQL
 </div>
 <br>
 <div>
