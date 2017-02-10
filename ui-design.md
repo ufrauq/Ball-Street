@@ -39,7 +39,7 @@ On this screen, the user will be able to create a new user profile. The user wil
 The user dashboard will be the main screen for the BallStreet application. The players net worth and worth from the last 10 days will be displayed. From this screen, the user will be able to access the <a herf="#playerStockMarket">player stock market </a>, their <a href="#userStocks">personal stocks </a>, their <a href="#userBalance"> current balance and past transactions </a>, <a herf="#userProfileSettings">profile settings </a> and their <a href="#tradeRequests">current stock trade requests from other users.</a>  <br><br>
 
 <h3 id="playerStockMarket"> Player Stock Market </h3>
-<img src= "/CS2212-Team5/assets/images/playerStockMarket.jpg" width = "600px" ><br><br>
+<img src= "/CS2212-Team5/assets/images/playerStockMarket2.jpg" width = "600px" ><br><br>
 The player stock market will consist of the current stocks trading the highest with a search bar function to search for a specific player. Each player on the market will have a small profile image, there most recent game stats, a purchase button and an arrow indictating their trade status. Once the player profile is selected, the user will be seen to the <a href="#playerProfilePage"> specific player page </a>which will display various pieces of infomation about the player to allow the user to make an informed disicion about the stock. The player profile page will include a button to purchase stock.
 <br><br>
 <h3 id="userStocks"> User Stocks </h3>
