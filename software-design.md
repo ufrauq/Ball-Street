@@ -19,5 +19,5 @@ To get BallStreet up and running, a lot of planning was put into all the classes
 <img src= "/CS2212-Team5/assets/images/uml.png" align = "left"/>
 <br>
 
-This UML was generated using www.draw.io, draw.io is a tool that allows you to easily create and edit UMLs. In addition, and most importantly, draw.io also allows collaborative editing through Google Drive.
+The BallStreet UML was generated using www.draw.io, as draw.io is a tool that allows for the easy creation and editing UML diagrams. In addition, and most importantly, draw.io also allows collaborative editing through Google Drive.
 
