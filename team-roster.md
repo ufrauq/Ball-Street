@@ -12,14 +12,14 @@ We are thinkers, problem-solvers, programmers and creative geniuses. <br>
 <div >
  <img src= "/CS2212-Team5/assets/images/profile.png" width = "250px"  align = "left"/><br>
  <i>Abdul | Creative Director</i><br>
-Abdul is creative, photogenic individual who hates cake. He recognizes that cake tastes good, but thinks there is far too much sugar in it, which he finds very unhealthy. He is always willing to lead a helping hand and wants to learn everything he can about programming. Some of his hobbies include working out, walking his dog, and listening to good music. <br>
+Abdul is creative, photogenic individual who hates cake. He recognizes that cake tastes good, but thinks there is far too much sugar in it, which he finds very unhealthy. Abdul is working on the back-end, especializing on the trading algorithm. He is always willing to lead a helping hand and wants to learn everything he can about programming. Some of his hobbies include working out, walking his dog, and listening to good music. <br>
 <i>Programming Languages:</i> Java, C, Python, Unix<br><br>
 </div> 
 <br>
 <div>
 <img src= "/CS2212-Team5/assets/images/profileMichelle.png" width = "250px"  align = "left"/>
 <br><i>Michelle | Website Design Ninja</i><br>
-Michelle is an avid geek who loves all things tech. She is responsible for the Front-end design and layout for BallStreet. She loves modified cars, film photography, and <a href="http://www.last.fm/user/bellechelle" target = "_blank">tracking data about herself.</a> She once turned pescetarian for 3 years to prove someone wrong. <br>
+Michelle is an avid geek who loves all things tech. She is responsible for the front-end design and layout for BallStreet. She loves modified cars, film photography, and <a href="http://www.last.fm/user/bellechelle" target = "_blank">tracking data about herself.</a> She once turned pescetarian for 3 years to prove someone wrong. <br>
 <i>Programming Languages:</i> Java, Python, C, Bash, JavaScript, HTML, CSS,  Markdown, Flask, Jekyll, SQLAlchemy, Heroku and d3.js
 </div>
 
@@ -27,7 +27,7 @@ Michelle is an avid geek who loves all things tech. She is responsible for the F
 <br><br>
 <img src= "/CS2212-Team5/assets/images/profileMadi.png" width = "250px"  align = "left"/>
 <br><br><i>Madi | Marketing Magician</i><br>
-Madi is an innovative marketing guru who loves graphic design. She has been working with Michelle to produce this site, its images and content. Some of Madi's hobbies include running, managing websites and watching movies. <br>
+Madi is an innovative marketing guru who loves graphic design. She has been working with Michelle to produce this site, its images and content in addition to the front-end design of BallStreet. Some of Madi's hobbies include running, managing websites and watching movies. <br>
 <i>Programming Languages: </i>Java, Python, HTML, CSS, Unix and JavaScript
 </div>
 <br>
@@ -43,7 +43,7 @@ Matthew is the team boss. He is in charge of organizing "The Wolves of BallStree
 <br><br>
 <img src= "/CS2212-Team5/assets/images/profileEmerson.png" width = "250px"  align = "left"/>
 <br><br><i>Emerson | UML God </i><br>
-Emerson is the master of UML. He loves technology, and is a huge NBA fan as well. Needless to say project BallStreet is the perfect match for him. Soem of Emerson's hobbies include science and reading. <br>
+Emerson is the master of UML. He loves technology, and is a huge NBA fan as well. Needless to say project BallStreet is the perfect match for him. Emerson is working on the back-end design of BallStreet. Some of Emerson's hobbies include science and reading. <br>
 <i>Programming Languages: </i>Java, C, Python, Unix, JavaSwing and Android Studio
 </div>
 <br>
@@ -67,7 +67,7 @@ Umar is owns the world's largest laptop. He is working on the front-end design, 
 <br><br>
 <img src= "/CS2212-Team5/assets/images/profileKhris.png" width = "250px"  align = "left"/>
 <br><br><i>Khris | Idea Generator</i><br>
-Khris is the creative man behind the BallStreet idea. His love and passion for basketball was enough to persuade the team to pursue the fantasy basketball stock market application. Other then basketball, Khris loves all sports! <br>
+Khris is the creative man behind the BallStreet idea. His love and passion for basketball was enough to persuade the team to pursue the fantasy basketball stock market application. Khris is specializing in user stories for this project. Other then basketball, Khris loves all sports! <br>
 <i>Programming Languages: </i>Java, Python, C, Unix and SQL
 </div>
 <br>
