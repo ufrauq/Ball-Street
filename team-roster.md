@@ -19,10 +19,10 @@ Abdul is creative, photogenic individual who hates cake. He recognizes that cake
 <div>
 <img src= "/CS2212-Team5/assets/images/profileMichelle.png" width = "250px"  align = "left"/>
 <br><br><i>Michelle | Website Design Ninja</i><br>
-Michelle is an avid geek who loves all things tech. She is responsible for the Front-end design and layout for BallStreet. She loves modified cars, film photography, and [tracking data about herself](http://www.last.fm/user/bellechelle). She once turned pescetarian for 3 years to prove someone wrong. <br>
+Michelle is an avid geek who loves all things tech. She is responsible for the Front-end design and layout for BallStreet. She loves modified cars, film photography, and <a href="http://www.last.fm/user/bellechelle">tracking data about herself.</a> She once turned pescetarian for 3 years to prove someone wrong. <br>
 <i>Programming Languages:</i> Java, Python, C, Bash, JavaScript, HTML, CSS,  Markdown, Flask, Jekyll, SQLAlchemy, Heroku and d3.js
 </div>
-<br>
+
 <div>
 <br><br>
 <img src= "/CS2212-Team5/assets/images/profileMadi.png" width = "250px"  align = "left"/>
