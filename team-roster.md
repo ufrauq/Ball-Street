@@ -50,9 +50,9 @@ Emerson is the master of UML. He loves technology, and is a huge NBA fan as well
 <div>
 <br><br>
 <img src= "/CS2212-Team5/assets/images/profileZain.png" width = "250px"  align = "left"/>
-<br><br><i>Zain | Java Guru </i><br>
-Zain is the king of Java. He has all the anwsers to about Java. His role on the team includes producing UML diagrams, working on user stories and the back-end. Some of his hobbies include photography and watching hockey. <br>
-<i>Programming Languages: </i>Java, Python, HTML, CSS, Unix and JavaScript
+<br><br><i>Zain | Object Orienter </i><br>
+Zain was responsible for creating and "orienting" objects in the UML diagram. He is also involved in working with the sports data API, and, more generally, the back-end. Some of his pastimes include photography and watching hockey. <br>
+<i>Programming Languages: </i>Java, Python, C, Unix, HTML, CSS, and JavaScript
 </div>
 <br>
 <div>
