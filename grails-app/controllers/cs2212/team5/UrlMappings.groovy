@@ -10,6 +10,13 @@ class UrlMappings {
         }
 
         "/"(view:"/index")
+        "/home"(view:"/home")
+        "/trades"(view:"/trades")
+        "/settings"(view:"/settings")
+        "/stocks"(view:"/stocks")
+        "/leagues"(view:"/leagues")
+        "/players"(view:"/players")
+        "/market"(view:"/market")
         "500"(view:'/error')
         "404"(view:'/notFound')
     }

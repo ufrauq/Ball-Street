@@ -10,6 +10,11 @@ buildscript {
     }
 }
 
+
+plugins {
+    id "com.moowork.node" version "0.12"
+}
+
 version "0.1"
 group "cs2212.team5"
 
@@ -64,3 +69,13 @@ assets {
     minifyJs = true
     minifyCss = true
 }
+
+node {
+    version = '6.10.0'
+    npmVersion = '3.10.10'
+    distBaseUrl = 'https://nodejs.org/dist'
+    download = true
+}
+
+processResources.dependsOn(['npmInstall', 'npm_run_bundle'])
+assetCompile.dependsOn(['npmInstall', 'npm_run_bundle'])
