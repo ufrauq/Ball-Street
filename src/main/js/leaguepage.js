@@ -1,6 +1,6 @@
 import React from 'react';
 
-var LeagueEntry = React.createClass({
+var UserEntry = React.createClass({
     getInitialState () {
         return {
         }
@@ -8,11 +8,58 @@ var LeagueEntry = React.createClass({
     render () {
         return (
             <div>
-                <b>{this.props.name}</b> {this.props.members}/25
+                {this.props.rank} <b>{this.props.userName}</b> {this.props.netWorth}
             </div>
         );
     }
 });
+
+var LeagueEntry = React.createClass({
+    getInitialState () {
+        return {
+            userEntries : [],
+            buttonStatus : "Expand"
+        }
+    },
+
+    handleSubmit(e) {
+        e.preventDefault();
+        let name = this.props.name;
+        let status = this.state.buttonStatus;
+        if (status == "Expand") {
+            fetch('http://localhost:8080/league/getMembers?leagueName='+ name/*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/).then(response => {
+                if(response.ok) {
+                    response.json().then(json => {
+                        let results = [];
+                        for (let i = 0; i < json.length; i++) {
+                            results.push(<div><UserEntry rank={i+1} userName={json[i].name} netWorth={json[i].netWorth}/></div>);
+                        }
+                        this.setState({userEntries: results, buttonStatus: "Collapse"});
+                    });
+                }
+                else{
+                    this.setState({userEntries: [], buttonStatus: "Collapse"});
+                }
+            });
+        }
+        else {
+            this.setState({userEntries: [], buttonStatus: "Expand"});
+        }
+
+    },
+
+    render () {
+        return (
+            <div>
+                <b>{this.props.name}</b> {this.props.members}/25
+                <button type="button" onClick={this.handleSubmit}>{this.state.buttonStatus}</button>
+                {this.state.userEntries}
+                <br/>
+            </div>
+        );
+    }
+});
+
 
 var LeagueCreator = React.createClass({
     getInitialState()
@@ -43,10 +90,9 @@ var LeagueCreator = React.createClass({
                 this.setState({message : name + " was created successfully!"});
             }
             else {
-                this.setState({message : name + " was already taken..."})
+                this.setState({message : name + " was already taken..."});
             }
         });
-        this.props.callback();
     },
 
     render() {
@@ -67,14 +113,14 @@ var LeagueCreator = React.createClass({
     }
 });
 
-export class LeaguePage extends React.Component {
+var LeagueList = React.createClass({
+    getInitialState() {
+        return {
+            leagueEntries : [],
+        }
+    },
 
-    constructor() {
-        super();
-        this.state = {leagueEntries: []};
-    }
-
-    fetchFromAPI(){
+    fetchFromAPI() {
         fetch('http://localhost:8080/league/getLeagues'/*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/)
             .then(response => {
                 if(response.ok) {
@@ -87,33 +133,60 @@ export class LeaguePage extends React.Component {
                     });
                 }
                 else{
-                    // If response is NOT OKAY (e.g. 404), clear the statuses.
                     this.setState({leagueEntries: []});
                 }
             });
-    }
+    },
 
     componentDidMount() {
         this.fetchFromAPI();
-    }
+    },
 
-    componentWillReceiveProps() {
+    handleClick(e) {
+        e.preventDefault();
         this.fetchFromAPI();
-    }
+    },
 
-    remount() {
-        this.fetchFromAPI();
+    render() {
+        return(
+            <div>
+                <button type="button" onClick={this.handleClick}>Refresh</button>
+                {this.state.leagueEntries}
+            </div>
+        )
     }
+});
+
+var League = React.createClass({
+    getInitialState() {
+        return {
+        }
+    },
 
     render() {
         return(
             <div>
                 <h1>My Leagues:</h1>
                 <h1>All Leagues:</h1>
-                {this.state.leagueEntries}
+                <LeagueList/>
                 <h1>Create League:</h1>
-                <LeagueCreator callback={this.remount}/>
+                <LeagueCreator/>
             </div>
-    );
+        );
+    }
+});
+
+export class LeaguePage extends React.Component {
+
+    constructor() {
+        super();
+    }
+
+    render() {
+        return(
+            <div>
+                <League/>
+            </div>
+        );
     }
 }

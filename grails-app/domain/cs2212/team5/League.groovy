@@ -9,6 +9,6 @@ class League {
     static hasMany = [members : UserAccount]
 
     static constraints = {
-            members nullable: true
+        members nullable: true
     }
 }

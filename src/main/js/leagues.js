@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { LeaguePage } from './leaguelist';
+import { LeaguePage } from './leaguepage';
 
 ReactDOM.render(
     <div>

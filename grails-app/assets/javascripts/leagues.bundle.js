@@ -21702,10 +21702,63 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var UserEntry = _react2.default.createClass({
+    displayName: "UserEntry",
+    getInitialState: function getInitialState() {
+        return {};
+    },
+    render: function render() {
+        return _react2.default.createElement(
+            "div",
+            null,
+            this.props.rank,
+            " ",
+            _react2.default.createElement(
+                "b",
+                null,
+                this.props.userName
+            ),
+            " ",
+            this.props.netWorth
+        );
+    }
+});
+
 var LeagueEntry = _react2.default.createClass({
     displayName: "LeagueEntry",
     getInitialState: function getInitialState() {
-        return {};
+        return {
+            userEntries: [],
+            buttonStatus: "Expand"
+        };
+    },
+    handleSubmit: function handleSubmit(e) {
+        var _this = this;
+
+        e.preventDefault();
+        var name = this.props.name;
+        var status = this.state.buttonStatus;
+        if (status == "Expand") {
+            fetch('http://localhost:8080/league/getMembers?leagueName=' + name /*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/).then(function (response) {
+                if (response.ok) {
+                    response.json().then(function (json) {
+                        var results = [];
+                        for (var i = 0; i < json.length; i++) {
+                            results.push(_react2.default.createElement(
+                                "div",
+                                null,
+                                _react2.default.createElement(UserEntry, { rank: i + 1, userName: json[i].name, netWorth: json[i].netWorth })
+                            ));
+                        }
+                        _this.setState({ userEntries: results, buttonStatus: "Collapse" });
+                    });
+                } else {
+                    _this.setState({ userEntries: [], buttonStatus: "Collapse" });
+                }
+            });
+        } else {
+            this.setState({ userEntries: [], buttonStatus: "Expand" });
+        }
     },
     render: function render() {
         return _react2.default.createElement(
@@ -21718,7 +21771,14 @@ var LeagueEntry = _react2.default.createClass({
             ),
             " ",
             this.props.members,
-            "/25"
+            "/25",
+            _react2.default.createElement(
+                "button",
+                { type: "button", onClick: this.handleSubmit },
+                this.state.buttonStatus
+            ),
+            this.state.userEntries,
+            _react2.default.createElement("br", null)
         );
     }
 });
@@ -21741,19 +21801,18 @@ var LeagueCreator = _react2.default.createClass({
         this.setState({ ownerName: e.target.value });
     },
     handleSubmit: function handleSubmit(e) {
-        var _this = this;
+        var _this2 = this;
 
         e.preventDefault();
         var name = this.state.leagueName;
         var owner = this.state.ownerName;
         fetch("http://localhost:8080/league/createLeague?ownerName=" + owner + "&leagueName=" + name /*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/).then(function (response) {
             if (response.ok) {
-                _this.setState({ message: name + " was created successfully!" });
+                _this2.setState({ message: name + " was created successfully!" });
             } else {
-                _this.setState({ message: name + " was already taken..." });
+                _this2.setState({ message: name + " was already taken..." });
             }
         });
-        this.props.callback();
     },
     render: function render() {
         return _react2.default.createElement(
@@ -21778,80 +21837,101 @@ var LeagueCreator = _react2.default.createClass({
     }
 });
 
+var LeagueList = _react2.default.createClass({
+    displayName: "LeagueList",
+    getInitialState: function getInitialState() {
+        return {
+            leagueEntries: []
+        };
+    },
+    fetchFromAPI: function fetchFromAPI() {
+        var _this3 = this;
+
+        fetch('http://localhost:8080/league/getLeagues' /*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (json) {
+                    var results = [];
+                    for (var i = 0; i < json.length; i++) {
+                        results.push(_react2.default.createElement(
+                            "div",
+                            null,
+                            _react2.default.createElement(LeagueEntry, { name: json[i].name, members: json[i].numMembers })
+                        ));
+                    }
+                    _this3.setState({ leagueEntries: results });
+                });
+            } else {
+                _this3.setState({ leagueEntries: [] });
+            }
+        });
+    },
+    componentDidMount: function componentDidMount() {
+        this.fetchFromAPI();
+    },
+    handleClick: function handleClick(e) {
+        e.preventDefault();
+        this.fetchFromAPI();
+    },
+    render: function render() {
+        return _react2.default.createElement(
+            "div",
+            null,
+            _react2.default.createElement(
+                "button",
+                { type: "button", onClick: this.handleClick },
+                "Refresh"
+            ),
+            this.state.leagueEntries
+        );
+    }
+});
+
+var League = _react2.default.createClass({
+    displayName: "League",
+    getInitialState: function getInitialState() {
+        return {};
+    },
+    render: function render() {
+        return _react2.default.createElement(
+            "div",
+            null,
+            _react2.default.createElement(
+                "h1",
+                null,
+                "My Leagues:"
+            ),
+            _react2.default.createElement(
+                "h1",
+                null,
+                "All Leagues:"
+            ),
+            _react2.default.createElement(LeagueList, null),
+            _react2.default.createElement(
+                "h1",
+                null,
+                "Create League:"
+            ),
+            _react2.default.createElement(LeagueCreator, null)
+        );
+    }
+});
+
 var LeaguePage = exports.LeaguePage = function (_React$Component) {
     _inherits(LeaguePage, _React$Component);
 
     function LeaguePage() {
         _classCallCheck(this, LeaguePage);
 
-        var _this2 = _possibleConstructorReturn(this, (LeaguePage.__proto__ || Object.getPrototypeOf(LeaguePage)).call(this));
-
-        _this2.state = { leagueEntries: [] };
-        return _this2;
+        return _possibleConstructorReturn(this, (LeaguePage.__proto__ || Object.getPrototypeOf(LeaguePage)).call(this));
     }
 
     _createClass(LeaguePage, [{
-        key: "fetchFromAPI",
-        value: function fetchFromAPI() {
-            var _this3 = this;
-
-            fetch('http://localhost:8080/league/getLeagues' /*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/).then(function (response) {
-                if (response.ok) {
-                    response.json().then(function (json) {
-                        var results = [];
-                        for (var i = 0; i < json.length; i++) {
-                            results.push(_react2.default.createElement(
-                                "div",
-                                null,
-                                _react2.default.createElement(LeagueEntry, { name: json[i].name, members: json[i].numMembers })
-                            ));
-                        }
-                        _this3.setState({ leagueEntries: results });
-                    });
-                } else {
-                    // If response is NOT OKAY (e.g. 404), clear the statuses.
-                    _this3.setState({ leagueEntries: [] });
-                }
-            });
-        }
-    }, {
-        key: "componentDidMount",
-        value: function componentDidMount() {
-            this.fetchFromAPI();
-        }
-    }, {
-        key: "componentWillReceiveProps",
-        value: function componentWillReceiveProps() {
-            this.fetchFromAPI();
-        }
-    }, {
-        key: "remount",
-        value: function remount() {
-            this.fetchFromAPI();
-        }
-    }, {
         key: "render",
         value: function render() {
             return _react2.default.createElement(
                 "div",
                 null,
-                _react2.default.createElement(
-                    "h1",
-                    null,
-                    "My Leagues:"
-                ),
-                _react2.default.createElement(
-                    "h1",
-                    null,
-                    "All Leagues:"
-                ),
-                this.state.leagueEntries,
-                _react2.default.createElement(
-                    "h1",
-                    null,
-                    "Create League:"
-                ),
-                _react2.default.createElement(LeagueCreator, { callback: this.remount })
+                _react2.default.createElement(League, null)
             );
         }
     }]);
@@ -21875,14 +21955,14 @@ var _reactDom = __webpack_require__(80);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _leaguelist = __webpack_require__(177);
+var _leaguepage = __webpack_require__(177);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _reactDom2.default.render(_react2.default.createElement(
     'div',
     null,
-    _react2.default.createElement(_leaguelist.LeaguePage, null)
+    _react2.default.createElement(_leaguepage.LeaguePage, null)
 ), document.getElementById('leaguePage'));
 
 /***/ })

@@ -14,6 +14,15 @@ class LeagueController extends RestfulController {
     def getLeagues() {
         respond League.findAll()
     }
+    
+    def getMembers() {
+        def leagueName = params.leagueName
+        def league = League.find{name == leagueName}
+        if (league != null)
+            respond league.members
+        else
+            response.status = 501
+    }
 
     def createLeague() {
         def leagueName = params.leagueName
