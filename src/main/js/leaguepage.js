@@ -175,7 +175,8 @@ var LeagueCreator = React.createClass({
         return {
             leagueName : "",
             ownerName : "",
-            message : ""
+            message : "",
+            password: ""
         }
     },
 
@@ -189,10 +190,16 @@ var LeagueCreator = React.createClass({
         this.setState({ownerName : e.target.value});
     },
 
+    handlePasswordChange(e) {
+        e.preventDefault();
+        this.setState({password : e.target.value});
+    },
+
     handleSubmit(e) {
         e.preventDefault();
         let name = this.state.leagueName;
         let owner = this.state.ownerName;
+        let password = this.state.password;
         fetch("http://localhost:8080/league/createLeague?ownerName=" + owner + "&leagueName=" + name/*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/).then(response => {
             if (response.ok) {
                 this.setState({message : name + " was created successfully!"});
@@ -207,15 +214,23 @@ var LeagueCreator = React.createClass({
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
+                    <p>Enter a League Name: </p>
                     <input type="text" defaultValue={this.state.leagueName} onChange={this.handleNameChange}/>
+
+                    <p>Enter the League Owner Name: </p>
                     <input type="text" defaultValue={this.state.ownerName} onChange={this.handleOwnerChange}/>
-                    <input type="submit" defaultValue="Create League!"/>
+
+                    <p>Create League Password </p>
+                    <input type="text" defaultValue={this.state.password} onChange={this.handlePasswordChange}/>
+
+                    <p><input type="submit" defaultValue="Create League!"/></p>
                 </form>
-                Name: {this.state.leagueName}
+                <p>Name: {this.state.leagueName}
                 <br/>
                 Owner: {this.state.ownerName}
                 <br/>
                 Message: {this.state.message}
+                </p>
             </div>
         );
     }

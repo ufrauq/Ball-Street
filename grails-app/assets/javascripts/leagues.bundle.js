@@ -21965,7 +21965,8 @@ var LeagueCreator = _react2.default.createClass({
         return {
             leagueName: "",
             ownerName: "",
-            message: ""
+            message: "",
+            password: ""
         };
     },
     handleNameChange: function handleNameChange(e) {
@@ -21976,12 +21977,17 @@ var LeagueCreator = _react2.default.createClass({
         e.preventDefault();
         this.setState({ ownerName: e.target.value });
     },
+    handlePasswordChange: function handlePasswordChange(e) {
+        e.preventDefault();
+        this.setState({ password: e.target.value });
+    },
     handleSubmit: function handleSubmit(e) {
         var _this3 = this;
 
         e.preventDefault();
         var name = this.state.leagueName;
         var owner = this.state.ownerName;
+        var password = this.state.password;
         fetch("http://localhost:8080/league/createLeague?ownerName=" + owner + "&leagueName=" + name /*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/).then(function (response) {
             if (response.ok) {
                 _this3.setState({ message: name + " was created successfully!" });
@@ -21997,18 +22003,42 @@ var LeagueCreator = _react2.default.createClass({
             _react2.default.createElement(
                 "form",
                 { onSubmit: this.handleSubmit },
+                _react2.default.createElement(
+                    "p",
+                    null,
+                    "Enter a League Name: "
+                ),
                 _react2.default.createElement("input", { type: "text", defaultValue: this.state.leagueName, onChange: this.handleNameChange }),
+                _react2.default.createElement(
+                    "p",
+                    null,
+                    "Enter the League Owner Name: "
+                ),
                 _react2.default.createElement("input", { type: "text", defaultValue: this.state.ownerName, onChange: this.handleOwnerChange }),
-                _react2.default.createElement("input", { type: "submit", defaultValue: "Create League!" })
+                _react2.default.createElement(
+                    "p",
+                    null,
+                    "Create League Password "
+                ),
+                _react2.default.createElement("input", { type: "text", defaultValue: this.state.password, onChange: this.handlePasswordChange }),
+                _react2.default.createElement(
+                    "p",
+                    null,
+                    _react2.default.createElement("input", { type: "submit", defaultValue: "Create League!" })
+                )
             ),
-            "Name: ",
-            this.state.leagueName,
-            _react2.default.createElement("br", null),
-            "Owner: ",
-            this.state.ownerName,
-            _react2.default.createElement("br", null),
-            "Message: ",
-            this.state.message
+            _react2.default.createElement(
+                "p",
+                null,
+                "Name: ",
+                this.state.leagueName,
+                _react2.default.createElement("br", null),
+                "Owner: ",
+                this.state.ownerName,
+                _react2.default.createElement("br", null),
+                "Message: ",
+                this.state.message
+            )
         );
     }
 });
