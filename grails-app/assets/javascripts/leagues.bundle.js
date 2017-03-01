@@ -21739,14 +21739,27 @@ var JoinField = _react2.default.createClass({
     displayName: "JoinField",
     getInitialState: function getInitialState() {
         return {
-            input: ""
+            password: ""
         };
     },
-    componentDidMount: function componentDidMount() {
-        var passwordState = this.props.passwordRequired;
+
+
+    /*componentDidMount() {
+        let passwordState = this.props.passwordRequired;
         if (passwordState == "true") {
-            this.setState({ input: _react2.default.createElement("input", { type: "submit", defaultValue: "Join League!" }) });
+            this.setState({input:<input type="text" defaultValue="Enter Password..."/>});
         }
+    },*/
+
+    handlePasswordChange: function handlePasswordChange(e) {
+        e.preventDefault();
+        this.setState({ password: e.getValue() });
+    },
+    handleSubmit: function handleSubmit(e) {
+        e.preventDefault();
+        var password = this.state.password;
+        var name = this.props.name;
+        fetch('http://localhost:8080/league/joinLeague?userName=Zain' + '&leagueName=' + name + '&password=' + password /*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/);
     },
     render: function render() {
         return _react2.default.createElement(
@@ -21754,9 +21767,9 @@ var JoinField = _react2.default.createClass({
             null,
             _react2.default.createElement(
                 "form",
-                null,
+                { onSubmit: this.handleSubmit },
                 _react2.default.createElement("input", { type: "text", defaultValue: "Enter Password..." }),
-                this.state.input
+                _react2.default.createElement("input", { type: "submit", defaultValue: "Join League!" })
             )
         );
     }
@@ -21852,7 +21865,7 @@ var LeagueEntry = _react2.default.createClass({
                     this.props.members,
                     "/25"
                 ),
-                _react2.default.createElement(JoinField, { passwordRequired: "true" }),
+                _react2.default.createElement(JoinField, { passwordRequired: "true", name: this.props.name }),
                 _react2.default.createElement(
                     "td",
                     { className: "expand" },
@@ -21878,7 +21891,12 @@ var LeagueList = _react2.default.createClass({
     fetchFromAPI: function fetchFromAPI() {
         var _this2 = this;
 
-        fetch('http://localhost:8080/league/getLeagues' /*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/).then(function (response) {
+        var urlExtension = this.props.url;
+        var name = "";
+        if (urlExtension != "getLeagues") {
+            name = "Zain";
+        }
+        fetch('http://localhost:8080/league/' + urlExtension + name /*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/).then(function (response) {
             if (response.ok) {
                 response.json().then(function (json) {
                     var results = [];
@@ -22043,12 +22061,13 @@ var League = _react2.default.createClass({
                 null,
                 "My Leagues:"
             ),
+            _react2.default.createElement(LeagueList, { url: "getMyLeagues?username=" }),
             _react2.default.createElement(
                 "h1",
                 null,
                 "All Leagues:"
             ),
-            _react2.default.createElement(LeagueList, null),
+            _react2.default.createElement(LeagueList, { url: "getLeagues" }),
             _react2.default.createElement(
                 "h1",
                 null,

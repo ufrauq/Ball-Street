@@ -20,23 +20,35 @@ var UserEntry = React.createClass({
 var JoinField = React.createClass({
     getInitialState () {
         return {
-            input: ""
+            password: ""
         }
     },
 
-    componentDidMount() {
+    /*componentDidMount() {
         let passwordState = this.props.passwordRequired;
         if (passwordState == "true") {
-            this.setState({input:<input type="submit" defaultValue="Join League!"/>});
+            this.setState({input:<input type="text" defaultValue="Enter Password..."/>});
         }
+    },*/
+
+    handlePasswordChange(e) {
+        e.preventDefault();
+        this.setState({password: e.getValue()});
+    },
+
+    handleSubmit(e) {
+        e.preventDefault();
+        let password = this.state.password;
+        let name = this.props.name;
+        fetch('http://localhost:8080/league/joinLeague?userName=Zain' + '&leagueName=' + name + '&password=' + password/*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/);
     },
 
     render () {
         return (
             <td>
-                <form>
+                <form onSubmit={this.handleSubmit}>
                     <input type="text" defaultValue="Enter Password..."/>
-                    {this.state.input}
+                    <input type="submit" defaultValue="Join League!"/>
                 </form>
             </td>
         );
@@ -95,7 +107,7 @@ var LeagueEntry = React.createClass({
                 <tr>
                     <td className="name">{this.props.name}</td>
                     <td className="members">{this.props.members}/25</td>
-                    <JoinField passwordRequired="true"/>
+                    <JoinField passwordRequired="true" name={this.props.name}/>
                     <td className="expand"><button type="button" onClick={this.handleSubmit}>{this.state.buttonStatus}</button></td>
                 </tr>
                 {this.state.standings}
@@ -112,7 +124,12 @@ var LeagueList = React.createClass({
     },
 
     fetchFromAPI() {
-        fetch('http://localhost:8080/league/getLeagues'/*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/)
+        let urlExtension = this.props.url;
+        let name = "";
+        if (urlExtension != "getLeagues") {
+            name = "Zain";
+        }
+        fetch('http://localhost:8080/league/' + urlExtension + name/*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/)
             .then(response => {
                 if(response.ok) {
                     response.json().then(json => {
@@ -229,8 +246,9 @@ var League = React.createClass({
         return(
             <div>
                 <h1>My Leagues:</h1>
+                <LeagueList url="getMyLeagues?username="/>
                 <h1>All Leagues:</h1>
-                <LeagueList/>
+                <LeagueList url="getLeagues"/>
                 <h1>Create League:</h1>
                 <LeagueCreator/>
             </div>

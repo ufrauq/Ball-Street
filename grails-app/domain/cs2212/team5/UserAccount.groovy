@@ -5,7 +5,9 @@ class UserAccount {
     String username
     int money
     int netWorth
+    UserData mydata
 
     static constraints = {
+        mydata nullable: true
     }
 }

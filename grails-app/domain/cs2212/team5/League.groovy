@@ -4,7 +4,6 @@ class League {
 
     String name
     int numMembers
-    int test
     UserAccount owner
 
     static hasMany = [members : UserAccount]
