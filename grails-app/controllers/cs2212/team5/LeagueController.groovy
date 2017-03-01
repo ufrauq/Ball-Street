@@ -55,10 +55,11 @@ class LeagueController extends RestfulController {
     def createLeague() {
         def leagueName = params.leagueName
         def ownerName = params.ownerName
+        def password = params.password
         def league = League.find{name == leagueName}
         def leagueOwner = UserAccount.find{username == ownerName}
         if (league == null && leagueOwner != null) {
-            def newLeague = new League(owner: leagueOwner, numMembers: 1, name: leagueName).addToMembers(leagueOwner).save(flush: true)
+            def newLeague = new League(owner: leagueOwner, numMembers: 1, name: leagueName, password : password).addToMembers(leagueOwner).save(flush: true)
             leagueOwner.mydata.addToLeagues(newLeague).save(flush: true)
             response.status = 200
         }

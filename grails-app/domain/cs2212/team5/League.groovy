@@ -3,6 +3,7 @@ package cs2212.team5
 class League {
 
     String name
+    String password
     int numMembers
     UserAccount owner
 
@@ -10,5 +11,6 @@ class League {
 
     static constraints = {
         members nullable: true
+        password nullable: true
     }
 }
