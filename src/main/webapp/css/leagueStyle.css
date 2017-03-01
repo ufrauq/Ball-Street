@@ -62,7 +62,7 @@ td {
     cursor: pointer;
     -webkit-transition-duration: 0.4s; /* Safari */
     border-radius: 25px;
-    border: 1px solid dimgrey;
+    /*border: 1px solid dimgrey; */
 }
 
 .leagueCreateButton:hover {
@@ -70,7 +70,7 @@ td {
     color: white;
     border-radius: 10px;
     border: solid red;
-    border: 1px solid dimgrey;
+    /*border: 1px solid dimgrey;*/
 
 }
 

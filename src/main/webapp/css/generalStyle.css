@@ -71,7 +71,7 @@ p {
     float: left;
 }
 #circle {
-    margin: 8px;
+    margin: 4px;
     float: left;
     width: 50px;
     height: 50px;
@@ -82,8 +82,8 @@ p {
 #username {
     float: left;
     background-color: transparent;
-    padding: 1px 1px;
-    height: 70px;
+    padding: 1px 10px;
+    height: 63px;
     font-size: 15px;
     border: none;
     color: white;
@@ -94,13 +94,13 @@ p {
 #username:hover{
     background-color: lightgray;
     color: red;
-    padding: 25px 40px 25px 40px;
+    padding: 15px 40px 15px 40px;
 }
 
 .topButtons {
     background-color: transparent;
     padding: 1px 1px;
-    height: 70px;
+    height: 63px;
     font-size: 15px;
     border: none;
     color: white;
