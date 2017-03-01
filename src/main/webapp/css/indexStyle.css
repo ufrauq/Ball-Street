@@ -1,5 +1,7 @@
 body{
-    font-family: "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
+    background-color: white;
+    font-family: "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    margin-bottom: auto;
 }
 
 img{
@@ -39,9 +41,14 @@ form{
     padding-bottom: 1%;
 }
 
-button{
+.button{
     display: block;
-    width: 100px;
+    width: 70px;
     margin: 10px auto;
 }
 
+.control{
+    display: block;
+    width: 200px;
+    margin: 10px auto;
+}

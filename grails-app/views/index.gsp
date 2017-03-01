@@ -2,6 +2,10 @@
 <html>
     <head>
         <title>Ball Street</title>
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.0.23/css/bulma.min.css">
+        <link rel="stylesheet"
+              href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel = "stylesheet"
               type = "text/css"
               href="${resource(dir: 'css', file: 'indexStyle.css')}" />
@@ -18,14 +22,16 @@
 
         <div id = "subheading">Try it out!</div>
 
-        <form>
-            Username: <br>
-            <input type = "text" name = "firstname"><br>
-            Password: <br>
-            <input type = "text" name = "password"><br>
-        </form>
-        <button onclick="window.location.href='/home'">Login</button>
-        <button onclick="window.location.href='/home'">Sign Up</button>
+        <p class="control">
+            <input class="input" type="text" placeholder="Username">
+        </p>
+        <p class="control">
+            <input class="input" type="text" placeholder="Password">
+        </p>
+
+        <a class = "button" onclick = "window.location.href='/home'">Login</a>
+        <a class = "button" onclick = "window.location.href='/home'">Sign Up</a>
+
 		<asset:javascript src="index.bundle.js"/>
     </body>
 </html>
