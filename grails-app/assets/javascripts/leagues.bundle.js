@@ -21709,17 +21709,55 @@ var UserEntry = _react2.default.createClass({
     },
     render: function render() {
         return _react2.default.createElement(
-            "div",
-            null,
-            this.props.rank,
-            " ",
+            "tr",
+            { className: "standingsRow" },
             _react2.default.createElement(
-                "b",
+                "td",
+                null,
+                this.props.rank
+            ),
+            _react2.default.createElement(
+                "td",
                 null,
                 this.props.userName
             ),
-            " ",
-            this.props.netWorth
+            _react2.default.createElement(
+                "td",
+                null,
+                this.props.money
+            ),
+            _react2.default.createElement(
+                "td",
+                null,
+                this.props.netWorth
+            )
+        );
+    }
+});
+
+var JoinField = _react2.default.createClass({
+    displayName: "JoinField",
+    getInitialState: function getInitialState() {
+        return {
+            input: ""
+        };
+    },
+    componentDidMount: function componentDidMount() {
+        var passwordState = this.props.passwordRequired;
+        if (passwordState == "true") {
+            this.setState({ input: _react2.default.createElement("input", { type: "submit", defaultValue: "Join League!" }) });
+        }
+    },
+    render: function render() {
+        return _react2.default.createElement(
+            "td",
+            null,
+            _react2.default.createElement(
+                "form",
+                null,
+                _react2.default.createElement("input", { type: "text", defaultValue: "Enter Password..." }),
+                this.state.input
+            )
         );
     }
 });
@@ -21729,7 +21767,8 @@ var LeagueEntry = _react2.default.createClass({
     getInitialState: function getInitialState() {
         return {
             userEntries: [],
-            buttonStatus: "Expand"
+            buttonStatus: "View",
+            standings: ""
         };
     },
     handleSubmit: function handleSubmit(e) {
@@ -21738,47 +21777,166 @@ var LeagueEntry = _react2.default.createClass({
         e.preventDefault();
         var name = this.props.name;
         var status = this.state.buttonStatus;
-        if (status == "Expand") {
+        if (status == "View") {
             fetch('http://localhost:8080/league/getMembers?leagueName=' + name /*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/).then(function (response) {
                 if (response.ok) {
                     response.json().then(function (json) {
                         var results = [];
-                        for (var i = 0; i < json.length; i++) {
-                            results.push(_react2.default.createElement(
-                                "div",
+                        results.push(_react2.default.createElement(
+                            "tr",
+                            null,
+                            _react2.default.createElement(
+                                "th",
+                                { className: "rank" },
+                                "Rank:"
+                            ),
+                            _react2.default.createElement(
+                                "th",
                                 null,
-                                _react2.default.createElement(UserEntry, { rank: i + 1, userName: json[i].name, netWorth: json[i].netWorth })
-                            ));
+                                "Username:"
+                            ),
+                            _react2.default.createElement(
+                                "th",
+                                null,
+                                "Cash:"
+                            ),
+                            _react2.default.createElement(
+                                "th",
+                                null,
+                                "Net Worth:"
+                            )
+                        ));
+                        for (var i = 0; i < json.length; i++) {
+                            results.push(_react2.default.createElement(UserEntry, { rank: i + 1, userName: json[i].name, money: json[i].money, netWorth: json[i].netWorth }));
                         }
-                        _this.setState({ userEntries: results, buttonStatus: "Collapse" });
+                        _this.setState({ userEntries: results, buttonStatus: "Close" });
+                        _this.setState({ standings: _react2.default.createElement(
+                                "tr",
+                                null,
+                                _react2.default.createElement(
+                                    "td",
+                                    { colSpan: "4" },
+                                    _react2.default.createElement(
+                                        "table",
+                                        { className: "userList" },
+                                        _this.state.userEntries
+                                    )
+                                )
+                            ) });
                     });
                 } else {
-                    _this.setState({ userEntries: [], buttonStatus: "Collapse" });
+                    _this.setState({ userEntries: [], buttonStatus: "View" });
+                    _this.setState({ standings: "" });
                 }
             });
         } else {
-            this.setState({ userEntries: [], buttonStatus: "Expand" });
+            this.setState({ userEntries: [], buttonStatus: "View" });
+            this.setState({ standings: "" });
         }
+    },
+    render: function render() {
+        return _react2.default.createElement(
+            "tbody",
+            null,
+            _react2.default.createElement(
+                "tr",
+                null,
+                _react2.default.createElement(
+                    "td",
+                    { className: "name" },
+                    this.props.name
+                ),
+                _react2.default.createElement(
+                    "td",
+                    { className: "members" },
+                    this.props.members,
+                    "/25"
+                ),
+                _react2.default.createElement(JoinField, { passwordRequired: "true" }),
+                _react2.default.createElement(
+                    "td",
+                    { className: "expand" },
+                    _react2.default.createElement(
+                        "button",
+                        { type: "button", onClick: this.handleSubmit },
+                        this.state.buttonStatus
+                    )
+                )
+            ),
+            this.state.standings
+        );
+    }
+});
+
+var LeagueList = _react2.default.createClass({
+    displayName: "LeagueList",
+    getInitialState: function getInitialState() {
+        return {
+            leagueEntries: []
+        };
+    },
+    fetchFromAPI: function fetchFromAPI() {
+        var _this2 = this;
+
+        fetch('http://localhost:8080/league/getLeagues' /*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (json) {
+                    var results = [];
+                    results.push(_react2.default.createElement(
+                        "tr",
+                        null,
+                        _react2.default.createElement(
+                            "th",
+                            { className: "name" },
+                            "League Name:"
+                        ),
+                        _react2.default.createElement(
+                            "th",
+                            { className: "members" },
+                            "Status:"
+                        ),
+                        _react2.default.createElement(
+                            "th",
+                            null,
+                            "Join the League:"
+                        ),
+                        _react2.default.createElement(
+                            "th",
+                            { classname: "expand" },
+                            "View Standings"
+                        )
+                    ));
+                    for (var i = 0; i < json.length; i++) {
+                        results.push(_react2.default.createElement(LeagueEntry, { name: json[i].name, members: json[i].numMembers }));
+                    }
+                    _this2.setState({ leagueEntries: results });
+                });
+            } else {
+                _this2.setState({ leagueEntries: [] });
+            }
+        });
+    },
+    componentDidMount: function componentDidMount() {
+        this.fetchFromAPI();
+    },
+    handleClick: function handleClick(e) {
+        e.preventDefault();
+        this.fetchFromAPI();
     },
     render: function render() {
         return _react2.default.createElement(
             "div",
             null,
             _react2.default.createElement(
-                "b",
-                null,
-                this.props.name
-            ),
-            " ",
-            this.props.members,
-            "/25",
-            _react2.default.createElement(
                 "button",
-                { type: "button", onClick: this.handleSubmit },
-                this.state.buttonStatus
+                { type: "button", onClick: this.handleClick },
+                "Refresh"
             ),
-            this.state.userEntries,
-            _react2.default.createElement("br", null)
+            _react2.default.createElement(
+                "table",
+                { className: "leagueList" },
+                this.state.leagueEntries
+            )
         );
     }
 });
@@ -21801,16 +21959,16 @@ var LeagueCreator = _react2.default.createClass({
         this.setState({ ownerName: e.target.value });
     },
     handleSubmit: function handleSubmit(e) {
-        var _this2 = this;
+        var _this3 = this;
 
         e.preventDefault();
         var name = this.state.leagueName;
         var owner = this.state.ownerName;
         fetch("http://localhost:8080/league/createLeague?ownerName=" + owner + "&leagueName=" + name /*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/).then(function (response) {
             if (response.ok) {
-                _this2.setState({ message: name + " was created successfully!" });
+                _this3.setState({ message: name + " was created successfully!" });
             } else {
-                _this2.setState({ message: name + " was already taken..." });
+                _this3.setState({ message: name + " was already taken..." });
             }
         });
     },
@@ -21833,55 +21991,6 @@ var LeagueCreator = _react2.default.createClass({
             _react2.default.createElement("br", null),
             "Message: ",
             this.state.message
-        );
-    }
-});
-
-var LeagueList = _react2.default.createClass({
-    displayName: "LeagueList",
-    getInitialState: function getInitialState() {
-        return {
-            leagueEntries: []
-        };
-    },
-    fetchFromAPI: function fetchFromAPI() {
-        var _this3 = this;
-
-        fetch('http://localhost:8080/league/getLeagues' /*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (json) {
-                    var results = [];
-                    for (var i = 0; i < json.length; i++) {
-                        results.push(_react2.default.createElement(
-                            "div",
-                            null,
-                            _react2.default.createElement(LeagueEntry, { name: json[i].name, members: json[i].numMembers })
-                        ));
-                    }
-                    _this3.setState({ leagueEntries: results });
-                });
-            } else {
-                _this3.setState({ leagueEntries: [] });
-            }
-        });
-    },
-    componentDidMount: function componentDidMount() {
-        this.fetchFromAPI();
-    },
-    handleClick: function handleClick(e) {
-        e.preventDefault();
-        this.fetchFromAPI();
-    },
-    render: function render() {
-        return _react2.default.createElement(
-            "div",
-            null,
-            _react2.default.createElement(
-                "button",
-                { type: "button", onClick: this.handleClick },
-                "Refresh"
-            ),
-            this.state.leagueEntries
         );
     }
 });

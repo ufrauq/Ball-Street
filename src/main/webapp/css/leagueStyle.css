@@ -1,0 +1,34 @@
+#leaguePage {
+    padding: 10px;
+}
+.userList {
+    border-collapse: collapse;
+    width: 100%;
+}
+.leagueList {
+    border-collapse: collapse;
+    width: 100%;
+}
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+.rank {
+    witdh: 15%;
+}
+.name {
+    width: 25%;
+}
+.members {
+    width: 10%;
+}
+.expand {
+    width: 15%;
+}
+.join {
+    width: 50%;
+}
+.standingsRow:nth-child(even) {
+    background-color: #dddddd;
+}

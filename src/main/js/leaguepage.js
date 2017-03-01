@@ -7,9 +7,38 @@ var UserEntry = React.createClass({
     },
     render () {
         return (
-            <div>
-                {this.props.rank} <b>{this.props.userName}</b> {this.props.netWorth}
-            </div>
+        <tr className="standingsRow">
+            <td>{this.props.rank}</td>
+            <td>{this.props.userName}</td>
+            <td>{this.props.money}</td>
+            <td>{this.props.netWorth}</td>
+        </tr>
+        );
+    }
+});
+
+var JoinField = React.createClass({
+    getInitialState () {
+        return {
+            input: ""
+        }
+    },
+
+    componentDidMount() {
+        let passwordState = this.props.passwordRequired;
+        if (passwordState == "true") {
+            this.setState({input:<input type="submit" defaultValue="Join League!"/>});
+        }
+    },
+
+    render () {
+        return (
+            <td>
+                <form>
+                    <input type="text" defaultValue="Enter Password..."/>
+                    {this.state.input}
+                </form>
+            </td>
         );
     }
 });
@@ -18,7 +47,8 @@ var LeagueEntry = React.createClass({
     getInitialState () {
         return {
             userEntries : [],
-            buttonStatus : "Expand"
+            buttonStatus : "View",
+            standings : "",
         }
     },
 
@@ -26,37 +56,98 @@ var LeagueEntry = React.createClass({
         e.preventDefault();
         let name = this.props.name;
         let status = this.state.buttonStatus;
-        if (status == "Expand") {
+        if (status == "View") {
             fetch('http://localhost:8080/league/getMembers?leagueName='+ name/*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/).then(response => {
                 if(response.ok) {
                     response.json().then(json => {
                         let results = [];
+                        results.push(<tr><th className="rank">Rank:</th><th>Username:</th><th>Cash:</th><th>Net Worth:</th></tr>);
                         for (let i = 0; i < json.length; i++) {
-                            results.push(<div><UserEntry rank={i+1} userName={json[i].name} netWorth={json[i].netWorth}/></div>);
+                            results.push(<UserEntry rank={i+1} userName={json[i].name} money={json[i].money} netWorth={json[i].netWorth}/>);
                         }
-                        this.setState({userEntries: results, buttonStatus: "Collapse"});
+                        this.setState({userEntries: results, buttonStatus: "Close"});
+                        this.setState({standings:
+                        <tr>
+                            <td colSpan="4">
+                                <table className="userList">
+                                    {this.state.userEntries}
+                                </table>
+                            </td>
+                        </tr>});
                     });
                 }
                 else{
-                    this.setState({userEntries: [], buttonStatus: "Collapse"});
+                    this.setState({userEntries: [], buttonStatus: "View"});
+                    this.setState({standings: ""});
                 }
             });
         }
         else {
-            this.setState({userEntries: [], buttonStatus: "Expand"});
+            this.setState({userEntries: [], buttonStatus: "View"});
+            this.setState({standings: ""});
         }
 
     },
 
     render () {
         return (
-            <div>
-                <b>{this.props.name}</b> {this.props.members}/25
-                <button type="button" onClick={this.handleSubmit}>{this.state.buttonStatus}</button>
-                {this.state.userEntries}
-                <br/>
-            </div>
+            <tbody>
+                <tr>
+                    <td className="name">{this.props.name}</td>
+                    <td className="members">{this.props.members}/25</td>
+                    <JoinField passwordRequired="true"/>
+                    <td className="expand"><button type="button" onClick={this.handleSubmit}>{this.state.buttonStatus}</button></td>
+                </tr>
+                {this.state.standings}
+            </tbody>
         );
+    }
+});
+
+var LeagueList = React.createClass({
+    getInitialState() {
+        return {
+            leagueEntries : [],
+        }
+    },
+
+    fetchFromAPI() {
+        fetch('http://localhost:8080/league/getLeagues'/*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/)
+            .then(response => {
+                if(response.ok) {
+                    response.json().then(json => {
+                        let results = [];
+                        results.push(<tr><th className="name">League Name:</th><th className="members">Status:</th><th>Join the League:</th><th classname="expand">View Standings</th></tr>);
+                        for (let i = 0; i < json.length; i++) {
+                            results.push(<LeagueEntry name={json[i].name} members={json[i].numMembers}/>);
+                        }
+                        this.setState({leagueEntries: results});
+                    });
+                }
+                else{
+                    this.setState({leagueEntries: []});
+                }
+            });
+    },
+
+    componentDidMount() {
+        this.fetchFromAPI();
+    },
+
+    handleClick(e) {
+        e.preventDefault();
+        this.fetchFromAPI();
+    },
+
+    render() {
+        return(
+            <div>
+                <button type="button" onClick={this.handleClick}>Refresh</button>
+                <table className="leagueList">
+                    {this.state.leagueEntries}
+                </table>
+            </div>
+        )
     }
 });
 
@@ -110,50 +201,6 @@ var LeagueCreator = React.createClass({
                 Message: {this.state.message}
             </div>
         );
-    }
-});
-
-var LeagueList = React.createClass({
-    getInitialState() {
-        return {
-            leagueEntries : [],
-        }
-    },
-
-    fetchFromAPI() {
-        fetch('http://localhost:8080/league/getLeagues'/*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/)
-            .then(response => {
-                if(response.ok) {
-                    response.json().then(json => {
-                        let results = [];
-                        for (let i = 0; i < json.length; i++) {
-                            results.push(<div><LeagueEntry name={json[i].name} members={json[i].numMembers}/></div>);
-                        }
-                        this.setState({leagueEntries: results});
-                    });
-                }
-                else{
-                    this.setState({leagueEntries: []});
-                }
-            });
-    },
-
-    componentDidMount() {
-        this.fetchFromAPI();
-    },
-
-    handleClick(e) {
-        e.preventDefault();
-        this.fetchFromAPI();
-    },
-
-    render() {
-        return(
-            <div>
-                <button type="button" onClick={this.handleClick}>Refresh</button>
-                {this.state.leagueEntries}
-            </div>
-        )
     }
 });
 

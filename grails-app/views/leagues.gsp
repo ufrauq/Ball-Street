@@ -5,6 +5,9 @@
     <link rel = "stylesheet"
           type = "text/css"
           href="${resource(dir: 'css', file: 'generalStyle.css')}" />
+    <link rel = "stylesheet"
+          type = "text/css"
+          href="${resource(dir: 'css', file: 'leagueStyle.css')}" />
 </head>
 <body>
 <div id="main">
@@ -41,11 +44,6 @@
         <div id="leaguePage" align="left"></div>
         <asset:javascript src="leagues.bundle.js"/>
     </div>
-    <style>
-        #leaguePage {
-            padding: 10px;
-        }
-    </style>
 </div>
 </body>
 </html>

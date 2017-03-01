@@ -2,7 +2,7 @@ package cs2212.team5
 
 class UserAccount {
 
-    String name
+    String username
     int money
     int netWorth
 

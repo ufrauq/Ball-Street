@@ -14,7 +14,7 @@ class LeagueController extends RestfulController {
     def getLeagues() {
         respond League.findAll()
     }
-    
+
     def getMembers() {
         def leagueName = params.leagueName
         def league = League.find{name == leagueName}
@@ -28,7 +28,7 @@ class LeagueController extends RestfulController {
         def leagueName = params.leagueName
         def ownerName = params.ownerName
         def league = League.find{name == leagueName}
-        def leagueOwner = UserAccount.find{name == ownerName}
+        def leagueOwner = UserAccount.find{username == ownerName}
         if (league == null && leagueOwner != null) {
             new League(owner: leagueOwner, numMembers: 1, name: leagueName).save()
             response.status = 200
