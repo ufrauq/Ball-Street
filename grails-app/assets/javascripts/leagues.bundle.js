@@ -21807,7 +21807,7 @@ var LeagueEntry = _react2.default.createClass({
                             )
                         ));
                         for (var i = 0; i < json.length; i++) {
-                            results.push(_react2.default.createElement(UserEntry, { rank: i + 1, userName: json[i].name, money: json[i].money, netWorth: json[i].netWorth }));
+                            results.push(_react2.default.createElement(UserEntry, { rank: i + 1, userName: json[i].username, money: json[i].money, netWorth: json[i].netWorth }));
                         }
                         _this.setState({ userEntries: results, buttonStatus: "Close" });
                         _this.setState({ standings: _react2.default.createElement(

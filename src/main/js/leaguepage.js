@@ -63,7 +63,7 @@ var LeagueEntry = React.createClass({
                         let results = [];
                         results.push(<tr><th className="rank">Rank:</th><th>Username:</th><th>Cash:</th><th>Net Worth:</th></tr>);
                         for (let i = 0; i < json.length; i++) {
-                            results.push(<UserEntry rank={i+1} userName={json[i].name} money={json[i].money} netWorth={json[i].netWorth}/>);
+                            results.push(<UserEntry rank={i+1} userName={json[i].username} money={json[i].money} netWorth={json[i].netWorth}/>);
                         }
                         this.setState({userEntries: results, buttonStatus: "Close"});
                         this.setState({standings:
