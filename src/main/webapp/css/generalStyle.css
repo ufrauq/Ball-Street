@@ -64,11 +64,34 @@ p {
 }
 #topButtons {
     width: 60%;
+    height: 100%;
     float: right;
 }
 #userData {
     width: 30%;
     float: left;
+}
+.username {
+    float:left;
+    width:30%;
+    background-color: transparent;
+    height: 100%;
+    padding: 1px 1px;
+    /*height: 63px;*/
+    font-size: 15px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s; /* Safari */
+}
+
+.username:hover{
+    float: left;
+    background-color: lightgray;
+    color: red;
+    padding: 15px 40px 15px 40px;
+    height: 100%;
+    width: 30%;
 }
 #circle {
     margin: 4px;
@@ -79,11 +102,17 @@ p {
     background: black;
 
 }
-#username {
+.username {
+    width: 30%;
+    height: 100%;
     float: left;
-    background-color: transparent;
-    padding: 1px 10px;
-    height: 63px;
+
+
+
+    background-color: green;
+
+
+    /*height: 63px;*/
     font-size: 15px;
     border: none;
     color: white;
@@ -91,16 +120,20 @@ p {
     -webkit-transition-duration: 0.4s; /* Safari */
 }
 
-#username:hover{
+.username:hover{
+    float: left;
     background-color: lightgray;
     color: red;
-    padding: 15px 40px 15px 40px;
+    /*padding: 15px 40px 15px 40px;*/
+    height: 100%;
+    width: 30%;
 }
 
 .topButtons {
     background-color: transparent;
+    height: 100%;
     padding: 1px 1px;
-    height: 63px;
+    /*height: 63px;*/
     font-size: 15px;
     border: none;
     color: white;
