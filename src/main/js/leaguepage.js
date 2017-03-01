@@ -206,7 +206,7 @@ var LeagueCreator = React.createClass({
                     <p>Create League Password </p>
                     <input type="text" defaultValue={this.state.password} onChange={this.handlePasswordChange}/>
 
-                    <p><input type="submit" defaultValue="Create League!"/></p>
+                    <p><button  className = "leagueCreateButton">Create League!</button></p>
                 </form>
                 <p>Name: {this.state.leagueName}
                 <br/>

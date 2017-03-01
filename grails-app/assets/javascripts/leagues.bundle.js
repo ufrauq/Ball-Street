@@ -22006,7 +22006,11 @@ var LeagueCreator = _react2.default.createClass({
                 _react2.default.createElement(
                     "p",
                     null,
-                    _react2.default.createElement("input", { type: "submit", defaultValue: "Create League!" })
+                    _react2.default.createElement(
+                        "button",
+                        { className: "leagueCreateButton" },
+                        "Create League!"
+                    )
                 )
             ),
             _react2.default.createElement(

@@ -52,7 +52,24 @@ td {
 }
 
 
+.leagueCreateButton {
+    background-color: #dddddd;
+    padding: 10px;
+    font-size: 14px;
+    border: solid #dddddd;
+    color: red;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    border-radius: 25px;
+}
 
+.leagueCreateButton:hover {
+    background-color: red;
+    color: white;
+    border-radius: 10px;
+    border: solid red;
+
+}
 
 
 
