@@ -1,5 +1,8 @@
 #leaguePage {
-    padding: 10px;
+    padding-top: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-bottom: 25px;
 }
 .userList {
     border-collapse: collapse;
@@ -9,13 +12,28 @@
     border-collapse: collapse;
     width: 100%;
 }
-td, th {
+ th {
     border: 1px solid #dddddd;
     text-align: left;
     padding: 8px;
+     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+     color: red;
+     font-size: 18px;
+
+
+}
+
+td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #808080;
+    font-size: 14px;
+
 }
 .rank {
-    witdh: 15%;
+    width: 15%;
 }
 .name {
     width: 25%;
@@ -32,3 +50,10 @@ td, th {
 .standingsRow:nth-child(even) {
     background-color: #dddddd;
 }
+
+
+
+
+
+
+
