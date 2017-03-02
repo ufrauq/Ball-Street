@@ -21729,7 +21729,7 @@ var UserAccountCreator = _react2.default.createClass({
             if (response.ok) {
                 _this.setState({ message: name + " was created successfully!" });
             } else {
-                _this.setState({ message: name + " was already taken..." });
+                _this.setState({ message: name + " was already taken, or invalid  password..." });
             }
         });
     },

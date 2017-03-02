@@ -21740,28 +21740,32 @@ var JoinField = _react2.default.createClass({
     displayName: "JoinField",
     getInitialState: function getInitialState() {
         return {
-            password: ""
+            input: "",
+            inputPassword: ""
         };
     },
-
-
-    /*componentDidMount() {
-        let passwordState = this.props.passwordRequired;
-        if (passwordState == "true") {
-            this.setState({input:<input type="text" defaultValue="Enter Password..."/>});
-        }
-    },*/
-
     handlePasswordChange: function handlePasswordChange(e) {
         e.preventDefault();
-        this.setState({ password: e.getValue() });
+        this.setState({ inputPassword: e.target.value });
+    },
+    componentDidMount: function componentDidMount() {
+        var password = this.props.password;
+        if (password != null) {
+            this.setState({ input: _react2.default.createElement("input", { type: "text", defaultValue: "Enter Password...", onChange: this.handlePasswordChange }) });
+        }
     },
     handleSubmit: function handleSubmit(e) {
         e.preventDefault();
-        var password = this.state.password;
+        var password = this.state.inputPassword;
         var leagueName = this.props.name;
         var userName = sessionStorage.getItem("username");
-        fetch('http://localhost:8080/league/joinLeague?userName=' + userName + '&leagueName=' + leagueName + '&password=' + password /*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/);
+        fetch('http://localhost:8080/league/joinLeague?userName=' + userName + '&leagueName=' + leagueName + '&password=' + password /*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/).then(function (response) {
+            if (response.ok) {
+                alert("Successfully Joined League!");
+            } else {
+                alert("Invalid password, or you already belong the the League!");
+            }
+        });
     },
     render: function render() {
         return _react2.default.createElement(
@@ -21770,7 +21774,7 @@ var JoinField = _react2.default.createClass({
             _react2.default.createElement(
                 "form",
                 { onSubmit: this.handleSubmit },
-                _react2.default.createElement("input", { type: "text", defaultValue: "Enter Password..." }),
+                this.state.input,
                 _react2.default.createElement("input", { type: "submit", className: "joinLeagueButton", defaultValue: "Join League!" })
             )
         );
@@ -21867,7 +21871,7 @@ var LeagueEntry = _react2.default.createClass({
                     this.props.members,
                     "/25"
                 ),
-                _react2.default.createElement(JoinField, { passwordRequired: "true", name: this.props.name }),
+                _react2.default.createElement(JoinField, { password: this.props.password, name: this.props.name }),
                 _react2.default.createElement(
                     "td",
                     { className: "expand" },
@@ -21927,7 +21931,7 @@ var LeagueList = _react2.default.createClass({
                         )
                     ));
                     for (var i = 0; i < json.length; i++) {
-                        results.push(_react2.default.createElement(LeagueEntry, { name: json[i].name, members: json[i].numMembers }));
+                        results.push(_react2.default.createElement(LeagueEntry, { name: json[i].name, members: json[i].numMembers, password: json[i].password }));
                     }
                     _this2.setState({ leagueEntries: results });
                 });
@@ -21966,7 +21970,6 @@ var LeagueCreator = _react2.default.createClass({
     getInitialState: function getInitialState() {
         return {
             leagueName: "",
-            ownerName: "",
             message: "",
             password: ""
         };
@@ -21974,10 +21977,6 @@ var LeagueCreator = _react2.default.createClass({
     handleNameChange: function handleNameChange(e) {
         e.preventDefault();
         this.setState({ leagueName: e.target.value });
-    },
-    handleOwnerChange: function handleOwnerChange(e) {
-        e.preventDefault();
-        this.setState({ ownerName: e.target.value });
     },
     handlePasswordChange: function handlePasswordChange(e) {
         e.preventDefault();
@@ -21988,7 +21987,7 @@ var LeagueCreator = _react2.default.createClass({
 
         e.preventDefault();
         var name = this.state.leagueName;
-        var owner = this.state.ownerName;
+        var owner = sessionStorage.getItem("username");
         var password = this.state.password;
         fetch("http://localhost:8080/league/createLeague?ownerName=" + owner + "&leagueName=" + name + "&password=" + password /*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/).then(function (response) {
             if (response.ok) {
@@ -22014,13 +22013,7 @@ var LeagueCreator = _react2.default.createClass({
                 _react2.default.createElement(
                     "p",
                     null,
-                    "Enter the League Owner Name:"
-                ),
-                _react2.default.createElement("input", { type: "text", defaultValue: this.state.ownerName, onChange: this.handleOwnerChange }),
-                _react2.default.createElement(
-                    "p",
-                    null,
-                    "Create League Password:"
+                    "Create League Password (blank for public league):"
                 ),
                 _react2.default.createElement("input", { type: "text", defaultValue: this.state.password, onChange: this.handlePasswordChange }),
                 _react2.default.createElement(
@@ -22038,9 +22031,6 @@ var LeagueCreator = _react2.default.createClass({
                 null,
                 "Name: ",
                 this.state.leagueName,
-                _react2.default.createElement("br", null),
-                "Owner: ",
-                this.state.ownerName,
                 _react2.default.createElement("br", null),
                 "Message: ",
                 this.state.message

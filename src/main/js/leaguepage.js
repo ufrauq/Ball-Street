@@ -20,35 +20,44 @@ var UserEntry = React.createClass({
 var JoinField = React.createClass({
     getInitialState () {
         return {
-            password: ""
+            input: "",
+            inputPassword: ""
         }
     },
 
-    /*componentDidMount() {
-        let passwordState = this.props.passwordRequired;
-        if (passwordState == "true") {
-            this.setState({input:<input type="text" defaultValue="Enter Password..."/>});
-        }
-    },*/
-
     handlePasswordChange(e) {
         e.preventDefault();
-        this.setState({password: e.getValue()});
+        this.setState({inputPassword: e.target.value});
+    },
+
+    componentDidMount() {
+        let password = this.props.password;
+        if (password != null) {
+            this.setState({input:<input type="text" defaultValue="Enter Password..." onChange={this.handlePasswordChange}/>});
+        }
     },
 
     handleSubmit(e) {
         e.preventDefault();
-        let password = this.state.password;
+        let password = this.state.inputPassword;
         let leagueName = this.props.name;
         let userName = sessionStorage.getItem("username");
-        fetch('http://localhost:8080/league/joinLeague?userName=' + userName + '&leagueName=' + leagueName + '&password=' + password/*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/);
+        fetch('http://localhost:8080/league/joinLeague?userName=' + userName + '&leagueName=' + leagueName + '&password=' + password/*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/)
+            .then(response => {
+               if (response.ok) {
+                   alert("Successfully Joined League!");
+               }
+               else {
+                   alert("Invalid password, or you already belong the the League!")
+               }
+            });
     },
 
     render () {
         return (
             <td>
                 <form onSubmit={this.handleSubmit}>
-                    <input type="text" defaultValue="Enter Password..."/>
+                    {this.state.input}
                     <input type="submit" className = "joinLeagueButton" defaultValue="Join League!"/>
                 </form>
             </td>
@@ -108,7 +117,7 @@ var LeagueEntry = React.createClass({
                 <tr>
                     <td className="name">{this.props.name}</td>
                     <td className="members">{this.props.members}/25</td>
-                    <JoinField passwordRequired="true" name={this.props.name}/>
+                    <JoinField password={this.props.password} name={this.props.name}/>
                     <td className="expand"><button type="submit" className="viewButton" onClick={this.handleSubmit}>{this.state.buttonStatus}</button></td>
                 </tr>
                 {this.state.standings}
@@ -137,7 +146,7 @@ var LeagueList = React.createClass({
                         let results = [];
                         results.push(<tr><th className="name">League Name:</th><th className="members">Status:</th><th>Join the League:</th><th classname="expand">View Standings</th></tr>);
                         for (let i = 0; i < json.length; i++) {
-                            results.push(<LeagueEntry name={json[i].name} members={json[i].numMembers}/>);
+                            results.push(<LeagueEntry name={json[i].name} members={json[i].numMembers} password={json[i].password}/>);
                         }
                         this.setState({leagueEntries: results});
                     });
@@ -175,7 +184,6 @@ var LeagueCreator = React.createClass({
     {
         return {
             leagueName : "",
-            ownerName : "",
             message : "",
             password: ""
         }
@@ -186,11 +194,6 @@ var LeagueCreator = React.createClass({
         this.setState({leagueName : e.target.value});
     },
 
-    handleOwnerChange(e) {
-        e.preventDefault();
-        this.setState({ownerName : e.target.value});
-    },
-
     handlePasswordChange(e) {
         e.preventDefault();
         this.setState({password : e.target.value});
@@ -199,7 +202,7 @@ var LeagueCreator = React.createClass({
     handleSubmit(e) {
         e.preventDefault();
         let name = this.state.leagueName;
-        let owner = this.state.ownerName;
+        let owner = sessionStorage.getItem("username");
         let password = this.state.password;
         fetch("http://localhost:8080/league/createLeague?ownerName=" + owner + "&leagueName=" + name +"&password=" + password/*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/).then(response => {
             if (response.ok) {
@@ -219,17 +222,12 @@ var LeagueCreator = React.createClass({
                     <p>Enter a League Name:</p>
                     <input type="text" defaultValue={this.state.leagueName} onChange={this.handleNameChange}/>
 
-                    <p>Enter the League Owner Name:</p>
-                    <input type="text" defaultValue={this.state.ownerName} onChange={this.handleOwnerChange}/>
-
-                    <p>Create League Password:</p>
+                    <p>Create League Password (blank for public league):</p>
                     <input type="text" defaultValue={this.state.password} onChange={this.handlePasswordChange}/>
 
                     <p><button  className = "leagueCreateButton">Create League!</button></p>
                 </form>
                 <p>Name: {this.state.leagueName}
-                <br/>
-                Owner: {this.state.ownerName}
                 <br/>
                 Message: {this.state.message}
                 </p>

@@ -14,7 +14,7 @@ class UserAccountController extends RestfulController {
         def userName = params.userName
         def password = params.password
         def user = UserAccount.find{username == userName}
-        if(user == null){
+        if(user == null && password != ""){
             def newData = new UserData();
             def global = League.find{name == "Global Leaderboard"}
             newData.addToLeagues(global)

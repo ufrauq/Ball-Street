@@ -29,7 +29,7 @@ var UserAccountCreator = React.createClass({
                 this.setState({message : name + " was created successfully!"});
             }
             else {
-                this.setState({message : name + " was already taken..."});
+                this.setState({message : name + " was already taken, or invalid  password..."});
             }
         });
     },

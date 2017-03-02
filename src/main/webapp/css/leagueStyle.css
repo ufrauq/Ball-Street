@@ -48,7 +48,7 @@ td {
 .join {
     width: 50%;
 }
-.standingsRow:nth-child(even) {
+.standingsRow:nth-child(odd) {
     background-color: #dddddd;
 }
 
