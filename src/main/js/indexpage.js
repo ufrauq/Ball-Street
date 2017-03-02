@@ -61,17 +61,10 @@ var UserAccountCreator = React.createClass({
                     <p>Username: </p>
                     <input type="text" defaultValue={this.state.userName} onChange={this.handleNameChange}/>
                     <p>Password: </p>
-                    <input type="text" defaultValue={this.state.password} onChange={this.handlePasswordChange}/>
+                    <input type="password" defaultValue={this.state.password} onChange={this.handlePasswordChange}/>
                 </form>
                 <button type="submit" onClick={this.handleSignup}>Sign Up!</button>
                 <button type="submit" onClick={this.handleLogin}>Login!</button>
-                <p>
-                    Name: {this.state.userName}
-                    <br/>
-                    Password: {this.state.password}
-                    <br/>
-                    Message: {this.state.message}
-                </p>
             </div>
         );
     }

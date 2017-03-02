@@ -21771,7 +21771,7 @@ var UserAccountCreator = _react2.default.createClass({
                     null,
                     "Password: "
                 ),
-                _react2.default.createElement("input", { type: "text", defaultValue: this.state.password, onChange: this.handlePasswordChange })
+                _react2.default.createElement("input", { type: "password", defaultValue: this.state.password, onChange: this.handlePasswordChange })
             ),
             _react2.default.createElement(
                 "button",
@@ -21782,18 +21782,6 @@ var UserAccountCreator = _react2.default.createClass({
                 "button",
                 { type: "submit", onClick: this.handleLogin },
                 "Login!"
-            ),
-            _react2.default.createElement(
-                "p",
-                null,
-                "Name: ",
-                this.state.userName,
-                _react2.default.createElement("br", null),
-                "Password: ",
-                this.state.password,
-                _react2.default.createElement("br", null),
-                "Message: ",
-                this.state.message
             )
         );
     }
