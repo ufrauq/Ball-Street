@@ -12,6 +12,9 @@
         <div id="userData">
             <div id="circle"></div>
             <button id="username" type="button" class="topButtons" onclick="window.location.href='/home'">Username</button>
+            <script>
+                document.getElementById("username").innerHTML = sessionStorage.getItem("username");
+            </script>
         </div>
         <div id="topButtons">
             <button id="trades" type="button" class="topButtons" onclick="window.location.href='/trades'">

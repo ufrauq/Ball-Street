@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "/assets/";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 179);
+/******/ 	return __webpack_require__(__webpack_require__.s = 180);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -21677,7 +21677,8 @@ module.exports = traverseAllChildren;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 177 */
+/* 177 */,
+/* 178 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21758,8 +21759,9 @@ var JoinField = _react2.default.createClass({
     handleSubmit: function handleSubmit(e) {
         e.preventDefault();
         var password = this.state.password;
-        var name = this.props.name;
-        fetch('http://localhost:8080/league/joinLeague?userName=Zain' + '&leagueName=' + name + '&password=' + password /*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/);
+        var leagueName = this.props.name;
+        var userName = sessionStorage.getItem("username");
+        fetch('http://localhost:8080/league/joinLeague?userName=' + userName + '&leagueName=' + leagueName + '&password=' + password /*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/);
     },
     render: function render() {
         return _react2.default.createElement(
@@ -21894,7 +21896,7 @@ var LeagueList = _react2.default.createClass({
         var urlExtension = this.props.url;
         var name = "";
         if (urlExtension != "getLeagues") {
-            name = "Zain";
+            name = sessionStorage.getItem("username");
         }
         fetch('http://localhost:8080/league/' + urlExtension + name /*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/).then(function (response) {
             if (response.ok) {
@@ -22098,8 +22100,8 @@ var LeaguePage = exports.LeaguePage = function (_React$Component) {
 }(_react2.default.Component);
 
 /***/ }),
-/* 178 */,
-/* 179 */
+/* 179 */,
+/* 180 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22113,7 +22115,7 @@ var _reactDom = __webpack_require__(80);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _leaguepage = __webpack_require__(177);
+var _leaguepage = __webpack_require__(178);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

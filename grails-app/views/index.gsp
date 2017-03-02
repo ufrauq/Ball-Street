@@ -18,14 +18,7 @@
 
         <div id = "subheading">Try it out!</div>
 
-        <form>
-            Username: <br>
-            <input type = "text" name = "firstname"><br>
-            Password: <br>
-            <input type = "text" name = "password"><br>
-        </form>
-        <button onclick="window.location.href='/home'">Login</button>
-        <button onclick="window.location.href='/home'">Sign Up</button>
+        <div id="loginForm"></div>
 		<asset:javascript src="index.bundle.js"/>
     </body>
 </html>

@@ -10,5 +10,6 @@ class League {
 
     static constraints = {
         members nullable: true
+        owner nullable: true
     }
 }
