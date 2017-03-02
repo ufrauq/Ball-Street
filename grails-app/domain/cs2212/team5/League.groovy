@@ -5,6 +5,7 @@ class League {
     String name
     String password
     int numMembers
+    int maxMembers
     UserAccount owner
 
     static hasMany = [members : UserAccount]

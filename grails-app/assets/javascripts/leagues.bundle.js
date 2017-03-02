@@ -21736,6 +21736,36 @@ var UserEntry = _react2.default.createClass({
     }
 });
 
+var LeaveField = _react2.default.createClass({
+    displayName: "LeaveField",
+    getInitialState: function getInitialState() {
+        return {};
+    },
+    handleSubmit: function handleSubmit(e) {
+        e.preventDefault();
+        var leagueName = this.props.name;
+        var userName = sessionStorage.getItem("username");
+        fetch('http://localhost:8080/league/leaveLeague?userName=' + userName + '&leagueName=' + leagueName /*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/).then(function (response) {
+            if (response.ok) {
+                alert("Successfully Left " + leagueName);
+            } else {
+                alert("Already Left " + leagueName);
+            }
+        });
+    },
+    render: function render() {
+        return _react2.default.createElement(
+            "td",
+            null,
+            _react2.default.createElement(
+                "form",
+                { onSubmit: this.handleSubmit },
+                _react2.default.createElement("input", { type: "submit", className: "joinLeagueButton", defaultValue: "Leave League!" })
+            )
+        );
+    }
+});
+
 var JoinField = _react2.default.createClass({
     displayName: "JoinField",
     getInitialState: function getInitialState() {
@@ -21761,9 +21791,9 @@ var JoinField = _react2.default.createClass({
         var userName = sessionStorage.getItem("username");
         fetch('http://localhost:8080/league/joinLeague?userName=' + userName + '&leagueName=' + leagueName + '&password=' + password /*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/).then(function (response) {
             if (response.ok) {
-                alert("Successfully Joined League!");
+                alert("Successfully Joined " + leagueName);
             } else {
-                alert("Invalid password, or you already belong the the League!");
+                alert("Invalid password, or unable to join " + leagueName);
             }
         });
     },
@@ -21787,7 +21817,9 @@ var LeagueEntry = _react2.default.createClass({
         return {
             userEntries: [],
             buttonStatus: "View",
-            standings: ""
+            standings: "",
+            maxMembers: "",
+            joinField: ""
         };
     },
     handleSubmit: function handleSubmit(e) {
@@ -21853,6 +21885,21 @@ var LeagueEntry = _react2.default.createClass({
             this.setState({ standings: "" });
         }
     },
+    componentDidMount: function componentDidMount() {
+        var maxMembers = this.props.maxMembers;
+        var join = this.props.join;
+        if (maxMembers == -1) {
+            this.setState({ maxMembers: "", joinField: _react2.default.createElement(
+                    "td",
+                    null,
+                    "Default League..."
+                ) });
+        } else if (join == "false") {
+            this.setState({ maxMembers: "/" + maxMembers, joinField: _react2.default.createElement(LeaveField, { name: this.props.name }) });
+        } else {
+            this.setState({ maxMembers: "/" + maxMembers, joinField: _react2.default.createElement(JoinField, { password: this.props.password, name: this.props.name }) });
+        }
+    },
     render: function render() {
         return _react2.default.createElement(
             "tbody",
@@ -21869,9 +21916,9 @@ var LeagueEntry = _react2.default.createClass({
                     "td",
                     { className: "members" },
                     this.props.members,
-                    "/25"
+                    this.state.maxMembers
                 ),
-                _react2.default.createElement(JoinField, { password: this.props.password, name: this.props.name }),
+                this.state.joinField,
                 _react2.default.createElement(
                     "td",
                     { className: "expand" },
@@ -21899,8 +21946,10 @@ var LeagueList = _react2.default.createClass({
 
         var urlExtension = this.props.url;
         var name = "";
+        var join = "true";
         if (urlExtension != "getLeagues") {
             name = sessionStorage.getItem("username");
+            join = "false";
         }
         fetch('http://localhost:8080/league/' + urlExtension + name /*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/).then(function (response) {
             if (response.ok) {
@@ -21926,12 +21975,12 @@ var LeagueList = _react2.default.createClass({
                         ),
                         _react2.default.createElement(
                             "th",
-                            { classname: "expand" },
+                            { className: "expand" },
                             "View Standings"
                         )
                     ));
                     for (var i = 0; i < json.length; i++) {
-                        results.push(_react2.default.createElement(LeagueEntry, { name: json[i].name, members: json[i].numMembers, password: json[i].password }));
+                        results.push(_react2.default.createElement(LeagueEntry, { name: json[i].name, members: json[i].numMembers, maxMembers: json[i].maxMembers, join: join, password: json[i].password }));
                     }
                     _this2.setState({ leagueEntries: results });
                 });
@@ -21945,7 +21994,8 @@ var LeagueList = _react2.default.createClass({
     },
     handleClick: function handleClick(e) {
         e.preventDefault();
-        this.fetchFromAPI();
+        window.location.reload(); //temporary way to reload...
+        //this.fetchFromAPI(); - doesn't refresh "My Leagues" correctly...
     },
     render: function render() {
         return _react2.default.createElement(
