@@ -21741,9 +21741,13 @@ var UserAccountCreator = _react2.default.createClass({
         var password = this.state.password;
         fetch("http://localhost:8080/userAccount/login?userName=" + name + "&password=" + password /*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/).then(function (response) {
             if (response.ok) {
-                sessionStorage.setItem("username", name);
-                _this2.setState({ message: name + " logged in successfully!" });
-                window.location.href = '/home';
+                response.json().then(function (json) {
+                    sessionStorage.setItem("cash", json.money);
+                    sessionStorage.setItem("netWorth", json.netWorth);
+                    sessionStorage.setItem("username", name);
+                    _this2.setState({ message: name + " logged in successfully!" });
+                    window.location.href = '/home';
+                });
             } else {
                 _this2.setState({ message: "Invalid Credentials" });
             }

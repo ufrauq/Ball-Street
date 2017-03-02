@@ -32,7 +32,7 @@ class UserAccountController extends RestfulController {
         def pass = params.password
         def user = UserAccount.find{username == userName && password == pass}
         if(user != null){
-            response.status = 200
+            respond user
         }
         else
             response.status = 502

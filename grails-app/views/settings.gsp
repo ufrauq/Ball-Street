@@ -21,14 +21,18 @@
                 Stock Trade Requests
             </button>
             <button id="money" type="button" class="topButtons">
-                Cash: $5000
+                Cash: $0
             </button>
             <button id="money2" type="button" class="topButtons">
-                Net Worth: $10000
+                Net Worth: $0
             </button>
             <button id="settings" type="button" class="selectedTop" onclick="window.location.href='/settings'">
                 Settings
             </button>
+            <script>
+                document.getElementById("money").innerHTML = "Cash: $" + sessionStorage.getItem("cash");
+                document.getElementById("money2").innerHTML = "Net Worth: $" + sessionStorage.getItem("netWorth");
+            </script>
         </div>
     </div>
     <div id="sideMenu" class="areas">

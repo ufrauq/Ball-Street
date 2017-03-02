@@ -40,9 +40,13 @@ var UserAccountCreator = React.createClass({
         let password = this.state.password;
         fetch("http://localhost:8080/userAccount/login?userName=" + name + "&password=" + password/*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/).then(response => {
             if (response.ok) {
-                sessionStorage.setItem("username", name);
-                this.setState({message : name + " logged in successfully!"});
-                window.location.href='/home';
+                response.json().then(json => {
+                    sessionStorage.setItem("cash", json.money);
+                    sessionStorage.setItem("netWorth", json.netWorth);
+                    sessionStorage.setItem("username", name);
+                    this.setState({message : name + " logged in successfully!"});
+                    window.location.href='/home';
+                });
             }
             else {
                 this.setState({message : "Invalid Credentials"});
