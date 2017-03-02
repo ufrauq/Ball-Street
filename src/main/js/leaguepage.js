@@ -39,8 +39,9 @@ var JoinField = React.createClass({
     handleSubmit(e) {
         e.preventDefault();
         let password = this.state.password;
-        let name = this.props.name;
-        fetch('http://localhost:8080/league/joinLeague?userName=Zain' + '&leagueName=' + name + '&password=' + password/*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/);
+        let leagueName = this.props.name;
+        let userName = sessionStorage.getItem("username");
+        fetch('http://localhost:8080/league/joinLeague?userName=' + userName + '&leagueName=' + leagueName + '&password=' + password/*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/);
     },
 
     render () {
@@ -127,7 +128,7 @@ var LeagueList = React.createClass({
         let urlExtension = this.props.url;
         let name = "";
         if (urlExtension != "getLeagues") {
-            name = "Zain";
+            name = sessionStorage.getItem("username");
         }
         fetch('http://localhost:8080/league/' + urlExtension + name/*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/)
             .then(response => {
