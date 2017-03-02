@@ -64,14 +64,37 @@ p {
 }
 #topButtons {
     width: 60%;
+    height: 100%;
     float: right;
 }
 #userData {
     width: 30%;
     float: left;
 }
+.username {
+    float:left;
+    width:30%;
+    background-color: transparent;
+    height: 100%;
+    padding: 1px 1px;
+    /*height: 63px;*/
+    font-size: 15px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s; /* Safari */
+}
+
+.username:hover{
+    float: left;
+    background-color: lightgray;
+    color: red;
+    padding: 15px 40px 15px 40px;
+    height: 100%;
+    width: 30%;
+}
 #circle {
-    margin: 10px 10px;
+    margin: 4px;
     float: left;
     width: 50px;
     height: 50px;
@@ -79,13 +102,38 @@ p {
     background: black;
 
 }
-#username {
+.username {
+    width: 30%;
+    height: 100%;
     float: left;
+
+
+
+    background-color: green;
+
+
+    /*height: 63px;*/
+    font-size: 15px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s; /* Safari */
 }
+
+.username:hover{
+    float: left;
+    background-color: lightgray;
+    color: red;
+    /*padding: 15px 40px 15px 40px;*/
+    height: 100%;
+    width: 30%;
+}
+
 .topButtons {
-    background-color: #808080;
+    background-color: transparent;
+    height: 100%;
     padding: 1px 1px;
-    height: 70px;
+    /*height: 63px;*/
     font-size: 15px;
     border: none;
     color: white;
@@ -107,6 +155,8 @@ p {
     color: white;
     cursor: pointer;
 }
+
+
 #trades {
     width: 30%;
 }
@@ -146,23 +196,4 @@ p {
     background-color: white;
 }
 
-.button {
-    background-color: #808080; /* grey */
-    border: none;
-    color: white;
-    padding: 16px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
-    cursor: pointer;
-}
 
-
-.button1:hover {/* this is for the Stock Trades button at the top of the screen*/
-    background-color: white;
-    color: red;
-}
