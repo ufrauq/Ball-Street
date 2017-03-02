@@ -1,3 +1,38 @@
+h1{
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #808080;
+ }
+
+h2{
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #808080;
+}
+
+h3{
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #808080;
+}
+
+h4{
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #808080;
+}
+
+h5{
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #808080;
+}
+
+h6{
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #808080;
+}
+
+p {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #808080;
+    font-size: 16px;
+}
 .areas {
     text-align: center;
 }
@@ -29,14 +64,37 @@
 }
 #topButtons {
     width: 60%;
+    height: 100%;
     float: right;
 }
 #userData {
     width: 30%;
     float: left;
 }
+.username {
+    float:left;
+    width:30%;
+    background-color: transparent;
+    height: 100%;
+    padding: 1px 1px;
+    /*height: 63px;*/
+    font-size: 15px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s; /* Safari */
+}
+
+.username:hover{
+    float: left;
+    background-color: lightgray;
+    color: red;
+    padding: 15px 40px 15px 40px;
+    height: 100%;
+    width: 30%;
+}
 #circle {
-    margin: 10px 10px;
+    margin: 4px;
     float: left;
     width: 50px;
     height: 50px;
@@ -44,27 +102,61 @@
     background: black;
 
 }
-#username {
+.username {
+    width: 30%;
+    height: 100%;
     float: left;
-}
-.topButtons {
-    background-color: #808080;
-    padding: 1px 1px;
-    height: 70px;
-    font-size: 25px;
+
+
+
+    background-color: green;
+
+
+    /*height: 63px;*/
+    font-size: 15px;
     border: none;
     color: white;
     cursor: pointer;
+    -webkit-transition-duration: 0.4s; /* Safari */
+}
+
+.username:hover{
+    float: left;
+    background-color: lightgray;
+    color: red;
+    /*padding: 15px 40px 15px 40px;*/
+    height: 100%;
+    width: 30%;
+}
+
+.topButtons {
+    background-color: transparent;
+    height: 100%;
+    padding: 1px 1px;
+    /*height: 63px;*/
+    font-size: 15px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s; /* Safari */
+
+}
+
+.topButtons:hover{
+    background-color: lightgray;
+    color: red;
 }
 .selectedTop {
     background-color: #4d4d4d;
     padding: 1px 1px;
     height: 70px;
-    font-size: 25px;
+    font-size: 15px;
     border: none;
     color: white;
     cursor: pointer;
 }
+
+
 #trades {
     width: 30%;
 }
@@ -82,7 +174,7 @@
     padding: 1px 1px;
     height: 25%;
     width: 100%;
-    font-size: 35px;
+    font-size: 25px;
     border: none;
     color: white;
     cursor: pointer;
@@ -92,7 +184,7 @@
     padding: 1px 1px;
     height: 25%;
     width: 100%;
-    font-size: 35px;
+    font-size: 25px;
     border: none;
     color: white;
     cursor: pointer;
@@ -103,3 +195,5 @@
     width: 80%;
     background-color: white;
 }
+
+
