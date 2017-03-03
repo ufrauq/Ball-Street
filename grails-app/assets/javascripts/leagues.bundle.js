@@ -22065,7 +22065,7 @@ var LeagueCreator = _react2.default.createClass({
                     null,
                     "Create League Password (blank for public league):"
                 ),
-                _react2.default.createElement("input", { type: "text", defaultValue: this.state.password, onChange: this.handlePasswordChange }),
+                _react2.default.createElement("input", { type: "password", defaultValue: this.state.password, onChange: this.handlePasswordChange }),
                 _react2.default.createElement(
                     "p",
                     null,

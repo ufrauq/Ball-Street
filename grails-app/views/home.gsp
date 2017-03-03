@@ -8,45 +8,53 @@
 </head>
 <body>
 <div id="main">
-    <div id="topMenu" class="areas">
-        <div id="userData">
-            <div id="circle"></div>
-            <button id="username" type="button" class="topButtons" onclick="window.location.href='/home'">Username</button>
-            <script>
-                document.getElementById("username").innerHTML = sessionStorage.getItem("username");
-            </script>
-        </div>
-        <div id="topButtons">
-            <button id="trades" type="button" class="topButtons" onclick="window.location.href='/trades'">
-                Stock Trade Requests
-            </button>
-            <button id="money" type="button" class="topButtons">
-                Cash: $0
-            </button>
-            <button id="money2" type="button" class="topButtons">
-                Net Worth: $0
-            </button>
-            <button id="settings" type="button" class="topButtons" onclick="window.location.href='/settings'">
-                Settings
-            </button>
-            <script>
-                document.getElementById("money").innerHTML = "Cash: $" + sessionStorage.getItem("cash");
-                document.getElementById("money2").innerHTML = "Net Worth: $" + sessionStorage.getItem("netWorth");
-            </script>
+    <div id="topMenu" >
+        <div >
+            <ul>
+                <li style="float: left;width: 60px; padding: 18px 20px" onclick="window.location.href='/home'">
+                    <img src="http://downloadicons.net/sites/default/files/basketball-icon-23146.png" width="45px">
+                </li>
+                <li style="float: left;width: 15%" onclick="window.location.href='/home'" id="username">
+                    <img src="http://downloadicons.net/sites/default/files/basketball-icon-23146.png" width="15px">
+                    <script>
+                        /*document.getElementById("username").innerHTML = document.getElementById("username").innerHTML + "       "+ sessionStorage.getItem("username");*/
+                        document.getElementById("username").innerHTML = sessionStorage.getItem("username");
+                    </script>
+                </li>
+                <li onclick="window.location.href='/settings'">
+                    Settings
+                </li>
+                <li id="money2" style=" width:12%; text-align:center">
+                    Networth: $
+                    <script>
+                        document.getElementById("money2").innerHTML = "Net Worth: $" + sessionStorage.getItem("netWorth");
+                    </script>
+
+                </li>
+                <li id="money" style=" width:10%; text-align:center">
+                    Cash: $
+                    <script>
+                        document.getElementById("money").innerHTML = "Cash: $" + sessionStorage.getItem("cash");
+                    </script>
+                </li>
+                <li onclick="window.location.href='/trades'">
+                    Stock Trades
+                </li>
+            </ul>
         </div>
     </div>
-    <div id="sideMenu" class="areas">
+    <div>
+        <marquee>Welcome to BallStreet!  Past game scores will be displayed here!</marquee>
+    </div>
+    <div id="sideMenu" class="areas" >
         <button type="button" class="sideButtons" onclick="window.location.href='/stocks'">Stocks</button>
-        <div class="line"></div>
         <button type="button" class="sideButtons" onclick="window.location.href='/leagues'">Leagues</button>
-        <div class="line"></div>
         <button type="button" class="sideButtons" onclick="window.location.href='/players'">Players</button>
-        <div class="line"></div>
         <button type="button" class="sideButtons" onclick="window.location.href='/market'">Stock Market</button>
     </div>
+    <br>
     <div id="contentArea" class="areas">
-        Profile...
-        <asset:javascript src="index.bundle.js"/>
+        <h1>Profile: coming soon...</h1>
     </div>
 </div>
 </body>
