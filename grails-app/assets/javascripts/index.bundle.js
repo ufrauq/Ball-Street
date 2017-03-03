@@ -21768,9 +21768,9 @@ var UserAccountCreator = _react2.default.createClass({
                 _react2.default.createElement(
                     "p",
                     { className: "control is-small" },
-                    _react2.default.createElement("input", { className: "input", type: "password", placeholder: "Password", defaultValue: this.state.password, onChange: this.handlePasswordChange })
-                ),
-                this.state.message
+                    _react2.default.createElement("input", { className: "input", type: "password", placeholder: "Password", defaultValue: this.state.password, onChange: this.handlePasswordChange }),
+                    this.state.message
+                )
             ),
             _react2.default.createElement(
                 "p",

@@ -63,8 +63,8 @@ var UserAccountCreator = React.createClass({
                         </p>
                         <p className="control is-small">
                             <input className = "input" type="password" placeholder = "Password" defaultValue={this.state.password} onChange={this.handlePasswordChange}/>
-                        </p>
                             {this.state.message}
+                        </p>
                     </form>
 
                 <p className = "control is-grouped">
