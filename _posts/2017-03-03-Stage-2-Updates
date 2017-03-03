@@ -1,0 +1,16 @@
+---
+bg: "tools.jpg"
+layout: post
+title:  "Stage 2 Updates"
+crawlertitle: "BallStreet | Team 5"
+summary: "WTF is BallStreet?"
+date:   2017-02-01 20:09:47 +0700
+categories: posts
+tags: ['intro']
+author: Team 5
+---
+For the second stage of our project, we developed the front end of the application. This includes the login page, the
+leagues page, and the logout button on the settings page. Throughout the site, we have installed a crawler that tells the
+user information. <br><br>
+
+As for the back end of our application, we have implemented 2 controller classes and 3 model classes. 
