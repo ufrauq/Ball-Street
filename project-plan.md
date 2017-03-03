@@ -11,7 +11,7 @@ active: Project-Plan
 The project was started originally in January and the project duration will be approximately 3 months.  Over the course the next few months, the following features will be developed:<br>
 <ul>
 <li><i>User Profile</i></li>
-<ul><li>Integrating with social media, users will be able to login and conduct their trades, and watch the market.</li>
+<ul><li>Users will be able to login and conduct their trades, and watch the market.</li>
 <li>Additional feature:  using data visualization and reporting tools/APIs, each user will be able to create various dashboards tailored to their needs, based on available data (Difficulty in implementing:  medium)</li></ul><br><br>
 <li><i>Execution of Trades:</i></li>
 <ul><li>Users will be able to buy, sell, and trade player stock with the market or other users </li>
@@ -24,15 +24,25 @@ The project was started originally in January and the project duration will be a
 
 For more details, please see the attached <a href="https://pfindan.github.io/CS2212-Team5/assets/images/2212_Project_Plan.pdf" target = "_blank"> Gantt Chart </a> – task durations have been estimated.
 <br><br>
-For the authorization of logging in, BallStreet will be using local verification. This is due to the fact that the Twitter API requires a public URL for callback and our project requires running locally. Additionally, BallStreet will use data collected from the MySportsFeeds.com via their API to determine stock prices of players based on game stats, injuries and team wins.
-<ul>
-  <li>
-    
-    <i>Update:</i>
-    <ul>
-    <li>Added Features - Leagues: Can create a league with 25 members, join leagues, leave leagues and set passwords for said leagues. Currently, the leagues page requires refreshing buttons.</li>
+For the authorization of logging in, BallStreet will be using local verification. This is due to the fact that the Twitter API requires a public URL for callback and our project requires running locally. Additionally, BallStreet will use data collected from the MySportsFeeds.com via their API to determine stock prices of players based on game stats, injuries and team wins.<br><br>
 
-<li>Removed features: Twitter authentication</li>
+<ul>
+  <li>   
+    <i>Update:</i>
+   </li>
+   <li>
+    <ul>
+    <li><b>Added Features</b> - Leagues: Can create a league with 25 members, join leagues, leave leagues and set passwords   for said leagues. Currently, the leagues page requires refreshing buttons.</li>
+
+<li><b>Adjusted Features:</b> Twitter authentication for login changed to local login authorization due to lack of public URL callback as the project must run locally. </li>
+
+<li><b>Features to be be implemented:</b></li>
+<ul>
+  <li>Local Authorization</li>
+  <li>Data-Mining</li>
+  <li>Execution of Trades</li>
+  </ul>
+
 
 </ul>
 </ul>
