@@ -25,7 +25,7 @@ Stage 2 UML Diagram:
 
 <br>
 <br>
-<a href="http://oi66.tinypic.com/258wdpd.jpg">
+<a href="http://tinypic.com?ref=258wdpd" target="_blank"><img src="http://i66.tinypic.com/258wdpd.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
 <br>
 
 
