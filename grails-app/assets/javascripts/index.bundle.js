@@ -21725,11 +21725,12 @@ var UserAccountCreator = _react2.default.createClass({
         e.preventDefault();
         var name = this.state.userName;
         var password = this.state.password;
+        //make call to controller method attempting to create a user and display message based on success or failure status
         fetch("http://localhost:8080/userAccount/createUser?userName=" + name + "&password=" + password /*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/).then(function (response) {
             if (response.ok) {
                 _this.setState({ message: name + " was created successfully!" });
             } else {
-                _this.setState({ message: name + " was already taken, or invalid  password..." });
+                _this.setState({ message: name + " was already taken, or missing fields..." });
             }
         });
     },
@@ -21739,21 +21740,24 @@ var UserAccountCreator = _react2.default.createClass({
         e.preventDefault();
         var name = this.state.userName;
         var password = this.state.password;
+        //make call to controller method attempting to login and display message if failure, otherwise link to home page
         fetch("http://localhost:8080/userAccount/login?userName=" + name + "&password=" + password /*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/).then(function (response) {
             if (response.ok) {
                 response.json().then(function (json) {
+                    //if successful then store name, money and netWorth (to be accessed by other pages) and link to home page
                     sessionStorage.setItem("cash", json.money);
                     sessionStorage.setItem("netWorth", json.netWorth);
                     sessionStorage.setItem("username", name);
-                    _this2.setState({ message: name + " logged in successfully!" });
                     window.location.href = '/home';
+                    _this2.setState({ message: name + "successfully logged in!" });
                 });
             } else {
-                _this2.setState({ message: "Invalid Credentials" });
+                _this2.setState({ message: "Invalid login credentials" });
             }
         });
     },
     render: function render() {
+        //sets up a form for login data input
         return _react2.default.createElement(
             "div",
             null,
