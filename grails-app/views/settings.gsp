@@ -5,6 +5,9 @@
     <link rel = "stylesheet"
           type = "text/css"
           href="${resource(dir: 'css', file: 'generalStyle.css')}" />
+    <link rel = "stylesheet"
+          type = "text/css"
+          href="${resource(dir: 'css', file: 'settings.css')}" />
 </head>
 <body>
 <div id="main">
@@ -44,7 +47,7 @@
         </div>
     </div>
     <div>
-        <marquee>Welcome to BallStreet!  Past game scores will be displayed here!</marquee>
+        <marquee>Leaving so soon! Click the logout button to logout of your account.</marquee>
     </div>
     <div id="sideMenu" class="areas" >
         <button type="button" class="sideButtons" onclick="window.location.href='/stocks'">Stocks</button>
@@ -55,6 +58,7 @@
     <br>
     <div id="contentArea" class="areas">
         <h1>Settings: coming soon...</h1>
+        <button type="submit" onclick="window.location.href='/'">Logout</button>
     </div>
 </div>
 </body>
