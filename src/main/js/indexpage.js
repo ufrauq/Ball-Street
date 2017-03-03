@@ -57,14 +57,21 @@ var UserAccountCreator = React.createClass({
     render() {
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
-                    <p>Username: </p>
-                    <input type="text" defaultValue={this.state.userName} onChange={this.handleNameChange}/>
-                    <p>Password: </p>
-                    <input type="password" defaultValue={this.state.password} onChange={this.handlePasswordChange}/>
-                </form>
-                <button type="submit" onClick={this.handleSignup}>Sign Up!</button>
-                <button type="submit" onClick={this.handleLogin}>Login!</button>
+                    <form onSubmit={this.handleSubmit}>
+                        <p className="control is-small">
+                            <input className = "input" type="text" placeholder="Username" defaultValue={this.state.userName} onChange={this.handleNameChange}/>
+                        </p>
+                        <p className="control is-small">
+                            <input className = "input" type="password" placeholder = "Password" defaultValue={this.state.password} onChange={this.handlePasswordChange}/>
+                        </p>
+                            {this.state.message}
+                    </form>
+
+                <p className = "control is-grouped">
+                    <a className = "button is-outlined is-danger"  onClick={this.handleSignup}>Sign Up</a>
+                    <a className = "button is-outlined is-success" onClick={this.handleLogin}>Login</a>
+                </p>
+
             </div>
         );
     }

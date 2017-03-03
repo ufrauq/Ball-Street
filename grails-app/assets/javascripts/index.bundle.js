@@ -21762,26 +21762,29 @@ var UserAccountCreator = _react2.default.createClass({
                 { onSubmit: this.handleSubmit },
                 _react2.default.createElement(
                     "p",
-                    null,
-                    "Username: "
+                    { className: "control is-small" },
+                    _react2.default.createElement("input", { className: "input", type: "text", placeholder: "Username", defaultValue: this.state.userName, onChange: this.handleNameChange })
                 ),
-                _react2.default.createElement("input", { type: "text", defaultValue: this.state.userName, onChange: this.handleNameChange }),
                 _react2.default.createElement(
                     "p",
-                    null,
-                    "Password: "
+                    { className: "control is-small" },
+                    _react2.default.createElement("input", { className: "input", type: "password", placeholder: "Password", defaultValue: this.state.password, onChange: this.handlePasswordChange })
                 ),
-                _react2.default.createElement("input", { type: "password", defaultValue: this.state.password, onChange: this.handlePasswordChange })
+                this.state.message
             ),
             _react2.default.createElement(
-                "button",
-                { type: "submit", onClick: this.handleSignup },
-                "Sign Up!"
-            ),
-            _react2.default.createElement(
-                "button",
-                { type: "submit", onClick: this.handleLogin },
-                "Login!"
+                "p",
+                { className: "control is-grouped" },
+                _react2.default.createElement(
+                    "a",
+                    { className: "button is-outlined is-danger", onClick: this.handleSignup },
+                    "Sign Up"
+                ),
+                _react2.default.createElement(
+                    "a",
+                    { className: "button is-outlined is-success", onClick: this.handleLogin },
+                    "Login"
+                )
             )
         );
     }

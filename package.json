@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/pfindan/CS2212-Team5#readme",
   "dependencies": {
+    "re-bulma": "^0.3.1",
     "react": "^15.4.2",
     "react-dom": "^15.4.2"
   },
