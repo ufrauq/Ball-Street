@@ -24,7 +24,7 @@ The project was started originally in January and the project duration will be a
 
 For more details, please see the attached <a href="https://pfindan.github.io/CS2212-Team5/assets/images/2212_Project_Plan.pdf" target = "_blank"> Gantt Chart </a> – task durations have been estimated.
 <br><br>
+<li>BallStreet will use data collected from the MySportsFeeds.com via their API to determine stock prices of players based on game stats, injuries and team wins.<li>
 <li>Update:</li>
 <li>Added Features: Leagues: Can create a league with 25 members, join leagues, leave leagues and set passwords for said leagues. )</li>
 <li>Removed features: Twitter authentication</li>
-<li>BallStreet will use data collected from the MySportsFeeds.com via their API to determine stock prices of players based on game stats, injuries and team wins.<li>
