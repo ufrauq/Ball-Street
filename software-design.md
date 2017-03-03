@@ -25,8 +25,10 @@ Stage 2 UML Diagram:
 
 <br>
 <br>
-<a href="http://tinypic.com?ref=258wdpd" target="_blank"><img src="http://i66.tinypic.com/258wdpd.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
+<a href="https://pfindan.github.io/CS2212-Team5/assets/CS2212 UML (1).jpg">
+<img src= "/CS2212-Team5/assets/CS2212 UML (1).jpg" align = "left"/>
 <br>
+
 
 
 
