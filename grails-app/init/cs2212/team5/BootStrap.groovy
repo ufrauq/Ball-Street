@@ -3,8 +3,12 @@ package cs2212.team5
 class BootStrap {
 
     def init = { servletContext ->
-        /*def global = new League(numMembers: 0, name: "Global Leaderboard").save()
-        def zain = new UserAccount(username: "Zain", money: 100, netWorth: 100, password: "password").save()
+        def global = League.find{name == "Global Leaderboard"}
+        if (global == null) {
+            global = new League(numMembers: 0, maxMembers: -1, name: "Global Leaderboard").save()
+        }
+
+        /*def zain = new UserAccount(username: "Zain", money: 100, netWorth: 100, password: "password").save()
 
         def l = new League(owner: zain, numMembers: 1, name: "test").save()
         def m = new League(owner: zain, numMembers: 1, name: "The Best League", password: "a").save()

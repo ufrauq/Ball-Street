@@ -1,7 +1,7 @@
 h1{
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: #808080;
- }
+    color: red;
+}
 
 h2{
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -33,9 +33,90 @@ p {
     color: #808080;
     font-size: 16px;
 }
+
+
+
+
 .areas {
     text-align: center;
 }
+
+ul {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    background-color: #808080;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: white;
+}
+
+li {
+    float: right;
+    height: 100%;
+    padding: 33px;
+    -webkit-transition-duration: 0.4s; /* transitions */
+}
+
+li:hover {
+    background-color: #4d4d4d;
+    -webkit-transition-duration: 0.4s; /* transitions */
+}
+
+
+
+.active {
+    background-color: #4d4d4d;
+}
+
+
+/*Vertical Menu
+#vertical{
+    width: 50%;
+    background-color: orange;
+
+}
+*/
+ul2 {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: red;
+    color: white;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+}
+
+li2 {
+
+
+
+    width: 100%;
+    height: 100%;
+    padding: 70px 50px 70px 50px;
+    -webkit-transition-duration: 0.4s; /* transitions */
+    background-color: red;
+    color: white;
+    display: block;
+    vertical-align: middle;
+    font-size: 33px;
+    text-align: center;
+
+}
+
+li2:hover {
+    background-color:darkred;
+    -webkit-transition-duration: 0.4s; /* transitions */
+}
+
+
+
+.active {
+    background-color: #4CAF50;
+}
+
+
+
 #main
 {
     position:fixed;
@@ -61,39 +142,22 @@ p {
     height: 90%;
     width: 85%;
     overflow-y: auto;
+    top-margin:20px;
 }
 #topButtons {
     width: 60%;
     height: 100%;
     float: right;
+    margin: 0;
+    padding: 0;
 }
 #userData {
-    width: 30%;
+    height: 10px;
     float: left;
-}
-.username {
-    float:left;
-    width:30%;
-    background-color: transparent;
-    height: 100%;
-    padding: 1px 1px;
-    /*height: 63px;*/
-    font-size: 15px;
-    border: none;
-    color: white;
-    cursor: pointer;
-    -webkit-transition-duration: 0.4s; /* Safari */
 }
 
-.username:hover{
-    float: left;
-    background-color: lightgray;
-    color: red;
-    padding: 15px 40px 15px 40px;
-    height: 100%;
-    width: 30%;
-}
-#circle {
+
+/*#circle {
     margin: 4px;
     float: left;
     width: 50px;
@@ -102,59 +166,61 @@ p {
     background: black;
 
 }
-.username {
-    width: 30%;
-    height: 100%;
-    float: left;
-
-
-
-    background-color: green;
-
-
-    /*height: 63px;*/
-    font-size: 15px;
-    border: none;
-    color: white;
-    cursor: pointer;
-    -webkit-transition-duration: 0.4s; /* Safari */
-}
-
-.username:hover{
-    float: left;
-    background-color: lightgray;
-    color: red;
-    /*padding: 15px 40px 15px 40px;*/
-    height: 100%;
-    width: 30%;
-}
+*/
 
 .topButtons {
     background-color: transparent;
     height: 100%;
-    padding: 1px 1px;
-    /*height: 63px;*/
+
     font-size: 15px;
     border: none;
     color: white;
     cursor: pointer;
-    -webkit-transition-duration: 0.4s; /* Safari */
+    -webkit-transition-duration: 0.4s; /* transitions */
 
 }
 
 .topButtons:hover{
-    background-color: lightgray;
-    color: red;
+    background-color: #4d4d4d;
+
 }
 .selectedTop {
     background-color: #4d4d4d;
-    padding: 1px 1px;
+
     height: 70px;
     font-size: 15px;
     border: none;
     color: white;
     cursor: pointer;
 }
+#username {
+    background-color: transparent;
+    height: 630%;
+    text-align: left;
+    padding: 20px;
+    margin-left: 70px;
+
+    font-size: 20px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s; /* transitions */
+    width: 150%;
+
+}
+#username:hover {
+    background-color: #4d4d4d;
+
+}
+.circle{
+    margin: 4px;
+    float: right;
+    width: 50px;
+    height: 50px;
+    border-radius: 75px;
+    background: black;
+}
+
 
 
 #trades {
@@ -179,6 +245,17 @@ p {
     color: white;
     cursor: pointer;
 }
+.sideButtons:hover {
+    background-color: darkred;
+    padding: 1px 1px;
+    height: 25%;
+    width: 100%;
+    font-size: 25px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s; /* transitions */
+}
 .selectedSide {
     background-color: darkred;
     padding: 1px 1px;
@@ -189,11 +266,19 @@ p {
     color: white;
     cursor: pointer;
 }
-.line {
+
+marquee{
+    background-color: black;
+    color: white;
+    height: 25px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+/*.line {
     margin: auto;
     height: 2px;
     width: 80%;
     background-color: white;
 }
-
-
+*/

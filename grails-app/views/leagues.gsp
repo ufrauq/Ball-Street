@@ -13,7 +13,8 @@
 <div id="main">
     <div id="topMenu" class="areas">
         <div id="userData">
-            <div id="circle"></div>
+            <%-- <div id="circle"></div> --%>
+
             <button id="username" type="button" class="topButtons" onclick="window.location.href='/home'">Username</button>
             <script>
                 document.getElementById("username").innerHTML = sessionStorage.getItem("username");
@@ -37,8 +38,11 @@
                 document.getElementById("money2").innerHTML = "Net Worth: $" + sessionStorage.getItem("netWorth");
             </script>
         </div>
+        <div>
+            <marquee>Welcome to BallStreet!  Past game scores will be displayed here!</marquee>
+        </div>
     </div>
-    <div id="sideMenu" class="areas">
+    <div id="sideMenu" class="areas" >
         <button type="button" class="sideButtons" onclick="window.location.href='/stocks'">Stocks</button>
         <div class="line"></div>
         <button type="button" class="selectedSide" onclick="window.location.href='/leagues'">Leagues</button>
@@ -47,6 +51,7 @@
         <div class="line"></div>
         <button type="button" class="sideButtons" onclick="window.location.href='/market'">Stock Market</button>
     </div>
+    <br><br>
     <div id="contentArea" class="areas">
         <div id="leaguePage" align="left"></div>
         <asset:javascript src="leagues.bundle.js"/>
