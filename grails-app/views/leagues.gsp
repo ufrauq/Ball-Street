@@ -47,7 +47,7 @@
         </div>
     </div>
     <div>
-        <marquee>Welcome to BallStreet!  Past game scores will be displayed here!</marquee>
+        <marquee>Click the refresh button to see league changes!</marquee>
     </div>
     <div id="sideMenu" class="areas" >
         <button type="button" class="sideButtons" onclick="window.location.href='/stocks'">Stocks</button>
