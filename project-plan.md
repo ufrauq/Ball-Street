@@ -26,5 +26,5 @@ For more details, please see the attached <a href="https://pfindan.github.io/CS2
 <br><br>
 BallStreet will use data collected from the MySportsFeeds.com via their API to determine stock prices of players based on game stats, injuries and team wins.
 <li>Update:</li>
-<li>Added Features: Leagues: Can create a league with 25 members, join leagues, leave leagues and set passwords for said leagues. )</li>
+<li>Added Features: Leagues: Can create a league with 25 members, join leagues, leave leagues and set passwords for said leagues. </li>
 <li>Removed features: Twitter authentication</li>
