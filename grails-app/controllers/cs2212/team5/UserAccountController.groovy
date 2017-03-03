@@ -10,6 +10,10 @@ class UserAccountController extends RestfulController {
         super(UserAccount)
     }
 
+    /**
+     * Controller method which, given a username and password, attempts to create a valid user
+     * @return success or failure status
+     */
     def createUser(){
         def userName = params.userName
         def password = params.password
@@ -27,6 +31,10 @@ class UserAccountController extends RestfulController {
             response.status = 502
     }
 
+    /**
+     * Controller method which, given a username and password, attempts to login the user
+     * @return user or failure status
+     */
     def login(){
         def userName = params.userName
         def pass = params.password

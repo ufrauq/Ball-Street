@@ -11,10 +11,18 @@ class LeagueController extends RestfulController {
         super(League)
     }
 
+    /**
+     * Controller method which returns leagues
+     * @return all leagues
+     */
     def getLeagues() {
         respond League.findAll()
     }
 
+    /**
+     * Controller method which returns the leagues belonging to a given username
+     * @return leagues belonging to username
+     */
     def getMyLeagues() {
         def name = params.username
         def user = UserAccount.find{username == name}
@@ -26,6 +34,10 @@ class LeagueController extends RestfulController {
         }
     }
 
+    /**
+     * Controller method which, given a league name, username, and password, attempts to add user to the league
+     * @return success or failure status
+     */
     def joinLeague() {
         def leagueName = params.leagueName
         def pass = params.password
@@ -61,6 +73,10 @@ class LeagueController extends RestfulController {
         }
     }
 
+    /**
+     * Controller method which, given a league name and username, attempts to remove the user from the league
+     * @return success or failure status
+     */
     def leaveLeague() {
         def leagueName = params.leagueName
         def userName = params.userName
@@ -89,6 +105,10 @@ class LeagueController extends RestfulController {
         }
     }
 
+    /**
+     * Controller method which returns the members of a given league
+     * @return members of league
+     */
     def getMembers() {
         def leagueName = params.leagueName
         def league = League.find{name == leagueName}
@@ -98,6 +118,10 @@ class LeagueController extends RestfulController {
             response.status = 501
     }
 
+    /**
+     * Controller method which, given a league name, owner username, and password, attempts to create a league with the given data
+     * @return success or failure status
+     */
     def createLeague() {
         def leagueName = params.leagueName
         def ownerName = params.ownerName

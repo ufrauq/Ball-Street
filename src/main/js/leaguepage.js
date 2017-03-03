@@ -65,7 +65,7 @@ var JoinField = React.createClass({
     componentDidMount() {
         let password = this.props.password;
         if (password != null) {
-            this.setState({input:<input type="text" defaultValue="Enter Password..." onChange={this.handlePasswordChange}/>});
+            this.setState({input:<input type="text" placeholder="Enter Password..." onChange={this.handlePasswordChange}/>});
         }
     },
 

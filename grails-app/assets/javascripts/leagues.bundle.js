@@ -21747,9 +21747,9 @@ var LeaveField = _react2.default.createClass({
         var userName = sessionStorage.getItem("username");
         fetch('http://localhost:8080/league/leaveLeague?userName=' + userName + '&leagueName=' + leagueName /*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/).then(function (response) {
             if (response.ok) {
-                alert("Successfully Left " + leagueName);
+                alert("Successfully left " + leagueName);
             } else {
-                alert("Already Left " + leagueName);
+                alert("Already left " + leagueName);
             }
         });
     },
@@ -21781,7 +21781,7 @@ var JoinField = _react2.default.createClass({
     componentDidMount: function componentDidMount() {
         var password = this.props.password;
         if (password != null) {
-            this.setState({ input: _react2.default.createElement("input", { type: "text", defaultValue: "Enter Password...", onChange: this.handlePasswordChange }) });
+            this.setState({ input: _react2.default.createElement("input", { type: "text", placeholder: "Enter Password...", onChange: this.handlePasswordChange }) });
         }
     },
     handleSubmit: function handleSubmit(e) {
@@ -21791,9 +21791,9 @@ var JoinField = _react2.default.createClass({
         var userName = sessionStorage.getItem("username");
         fetch('http://localhost:8080/league/joinLeague?userName=' + userName + '&leagueName=' + leagueName + '&password=' + password /*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/).then(function (response) {
             if (response.ok) {
-                alert("Successfully Joined " + leagueName);
+                alert("Successfully joined " + leagueName);
             } else {
-                alert("Invalid password, or unable to join " + leagueName);
+                alert("Invalid password, full league, or already joined " + leagueName);
             }
         });
     },
