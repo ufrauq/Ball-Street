@@ -101,7 +101,7 @@ var LeagueEntry = React.createClass({
     getInitialState () {
         return {
             userEntries : [],
-            buttonStatus : "View",
+            buttonStatus : "+",
             standings : "",
             maxMembers: "",
             joinField: ""
@@ -112,7 +112,7 @@ var LeagueEntry = React.createClass({
         e.preventDefault();
         let name = this.props.name;
         let status = this.state.buttonStatus;
-        if (status == "View") {
+        if (status == "+") {
             fetch('http://localhost:8080/league/getMembers?leagueName='+ name/*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/).then(response => {
                 if(response.ok) {
                     response.json().then(json => {
@@ -121,7 +121,7 @@ var LeagueEntry = React.createClass({
                         for (let i = 0; i < json.length; i++) {
                             results.push(<UserEntry rank={i+1} userName={json[i].username} money={json[i].money} netWorth={json[i].netWorth}/>);
                         }
-                        this.setState({userEntries: results, buttonStatus: "Close"});
+                        this.setState({userEntries: results, buttonStatus: "-"});
                         this.setState({standings:
                         <tr>
                             <td colSpan="4">
@@ -133,13 +133,13 @@ var LeagueEntry = React.createClass({
                     });
                 }
                 else{
-                    this.setState({userEntries: [], buttonStatus: "View"});
+                    this.setState({userEntries: [], buttonStatus: "+"});
                     this.setState({standings: ""});
                 }
             });
         }
         else {
-            this.setState({userEntries: [], buttonStatus: "View"});
+            this.setState({userEntries: [], buttonStatus: "+"});
             this.setState({standings: ""});
         }
 

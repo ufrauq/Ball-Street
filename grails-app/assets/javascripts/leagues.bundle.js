@@ -21816,7 +21816,7 @@ var LeagueEntry = _react2.default.createClass({
     getInitialState: function getInitialState() {
         return {
             userEntries: [],
-            buttonStatus: "View",
+            buttonStatus: "+",
             standings: "",
             maxMembers: "",
             joinField: ""
@@ -21828,7 +21828,7 @@ var LeagueEntry = _react2.default.createClass({
         e.preventDefault();
         var name = this.props.name;
         var status = this.state.buttonStatus;
-        if (status == "View") {
+        if (status == "+") {
             fetch('http://localhost:8080/league/getMembers?leagueName=' + name /*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/).then(function (response) {
                 if (response.ok) {
                     response.json().then(function (json) {
@@ -21860,7 +21860,7 @@ var LeagueEntry = _react2.default.createClass({
                         for (var i = 0; i < json.length; i++) {
                             results.push(_react2.default.createElement(UserEntry, { rank: i + 1, userName: json[i].username, money: json[i].money, netWorth: json[i].netWorth }));
                         }
-                        _this.setState({ userEntries: results, buttonStatus: "Close" });
+                        _this.setState({ userEntries: results, buttonStatus: "-" });
                         _this.setState({ standings: _react2.default.createElement(
                                 "tr",
                                 null,
@@ -21876,12 +21876,12 @@ var LeagueEntry = _react2.default.createClass({
                             ) });
                     });
                 } else {
-                    _this.setState({ userEntries: [], buttonStatus: "View" });
+                    _this.setState({ userEntries: [], buttonStatus: "+" });
                     _this.setState({ standings: "" });
                 }
             });
         } else {
-            this.setState({ userEntries: [], buttonStatus: "View" });
+            this.setState({ userEntries: [], buttonStatus: "+" });
             this.setState({ standings: "" });
         }
     },
