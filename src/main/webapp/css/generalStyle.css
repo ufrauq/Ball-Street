@@ -1,6 +1,72 @@
+h1{
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: red;
+}
+
+h2{
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #808080;
+}
+
+h3{
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #808080;
+}
+
+h4{
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #808080;
+}
+
+h5{
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #808080;
+}
+
+h6{
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #808080;
+}
+
+p {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #808080;
+    font-size: 16px;
+}
+
 .areas {
     text-align: center;
 }
+
+ul {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    background-color: #808080;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: white;
+    display: block;
+}
+
+li {
+    float: right;
+    height: 100%;
+    padding: 33px;
+    -webkit-transition-duration: 0.4s; /* transitions */
+    display: block;
+}
+
+li:hover {
+    background-color: #4d4d4d;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s; /* transitions */
+}
+
+.active {
+    background-color: #4d4d4d;
+}
+
 #main
 {
     position:fixed;
@@ -10,96 +76,73 @@
     right:0px;
     padding: 0px;
 }
+
 #topMenu {
-    height: 10%;
+    height: 11%;
     width: 100%;
     background-color: #808080;
 }
+
 #sideMenu {
     float: left;
-    height: 90%;
+    height: 89%;
     width: 15%;
     background-color: red;
+    padding: 0px;
 }
 #contentArea {
     float: right;
-    height: 90%;
+    height: 89%;
     width: 85%;
     overflow-y: auto;
+    margin-top:0;
+    padding-top:0;
 }
-#topButtons {
-    width: 60%;
-    float: right;
-}
-#userData {
-    width: 30%;
-    float: left;
-}
-#circle {
-    margin: 10px 10px;
-    float: left;
-    width: 50px;
-    height: 50px;
-    border-radius: 25px;
-    background: black;
 
-}
-#username {
-    float: left;
-}
-.topButtons {
-    background-color: #808080;
-    padding: 1px 1px;
-    height: 70px;
-    font-size: 25px;
-    border: none;
-    color: white;
-    cursor: pointer;
-}
 .selectedTop {
     background-color: #4d4d4d;
-    padding: 1px 1px;
-    height: 70px;
+}
+
+.sideButtons {
+    background-color: red;
+    padding: 0px;
+    height: 25%;
+    width: 100%;
     font-size: 25px;
     border: none;
     color: white;
     cursor: pointer;
 }
-#trades {
-    width: 30%;
-}
-#settings {
-    width: 15%;
-}
-#money {
-    width: 20%;
-}
-#money2 {
-    width: 30%
-}
-.sideButtons {
-    background-color: red;
-    padding: 1px 1px;
+
+.sideButtons:hover {
+    background-color: darkred;
+
     height: 25%;
     width: 100%;
-    font-size: 35px;
+    font-size: 25px;
     border: none;
     color: white;
     cursor: pointer;
+    -webkit-transition-duration: 0.4s; /* transitions */
 }
+
 .selectedSide {
     background-color: darkred;
-    padding: 1px 1px;
+
     height: 25%;
     width: 100%;
-    font-size: 35px;
+    font-size: 25px;
     border: none;
     color: white;
     cursor: pointer;
 }
-.line {
-    margin: auto;
-    height: 2px;
-    width: 80%;
-    background-color: white;
+
+marquee {
+    background-color: black;
+    color: white;
+    height: 25px;
+    padding-top: 5px;
+    /*padding-bottom: 5px;*/
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    position: fixed;
 }

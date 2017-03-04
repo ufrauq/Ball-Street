@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "/assets/";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 178);
+/******/ 	return __webpack_require__(__webpack_require__.s = 179);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -21677,8 +21677,149 @@ module.exports = traverseAllChildren;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 177 */,
-/* 178 */
+/* 177 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.LoginPage = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(52);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var UserAccountCreator = _react2.default.createClass({
+    displayName: "UserAccountCreator",
+    getInitialState: function getInitialState() {
+        return {
+            userName: "",
+            message: "",
+            password: ""
+        };
+    },
+    handleNameChange: function handleNameChange(e) {
+        e.preventDefault();
+        this.setState({ userName: e.target.value });
+    },
+    handlePasswordChange: function handlePasswordChange(e) {
+        e.preventDefault();
+        this.setState({ password: e.target.value });
+    },
+    handleSignup: function handleSignup(e) {
+        var _this = this;
+
+        e.preventDefault();
+        var name = this.state.userName;
+        var password = this.state.password;
+        //make call to controller method attempting to create a user and display message based on success or failure status
+        fetch("http://localhost:8080/userAccount/createUser?userName=" + name + "&password=" + password /*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/).then(function (response) {
+            if (response.ok) {
+                _this.setState({ message: name + " was created successfully!" });
+            } else {
+                _this.setState({ message: name + " was already taken, or missing fields..." });
+            }
+        });
+    },
+    handleLogin: function handleLogin(e) {
+        var _this2 = this;
+
+        e.preventDefault();
+        var name = this.state.userName;
+        var password = this.state.password;
+        //make call to controller method attempting to login and display message if failure, otherwise link to home page
+        fetch("http://localhost:8080/userAccount/login?userName=" + name + "&password=" + password /*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (json) {
+                    //if successful then store name, money and netWorth (to be accessed by other pages) and link to home page
+                    sessionStorage.setItem("cash", json.money);
+                    sessionStorage.setItem("netWorth", json.netWorth);
+                    sessionStorage.setItem("username", name);
+                    window.location.href = '/home';
+                    _this2.setState({ message: name + "successfully logged in!" });
+                });
+            } else {
+                _this2.setState({ message: "Invalid login credentials" });
+            }
+        });
+    },
+    render: function render() {
+        //sets up a form for login data input
+        return _react2.default.createElement(
+            "div",
+            null,
+            _react2.default.createElement(
+                "form",
+                { onSubmit: this.handleSubmit },
+                _react2.default.createElement(
+                    "p",
+                    { className: "control is-small" },
+                    _react2.default.createElement("input", { className: "input", type: "text", placeholder: "Username", defaultValue: this.state.userName, onChange: this.handleNameChange })
+                ),
+                _react2.default.createElement(
+                    "p",
+                    { className: "control is-small" },
+                    _react2.default.createElement("input", { className: "input", type: "password", placeholder: "Password", defaultValue: this.state.password, onChange: this.handlePasswordChange }),
+                    this.state.message
+                )
+            ),
+            _react2.default.createElement(
+                "p",
+                { className: "control is-grouped" },
+                _react2.default.createElement(
+                    "a",
+                    { className: "button is-outlined is-danger", onClick: this.handleSignup },
+                    "Sign Up"
+                ),
+                _react2.default.createElement(
+                    "a",
+                    { className: "button is-outlined is-success", onClick: this.handleLogin },
+                    "Login"
+                )
+            )
+        );
+    }
+});
+
+var LoginPage = exports.LoginPage = function (_React$Component) {
+    _inherits(LoginPage, _React$Component);
+
+    function LoginPage() {
+        _classCallCheck(this, LoginPage);
+
+        return _possibleConstructorReturn(this, (LoginPage.__proto__ || Object.getPrototypeOf(LoginPage)).call(this));
+    }
+
+    _createClass(LoginPage, [{
+        key: "render",
+        value: function render() {
+            return _react2.default.createElement(
+                "div",
+                null,
+                _react2.default.createElement(UserAccountCreator, null)
+            );
+        }
+    }]);
+
+    return LoginPage;
+}(_react2.default.Component);
+
+/***/ }),
+/* 178 */,
+/* 179 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21692,7 +21833,15 @@ var _reactDom = __webpack_require__(80);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
+var _indexpage = __webpack_require__(177);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+_reactDom2.default.render(_react2.default.createElement(
+    'div',
+    null,
+    _react2.default.createElement(_indexpage.LoginPage, null)
+), document.getElementById('loginForm'));
 
 /***/ })
 /******/ ]);
