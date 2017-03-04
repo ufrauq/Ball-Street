@@ -15,10 +15,10 @@ Setup/Installation Instructions:
 
 3. Clone this repository.
 
-4. In IntelliJ, choose "Open" and the open the folder you cloned. Accept the default options for Gradle and/or Grails. Check that the box choosing to download dependencies is checked.
+4. In IntelliJ, choose "Open" and the open the folder you cloned. Accept the default options for Gradle and/or Grails. Ensure that the box choosing to download dependencies is checked.
 
 5. When the project opens, a background task will start downloading dependencies. Allow this to finish.
 
 6. Run the project. When the run is complete, your browser will open the page (http://localhost:8080). Ensure you are using Google Chrome, as no other browsers are supported at this time.
 
-NOTE: If you get an error about a problem with "webpack", the workaround is to delete the ".bin" folder inside the "node-modules" folder and then run the project again. We are working on a solution for this.
+NOTE: If you get an error about a problem with "webpack", the workaround is to delete the ".bin" folder inside the "node_modules" folder and then run the project again. We are working on a solution for this.
