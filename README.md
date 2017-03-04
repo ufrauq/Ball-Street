@@ -15,8 +15,10 @@ Setup/Installation Instructions:
 
 4. In IntelliJ, choose "Open" and the open the folder you cloned. Accept the default options for Gradle and/or Grails. Ensure that the box choosing to download dependencies is checked and "use gradle task configuration" is checked.
 
-5. When the project opens, a background task will start downloading dependencies. Allow this to finish.
+5. Refresh Gradle: In Intellij, go to View > Tool Windows > Gradle and choose refresh. 
 
-6. Run the project. When the run is complete, your browser will open the page (http://localhost:8080). Ensure you are using Google Chrome, as no other browsers are supported at this time.
+6. When the project opens, a background task will start downloading dependencies. Allow this to finish.
+
+7. Run the project. When the run is complete, your browser will open the page (http://localhost:8080). Ensure you are using Google Chrome, as no other browsers are supported at this time. Also please make sure your zoom is set to 100% and Chrome is fullscreen.
 
 NOTE: If you get an error about a problem with "webpack", the workaround is to delete the ".bin" folder inside the "node_modules" folder and then run the project again. We are working on a solution for this.
