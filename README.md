@@ -13,7 +13,7 @@ Setup/Installation Instructions:
 
 3. Clone this repository.
 
-4. In IntelliJ, choose "Open" and the open the folder you cloned. Accept the default options for Gradle and/or Grails. Ensure that the box choosing to download dependencies is checked and "use gradle task configuration" is checked.
+4. In IntelliJ, choose "Open" and inside the folder you cloned, choose the file "build.gradle". Accept the default options for Gradle and/or Grails. Ensure that the box choosing to download dependencies is checked and "use gradle task configuration" is checked.
 
 5. When the project opens, a background task will start downloading dependencies. Allow this to finish.
 
