@@ -18,24 +18,19 @@ To get BallStreet up and running, a lot of planning was put into all the classes
 <a href="https://pfindan.github.io/CS2212-Team5/assets/images/uml.png">
 <img src= "/CS2212-Team5/assets/images/uml.png" align = "left"/>
 <br>
-
 <br>
 
 Stage 2 UML Diagram:
-
-<br>
 <br>
 <a href="https://pfindan.github.io/CS2212-Team5/assets/images/uml2.png">
 <img src= "/CS2212-Team5/assets/images/uml2.png" align = "left"/>
 <br>
-
 The following is a copy of the stage 2 UML diagram which highlights the classes which we have begun or complete work on:
-<br>
 <br>
 <a href="https://pfindan.github.io/CS2212-Team5/assets/images/uml2-highlighted.png">
 <img src= "/CS2212-Team5/assets/images/uml2-highlighted.png" align = "left"/>
 <br>
-
+<br>
 
 The BallStreet UML was generated using www.draw.io, a tool that allows for easy creation and editing of UML diagrams. In addition, draw.io also allows collaborative editing through Google Drive, which is important in team projects such as this one.
 
