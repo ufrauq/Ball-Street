@@ -36,7 +36,7 @@ class UserAccountController extends RestfulController {
             def newData = new UserData();
             def global = League.find{name == "Global Leaderboard"}
             newData.addToLeagues(global)
-            def newAccount = new UserAccount(username: userName, money: 100, netWorth: 100, mydata: newData).save()
+            def newAccount = new UserAccount(username: userName, money: 100, netWorth: 200, mydata: newData).save()
             global.numMembers = global.numMembers + 1 //increment members in global leaderboard
             global.addToMembers(newAccount).save(flush: true) //add user to global leaderboard
             response.status = 200; //success

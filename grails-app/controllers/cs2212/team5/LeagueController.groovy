@@ -20,7 +20,7 @@ class LeagueController extends RestfulController {
      * @return all leagues
      */
     def getLeagues() {
-        respond League.findAll()
+        respond League.findAll().sort{it.id}
     }
 
     /**
@@ -32,7 +32,7 @@ class LeagueController extends RestfulController {
         //testing if user with given username exists
         def user = UserAccount.find{username == name}
         if (user != null) { //if user exists
-            respond user.mydata.leagues
+            respond user.mydata.leagues.sort{it.id}
         }
         else {
             response.status = 501 //user does not exist (failure)
@@ -121,8 +121,9 @@ class LeagueController extends RestfulController {
         def leagueName = params.leagueName
         //testing if league exists
         def league = League.find{name == leagueName}
-        if (league != null) //if league exists
-            respond league.members
+        if (league != null) {//if league exists
+            respond league.members.sort{it.netWorth}
+        }
         else
             response.status = 501 //league does not exist (failure)
     }

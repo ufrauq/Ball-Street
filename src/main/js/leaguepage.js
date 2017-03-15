@@ -8,12 +8,14 @@ var UserEntry = React.createClass({
     render () {
         //renders a row of the standings table
         return (
-        <tr className="standingsRow">
-            <td>{this.props.rank}</td>
-            <td>{this.props.userName}</td>
-            <td>{this.props.money}</td>
-            <td>{this.props.netWorth}</td>
-        </tr>
+            <tbody>
+                <tr className="standingsRow">
+                    <td>{this.props.rank}</td>
+                    <td>{this.props.userName}</td>
+                    <td>{this.props.money}</td>
+                    <td>{this.props.netWorth}</td>
+                </tr>
+            </tbody>
         );
     }
 });
@@ -32,7 +34,8 @@ var LeaveField = React.createClass({
         fetch('http://localhost:8080/league/leaveLeague?leagueName=' + leagueName, {method: 'POST', headers: {'Authorization': 'Bearer ' + token}})
             .then(response => {
                 if (response.ok) {
-                    alert("Successfully left " + leagueName);
+                    //alert("Successfully left " + leagueName);
+                    this.props.callback();
                 }
                 else {
                     let msg = "Error: " + response.status;
@@ -73,7 +76,7 @@ var JoinField = React.createClass({
     componentDidMount() {
         let password = this.props.password;
         if (password != null) { //if there is a password, display password field
-            this.setState({input:<input type="text" placeholder="Enter Password..." onChange={this.handlePasswordChange}/>});
+            this.setState({input:<input type="password" placeholder="Enter Password..." onChange={this.handlePasswordChange}/>});
         }
     },
 
@@ -86,7 +89,8 @@ var JoinField = React.createClass({
         fetch('http://localhost:8080/league/joinLeague?leagueName=' + leagueName + '&password=' + password, {method: 'POST', headers: {'Authorization': 'Bearer ' + token}})
             .then(response => {
                if (response.ok) {
-                   alert("Successfully joined " + leagueName);
+                   //alert("Successfully joined " + leagueName);
+                   this.props.callback();
                }
                else {
                    let msg = "Error: " + response.status;
@@ -137,8 +141,9 @@ var LeagueEntry = React.createClass({
                         let results = [];
                         //creates table heading
                         results.push(<tr><th className="rank">Rank:</th><th>Username:</th><th>Cash:</th><th>Net Worth:</th></tr>);
-                        for (let i = 0; i < json.length; i++) {
-                            results.push(<UserEntry rank={i+1} userName={json[i].username} money={json[i].money} netWorth={json[i].netWorth}/>);
+                        let x = json.length;
+                        for (let i = x-1; i >= 0; i--) {
+                            results.push(<UserEntry rank={x-i} userName={json[i].username} money={json[i].money} netWorth={json[i].netWorth}/>);
                         }
                         this.setState({userEntries: results, buttonStatus: "-"});
                         //makes standings a table inside of a row of the league list
@@ -173,10 +178,10 @@ var LeagueEntry = React.createClass({
             this.setState({maxMembers: "", joinField: <td>Default League...</td>});
         }
         else if (join == "false") {
-            this.setState({maxMembers: "/" + maxMembers, joinField: <LeaveField name={this.props.name}/>});
+            this.setState({maxMembers: "/" + maxMembers, joinField: <LeaveField name={this.props.name} callback={this.props.callback}/>});
         }
         else {
-            this.setState({maxMembers: "/" + maxMembers, joinField: <JoinField password={this.props.password} name={this.props.name}/>});
+            this.setState({maxMembers: "/" + maxMembers, joinField: <JoinField password={this.props.password} name={this.props.name}  callback={this.props.callback}/>});
         }
     },
 
@@ -221,8 +226,9 @@ var LeagueList = React.createClass({
                         //creates table heading
                         results.push(<tr><th className="name">League Name:</th><th className="members">Status:</th><th>Join the League:</th><th className="expand">View Standings</th></tr>);
                         for (let i = 0; i < json.length; i++) {
-                            results.push(<LeagueEntry name={json[i].name} members={json[i].numMembers} maxMembers={json[i].maxMembers} join={join} password={json[i].password}/>);
+                            results.push(<LeagueEntry name={json[i].name} members={json[i].numMembers} maxMembers={json[i].maxMembers} join={join} password={json[i].password} callback={this.props.callback}/>);
                         }
+                        this.setState({leagueEntries: []});
                         this.setState({leagueEntries: results});
                     });
                 }
@@ -236,23 +242,15 @@ var LeagueList = React.createClass({
         this.fetchFromAPI();
     },
 
-    componentWillReceiveProps(nextProps) {
-        this.setState({leagueEntries: []});
-        this.fetchFromAPI();
+    componentWillReceiveProps() {
+        setTimeout(this.fetchFromAPI, 500);
         console.log("here");
-    },
-
-    handleClick(e) {
-        e.preventDefault();
-        window.location.reload(); //temporary way to reload...
-        //this.fetchFromAPI(); - doesn't refresh "My Leagues" correctly...
     },
 
     render() {
         //creates table of league entries
         return(
             <div>
-                <button type="button" className = "refreshButton" onClick={this.handleClick}>Refresh</button>
                 <table className="leagueList">
                     {this.state.leagueEntries}
                 </table>
@@ -346,9 +344,9 @@ var League = React.createClass({
                 <h1>Create League:</h1>
                 <LeagueCreator callback={this.refreshData}/>
                 <h1>My Leagues:</h1>
-                <LeagueList url="getMyLeagues" refresh={this.state.refresh}/>
+                <LeagueList url="getMyLeagues" refresh={this.state.refresh} callback={this.refreshData}/>
                 <h1>All Leagues:</h1>
-                <LeagueList url="getLeagues" refresh={this.state.refresh}/>
+                <LeagueList url="getLeagues" refresh={this.state.refresh} callback={this.refreshData}/>
             </div>
         );
     }
