@@ -21702,6 +21702,17 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var checkStatus = function checkStatus(response) {
+    console.log(response.status);
+    if (response.status >= 200 && response.status < 300) {
+        return response.json();
+    } else {
+        var error = new Error(response.status == 401 ? "Invalid username and/or password" : response.statusText);
+        error.response = response;
+        throw error;
+    }
+};
+
 var UserAccountCreator = _react2.default.createClass({
     displayName: "UserAccountCreator",
     getInitialState: function getInitialState() {
@@ -21726,22 +21737,51 @@ var UserAccountCreator = _react2.default.createClass({
         var name = this.state.userName;
         var password = this.state.password;
         //make call to controller method attempting to create a user and display message based on success or failure status
-        fetch("http://localhost:8080/userAccount/createUser?userName=" + name + "&password=" + password /*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/).then(function (response) {
+        fetch("http://localhost:8080/userAccount/createUser?userName=" + name + "&password=" + password, { method: 'POST', headers: { "Content-Type": "application/json" } }).then(function (response) {
+            console.log(response.status);
             if (response.ok) {
                 _this.setState({ message: name + " was created successfully!" });
             } else {
-                _this.setState({ message: name + " was already taken, or missing fields..." });
+                var msg = "Error: " + response.status;
+                switch (response.status) {
+                    case 401:
+                        msg = "Unauthorized";break;
+                    case 501:
+                        msg = "Missing username field...";break;
+                    case 502:
+                        msg = "Missing password field...";break;
+                    case 503:
+                        msg = name + " is taken";break;
+                }
+                _this.setState({ message: msg });
             }
         });
     },
     handleLogin: function handleLogin(e) {
-        var _this2 = this;
-
         e.preventDefault();
         var name = this.state.userName;
         var password = this.state.password;
+        fetch("/api/login", {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username: name, password: password })
+        }).then(checkStatus).then(this.success.bind(this)).catch(this.fail.bind(this));
+    },
+    success: function success(authObject) {
+        var _this2 = this;
+
+        console.log("Signed in", authObject);
+        var name = this.state.userName;
+        if (authObject) {
+            localStorage.authObject = JSON.stringify(authObject);
+        }
+        var token = JSON.parse(localStorage.authObject).access_token;
         //make call to controller method attempting to login and display message if failure, otherwise link to home page
-        fetch("http://localhost:8080/userAccount/login?userName=" + name + "&password=" + password /*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/).then(function (response) {
+        fetch("http://localhost:8080/userAccount/getUser?userName=" + name, { method: 'POST', headers: { 'Authorization': 'Bearer ' + token } }).then(function (response) {
+            console.log(response.status);
             if (response.ok) {
                 response.json().then(function (json) {
                     //if successful then store name, money and netWorth (to be accessed by other pages) and link to home page
@@ -21749,12 +21789,23 @@ var UserAccountCreator = _react2.default.createClass({
                     sessionStorage.setItem("netWorth", json.netWorth);
                     sessionStorage.setItem("username", name);
                     window.location.href = '/home';
-                    _this2.setState({ message: name + "successfully logged in!" });
+                    _this2.setState({ message: name + " successfully logged in!" });
                 });
             } else {
-                _this2.setState({ message: "Invalid login credentials" });
+                var msg = "Error: " + response.status;
+                switch (response.status) {
+                    case 401:
+                        msg = "Unauthorized";break;
+                    case 501:
+                        msg = "User does not exist...";break;
+                }
+                _this2.setState({ message: msg });
             }
         });
+    },
+    fail: function fail(res) {
+        console.log("Failed to sign in" + res);
+        this.setState({ message: res.message });
     },
     render: function render() {
         //sets up a form for login data input

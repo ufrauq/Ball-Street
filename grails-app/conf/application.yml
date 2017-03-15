@@ -96,15 +96,15 @@ dataSource:
     password:
 
 environments:
-#    development:
-#        dataSource:
-#            dbCreate: create-drop
-#            url: jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
-   # Changing the development dataSource parameters enables persistence with Hibernate
     development:
-         dataSource:
-             dbCreate: update
-             url:  jdbc:h2:./devDB
+        #dataSource:
+         #   dbCreate: create-drop
+          #  url: jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+   # Changing the development dataSource parameters enables persistence with Hibernate
+    #development:
+        dataSource:
+            dbCreate: update
+            url:  jdbc:h2:./devDB
     test:
         dataSource:
             dbCreate: update
@@ -131,3 +131,30 @@ environments:
                 testOnReturn: false
                 jdbcInterceptors: ConnectionState
                 defaultTransactionIsolation: 2 # TRANSACTION_READ_COMMITTED
+
+---
+grails:
+    plugin:
+        springsecurity:
+            securityConfigType: 'Annotation'
+            filterChain:
+                chainMap:
+                    - pattern: '/userAccount/**'
+                      filters: 'anonymousAuthenticationFilter,restExceptionTranslationFilter'
+
+                    - pattern: '/league/**'
+                      filters: 'JOINED_FILTERS,-anonymousAuthenticationFilter,-exceptionTranslationFilter,-authenticationProcessingFilter,-securityContextPersistenceFilter,-rememberMeAuthenticationFilter'
+
+                    - pattern: '/**'
+                      filters: 'anonymousAuthenticationFilter,restExceptionTranslationFilter'
+
+            rest:
+                token:
+                    validation:
+                        enableAnonymousAccess: true
+
+            userLookup:
+                userDomainClassName: 'grails3.example.User'
+                authorityJoinClassName: 'grails3.example.UserRole'
+            authority:
+                className: 'grails3.example.Role'
