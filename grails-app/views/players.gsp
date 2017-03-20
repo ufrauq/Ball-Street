@@ -55,6 +55,11 @@
     <br>
     <div id="contentArea" class="areas">
         <h1>Players: coming soon...</h1>
+        hello??? do u work
+
+        <div id="container"></div>
+        <asset:javascript src="player.bundle.js"/>
+
     </div>
 </div>
 </body>
