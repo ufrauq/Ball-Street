@@ -19,8 +19,8 @@ class UserAccount {
         balanceHistory = new double[10]
         netWorthHistory = new double[10]
         for (int i = 0; i < 10; i++) {
-            balanceHistory[i]=0
-            netWorthHistory[i]=0
+            balanceHistory[i]=1000
+            netWorthHistory[i]=1000
         }
         System.out.println(this.username + " was created!")
     }
