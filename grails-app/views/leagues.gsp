@@ -8,14 +8,6 @@
     <link rel = "stylesheet"
           type = "text/css"
           href="${resource(dir: 'css', file: 'leagueStyle.css')}" />
-    <script>
-        function checkAuth() {
-            if (localStorage.getItem("authObject") === null) {
-                window.location.href='/login'
-            }
-        }
-        window.onload = checkAuth;
-    </script>
 </head>
 <body>
 <div id="main">
@@ -28,6 +20,7 @@
                 <li style="float: left;width: 15%" onclick="window.location.href='/home'" id="username">
                     <img src="http://downloadicons.net/sites/default/files/basketball-icon-23146.png" width="15px">
                     <script>
+                        /*document.getElementById("username").innerHTML = document.getElementById("username").innerHTML + "       "+ sessionStorage.getItem("username");*/
                         document.getElementById("username").innerHTML = sessionStorage.getItem("username");
                     </script>
                 </li>

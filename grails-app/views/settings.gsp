@@ -8,15 +8,6 @@
     <link rel = "stylesheet"
           type = "text/css"
           href="${resource(dir: 'css', file: 'settings.css')}" />
-    <script>
-        function checkAuth() {
-            if (localStorage.getItem("authObject") === null) {
-                window.location.href='/login'
-            }
-        }
-        window.onload = checkAuth;
-    </script>
-
 </head>
 <body>
 <div id="main">
@@ -29,6 +20,7 @@
                 <li style="float: left;width: 15%" onclick="window.location.href='/home'" id="username">
                     <img src="http://downloadicons.net/sites/default/files/basketball-icon-23146.png" width="15px">
                     <script>
+                        /*document.getElementById("username").innerHTML = document.getElementById("username").innerHTML + "       "+ sessionStorage.getItem("username");*/
                         document.getElementById("username").innerHTML = sessionStorage.getItem("username");
                     </script>
                 </li>
@@ -55,7 +47,11 @@
         </div>
     </div>
     <div>
-        <marquee>Leaving so soon! Click the logout button to logout of your account.</marquee>
+        <marquee id="settingMessage">Setting Page</marquee>
+        <script>
+            /*document.getElementById("username").innerHTML = document.getElementById("username").innerHTML + "       "+ sessionStorage.getItem("username");*/
+            document.getElementById("settingMessage").innerHTML = "Welcome " + sessionStorage.getItem("username");
+        </script>
     </div>
     <div id="sideMenu" class="areas" >
         <button type="button" class="sideButtons" onclick="window.location.href='/stocks'">Stocks</button>
@@ -65,17 +61,32 @@
     </div>
     <br>
     <div id="contentArea" class="areas">
-        <h1>Settings: coming soon...</h1>
-        <button type="submit" onclick="logout()">Logout</button>
-        <script>
-            function logout() {
-                localStorage.removeItem("authObject");
-                sessionStorage.setItem("cash", null);
-                sessionStorage.setItem("netWorth", null);
-                sessionStorage.setItem("username", null);
-                window.location.href='/'
-            }
-        </script>
+        <h1>Settings</h1>
+        <div id="left"  >
+            <img class="profile" src="https://openclipart.org/download/247319/abstract-user-flat-3.svg" width = "350px" >
+
+        </div> <!-- This will be for the left side with profile pic an stuff --->
+
+        <div id="right">
+
+            <h2 id = "profileName">Username:</h2>
+
+            <script>
+                document.getElementById("profileName").innerHTML = "Username: " + sessionStorage.getItem("username");
+            </script>
+
+            <h2 id="moneY">Networth:</h2>
+            <script>
+                document.getElementById("moneY").innerHTML = "Networth: $" + sessionStorage.getItem("netWorth");
+            </script>
+            <br><br>
+        </div>
+        <div id="bottom">
+            <button type="submit" onclick="window.location.href='/'">Logout</button>
+        </div>
+
+        <asset:javascript src="leagues.bundle.js"/>
+
     </div>
 </div>
 </body>

@@ -5,14 +5,9 @@
     <link rel = "stylesheet"
           type = "text/css"
           href="${resource(dir: 'css', file: 'generalStyle.css')}" />
-    <script>
-        function checkAuth() {
-            if (localStorage.getItem("authObject") === null) {
-                window.location.href='/login'
-            }
-        }
-        window.onload = checkAuth;
-    </script>
+    <link rel = "stylesheet"
+          type = "text/css"
+          href="${resource(dir: 'css', file: 'home.css')}" />
 </head>
 <body>
 <div id="main">
@@ -25,6 +20,7 @@
                 <li style="float: left;width: 15%" onclick="window.location.href='/home'" id="username">
                     <img src="http://downloadicons.net/sites/default/files/basketball-icon-23146.png" width="15px">
                     <script>
+                        /*document.getElementById("username").innerHTML = document.getElementById("username").innerHTML + "       "+ sessionStorage.getItem("username");*/
                         document.getElementById("username").innerHTML = sessionStorage.getItem("username");
                     </script>
                 </li>
@@ -61,7 +57,54 @@
     </div>
     <br>
     <div id="contentArea" class="areas">
-        <h1>Profile: coming soon...</h1>
+
+        <h1 id="profileName">Profile:</h1>
+        <script>
+            /*document.getElementById("username").innerHTML = document.getElementById("username").innerHTML + "       "+ sessionStorage.getItem("username");*/
+            document.getElementById("profileName").innerHTML =  sessionStorage.getItem("username");
+        </script>
+
+        <div id="left" >
+            <div id="left-top">
+                <img class="profile" src="https://openclipart.org/download/247319/abstract-user-flat-3.svg" width = "200px" align="left">
+
+
+                <h2 id="moneY" align="right" >Networth:</h2>
+                <script>
+                    document.getElementById("moneY").innerHTML = "Networth: $" + sessionStorage.getItem("netWorth");
+                </script>
+
+
+                <h2 id="mAv" align="right">Cash:</h2>
+                <script>
+                    document.getElementById("mAv").innerHTML = "Money: $" + sessionStorage.getItem("cash");
+                </script>
+            </div>
+
+            <div id="left-down">
+
+                <img class="profile" src="http://www.mathgoodies.com/lessons/graphs/images/line_example1.jpg" width = "300px" align="center">
+            </div>
+
+        </div>
+
+        <div id="right">
+
+            <br>
+
+            <div id="right-top">
+                <h2>Transaction Requests:</h2>
+
+            </div>
+
+            <br><br><br><br><br><br><br><br><br><br>
+
+            <div id="right-down">
+                <h2>Transaction History:</h2>
+            </div>
+
+        </div>
+
     </div>
 </div>
 </body>

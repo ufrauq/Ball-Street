@@ -8,14 +8,12 @@ var UserEntry = React.createClass({
     render () {
         //renders a row of the standings table
         return (
-            <tbody>
-                <tr className="standingsRow">
-                    <td>{this.props.rank}</td>
-                    <td>{this.props.userName}</td>
-                    <td>{this.props.money}</td>
-                    <td>{this.props.netWorth}</td>
-                </tr>
-            </tbody>
+            <tr className="standingsRow">
+                <td>{this.props.rank}</td>
+                <td>{this.props.userName}</td>
+                <td>{this.props.money}</td>
+                <td>{this.props.netWorth}</td>
+            </tr>
         );
     }
 });
@@ -29,22 +27,15 @@ var LeaveField = React.createClass({
     handleSubmit(e) {
         e.preventDefault();
         let leagueName = this.props.name;
-        let token = JSON.parse(localStorage.authObject).access_token;
+        let userName = sessionStorage.getItem("username");
         //make call to controller method attempting to league league, alert user with result
-        fetch('http://localhost:8080/league/leaveLeague?leagueName=' + leagueName, {method: 'POST', headers: {'Authorization': 'Bearer ' + token}})
+        fetch('http://localhost:8080/league/leaveLeague?userName=' + userName + '&leagueName=' + leagueName/*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/)
             .then(response => {
                 if (response.ok) {
-                    //alert("Successfully left " + leagueName);
-                    this.props.callback();
+                    alert("Successfully left " + leagueName);
                 }
                 else {
-                    let msg = "Error: " + response.status;
-                    switch(response.status) {
-                        case 401: msg = "Unauthorized"; break;
-                        case 501: msg = "League does not exist..."; break;
-                        case 502: msg = "Already left league!"; break;
-                    }
-                    alert(msg);
+                    alert("Already left " + leagueName)
                 }
             });
     },
@@ -76,7 +67,7 @@ var JoinField = React.createClass({
     componentDidMount() {
         let password = this.props.password;
         if (password != null) { //if there is a password, display password field
-            this.setState({input:<input type="password" placeholder="Enter Password..." onChange={this.handlePasswordChange}/>});
+            this.setState({input:<input type="text" placeholder="Enter Password..." onChange={this.handlePasswordChange}/>});
         }
     },
 
@@ -84,24 +75,16 @@ var JoinField = React.createClass({
         e.preventDefault();
         let password = this.state.inputPassword;
         let leagueName = this.props.name;
-        let token = JSON.parse(localStorage.authObject).access_token;
+        let userName = sessionStorage.getItem("username");
         //make call to controller method attempting to join league, alert user of result
-        fetch('http://localhost:8080/league/joinLeague?leagueName=' + leagueName + '&password=' + password, {method: 'POST', headers: {'Authorization': 'Bearer ' + token}})
+        fetch('http://localhost:8080/league/joinLeague?userName=' + userName + '&leagueName=' + leagueName + '&password=' + password/*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/)
             .then(response => {
-               if (response.ok) {
-                   //alert("Successfully joined " + leagueName);
-                   this.props.callback();
-               }
-               else {
-                   let msg = "Error: " + response.status;
-                   switch(response.status) {
-                       case 401: msg = "Unauthorized"; break;
-                       case 501: msg = "Already joined league!"; break;
-                       case 502: msg = "Invalid password..."; break;
-                       case 503: msg = "League is full or doesn't exist..."; break;
-                   }
-                   alert(msg);
-               }
+                if (response.ok) {
+                    alert("Successfully joined " + leagueName);
+                }
+                else {
+                    alert("Invalid password, full league, or already joined " + leagueName);
+                }
             });
     },
 
@@ -132,29 +115,27 @@ var LeagueEntry = React.createClass({
         e.preventDefault();
         let name = this.props.name;
         let status = this.state.buttonStatus;
-        let token = JSON.parse(localStorage.authObject).access_token;
         if (status == "+") { //if button state is expand
             //calls controller method attempting to get members of a league, builds standings based on result
-            fetch('http://localhost:8080/league/getMembers?leagueName='+ name, {method: 'POST', headers: {'Authorization': 'Bearer ' + token}}).then(response => {
+            fetch('http://localhost:8080/league/getMembers?leagueName='+ name/*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/).then(response => {
                 if(response.ok) {
                     response.json().then(json => {
                         let results = [];
                         //creates table heading
                         results.push(<tr><th className="rank">Rank:</th><th>Username:</th><th>Cash:</th><th>Net Worth:</th></tr>);
-                        let x = json.length;
-                        for (let i = x-1; i >= 0; i--) {
-                            results.push(<UserEntry rank={x-i} userName={json[i].username} money={json[i].money} netWorth={json[i].netWorth}/>);
+                        for (let i = 0; i < json.length; i++) {
+                            results.push(<UserEntry rank={i+1} userName={json[i].username} money={json[i].money} netWorth={json[i].netWorth}/>);
                         }
                         this.setState({userEntries: results, buttonStatus: "-"});
                         //makes standings a table inside of a row of the league list
                         this.setState({standings:
-                        <tr>
-                            <td colSpan="4">
-                                <table className="userList">
-                                    {this.state.userEntries}
-                                </table>
-                            </td>
-                        </tr>});
+                            <tr>
+                                <td colSpan="4">
+                                    <table className="userList">
+                                        {this.state.userEntries}
+                                    </table>
+                                </td>
+                            </tr>});
                     });
                 }
                 else{ //if response not ok, set everything to default value (collapse standings)
@@ -178,10 +159,10 @@ var LeagueEntry = React.createClass({
             this.setState({maxMembers: "", joinField: <td>Default League...</td>});
         }
         else if (join == "false") {
-            this.setState({maxMembers: "/" + maxMembers, joinField: <LeaveField name={this.props.name} callback={this.props.callback}/>});
+            this.setState({maxMembers: "/" + maxMembers, joinField: <LeaveField name={this.props.name}/>});
         }
         else {
-            this.setState({maxMembers: "/" + maxMembers, joinField: <JoinField password={this.props.password} name={this.props.name}  callback={this.props.callback}/>});
+            this.setState({maxMembers: "/" + maxMembers, joinField: <JoinField password={this.props.password} name={this.props.name}/>});
         }
     },
 
@@ -189,13 +170,13 @@ var LeagueEntry = React.createClass({
         return (
             //renders a row of league list
             <tbody>
-                <tr>
-                    <td className="name">{this.props.name}</td>
-                    <td className="members">{this.props.members}{this.state.maxMembers}</td>
-                    {this.state.joinField}
-                    <td className="expand"><button type="submit" className="viewButton" onClick={this.toggleStandings}>{this.state.buttonStatus}</button></td>
-                </tr>
-                {this.state.standings}
+            <tr>
+                <td className="name">{this.props.name}</td>
+                <td className="members">{this.props.members}{this.state.maxMembers}</td>
+                {this.state.joinField}
+                <td className="expand"><button type="submit" className="viewButton" onClick={this.toggleStandings}>{this.state.buttonStatus}</button></td>
+            </tr>
+            {this.state.standings}
             </tbody>
         );
     }
@@ -210,25 +191,23 @@ var LeagueList = React.createClass({
 
     fetchFromAPI() {
         let urlExtension = this.props.url; //extension will determine if source of list is for user's leagues or all leagues
+        let name = "";
         let join = "true";
-        let token = JSON.parse(localStorage.authObject).access_token;
-        console.log(token);
         if (urlExtension != "getLeagues") { //if extension  is for user's leagues, get name, and set join to false so "Leave" buttons show up
+            name = sessionStorage.getItem("username");
             join = "false";
         }
         //calls controller method attempting to get leagues, and builds league list based on result
-        fetch('http://localhost:8080/league/' + urlExtension, {method: 'POST', headers: {'Authorization': 'Bearer ' + token}})
+        fetch('http://localhost:8080/league/' + urlExtension + name/*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/)
             .then(response => {
-                console.log(response.status);
                 if(response.ok) {
                     response.json().then(json => {
                         let results = [];
                         //creates table heading
                         results.push(<tr><th className="name">League Name:</th><th className="members">Status:</th><th>Join the League:</th><th className="expand">View Standings</th></tr>);
                         for (let i = 0; i < json.length; i++) {
-                            results.push(<LeagueEntry name={json[i].name} members={json[i].numMembers} maxMembers={json[i].maxMembers} join={join} password={json[i].password} callback={this.props.callback}/>);
+                            results.push(<LeagueEntry name={json[i].name} members={json[i].numMembers} maxMembers={json[i].maxMembers} join={join} password={json[i].password}/>);
                         }
-                        this.setState({leagueEntries: []});
                         this.setState({leagueEntries: results});
                     });
                 }
@@ -242,15 +221,17 @@ var LeagueList = React.createClass({
         this.fetchFromAPI();
     },
 
-    componentWillReceiveProps() {
-        setTimeout(this.fetchFromAPI, 500);
-        console.log("here");
+    handleClick(e) {
+        e.preventDefault();
+        window.location.reload(); //temporary way to reload...
+        //this.fetchFromAPI(); - doesn't refresh "My Leagues" correctly...
     },
 
     render() {
         //creates table of league entries
         return(
             <div>
+                <button type="button" className = "refreshButton" onClick={this.handleClick}>Refresh</button>
                 <table className="leagueList">
                     {this.state.leagueEntries}
                 </table>
@@ -283,25 +264,17 @@ var LeagueCreator = React.createClass({
     handleSubmit(e) {
         e.preventDefault();
         let name = this.state.leagueName;
+        let owner = sessionStorage.getItem("username");
         let password = this.state.password;
-        let token = JSON.parse(localStorage.authObject).access_token;
         //calls controller method attempting to create a league, and displays message regarding the result
-        fetch("http://localhost:8080/league/createLeague?leagueName=" + name +"&password=" + password, {method: 'POST', headers: {'Authorization': 'Bearer ' + token}}).then(response => {
+        fetch("http://localhost:8080/league/createLeague?ownerName=" + owner + "&leagueName=" + name +"&password=" + password/*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/).then(response => {
             if (response.ok) {
                 this.setState({message : name + " was created successfully!"});
             }
             else {
-                let msg = "Error: " + response.status;
-                switch(response.status) {
-                    case 401: msg = "Unauthorized"; break;
-                    case 501: msg = "Missing league name field..."; break;
-                    case 502: msg = "Invalid user..."; break;
-                    case 503: msg = name + " is taken"; break;
-                }
-                this.setState({message: msg});
+                this.setState({message : name + " was already taken..."});
             }
         });
-        this.props.callback();
     },
 
     render() {
@@ -328,25 +301,19 @@ var LeagueCreator = React.createClass({
 var League = React.createClass({
     getInitialState() {
         return {
-            refresh: 1
         }
-    },
-
-    refreshData() {
-        let ref = this.state.refresh + 1;
-        this.setState({refresh: ref});
     },
 
     render() {
         //puts together all the different components
         return(
             <div>
-                <h1>Create League:</h1>
-                <LeagueCreator callback={this.refreshData}/>
                 <h1>My Leagues:</h1>
-                <LeagueList url="getMyLeagues" refresh={this.state.refresh} callback={this.refreshData}/>
+                <LeagueList url="getMyLeagues?username="/>
                 <h1>All Leagues:</h1>
-                <LeagueList url="getLeagues" refresh={this.state.refresh} callback={this.refreshData}/>
+                <LeagueList url="getLeagues"/>
+                <h1>Create League:</h1>
+                <LeagueCreator/>
             </div>
         );
     }

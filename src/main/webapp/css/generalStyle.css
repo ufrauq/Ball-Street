@@ -36,8 +36,8 @@ p {
 
 .areas {
     text-align: center;
-}
 
+}
 ul {
     list-style-type: none;
     margin: 0px;
@@ -59,6 +59,8 @@ li {
 
 li:hover {
     background-color: #4d4d4d;
+    height:100%;
+    top-margin:0;
     cursor: pointer;
     -webkit-transition-duration: 0.4s; /* transitions */
 }

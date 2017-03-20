@@ -1,0 +1,109 @@
+button {
+    background-color: #dddddd;
+    padding: 10px 70px;
+    font-size: 14px;
+    border: solid #dddddd;
+    color: red;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    border-radius: 25px;
+    /*border: 1px solid dimgrey; */
+}
+
+button:hover {
+    background-color: red;
+    color: white;
+    border-radius: 10px;
+    border: solid red;
+    /*border: 1px solid dimgrey;*/
+
+}
+
+
+
+.profile{
+    color-overlay: red;
+}
+
+#left{
+
+    width: 40%;
+    float: left;
+    padding: 20px;
+}
+
+#left-top{
+
+    float: left;
+    width:100%;
+
+}
+
+#left-down{
+
+    align: center;
+    float: bottom;
+}
+
+#right{
+
+    width: 30%;
+    float: left;
+    text-align: left;
+    margin-left: 100px;
+}
+
+#right-top{
+
+    float: left;
+
+}
+
+#right-down{
+
+
+
+}
+
+
+#bottom{
+    padding:20px;
+    width: 80%;
+    float: bottom;
+}
+
+
+
+profile:hover  {
+    color: red;
+}
+
+table{
+    border-radius: 20px;
+    -webkit-transition-duration: 0.4s; /* translations */
+}
+th {
+    border: 5px solid lightgrey;
+    text-align: left;
+    padding: 8px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: red;
+    font-size: 18px;
+    background-color: #dddddd;
+    -webkit-transition-duration: 0.4s; /* translations */
+
+
+}
+
+td {
+    border: 5px solid lightgrey;
+    text-align: left;
+    padding: 8px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #808080;
+    font-size: 17px;
+    -webkit-transition-duration: 0.4s; /* translations */
+
+
+
+}
