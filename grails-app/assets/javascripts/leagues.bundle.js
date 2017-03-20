@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "/assets/";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 180);
+/******/ 	return __webpack_require__(__webpack_require__.s = 181);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -21704,72 +21704,88 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var UserEntry = _react2.default.createClass({
-    displayName: "UserEntry",
+    displayName: 'UserEntry',
     getInitialState: function getInitialState() {
         return {};
     },
     render: function render() {
         //renders a row of the standings table
         return _react2.default.createElement(
-            "tr",
-            { className: "standingsRow" },
+            'tbody',
+            null,
             _react2.default.createElement(
-                "td",
-                null,
-                this.props.rank
-            ),
-            _react2.default.createElement(
-                "td",
-                null,
-                this.props.userName
-            ),
-            _react2.default.createElement(
-                "td",
-                null,
-                this.props.money
-            ),
-            _react2.default.createElement(
-                "td",
-                null,
-                this.props.netWorth
+                'tr',
+                { className: 'standingsRow' },
+                _react2.default.createElement(
+                    'td',
+                    null,
+                    this.props.rank
+                ),
+                _react2.default.createElement(
+                    'td',
+                    null,
+                    this.props.userName
+                ),
+                _react2.default.createElement(
+                    'td',
+                    null,
+                    this.props.balance
+                ),
+                _react2.default.createElement(
+                    'td',
+                    null,
+                    this.props.netWorth
+                )
             )
         );
     }
 });
 
 var LeaveField = _react2.default.createClass({
-    displayName: "LeaveField",
+    displayName: 'LeaveField',
     getInitialState: function getInitialState() {
         return {};
     },
     handleSubmit: function handleSubmit(e) {
+        var _this = this;
+
         e.preventDefault();
         var leagueName = this.props.name;
-        var userName = sessionStorage.getItem("username");
+        var token = JSON.parse(localStorage.authObject).access_token;
         //make call to controller method attempting to league league, alert user with result
-        fetch('http://localhost:8080/league/leaveLeague?userName=' + userName + '&leagueName=' + leagueName /*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/).then(function (response) {
+        fetch('http://localhost:8080/league/leaveLeague?leagueName=' + leagueName, { method: 'POST', headers: { 'Authorization': 'Bearer ' + token } }).then(function (response) {
             if (response.ok) {
-                alert("Successfully left " + leagueName);
+                //alert("Successfully left " + leagueName);
+                _this.props.callback();
             } else {
-                alert("Already left " + leagueName);
+                var msg = "Error: " + response.status;
+                switch (response.status) {
+                    case 401:
+                        msg = "Unauthorized";break;
+                    case 501:
+                        msg = "League does not exist...";break;
+                    case 502:
+                        msg = "Already left league!";break;
+                }
+                alert(msg);
             }
         });
     },
     render: function render() {
         return _react2.default.createElement(
-            "td",
+            'td',
             null,
             _react2.default.createElement(
-                "form",
+                'form',
                 { onSubmit: this.handleSubmit },
-                _react2.default.createElement("input", { type: "submit", className: "joinLeagueButton", defaultValue: "Leave League!" })
+                _react2.default.createElement('input', { type: 'submit', className: 'joinLeagueButton', defaultValue: 'Leave League!' })
             )
         );
     }
 });
 
 var JoinField = _react2.default.createClass({
-    displayName: "JoinField",
+    displayName: 'JoinField',
     getInitialState: function getInitialState() {
         return {
             input: "",
@@ -21784,39 +21800,53 @@ var JoinField = _react2.default.createClass({
         var password = this.props.password;
         if (password != null) {
             //if there is a password, display password field
-            this.setState({ input: _react2.default.createElement("input", { type: "text", placeholder: "Enter Password...", onChange: this.handlePasswordChange }) });
+            this.setState({ input: _react2.default.createElement('input', { type: 'password', placeholder: 'Enter Password...', onChange: this.handlePasswordChange }) });
         }
     },
     handleSubmit: function handleSubmit(e) {
+        var _this2 = this;
+
         e.preventDefault();
         var password = this.state.inputPassword;
         var leagueName = this.props.name;
-        var userName = sessionStorage.getItem("username");
+        var token = JSON.parse(localStorage.authObject).access_token;
         //make call to controller method attempting to join league, alert user of result
-        fetch('http://localhost:8080/league/joinLeague?userName=' + userName + '&leagueName=' + leagueName + '&password=' + password /*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/).then(function (response) {
+        fetch('http://localhost:8080/league/joinLeague?leagueName=' + leagueName + '&password=' + password, { method: 'POST', headers: { 'Authorization': 'Bearer ' + token } }).then(function (response) {
             if (response.ok) {
-                alert("Successfully joined " + leagueName);
+                //alert("Successfully joined " + leagueName);
+                _this2.props.callback();
             } else {
-                alert("Invalid password, full league, or already joined " + leagueName);
+                var msg = "Error: " + response.status;
+                switch (response.status) {
+                    case 401:
+                        msg = "Unauthorized";break;
+                    case 501:
+                        msg = "Already joined league!";break;
+                    case 502:
+                        msg = "Invalid password...";break;
+                    case 503:
+                        msg = "League is full or doesn't exist...";break;
+                }
+                alert(msg);
             }
         });
     },
     render: function render() {
         return _react2.default.createElement(
-            "td",
+            'td',
             null,
             _react2.default.createElement(
-                "form",
+                'form',
                 { onSubmit: this.handleSubmit },
                 this.state.input,
-                _react2.default.createElement("input", { type: "submit", className: "joinLeagueButton", defaultValue: "Join League!" })
+                _react2.default.createElement('input', { type: 'submit', className: 'joinLeagueButton', defaultValue: 'Join League!' })
             )
         );
     }
 });
 
 var LeagueEntry = _react2.default.createClass({
-    displayName: "LeagueEntry",
+    displayName: 'LeagueEntry',
     getInitialState: function getInitialState() {
         return {
             userEntries: [],
@@ -21827,66 +21857,68 @@ var LeagueEntry = _react2.default.createClass({
         };
     },
     toggleStandings: function toggleStandings(e) {
-        var _this = this;
+        var _this3 = this;
 
         e.preventDefault();
         var name = this.props.name;
         var status = this.state.buttonStatus;
+        var token = JSON.parse(localStorage.authObject).access_token;
         if (status == "+") {
             //if button state is expand
             //calls controller method attempting to get members of a league, builds standings based on result
-            fetch('http://localhost:8080/league/getMembers?leagueName=' + name /*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/).then(function (response) {
+            fetch('http://localhost:8080/league/getMembers?leagueName=' + name, { method: 'POST', headers: { 'Authorization': 'Bearer ' + token } }).then(function (response) {
                 if (response.ok) {
                     response.json().then(function (json) {
                         var results = [];
                         //creates table heading
                         results.push(_react2.default.createElement(
-                            "tr",
+                            'tr',
                             null,
                             _react2.default.createElement(
-                                "th",
-                                { className: "rank" },
-                                "Rank:"
+                                'th',
+                                { className: 'rank' },
+                                'Rank:'
                             ),
                             _react2.default.createElement(
-                                "th",
+                                'th',
                                 null,
-                                "Username:"
+                                'Username:'
                             ),
                             _react2.default.createElement(
-                                "th",
+                                'th',
                                 null,
-                                "Cash:"
+                                'Balance:'
                             ),
                             _react2.default.createElement(
-                                "th",
+                                'th',
                                 null,
-                                "Net Worth:"
+                                'Net Worth:'
                             )
                         ));
-                        for (var i = 0; i < json.length; i++) {
-                            results.push(_react2.default.createElement(UserEntry, { rank: i + 1, userName: json[i].username, money: json[i].money, netWorth: json[i].netWorth }));
+                        var x = json.length;
+                        for (var i = x - 1; i >= 0; i--) {
+                            results.push(_react2.default.createElement(UserEntry, { rank: x - i, userName: json[i].username, balance: json[i].balance, netWorth: json[i].netWorth }));
                         }
-                        _this.setState({ userEntries: results, buttonStatus: "-" });
+                        _this3.setState({ userEntries: results, buttonStatus: "-" });
                         //makes standings a table inside of a row of the league list
-                        _this.setState({ standings: _react2.default.createElement(
-                                "tr",
+                        _this3.setState({ standings: _react2.default.createElement(
+                                'tr',
                                 null,
                                 _react2.default.createElement(
-                                    "td",
-                                    { colSpan: "4" },
+                                    'td',
+                                    { colSpan: '4' },
                                     _react2.default.createElement(
-                                        "table",
-                                        { className: "userList" },
-                                        _this.state.userEntries
+                                        'table',
+                                        { className: 'userList' },
+                                        _this3.state.userEntries
                                     )
                                 )
                             ) });
                     });
                 } else {
                     //if response not ok, set everything to default value (collapse standings)
-                    _this.setState({ userEntries: [], buttonStatus: "+" });
-                    _this.setState({ standings: "" });
+                    _this3.setState({ userEntries: [], buttonStatus: "+" });
+                    _this3.setState({ standings: "" });
                 }
             });
         } else {
@@ -21901,43 +21933,43 @@ var LeagueEntry = _react2.default.createClass({
         //different configurations depending on whether it is a default league or if join/leave should be displayed
         if (maxMembers == -1) {
             this.setState({ maxMembers: "", joinField: _react2.default.createElement(
-                    "td",
+                    'td',
                     null,
-                    "Default League..."
+                    'Default League...'
                 ) });
         } else if (join == "false") {
-            this.setState({ maxMembers: "/" + maxMembers, joinField: _react2.default.createElement(LeaveField, { name: this.props.name }) });
+            this.setState({ maxMembers: "/" + maxMembers, joinField: _react2.default.createElement(LeaveField, { name: this.props.name, callback: this.props.callback }) });
         } else {
-            this.setState({ maxMembers: "/" + maxMembers, joinField: _react2.default.createElement(JoinField, { password: this.props.password, name: this.props.name }) });
+            this.setState({ maxMembers: "/" + maxMembers, joinField: _react2.default.createElement(JoinField, { password: this.props.password, name: this.props.name, callback: this.props.callback }) });
         }
     },
     render: function render() {
         return (
             //renders a row of league list
             _react2.default.createElement(
-                "tbody",
+                'tbody',
                 null,
                 _react2.default.createElement(
-                    "tr",
+                    'tr',
                     null,
                     _react2.default.createElement(
-                        "td",
-                        { className: "name" },
+                        'td',
+                        { className: 'name' },
                         this.props.name
                     ),
                     _react2.default.createElement(
-                        "td",
-                        { className: "members" },
+                        'td',
+                        { className: 'members' },
                         this.props.members,
                         this.state.maxMembers
                     ),
                     this.state.joinField,
                     _react2.default.createElement(
-                        "td",
-                        { className: "expand" },
+                        'td',
+                        { className: 'expand' },
                         _react2.default.createElement(
-                            "button",
-                            { type: "submit", className: "viewButton", onClick: this.toggleStandings },
+                            'button',
+                            { type: 'submit', className: 'viewButton', onClick: this.toggleStandings },
                             this.state.buttonStatus
                         )
                     )
@@ -21949,84 +21981,80 @@ var LeagueEntry = _react2.default.createClass({
 });
 
 var LeagueList = _react2.default.createClass({
-    displayName: "LeagueList",
+    displayName: 'LeagueList',
     getInitialState: function getInitialState() {
         return {
             leagueEntries: []
         };
     },
     fetchFromAPI: function fetchFromAPI() {
-        var _this2 = this;
+        var _this4 = this;
 
         var urlExtension = this.props.url; //extension will determine if source of list is for user's leagues or all leagues
-        var name = "";
         var join = "true";
+        var token = JSON.parse(localStorage.authObject).access_token;
+        console.log(token);
         if (urlExtension != "getLeagues") {
             //if extension  is for user's leagues, get name, and set join to false so "Leave" buttons show up
-            name = sessionStorage.getItem("username");
             join = "false";
         }
         //calls controller method attempting to get leagues, and builds league list based on result
-        fetch('http://localhost:8080/league/' + urlExtension + name /*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/).then(function (response) {
+        fetch('http://localhost:8080/league/' + urlExtension, { method: 'POST', headers: { 'Authorization': 'Bearer ' + token } }).then(function (response) {
+            console.log(response.status);
             if (response.ok) {
                 response.json().then(function (json) {
                     var results = [];
                     //creates table heading
                     results.push(_react2.default.createElement(
-                        "tr",
+                        'tr',
                         null,
                         _react2.default.createElement(
-                            "th",
-                            { className: "name" },
-                            "League Name:"
+                            'th',
+                            { className: 'name' },
+                            'League Name:'
                         ),
                         _react2.default.createElement(
-                            "th",
-                            { className: "members" },
-                            "Status:"
+                            'th',
+                            { className: 'members' },
+                            'Status:'
                         ),
                         _react2.default.createElement(
-                            "th",
+                            'th',
                             null,
-                            "Join the League:"
+                            'Join the League:'
                         ),
                         _react2.default.createElement(
-                            "th",
-                            { className: "expand" },
-                            "View Standings"
+                            'th',
+                            { className: 'expand' },
+                            'View Standings'
                         )
                     ));
                     for (var i = 0; i < json.length; i++) {
-                        results.push(_react2.default.createElement(LeagueEntry, { name: json[i].name, members: json[i].numMembers, maxMembers: json[i].maxMembers, join: join, password: json[i].password }));
+                        results.push(_react2.default.createElement(LeagueEntry, { name: json[i].name, members: json[i].numMembers, maxMembers: json[i].maxMembers, join: join, password: json[i].password, callback: _this4.props.callback }));
                     }
-                    _this2.setState({ leagueEntries: results });
+                    _this4.setState({ leagueEntries: [] });
+                    _this4.setState({ leagueEntries: results });
                 });
             } else {
-                _this2.setState({ leagueEntries: [] });
+                _this4.setState({ leagueEntries: [] });
             }
         });
     },
     componentDidMount: function componentDidMount() {
         this.fetchFromAPI();
     },
-    handleClick: function handleClick(e) {
-        e.preventDefault();
-        window.location.reload(); //temporary way to reload...
-        //this.fetchFromAPI(); - doesn't refresh "My Leagues" correctly...
+    componentWillReceiveProps: function componentWillReceiveProps() {
+        setTimeout(this.fetchFromAPI, 500);
+        console.log("here");
     },
     render: function render() {
         //creates table of league entries
         return _react2.default.createElement(
-            "div",
+            'div',
             null,
             _react2.default.createElement(
-                "button",
-                { type: "button", className: "refreshButton", onClick: this.handleClick },
-                "Refresh"
-            ),
-            _react2.default.createElement(
-                "table",
-                { className: "leagueList" },
+                'table',
+                { className: 'leagueList' },
                 this.state.leagueEntries
             )
         );
@@ -22034,7 +22062,7 @@ var LeagueList = _react2.default.createClass({
 });
 
 var LeagueCreator = _react2.default.createClass({
-    displayName: "LeagueCreator",
+    displayName: 'LeagueCreator',
     getInitialState: function getInitialState() {
         return {
             leagueName: "",
@@ -22051,53 +22079,65 @@ var LeagueCreator = _react2.default.createClass({
         this.setState({ password: e.target.value });
     },
     handleSubmit: function handleSubmit(e) {
-        var _this3 = this;
+        var _this5 = this;
 
         e.preventDefault();
         var name = this.state.leagueName;
-        var owner = sessionStorage.getItem("username");
         var password = this.state.password;
+        var token = JSON.parse(localStorage.authObject).access_token;
         //calls controller method attempting to create a league, and displays message regarding the result
-        fetch("http://localhost:8080/league/createLeague?ownerName=" + owner + "&leagueName=" + name + "&password=" + password /*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/).then(function (response) {
+        fetch("http://localhost:8080/league/createLeague?leagueName=" + name + "&password=" + password, { method: 'POST', headers: { 'Authorization': 'Bearer ' + token } }).then(function (response) {
             if (response.ok) {
-                _this3.setState({ message: name + " was created successfully!" });
+                _this5.setState({ message: name + " was created successfully!" });
             } else {
-                _this3.setState({ message: name + " was already taken..." });
+                var msg = "Error: " + response.status;
+                switch (response.status) {
+                    case 401:
+                        msg = "Unauthorized";break;
+                    case 501:
+                        msg = "Missing league name field...";break;
+                    case 502:
+                        msg = "Invalid user...";break;
+                    case 503:
+                        msg = name + " is taken";break;
+                }
+                _this5.setState({ message: msg });
             }
         });
+        this.props.callback();
     },
     render: function render() {
         //sets up a form for league creation data input
         return _react2.default.createElement(
-            "div",
+            'div',
             null,
             _react2.default.createElement(
-                "form",
+                'form',
                 { onSubmit: this.handleSubmit },
                 _react2.default.createElement(
-                    "p",
+                    'p',
                     null,
-                    "Enter a League Name:"
+                    'Enter a League Name:'
                 ),
-                _react2.default.createElement("input", { type: "text", defaultValue: this.state.leagueName, onChange: this.handleNameChange }),
+                _react2.default.createElement('input', { type: 'text', defaultValue: this.state.leagueName, onChange: this.handleNameChange }),
                 _react2.default.createElement(
-                    "p",
+                    'p',
                     null,
-                    "Create League Password (blank for public league):"
+                    'Create League Password (blank for public league):'
                 ),
-                _react2.default.createElement("input", { type: "password", defaultValue: this.state.password, onChange: this.handlePasswordChange }),
+                _react2.default.createElement('input', { type: 'password', defaultValue: this.state.password, onChange: this.handlePasswordChange }),
                 _react2.default.createElement(
-                    "p",
+                    'p',
                     null,
                     this.state.message
                 ),
                 _react2.default.createElement(
-                    "p",
+                    'p',
                     null,
                     _react2.default.createElement(
-                        "button",
-                        { className: "leagueCreateButton" },
-                        "Create League!"
+                        'button',
+                        { className: 'leagueCreateButton' },
+                        'Create League!'
                     )
                 )
             )
@@ -22106,33 +22146,39 @@ var LeagueCreator = _react2.default.createClass({
 });
 
 var League = _react2.default.createClass({
-    displayName: "League",
+    displayName: 'League',
     getInitialState: function getInitialState() {
-        return {};
+        return {
+            refresh: 1
+        };
+    },
+    refreshData: function refreshData() {
+        var ref = this.state.refresh + 1;
+        this.setState({ refresh: ref });
     },
     render: function render() {
         //puts together all the different components
         return _react2.default.createElement(
-            "div",
+            'div',
             null,
             _react2.default.createElement(
-                "h1",
+                'h1',
                 null,
-                "My Leagues:"
+                'Create League:'
             ),
-            _react2.default.createElement(LeagueList, { url: "getMyLeagues?username=" }),
+            _react2.default.createElement(LeagueCreator, { callback: this.refreshData }),
             _react2.default.createElement(
-                "h1",
+                'h1',
                 null,
-                "All Leagues:"
+                'My Leagues:'
             ),
-            _react2.default.createElement(LeagueList, { url: "getLeagues" }),
+            _react2.default.createElement(LeagueList, { url: 'getMyLeagues', refresh: this.state.refresh, callback: this.refreshData }),
             _react2.default.createElement(
-                "h1",
+                'h1',
                 null,
-                "Create League:"
+                'All Leagues:'
             ),
-            _react2.default.createElement(LeagueCreator, null)
+            _react2.default.createElement(LeagueList, { url: 'getLeagues', refresh: this.state.refresh, callback: this.refreshData })
         );
     }
 });
@@ -22147,10 +22193,10 @@ var LeaguePage = exports.LeaguePage = function (_React$Component) {
     }
 
     _createClass(LeaguePage, [{
-        key: "render",
+        key: 'render',
         value: function render() {
             return _react2.default.createElement(
-                "div",
+                'div',
                 null,
                 _react2.default.createElement(League, null)
             );
@@ -22162,7 +22208,8 @@ var LeaguePage = exports.LeaguePage = function (_React$Component) {
 
 /***/ }),
 /* 179 */,
-/* 180 */
+/* 180 */,
+/* 181 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
