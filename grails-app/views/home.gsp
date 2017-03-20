@@ -37,7 +37,7 @@
                 <li id="money" style=" width:10%; text-align:center">
                     Cash: $
                     <script>
-                        document.getElementById("money").innerHTML = "Cash: $" + sessionStorage.getItem("cash");
+                        document.getElementById("money").innerHTML = "Cash: $" + sessionStorage.getItem("balance");
                     </script>
                 </li>
                 <li onclick="window.location.href='/trades'">
@@ -68,7 +68,7 @@
 
         <div id="left" >
             <div id="left-top">
-                <img class="profile" src="https://openclipart.org/download/247319/abstract-user-flat-3.svg" width = "200px" align="left">
+                <img class="profile" src="https://openclipart.org/download/247319/abstract-user-flat-3.svg" width = "150px" align="left" style="margin-bottom:20px">
 
 
                 <h2 id="moneY" align="right" >Networth:</h2>
@@ -79,9 +79,13 @@
 
                 <h2 id="mAv" align="right">Cash:</h2>
                 <script>
-                    document.getElementById("mAv").innerHTML = "Money: $" + sessionStorage.getItem("cash");
+                    document.getElementById("mAv").innerHTML = "Money: $" + sessionStorage.getItem("balance");
                 </script>
             </div>
+
+            <div id="chartContainer"><br><br></div>
+            <br><br>
+            <asset:javascript src="home.bundle.js"/>
         </div>
 
         <div id="right">
@@ -101,8 +105,7 @@
 
         </div>
 
-        <div id="chartContainer"></div>
-        <asset:javascript src="home.bundle.js"/>
+
 
     </div>
 </div>
