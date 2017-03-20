@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "/assets/";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 180);
+/******/ 	return __webpack_require__(__webpack_require__.s = 181);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -21729,7 +21729,7 @@ var UserEntry = _react2.default.createClass({
                 _react2.default.createElement(
                     'td',
                     null,
-                    this.props.money
+                    this.props.balance
                 ),
                 _react2.default.createElement(
                     'td',
@@ -21887,7 +21887,7 @@ var LeagueEntry = _react2.default.createClass({
                             _react2.default.createElement(
                                 'th',
                                 null,
-                                'Cash:'
+                                'Balance:'
                             ),
                             _react2.default.createElement(
                                 'th',
@@ -21897,7 +21897,7 @@ var LeagueEntry = _react2.default.createClass({
                         ));
                         var x = json.length;
                         for (var i = x - 1; i >= 0; i--) {
-                            results.push(_react2.default.createElement(UserEntry, { rank: x - i, userName: json[i].username, money: json[i].money, netWorth: json[i].netWorth }));
+                            results.push(_react2.default.createElement(UserEntry, { rank: x - i, userName: json[i].username, balance: json[i].balance, netWorth: json[i].netWorth }));
                         }
                         _this3.setState({ userEntries: results, buttonStatus: "-" });
                         //makes standings a table inside of a row of the league list
@@ -22208,7 +22208,8 @@ var LeaguePage = exports.LeaguePage = function (_React$Component) {
 
 /***/ }),
 /* 179 */,
-/* 180 */
+/* 180 */,
+/* 181 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

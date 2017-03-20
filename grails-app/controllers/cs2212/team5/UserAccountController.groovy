@@ -33,10 +33,9 @@ class UserAccountController extends RestfulController {
             def user = new User(username: userName, password: password).save()
             UserRole.create(user, role, true)
 
-            def newData = new UserData();
+            def newAccount = new UserAccount(userName, 1000, 1000).save()
             def global = League.find{name == "Global Leaderboard"}
-            newData.addToLeagues(global)
-            def newAccount = new UserAccount(username: userName, money: 100, netWorth: 200, mydata: newData).save()
+            newAccount.addToLeagues(global)
             global.numMembers = global.numMembers + 1 //increment members in global leaderboard
             global.addToMembers(newAccount).save(flush: true) //add user to global leaderboard
             response.status = 200; //success
@@ -56,7 +55,7 @@ class UserAccountController extends RestfulController {
     @Secured(['ROLE_USER'])
     def getUser(){
         def userName = springSecurityService.currentUser.username
-        System.out.println("user " + userName)
+        System.out.println(userName + " logged in!")
         def user = UserAccount.find{username == userName} //attempts to find user with userName
         if(user != null){ //if user found, respond with user data
             respond user

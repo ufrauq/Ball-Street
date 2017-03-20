@@ -142,6 +142,12 @@ grails:
                     - pattern: '/userAccount/**'
                       filters: 'anonymousAuthenticationFilter,restExceptionTranslationFilter'
 
+                    - pattern: '/update/**'
+                      filters: 'anonymousAuthenticationFilter,restExceptionTranslationFilter'
+
+                    - pattern: '/transaction/**'
+                      filters: 'JOINED_FILTERS,-anonymousAuthenticationFilter,-exceptionTranslationFilter,-authenticationProcessingFilter,-securityContextPersistenceFilter,-rememberMeAuthenticationFilter'
+
                     - pattern: '/league/**'
                       filters: 'JOINED_FILTERS,-anonymousAuthenticationFilter,-exceptionTranslationFilter,-authenticationProcessingFilter,-securityContextPersistenceFilter,-rememberMeAuthenticationFilter'
 

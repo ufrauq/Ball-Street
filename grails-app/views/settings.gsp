@@ -35,21 +35,19 @@
                 <li onclick="window.location.href='/settings'" class="selectedTop">
                     Settings
                 </li>
-                <li id="money2" style=" width:12%; text-align:center">
-                    Networth: $
+                <li id="netWorth" style=" width:12%; text-align:center">
                     <script>
-                        document.getElementById("money2").innerHTML = "Net Worth: $" + sessionStorage.getItem("netWorth");
+                        document.getElementById("netWorth").innerHTML = "Net Worth: $" + sessionStorage.getItem("netWorth");
                     </script>
 
                 </li>
-                <li id="money" style=" width:10%; text-align:center">
-                    Cash: $
+                <li id="balance" style=" width:10%; text-align:center">
                     <script>
-                        document.getElementById("money").innerHTML = "Cash: $" + sessionStorage.getItem("cash");
+                        document.getElementById("balance").innerHTML = "Balance: $" + sessionStorage.getItem("balance");
                     </script>
                 </li>
-                <li onclick="window.location.href='/trades'">
-                    Stock Trades
+                <li onclick="window.location.href='/transactions'">
+                    Transactions
                 </li>
             </ul>
         </div>

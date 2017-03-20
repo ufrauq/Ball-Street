@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "/assets/";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 179);
+/******/ 	return __webpack_require__(__webpack_require__.s = 180);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -21784,8 +21784,8 @@ var UserAccountCreator = _react2.default.createClass({
             console.log(response.status);
             if (response.ok) {
                 response.json().then(function (json) {
-                    //if successful then store name, money and netWorth (to be accessed by other pages) and link to home page
-                    sessionStorage.setItem("cash", json.money);
+                    //if successful then store name, balance and netWorth (to be accessed by other pages) and link to home page
+                    sessionStorage.setItem("balance", json.balance);
                     sessionStorage.setItem("netWorth", json.netWorth);
                     sessionStorage.setItem("username", name);
                     window.location.href = '/home';
@@ -21870,7 +21870,8 @@ var LoginPage = exports.LoginPage = function (_React$Component) {
 
 /***/ }),
 /* 178 */,
-/* 179 */
+/* 179 */,
+/* 180 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

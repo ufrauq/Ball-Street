@@ -13,33 +13,14 @@ class BootStrap {
         if (role == null) {
             new Role(authority: 'ROLE_USER').save()
         }
-
-
-        /*def zain = new UserAccount(username: "Zain", money: 100, netWorth: 100, password: "password").save()
-
-        def l = new League(owner: zain, numMembers: 1, name: "test").save()
-        def m = new League(owner: zain, numMembers: 1, name: "The Best League", password: "a").save()
-
-        def zaindata = new UserData()
-        zaindata.addToLeagues(global)
-        zaindata.addToLeagues(l)
-        zain.mydata = zaindata
-
-        def mattdata = new UserData()
-        mattdata.addToLeagues(global)
-        mattdata.addToLeagues(l)
-        mattdata.addToLeagues(m)
-        def matt = new UserAccount(username: "Matt", money: 100, netWorth: 100, password: "password", mydata: mattdata).save()
-
-        l.addToMembers(zain)
-        l.addToMembers(matt)
-        l.numMembers = l.numMembers + 1;
-
-        global.addToMembers(zain)
-        global.addToMembers(matt)
-        global.numMembers = global.numMembers + 2;
-
-        m.addToMembers(matt)*/
+        /*def user = UserAccount.find{username == "Zain"}
+        def currentDate = new Date()
+        user.transactionCount = user.transactionCount + 1
+        def newTransaction = new Transaction(tType: "buy", tStatus: "open", transactionOpened: currentDate, stockFirstName: "Zain", stockLastName: "Sirohey", stockPrice: 23.45, stockQuantity: 20, transactionID: user.transactionCount, balanceBefore: user.balance, creator: user).save()
+        user.addToTransactions(newTransaction).save(flush: true)
+        user.transactionCount = user.transactionCount + 1
+        def newTransaction2 = new Transaction(tType: "sell", tStatus: "open", transactionOpened: currentDate, stockFirstName: "Matt", stockLastName: "Wond", stockPrice: 15.34, stockQuantity: 100, transactionID: user.transactionCount, balanceBefore: user.balance, creator: user).save()
+        user.addToTransactions(newTransaction2).save(flush: true)*/
     }
     def destroy = {
     }
