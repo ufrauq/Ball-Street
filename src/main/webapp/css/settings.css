@@ -18,3 +18,34 @@ button:hover {
     /*border: 1px solid dimgrey;*/
 
 }
+
+.profile{
+    color-overlay: red;
+}
+
+#left{
+    padding:20px;
+    width: 40%;
+    float: left;
+}
+
+#right{
+    padding:20px;
+    width: 50%;
+    float: right;
+    text-align: left;
+}
+
+
+#bottom{
+    padding:20px;
+    width: 80%;
+    float: bottom;
+}
+
+
+
+profile:hover  {
+    color: red;
+}
+

@@ -6,13 +6,14 @@ var UserEntry = React.createClass({
         }
     },
     render () {
+        //renders a row of the standings table
         return (
-        <tr className="standingsRow">
-            <td>{this.props.rank}</td>
-            <td>{this.props.userName}</td>
-            <td>{this.props.money}</td>
-            <td>{this.props.netWorth}</td>
-        </tr>
+            <tr className="standingsRow">
+                <td>{this.props.rank}</td>
+                <td>{this.props.userName}</td>
+                <td>{this.props.money}</td>
+                <td>{this.props.netWorth}</td>
+            </tr>
         );
     }
 });
@@ -27,6 +28,7 @@ var LeaveField = React.createClass({
         e.preventDefault();
         let leagueName = this.props.name;
         let userName = sessionStorage.getItem("username");
+        //make call to controller method attempting to league league, alert user with result
         fetch('http://localhost:8080/league/leaveLeague?userName=' + userName + '&leagueName=' + leagueName/*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/)
             .then(response => {
                 if (response.ok) {
@@ -64,7 +66,7 @@ var JoinField = React.createClass({
 
     componentDidMount() {
         let password = this.props.password;
-        if (password != null) {
+        if (password != null) { //if there is a password, display password field
             this.setState({input:<input type="text" placeholder="Enter Password..." onChange={this.handlePasswordChange}/>});
         }
     },
@@ -74,14 +76,15 @@ var JoinField = React.createClass({
         let password = this.state.inputPassword;
         let leagueName = this.props.name;
         let userName = sessionStorage.getItem("username");
+        //make call to controller method attempting to join league, alert user of result
         fetch('http://localhost:8080/league/joinLeague?userName=' + userName + '&leagueName=' + leagueName + '&password=' + password/*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/)
             .then(response => {
-               if (response.ok) {
-                   alert("Successfully joined " + leagueName);
-               }
-               else {
-                   alert("Invalid password, full league, or already joined " + leagueName);
-               }
+                if (response.ok) {
+                    alert("Successfully joined " + leagueName);
+                }
+                else {
+                    alert("Invalid password, full league, or already joined " + leagueName);
+                }
             });
     },
 
@@ -108,37 +111,40 @@ var LeagueEntry = React.createClass({
         }
     },
 
-    handleSubmit(e) {
+    toggleStandings(e) {
         e.preventDefault();
         let name = this.props.name;
         let status = this.state.buttonStatus;
-        if (status == "+") {
+        if (status == "+") { //if button state is expand
+            //calls controller method attempting to get members of a league, builds standings based on result
             fetch('http://localhost:8080/league/getMembers?leagueName='+ name/*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/).then(response => {
                 if(response.ok) {
                     response.json().then(json => {
                         let results = [];
+                        //creates table heading
                         results.push(<tr><th className="rank">Rank:</th><th>Username:</th><th>Cash:</th><th>Net Worth:</th></tr>);
                         for (let i = 0; i < json.length; i++) {
                             results.push(<UserEntry rank={i+1} userName={json[i].username} money={json[i].money} netWorth={json[i].netWorth}/>);
                         }
                         this.setState({userEntries: results, buttonStatus: "-"});
+                        //makes standings a table inside of a row of the league list
                         this.setState({standings:
-                        <tr>
-                            <td colSpan="4">
-                                <table className="userList">
-                                    {this.state.userEntries}
-                                </table>
-                            </td>
-                        </tr>});
+                            <tr>
+                                <td colSpan="4">
+                                    <table className="userList">
+                                        {this.state.userEntries}
+                                    </table>
+                                </td>
+                            </tr>});
                     });
                 }
-                else{
+                else{ //if response not ok, set everything to default value (collapse standings)
                     this.setState({userEntries: [], buttonStatus: "+"});
                     this.setState({standings: ""});
                 }
             });
         }
-        else {
+        else { //if button state is collapse, then set everything to default value (collapse standings)
             this.setState({userEntries: [], buttonStatus: "+"});
             this.setState({standings: ""});
         }
@@ -148,6 +154,7 @@ var LeagueEntry = React.createClass({
     componentDidMount() {
         let maxMembers = this.props.maxMembers;
         let join =  this.props.join;
+        //different configurations depending on whether it is a default league or if join/leave should be displayed
         if (maxMembers == -1) {
             this.setState({maxMembers: "", joinField: <td>Default League...</td>});
         }
@@ -161,14 +168,15 @@ var LeagueEntry = React.createClass({
 
     render () {
         return (
+            //renders a row of league list
             <tbody>
-                <tr>
-                    <td className="name">{this.props.name}</td>
-                    <td className="members">{this.props.members}{this.state.maxMembers}</td>
-                    {this.state.joinField}
-                    <td className="expand"><button type="submit" className="viewButton" onClick={this.handleSubmit}>{this.state.buttonStatus}</button></td>
-                </tr>
-                {this.state.standings}
+            <tr>
+                <td className="name">{this.props.name}</td>
+                <td className="members">{this.props.members}{this.state.maxMembers}</td>
+                {this.state.joinField}
+                <td className="expand"><button type="submit" className="viewButton" onClick={this.toggleStandings}>{this.state.buttonStatus}</button></td>
+            </tr>
+            {this.state.standings}
             </tbody>
         );
     }
@@ -182,18 +190,20 @@ var LeagueList = React.createClass({
     },
 
     fetchFromAPI() {
-        let urlExtension = this.props.url;
+        let urlExtension = this.props.url; //extension will determine if source of list is for user's leagues or all leagues
         let name = "";
         let join = "true";
-        if (urlExtension != "getLeagues") {
+        if (urlExtension != "getLeagues") { //if extension  is for user's leagues, get name, and set join to false so "Leave" buttons show up
             name = sessionStorage.getItem("username");
             join = "false";
         }
+        //calls controller method attempting to get leagues, and builds league list based on result
         fetch('http://localhost:8080/league/' + urlExtension + name/*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/)
             .then(response => {
                 if(response.ok) {
                     response.json().then(json => {
                         let results = [];
+                        //creates table heading
                         results.push(<tr><th className="name">League Name:</th><th className="members">Status:</th><th>Join the League:</th><th className="expand">View Standings</th></tr>);
                         for (let i = 0; i < json.length; i++) {
                             results.push(<LeagueEntry name={json[i].name} members={json[i].numMembers} maxMembers={json[i].maxMembers} join={join} password={json[i].password}/>);
@@ -218,6 +228,7 @@ var LeagueList = React.createClass({
     },
 
     render() {
+        //creates table of league entries
         return(
             <div>
                 <button type="button" className = "refreshButton" onClick={this.handleClick}>Refresh</button>
@@ -255,6 +266,7 @@ var LeagueCreator = React.createClass({
         let name = this.state.leagueName;
         let owner = sessionStorage.getItem("username");
         let password = this.state.password;
+        //calls controller method attempting to create a league, and displays message regarding the result
         fetch("http://localhost:8080/league/createLeague?ownerName=" + owner + "&leagueName=" + name +"&password=" + password/*, {method: 'POST', headers: {"Content-Type": "application/json"}}*/).then(response => {
             if (response.ok) {
                 this.setState({message : name + " was created successfully!"});
@@ -266,6 +278,7 @@ var LeagueCreator = React.createClass({
     },
 
     render() {
+        //sets up a form for league creation data input
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
@@ -275,13 +288,11 @@ var LeagueCreator = React.createClass({
 
                     <p>Create League Password (blank for public league):</p>
                     <input type="password" defaultValue={this.state.password} onChange={this.handlePasswordChange}/>
-
+                    <p>
+                        {this.state.message}
+                    </p>
                     <p><button  className = "leagueCreateButton">Create League!</button></p>
                 </form>
-                <p>Name: {this.state.leagueName}
-                <br/>
-                Message: {this.state.message}
-                </p>
             </div>
         );
     }
@@ -294,6 +305,7 @@ var League = React.createClass({
     },
 
     render() {
+        //puts together all the different components
         return(
             <div>
                 <h1>My Leagues:</h1>

@@ -1,10 +1,17 @@
 package cs2212.team5
 
+import grails.plugin.springsecurity.annotation.Secured
 import grails.rest.RestfulController
+import grails3.example.Role
+import grails3.example.User
+import grails3.example.UserRole
 
 class UserAccountController extends RestfulController {
 
-    static responseFormats = ['json','xml']
+    static allowedMethods = [createUser: 'POST', getUser: 'POST']
+    static responseFormats = ['json']
+
+    def springSecurityService
 
     UserAccountController() {
         super(UserAccount)
@@ -18,35 +25,44 @@ class UserAccountController extends RestfulController {
         def userName = params.userName
         def password = params.password
         //testing if user with userName exists
-        def user = UserAccount.find{username == userName}
+        def userAccount = UserAccount.find{username == userName}
 
-        //if user with userName doesn't exist and the user supplied a password
-        if(user == null && password != ""){
+        //if user with userName doesn't exist and the user supplied a password and userName
+        if(userAccount == null && password != "" && userName != ""){
+            def role = Role.find{authority: 'ROLE_USER'}
+            def user = new User(username: userName, password: password).save()
+            UserRole.create(user, role, true)
+
             def newData = new UserData();
             def global = League.find{name == "Global Leaderboard"}
             newData.addToLeagues(global)
-            def newAccount = new UserAccount(username: userName, money: 100, netWorth: 100, mydata: newData, password: password).save()
+            def newAccount = new UserAccount(username: userName, money: 100, netWorth: 200, mydata: newData).save()
             global.numMembers = global.numMembers + 1 //increment members in global leaderboard
             global.addToMembers(newAccount).save(flush: true) //add user to global leaderboard
-            response.status = 200; //success status
+            response.status = 200; //success
         }
+        else if (userName == "")
+            response.status = 501
+        else if (password == "")
+            response.status = 502
         else
-            response.status = 502 //failure status
+            response.status = 503 //username is already taken (failure)
     }
 
     /**
      * Controller method which, given a username and password, attempts to login the user
      * @return user or failure status
      */
-    def login(){
-        def userName = params.userName
-        def pass = params.password
-        def user = UserAccount.find{username == userName && password == pass} //attempts to find user with userName and password
+    @Secured(['ROLE_USER'])
+    def getUser(){
+        def userName = springSecurityService.currentUser.username
+        System.out.println("user " + userName)
+        def user = UserAccount.find{username == userName} //attempts to find user with userName
         if(user != null){ //if user found, respond with user data
             respond user
         }
         else
-            response.status = 502 //failure status
+            response.status = 501 //invalid user (failure)
 
     }
 

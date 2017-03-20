@@ -46,19 +46,49 @@
             </ul>
         </div>
     </div>
-    <div>
-        <marquee>Leaving so soon! Click the logout button to logout of your account.</marquee>
-    </div>
+
     <div id="sideMenu" class="areas" >
         <button type="button" class="sideButtons" onclick="window.location.href='/stocks'">Stocks</button>
         <button type="button" class="sideButtons" onclick="window.location.href='/leagues'">Leagues</button>
         <button type="button" class="sideButtons" onclick="window.location.href='/players'">Players</button>
         <button type="button" class="sideButtons" onclick="window.location.href='/market'">Stock Market</button>
     </div>
+
+    <div>
+        <marquee id="settingMessage">Setting Page</marquee>
+        <script>
+            /*document.getElementById("username").innerHTML = document.getElementById("username").innerHTML + "       "+ sessionStorage.getItem("username");*/
+            document.getElementById("settingMessage").innerHTML = "Welcome " + sessionStorage.getItem("username");
+        </script>
+    </div>
     <br>
     <div id="contentArea" class="areas">
-        <h1>Settings: coming soon...</h1>
-        <button type="submit" onclick="window.location.href='/'">Logout</button>
+        <h1>Settings</h1>
+        <div id="left"  >
+            <img class="profile" src="https://openclipart.org/download/247319/abstract-user-flat-3.svg" width = "350px" >
+
+        </div> <!-- This will be for the left side with profile pic an stuff --->
+
+        <div id="right">
+
+            <h2 id = "profileName">Username:</h2>
+
+            <script>
+                document.getElementById("profileName").innerHTML = "Username: " + sessionStorage.getItem("username");
+            </script>
+
+            <h2 id="moneY">Networth:</h2>
+            <script>
+                document.getElementById("moneY").innerHTML = "Networth: $" + sessionStorage.getItem("netWorth");
+            </script>
+            <br><br>
+        </div>
+        <div id="bottom">
+            <button type="submit" onclick="window.location.href='/'">Logout</button>
+        </div>
+
+        <asset:javascript src="leagues.bundle.js"/>
+
     </div>
 </div>
 </body>
