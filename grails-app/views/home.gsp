@@ -27,19 +27,21 @@
                 <li onclick="window.location.href='/settings'">
                     Settings
                 </li>
-                <li id="netWorth" style=" width:12%; text-align:center">
+                <li id="money2" style=" width:12%; text-align:center">
+                    Networth: $
                     <script>
-                        document.getElementById("netWorth").innerHTML = "Net Worth: $" + sessionStorage.getItem("netWorth");
+                        document.getElementById("money2").innerHTML = "Net Worth: $" + sessionStorage.getItem("netWorth");
                     </script>
 
                 </li>
-                <li id="balance" style=" width:10%; text-align:center">
+                <li id="money" style=" width:10%; text-align:center">
+                    Cash: $
                     <script>
-                        document.getElementById("balance").innerHTML = "Balance: $" + sessionStorage.getItem("balance");
+                        document.getElementById("money").innerHTML = "Cash: $" + sessionStorage.getItem("cash");
                     </script>
                 </li>
-                <li onclick="window.location.href='/transactions'">
-                    Transactions
+                <li onclick="window.location.href='/trades'">
+                    Stock Trades
                 </li>
             </ul>
         </div>
@@ -64,8 +66,8 @@
             document.getElementById("profileName").innerHTML =  sessionStorage.getItem("username");
         </script>
 
-        <div id="left" height="400px">
-            <div id="left-top" >
+        <div id="left" >
+            <div id="left-top">
                 <img class="profile" src="https://openclipart.org/download/247319/abstract-user-flat-3.svg" width = "200px" align="left">
 
 
@@ -80,16 +82,7 @@
                     document.getElementById("mAv").innerHTML = "Money: $" + sessionStorage.getItem("cash");
                 </script>
             </div>
-
-
-            <div id="left-down">
-
-                <img class="profile" src="http://www.mathgoodies.com/lessons/graphs/images/line_example1.jpg" width = "300px" align="center">
-            </div>
-
         </div>
-
-
 
         <div id="right">
 
@@ -107,6 +100,9 @@
             </div>
 
         </div>
+
+        <div id="chartContainer"></div>
+        <asset:javascript src="home.bundle.js"/>
 
     </div>
 </div>
