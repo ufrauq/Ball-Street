@@ -86,6 +86,9 @@
             <h2 align="left"> Suggested Players...</h2>
         </div>
 
+        <div id="chartContainer"></div>
+        <asset:javascript src="player.bundle.js"/>
+
         <!--
 
         <div id="player">

@@ -82,12 +82,6 @@
                     document.getElementById("mAv").innerHTML = "Money: $" + sessionStorage.getItem("cash");
                 </script>
             </div>
-
-            <div id="left-down">
-
-                <img class="profile" src="http://www.mathgoodies.com/lessons/graphs/images/line_example1.jpg" width = "300px" align="center">
-            </div>
-
         </div>
 
         <div id="right">
@@ -106,6 +100,9 @@
             </div>
 
         </div>
+
+        <div id="chartContainer"></div>
+        <asset:javascript src="home.bundle.js"/>
 
     </div>
 </div>
