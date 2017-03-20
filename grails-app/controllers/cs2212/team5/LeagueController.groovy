@@ -1,15 +1,11 @@
 package cs2212.team5
 
-import grails.plugin.springsecurity.annotation.Secured
 import grails.rest.RestfulController
 
-@Secured(['ROLE_USER'])
 class LeagueController extends RestfulController {
 
-    static allowedMethods = [getLeagues: 'POST', getMyLeagues: 'POST', joinLeague: 'POST', leaveLeague: 'POST', getMembers: 'POST', createLeague: 'POST']
-    static responseFormats = ['json']
-
-    def springSecurityService
+    //static allowedMethods = [getLeagues: 'POST', createLeague: 'POST']
+    static responseFormats = ['json','xml']
 
     LeagueController() {
         super(League)
@@ -20,7 +16,7 @@ class LeagueController extends RestfulController {
      * @return all leagues
      */
     def getLeagues() {
-        respond League.findAll().sort{it.id}
+        respond League.findAll()
     }
 
     /**
@@ -28,11 +24,11 @@ class LeagueController extends RestfulController {
      * @return leagues belonging to username
      */
     def getMyLeagues() {
-        def name = springSecurityService.currentUser.username
+        def name = params.username
         //testing if user with given username exists
         def user = UserAccount.find{username == name}
         if (user != null) { //if user exists
-            respond user.mydata.leagues.sort{it.id}
+            respond user.mydata.leagues
         }
         else {
             response.status = 501 //user does not exist (failure)
@@ -46,7 +42,7 @@ class LeagueController extends RestfulController {
     def joinLeague() {
         def leagueName = params.leagueName
         def pass = params.password
-        def userName = springSecurityService.currentUser.username
+        def userName = params.userName
         //testing if user and league exist
         def league = League.find{name == leagueName}
         def user = UserAccount.find{username == userName}
@@ -87,7 +83,7 @@ class LeagueController extends RestfulController {
      */
     def leaveLeague() {
         def leagueName = params.leagueName
-        def userName = springSecurityService.currentUser.username
+        def userName = params.userName
         //testing if user and league exist
         def league = League.find{name == leagueName}
         def user = UserAccount.find{username == userName}
@@ -95,8 +91,10 @@ class LeagueController extends RestfulController {
         if (user != null && league != null) { //if user and league exist
             if (league in user.mydata.leagues) { //if user is in leagues, remove user (success)
                 user.mydata.removeFromLeagues(league).save(flush: true)
-                if (league.numMembers == 1) { //if the user is the last user in the league, then delete league
-                    league.delete(flush: true)
+                if (league.numMembers == 1) { //if the user is the last user in the league, then set members to null
+                    league.numMembers = league.numMembers - 1
+                    league.members = null
+                    league.save(flush: true)
                 }
                 else { //user is not last user in league
                     league.numMembers = league.numMembers - 1
@@ -121,9 +119,8 @@ class LeagueController extends RestfulController {
         def leagueName = params.leagueName
         //testing if league exists
         def league = League.find{name == leagueName}
-        if (league != null) {//if league exists
-            respond league.members.sort{it.netWorth}
-        }
+        if (league != null) //if league exists
+            respond league.members
         else
             response.status = 501 //league does not exist (failure)
     }
@@ -134,25 +131,22 @@ class LeagueController extends RestfulController {
      */
     def createLeague() {
         def leagueName = params.leagueName
-        def ownerName = springSecurityService.currentUser.username
+        def ownerName = params.ownerName
         def pass = params.password
         //testing if league does not exist and owner does exist
         def league = League.find{name == leagueName}
         def leagueOwner = UserAccount.find{username == ownerName}
 
-        if (leagueName == "") {
-            response.status = 501
-        }
-        else if (leagueOwner == null) {
-            response.status = 502 //owner does not exist (failure)
-        }
-        else if (league == null) { //if league does not exist and owner exists, create new league (success)
+        if (league == null && leagueOwner != null) { //if league does not exist and owner exists, create new league (success)
             def newLeague = new League(owner: leagueOwner, numMembers: 1, maxMembers: 25, name: leagueName, password : pass).addToMembers(leagueOwner).save(flush: true)
             leagueOwner.mydata.addToLeagues(newLeague).save(flush: true)
             response.status = 200
         }
+        else if (leagueOwner == null) {
+            response.status = 501 //owner does not exist (failure)
+        }
         else {
-            response.status = 503 //league already exists (failure)
+            response.status = 502 //league already exists (failure)
         }
     }
 
