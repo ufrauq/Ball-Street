@@ -46,18 +46,20 @@
             </ul>
         </div>
     </div>
+
+    <div id="sideMenu" class="areas" >
+        <button type="button" class="sideButtons" onclick="window.location.href='/stocks'">Stocks</button>
+        <button type="button" class="sideButtons" onclick="window.location.href='/leagues'">Leagues</button>
+        <button type="button" class="sideButtons" onclick="window.location.href='/players'">Players</button>
+        <button type="button" class="sideButtons" onclick="window.location.href='/market'">Stock Market</button>
+    </div>
+
     <div>
         <marquee id="settingMessage">Setting Page</marquee>
         <script>
             /*document.getElementById("username").innerHTML = document.getElementById("username").innerHTML + "       "+ sessionStorage.getItem("username");*/
             document.getElementById("settingMessage").innerHTML = "Welcome " + sessionStorage.getItem("username");
         </script>
-    </div>
-    <div id="sideMenu" class="areas" >
-        <button type="button" class="sideButtons" onclick="window.location.href='/stocks'">Stocks</button>
-        <button type="button" class="sideButtons" onclick="window.location.href='/leagues'">Leagues</button>
-        <button type="button" class="sideButtons" onclick="window.location.href='/players'">Players</button>
-        <button type="button" class="sideButtons" onclick="window.location.href='/market'">Stock Market</button>
     </div>
     <br>
     <div id="contentArea" class="areas">

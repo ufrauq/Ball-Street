@@ -53,14 +53,16 @@
             </ul>
         </div>
     </div>
-    <div>
-        <marquee>Welcome to BallStreet!  Past game scores will be displayed here!</marquee>
-    </div>
+
     <div id="sideMenu" class="areas" >
         <button type="button" class="selectedSide" onclick="window.location.href='/stocks'">Stocks</button>
         <button type="button" class="sideButtons" onclick="window.location.href='/leagues'">Leagues</button>
         <button type="button" class="sideButtons" onclick="window.location.href='/players'">Players</button>
         <button type="button" class="sideButtons" onclick="window.location.href='/market'">Stock Market</button>
+    </div>
+
+    <div>
+        <marquee>Welcome to BallStreet!  Past game scores will be displayed here!</marquee>
     </div>
     <br>
     <div id="contentArea" class="areas">
@@ -251,7 +253,11 @@
 
         </div>
 
+
+
     </div>
+
+
 
 
 
