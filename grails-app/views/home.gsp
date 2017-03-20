@@ -64,8 +64,8 @@
             document.getElementById("profileName").innerHTML =  sessionStorage.getItem("username");
         </script>
 
-        <div id="left" >
-            <div id="left-top">
+        <div id="left" height="400px">
+            <div id="left-top" >
                 <img class="profile" src="https://openclipart.org/download/247319/abstract-user-flat-3.svg" width = "200px" align="left">
 
 
@@ -81,12 +81,15 @@
                 </script>
             </div>
 
+
             <div id="left-down">
 
                 <img class="profile" src="http://www.mathgoodies.com/lessons/graphs/images/line_example1.jpg" width = "300px" align="center">
             </div>
 
         </div>
+
+
 
         <div id="right">
 

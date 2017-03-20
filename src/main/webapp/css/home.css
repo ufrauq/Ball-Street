@@ -30,12 +30,14 @@ button:hover {
     width: 40%;
     float: left;
     padding: 20px;
+    height: 100%;
 }
 
 #left-top{
 
     float: left;
     width:100%;
+
 
 }
 
