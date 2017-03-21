@@ -115,10 +115,10 @@ var TransactionList = React.createClass({
         this.fetchFromAPI();
     },
 
-    componentWillReceiveProps() {
+    /*componentWillReceiveProps() {
         setTimeout(this.fetchFromAPI, 500);
         console.log("here");
-    },
+    },*/
 
     sell() {
         let token = JSON.parse(localStorage.authObject).access_token;
@@ -146,16 +146,77 @@ var TransactionList = React.createClass({
     }
 });
 
+var PlayerEntry = React.createClass({
+    getInitialState() {
+        return {
+        }
+    },
+
+    render() {
+        return (
+          <tbody>
+          <tr>
+              <td>{this.props.firstName}</td>
+              <td>{this.props.lastName}</td>
+              <td>{this.props.pPrice}</td>
+              <td>{this.props.price}</td>
+          </tr>
+          </tbody>
+        );
+    }
+
+});
+
 var Transaction = React.createClass({
     getInitialState() {
         return {
-            refresh: 1
+            refresh: 1,
+            playerData: []
         }
     },
 
     refreshData() {
         let ref = this.state.refresh + 1;
         this.setState({refresh: ref});
+    },
+
+    componentDidMount() {
+        let token = JSON.parse(localStorage.authObject).access_token;
+        fetch('http://localhost:8080/player/getAllPlayers', {method: 'POST', headers: {'Authorization': 'Bearer ' + token}})
+            .then(response => {
+                if (response.ok) {
+                    response.json().then(json => {
+                        let result = [];
+                        result.push(<thead><tr><th>First Name:</th><th>Last Name:</th><th>Previous Price:</th><th>Price:</th></tr></thead>);
+                        for (let i = 0; i < json.length; i++) {
+                            result.push(<PlayerEntry firstName={json[i].firstName} lastName={json[i].lastName} pPrice={json[i].previousDayPrice} price={json[i].currentPrice}/>);
+                        }
+                        this.setState({playerData: result});
+                    })
+                }
+            });
+    },
+
+    callAPI(e) {
+        let keyword = e.target.value;
+        console.log(keyword + ": calling api with this keyword");
+        if (true) {
+            let token = JSON.parse(localStorage.authObject).access_token;
+            fetch('http://localhost:8080/player/getPlayersByKeyword?keyword='+keyword, {method: 'POST', headers: {'Authorization': 'Bearer ' + token}})
+                .then(response => {
+                    if (response.ok) {
+                        response.json().then(json => {
+                            let result = [];
+                            result.push(<thead><tr><th>First Name:</th><th>Last Name:</th><th>Previous Price:</th><th>Price:</th></tr></thead>);
+                            for (let i = 0; i < json.length; i++) {
+                                result.push(<PlayerEntry firstName={json[i].firstName} lastName={json[i].lastName} pPrice={json[i].previousDayPrice} price={json[i].currentPrice}/>);
+                            }
+                            this.setState({playerData: []});
+                            this.setState({playerData: result});
+                        })
+                    }
+                });
+        }
     },
 
     render() {
@@ -166,6 +227,12 @@ var Transaction = React.createClass({
                 <TransactionList type="opened" url="getPendingTransactions" refresh={this.state.refresh} callback={this.refreshData}/>
                 <h1>Transaction History</h1>
                 <TransactionList type="closed" url="getPastTransactions" refresh={this.state.refresh} callback={this.refreshData}/>
+                <form>
+                    <input type="text" onChange={this.callAPI}/>
+                </form>
+                <table>
+                    {this.state.playerData}
+                </table>
             </div>
         );
     }
