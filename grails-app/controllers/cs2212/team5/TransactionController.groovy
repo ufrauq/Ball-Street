@@ -133,7 +133,7 @@ class TransactionController extends RestfulController {
             stock.save(flush: true)
         }
         else {
-            def newStock = new Stock(stockFirstName: fName, stockLastName: lName, quantityOwned: quantity, owner: user).save()
+            def newStock = new Stock(stockFirstName: fName, stockLastName: lName, quantityOwned: quantity, quantityBefore: 0, owner: user).save()
             user.addToPortfolio(newStock).save(flush: true)
         }
     }
@@ -141,15 +141,8 @@ class TransactionController extends RestfulController {
     def removeFromPortfolio(UserAccount user, String fName, String lName, int quantity) {
         def stock = user.portfolio.find{it.stockFirstName == fName && it.stockLastName == lName}
         System.out.println("remove " + stock)
-        if (stock.quantityOwned == quantity) {
-            user.removeFromPortfolio(stock)
-            stock.delete(flush: true)
-            user.save(flush: true)
-        }
-        else {
-            stock.quantityOwned = stock.quantityOwned - quantity
-            stock.save(flush: true)
-        }
+        stock.quantityOwned = stock.quantityOwned - quantity
+        stock.save(flush: true)
     }
 
     def index() { }

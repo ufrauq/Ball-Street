@@ -15,17 +15,24 @@ var TransactionEntry = React.createClass({
         let price = this.props.stockPrice;
         let quantity = this.props.stockQuantity;
         let balanceBefore = this.props.balanceBefore;
-        let tChange = 0;
-        if (tType == "sell") {
-            tChange = 1 * price * quantity;
-        }
-        else {
-            tChange = -1 * price * quantity;
-        }
-        let balanceAfter = balanceBefore + tChange;
+        let status = this.props.tStatus;
         let date = this.props.tDate;
         date = date.substring(0,10);
-        this.setState({balanceChange: tChange.toFixed(2), balanceAfter: balanceAfter.toFixed(2), balanceBefore: balanceBefore.toFixed(2), date: date});
+        if (status != "failed") {
+            let tChange = 0;
+            if (tType == "sell") {
+                tChange = 1 * price * quantity;
+            }
+            else if (tType == "buy") {
+                tChange = -1 * price * quantity;
+            }
+            let balanceAfter = balanceBefore + tChange;
+
+            this.setState({balanceChange: tChange.toFixed(2), balanceAfter: balanceAfter.toFixed(2), balanceBefore: balanceBefore.toFixed(2), date: date});
+        }
+        else {
+            this.setState({balanceChange: "N/A", balanceAfter: "N/A", balanceBefore: balanceBefore.toFixed(2), date: date});
+        }
     },
 
     render () {
@@ -115,13 +122,13 @@ var TransactionList = React.createClass({
 
     sell() {
         let token = JSON.parse(localStorage.authObject).access_token;
-        fetch('http://localhost:8080/transaction/createTransaction?firstName=LeBron&lastName=James&price=10.34&quantity=30&tType=sell', {method: 'POST', headers: {'Authorization': 'Bearer ' + token}})
+        fetch('http://localhost:8080/transaction/createTransaction?firstName=LeBron&lastName=James&price=11&quantity=30&tType=sell', {method: 'POST', headers: {'Authorization': 'Bearer ' + token}})
             .then(response => {console.log(response.status)});
     },
 
     buy() {
         let token = JSON.parse(localStorage.authObject).access_token;
-        fetch('http://localhost:8080/transaction/createTransaction?firstName=LeBron&lastName=James&price=10.34&quantity=30&tType=buy', {method: 'POST', headers: {'Authorization': 'Bearer ' + token}})
+        fetch('http://localhost:8080/transaction/createTransaction?firstName=LeBron&lastName=James&price=11&quantity=30&tType=buy', {method: 'POST', headers: {'Authorization': 'Bearer ' + token}})
             .then(response => {console.log(response.status)});
     },
 
