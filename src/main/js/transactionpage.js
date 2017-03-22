@@ -1,4 +1,5 @@
 import React from 'react';
+import Select from 'react-select';
 
 var TransactionEntry = React.createClass({
     getInitialState () {
@@ -171,7 +172,10 @@ var Transaction = React.createClass({
     getInitialState() {
         return {
             refresh: 1,
-            playerData: []
+            playerData: [],
+            playerData2: [],
+            options: null,
+            selected: ""
         }
     },
 
@@ -181,6 +185,18 @@ var Transaction = React.createClass({
     },
 
     componentDidMount() {
+        let options = [];
+        fetch('http://localhost:8080/player/getAllPlayers', {method: 'POST', headers: {'Authorization': 'Bearer ' + token}})
+            .then(response => {
+                if (response.ok) {
+                    response.json().then(json => {
+                        for (let i = 0; i < json.length; i++) {
+                            options.push({label: json[i].firstName + " " + json[i].lastName, value: json[i].firstName + " " + json[i].lastName, firstName: json[i].firstName, lastName: json[i].lastName});
+                        }
+                        this.setState({options: options});
+                    })
+                }
+            });
         let token = JSON.parse(localStorage.authObject).access_token;
         fetch('http://localhost:8080/player/getAllPlayers', {method: 'POST', headers: {'Authorization': 'Bearer ' + token}})
             .then(response => {
@@ -219,14 +235,94 @@ var Transaction = React.createClass({
         }
     },
 
+    callAPI2(firstName, lastName) {
+        let token = JSON.parse(localStorage.authObject).access_token;
+        fetch('http://localhost:8080/player/getPlayer?lastName='+lastName+"&firstName="+firstName, {method: 'POST', headers: {'Authorization': 'Bearer ' + token}})
+            .then(response => {
+                if (response.ok) {
+                    response.json().then(json => {
+                        let result = [];
+                        result.push(<thead><tr>
+                            <th>First</th>
+                            <th>Last</th>
+                            <th>#</th>
+                            <th>POS</th>
+                            <th>Height</th>
+                            <th>Weight</th>
+                            <th>Age</th>
+                            <th>City</th>
+                            <th>Name</th>
+                            <th>GP</th>
+                            <th>REB/GP</th>
+                            <th>AST/GP</th>
+                            <th>PTS/GP</th>
+                            <th>Price</th>
+                            <th>Change</th>
+                        </tr></thead>);
+                        let change = json.currentPrice-json.previousDayPrice;
+                        result.push(<tbody><tr>
+                            <td>{json.firstName}</td>
+                            <td>{json.lastName}</td>
+                            <td>{json.jerseyNumber}</td>
+                            <td>{json.position}</td>
+                            <td>{json.height}</td>
+                            <td>{json.weight}</td>
+                            <td>{json.age}</td>
+                            <td>{json.teamCity}</td>
+                            <td>{json.teamName}</td>
+                            <td>{json.gp}</td>
+                            <td>{json.reb}</td>
+                            <td>{json.ast}</td>
+                            <td>{json.pts}</td>
+                            <td>{json.currentPrice}</td>
+                            <td>{change}</td>
+                        </tr></tbody>);
+                        this.setState({playerData2: []});
+                        this.setState({playerData2: result});
+                    })
+                }
+            });
+    },
+
+
+    logChange(val) {
+        let x = val.value;
+        console.log("Selected: " + x);
+        this.setState({selected: x});
+        this.callAPI2(val.firstName, val.lastName);
+    },
+
+    loadOptions() {
+        let options = [];
+        if (this.state.options == null) {
+            let token = JSON.parse(localStorage.authObject).access_token;
+            fetch('http://localhost:8080/player/getAllPlayers', {method: 'POST', headers: {'Authorization': 'Bearer ' + token}})
+                .then(response => {
+                    if (response.ok) {
+                        response.json().then(json => {
+                            for (let i = 0; i < json.length; i++) {
+                                options.push({label: json[i].firstName + " " + json[i].lastName, value: json[i].firstName + " " + json[i].lastName, firstName: json[i].firstName, lastName: json[i].lastName});
+                            }
+                            this.setState({options: options});
+                        })
+                    }
+                });
+        }
+    },
+
     render() {
         //puts together all the different components
+        this.loadOptions();
         return(
             <div>
                 <h1>Pending Transactions</h1>
                 <TransactionList type="opened" url="getPendingTransactions" refresh={this.state.refresh} callback={this.refreshData}/>
                 <h1>Transaction History</h1>
                 <TransactionList type="closed" url="getPastTransactions" refresh={this.state.refresh} callback={this.refreshData}/>
+                <Select value={this.state.selected} options={this.state.options} onChange={this.logChange}/>
+                <table>
+                   {this.state.playerData2}
+                </table>
                 <form>
                     <input type="text" onChange={this.callAPI}/>
                 </form>

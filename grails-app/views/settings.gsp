@@ -8,6 +8,14 @@
     <link rel = "stylesheet"
           type = "text/css"
           href="${resource(dir: 'css', file: 'settings.css')}" />
+    <script>
+        function checkAuth() {
+            if (localStorage.getItem("authObject") === null) {
+                window.location.href='/login'
+            }
+        }
+        window.onload = checkAuth;
+    </script>
 </head>
 <body>
 <div id="main">
@@ -82,8 +90,18 @@
             <br><br>
         </div>
         <div id="bottom">
-            <button type="submit" onclick="window.location.href='/'">Logout</button>
+            <button type="submit" onclick="logout()">Logout</button>
+            <script>
+                function logout() {
+                    localStorage.removeItem("authObject");
+                    sessionStorage.setItem("cash", null);
+                    sessionStorage.setItem("netWorth", null);
+                    sessionStorage.setItem("username", null);
+                    window.location.href='/'
+                }
+            </script>
         </div>
+
 
         <asset:javascript src="leagues.bundle.js"/>
 

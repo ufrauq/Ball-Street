@@ -8,6 +8,14 @@
     <link rel = "stylesheet"
           type = "text/css"
           href="${resource(dir: 'css', file: 'leagueStyle.css')}" />
+    <script>
+        function checkAuth() {
+            if (localStorage.getItem("authObject") === null) {
+                window.location.href='/login'
+            }
+        }
+        window.onload = checkAuth;
+    </script>
 </head>
 <body>
 <div id="main">
