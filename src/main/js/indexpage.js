@@ -83,8 +83,8 @@ var UserAccountCreator = React.createClass({
             console.log(response.status);
             if (response.ok) {
                 response.json().then(json => {
-                    //if successful then store name, money and netWorth (to be accessed by other pages) and link to home page
-                    sessionStorage.setItem("cash", json.money);
+                    //if successful then store name, balance and netWorth (to be accessed by other pages) and link to home page
+                    sessionStorage.setItem("balance", json.balance);
                     sessionStorage.setItem("netWorth", json.netWorth);
                     sessionStorage.setItem("username", name);
                     window.location.href='/home';
