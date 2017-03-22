@@ -48,18 +48,24 @@
             </ul>
         </div>
     </div>
-    <div>
-        <marquee>Welcome to BallStreet!  Past game scores will be displayed here!</marquee>
-    </div>
+
     <div id="sideMenu" class="areas" >
         <button type="button" class="sideButtons" onclick="window.location.href='/stocks'">Stocks</button>
         <button type="button" class="sideButtons" onclick="window.location.href='/leagues'">Leagues</button>
         <button type="button" class="sideButtons" onclick="window.location.href='/players'">Players</button>
         <button type="button" class="selectedSide" onclick="window.location.href='/market'">Stock Market</button>
     </div>
+
+    <div>
+        <marquee>Welcome to BallStreet!  Past game scores will be displayed here!</marquee>
+    </div>
     <br>
+
+
+
+
     <div id="contentArea" class="areas">
-        <h1>Market: coming soon...</h1>
+        <h1>Stock Market (get from Umar)</h1>
     </div>
 </div>
 </body>

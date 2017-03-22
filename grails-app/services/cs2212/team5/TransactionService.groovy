@@ -2,12 +2,29 @@ package cs2212.team5
 
 import grails.transaction.Transactional
 
+import java.sql.Connection
+import java.sql.DriverManager
+import java.sql.ResultSet
+import java.sql.Statement
+
 @Transactional
 class TransactionService {
 
+    def addToPortfolio(UserAccount user, String fName, String lName, int quantity) {
+        def stock = user.portfolio.find{it.stockFirstName == fName && it.stockLastName == lName}
+        if (stock != null) {
+            stock.quantityOwned = stock.quantityOwned + quantity
+            System.out.println(stock.quantityOwned)
+            stock.save(flush: true)
+        }
+        else {
+            def newStock = new Stock(stockFirstName: fName, stockLastName: lName, quantityOwned: quantity, quantityBefore: 0, owner: user).save()
+            user.addToPortfolio(newStock).save(flush: true)
+        }
+    }
+
     def removeFromPortfolio(UserAccount user, String fName, String lName, int quantity) {
         def stock = user.portfolio.find{it.stockFirstName == fName && it.stockLastName == lName}
-        System.out.println("remove " + stock)
         if (stock.quantityOwned == quantity) {
             user.removeFromPortfolio(stock)
             stock.delete(flush: true)
@@ -19,81 +36,117 @@ class TransactionService {
         }
     }
 
-    def calculateNetWorth(UserAccount user) {
+    def calculateNetWorth(UserAccount user, Statement statement, ResultSet result) {
         user.netWorth = user.balance
         for (s in user.portfolio) {
-            def price = 25//GET PRICE FROM SQL DATA
+            def price = 0
+            String lastName = s.stockLastName
+            String firstName = s.stockFirstName
+            result = statement.executeQuery("SELECT `#FirstName`,`#LastName`,`#CurrentPrice` FROM INITIALSTOCKPRICES WHERE `#LastName`='" + lastName + "' AND `#FirstName`='" + firstName + "'");
+            while ( result.next() ) {
+                price = result.getDouble(3)
+            }
             user.netWorth = user.netWorth + price*s.quantityOwned
         }
     }
 
     def serviceMethod() {
+
+        String url = "jdbc:mysql://team5-compsci2212.cgndepqzlosf.us-east-1.rds.amazonaws.com/Initialized_Players";
+        Connection connection = DriverManager.getConnection(url, "Zain", "password");
+        Statement statement = connection.createStatement();
+        ResultSet result;
+
         def allUsers = UserAccount.findAll()
         def currentDate = new Date()
+        def hours = currentDate.getHours()
+        def minutes = currentDate.getMinutes()
         for (user in allUsers) {
-            /*if (hours == 9 && minutes == 0) {
+            if (hours == 9 && minutes == 0) {
                 for (int i = 9; i > 0; i ++) {
                     user.netWorthHistory[i] = user.netWorthHistory[i-1]
                     user.balanceHistory[i] = user.balanceHistory[i-1]
                 }
                 user.netWorthHistory[0] = user.netWorth
                 user.balanceHistory[0] = user.balance
-            }*/
-            if (user.transactions != null) {
+            }
+            def pendingTransactions = user.transactions.findAll{it.tStatus == "open"}.sort{it.transactionID}
+            if (pendingTransactions.size() > 0) {
+                double previousBalance = pendingTransactions.get(0).balanceBefore
                 System.out.println(user.username)
-                def pendingTransactions = user.transactions.findAll{it.tStatus == "open"}
+                for (stock in  user.portfolio) {
+                    stock.quantityOwned = stock.quantityBefore
+                    stock.save(flush: true)
+                }
                 for (transaction in pendingTransactions) {
-                    if (transaction.tType == "sell") {
-                        def price = 10//GET PRICE FROM SQL DATA
-                        if (price != transaction.stockPrice) {
-                            user.balance = user.balance + (price-transaction.stockPrice)*transaction.stockQuantity
-                            user.save(flush: true)
-                            transaction.stockPrice = price
-                        }
-                        transaction.transactionClosed = currentDate
-                        transaction.tStatus = "closed"
-                        transaction.save(flush: true)
+                    def price = 0
+                    String lastName = transaction.stockLastName
+                    String firstName = transaction.stockFirstName
+                    result = statement.executeQuery("SELECT `#FirstName`,`#LastName`,`#CurrentPrice` FROM INITIALSTOCKPRICES WHERE `#LastName`='" + lastName + "' AND `#FirstName`='" + firstName + "'");
+                    while ( result.next() ) {
+                        price = result.getDouble(3)
                     }
-                    else if (transaction.tType == "buy") {
-                        def price = 10//GET PRICE FROM SQL DATA
-                        if (price != transaction.stockPrice) {
-                            user.balance = user.balance - (price-transaction.stockPrice)*transaction.stockQuantity
+
+                    System.out.println("The price of " + firstName + " " + lastName + " is "+ price)
+                    if (transaction.tType == "sell") {
+                        transaction.stockPrice = price
+                        transaction.transactionClosed = currentDate
+                        user.balance = previousBalance + transaction.stockPrice*transaction.stockQuantity
+                        def stock = user.portfolio.find{it.stockFirstName == transaction.stockFirstName && it.stockLastName == transaction.stockLastName}
+                        if (stock == null) {
+                            transaction.balanceBefore = previousBalance
+                            transaction.tStatus = "failed"
+                            transaction.save(flush: true)
+                            user.balance = previousBalance
                             user.save(flush: true)
-                            transaction.stockPrice = price
-                            if (user.balance > 0) {
-                                transaction.transactionClosed = currentDate
-                                transaction.tStatus = "closed"
-                                transaction.save(flush: true)
-                            }
-                            else {
-                                transaction.transactionClosed = currentDate
-                                transaction.tStatus = "failed"
-                                transaction.save(flush: true)
-                                user.balance = user.balance + transaction.stockPrice*transaction.stockQuantity
-                                user.save(flush: true)
-                                removeFromPortfolio(user, transaction.stockFirstName, transaction.stockLastName, transaction.stockQuantity)
-                            }
+                        }
+                        else if (stock.quantityOwned >= transaction.stockQuantity) {
+                            user.save(flush: true)
+                            transaction.balanceBefore = previousBalance
+                            transaction.tStatus = "closed"
+                            transaction.save(flush: true)
+                            previousBalance = user.balance
+                            removeFromPortfolio(user, transaction.stockFirstName, transaction.stockLastName, transaction.stockQuantity)
                         }
                         else {
-                            if (user.balance > 0) {
-                                transaction.transactionClosed = currentDate
-                                transaction.tStatus = "closed"
-                                transaction.save(flush: true)
-                            }
-                            else {
-                                transaction.transactionClosed = currentDate
-                                transaction.tStatus = "failed"
-                                transaction.save(flush: true)
-                                user.balance = user.balance + transaction.stockPrice*transaction.stockQuantity
-                                user.save(flush: true)
-                                removeFromPortfolio(user, transaction.stockFirstName, transaction.stockLastName, transaction.stockQuantity)
-                            }
+                            transaction.balanceBefore = previousBalance
+                            transaction.tStatus = "failed"
+                            transaction.save(flush: true)
+                            user.balance = previousBalance
+                            user.save(flush: true)
                         }
                     }
+                    else if (transaction.tType == "buy") {
+                        transaction.stockPrice = price
+                        transaction.transactionClosed = currentDate
+                        user.balance = previousBalance - transaction.stockPrice*transaction.stockQuantity
+                        if (user.balance >= 0) {
+                            user.save(flush: true)
+                            transaction.balanceBefore = previousBalance
+                            transaction.tStatus = "closed"
+                            transaction.save(flush: true)
+                            previousBalance = user.balance
+                            addToPortfolio(user, transaction.stockFirstName, transaction.stockLastName, transaction.stockQuantity)
+                        }
+                        else {
+                            transaction.balanceBefore = previousBalance
+                            transaction.tStatus = "failed"
+                            transaction.save(flush: true)
+                            user.balance = previousBalance
+                            user.save(flush: true)
+                        }
+                    }
+                } //end transaction loop
+                for (stock in  user.portfolio) {
+                    stock.quantityBefore = stock.quantityOwned
+                    stock.save(flush: true)
                 }
-                calculateNetWorth(user)
+                calculateNetWorth(user, statement, result)
                 user.save(flush: true)
-            }
-        }
+            } //end if (checking if user has pending transactions)
+        } //end user loop
+
+        connection.close();
     }
 }
+
