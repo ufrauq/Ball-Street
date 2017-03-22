@@ -13,7 +13,7 @@ class Application extends GrailsAutoConfiguration {
 
     static void main(String[] args) {
         GrailsApp.run(Application, args)
-        String url = "jdbc:mysql://team5-compsci2212.cgndepqzlosf.us-east-1.rds.amazonaws.com/Initialized_Players";
+        /*String url = "jdbc:mysql://team5-compsci2212.cgndepqzlosf.us-east-1.rds.amazonaws.com/Initialized_Players";
         Connection connection = DriverManager.getConnection(url, "Zain", "password");
         Statement statement = connection.createStatement();
         ResultSet result;
@@ -26,7 +26,7 @@ class Application extends GrailsAutoConfiguration {
             }
             System.out.println();
         }
-        connection.close();
+        connection.close();*/
         while (true) {
             sleep(60000);
             def currentTime = new Date();

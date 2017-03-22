@@ -8,6 +8,8 @@
     <link rel = "stylesheet"
           type = "text/css"
           href="${resource(dir: 'css', file: 'transactionStyle.css')}" />
+
+    <link rel="stylesheet" href="https://unpkg.com/react-select/dist/react-select.css">
     <script>
         function checkAuth() {
             if (localStorage.getItem("authObject") === null) {

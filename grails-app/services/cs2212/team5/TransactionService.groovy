@@ -5,6 +5,7 @@ import grails.transaction.Transactional
 import java.sql.Connection
 import java.sql.DriverManager
 import java.sql.ResultSet
+import java.sql.SQLException
 import java.sql.Statement
 
 @Transactional
@@ -42,20 +43,33 @@ class TransactionService {
             def price = 0
             String lastName = s.stockLastName
             String firstName = s.stockFirstName
-            result = statement.executeQuery("SELECT `#FirstName`,`#LastName`,`#CurrentPrice` FROM INITIALSTOCKPRICES WHERE `#LastName`='" + lastName + "' AND `#FirstName`='" + firstName + "'");
-            while ( result.next() ) {
-                price = result.getDouble(3)
+            try {
+                result = statement.executeQuery("SELECT `#FirstName`,`#LastName`,`#CurrentPrice` FROM INITIALSTOCKPRICES WHERE `#LastName`='" + lastName + "' AND `#FirstName`='" + firstName + "'");
+                while ( result.next() ) {
+                    price = result.getDouble(3)
+                }
+            }
+            catch (SQLException e) {
+                System.out.println(e.getMessage())
             }
             user.netWorth = user.netWorth + price*s.quantityOwned
         }
     }
 
     def serviceMethod() {
-
-        String url = "jdbc:mysql://team5-compsci2212.cgndepqzlosf.us-east-1.rds.amazonaws.com/Initialized_Players";
-        Connection connection = DriverManager.getConnection(url, "Zain", "password");
-        Statement statement = connection.createStatement();
+        Connection connection;
+        Statement statement
         ResultSet result;
+        try {
+            String url = "jdbc:mysql://team5-compsci2212.cgndepqzlosf.us-east-1.rds.amazonaws.com/Initialized_Players";
+            connection = DriverManager.getConnection(url, "Zain", "password");
+            statement = connection.createStatement();
+        }
+        catch (SQLException e) {
+            System.out.println("Cannot connect to SQL database...")
+            System.out.println(e.getMessage())
+            return
+        }
 
         def allUsers = UserAccount.findAll()
         def currentDate = new Date()
@@ -82,13 +96,23 @@ class TransactionService {
                     def price = 0
                     String lastName = transaction.stockLastName
                     String firstName = transaction.stockFirstName
-                    result = statement.executeQuery("SELECT `#FirstName`,`#LastName`,`#CurrentPrice` FROM INITIALSTOCKPRICES WHERE `#LastName`='" + lastName + "' AND `#FirstName`='" + firstName + "'");
-                    while ( result.next() ) {
-                        price = result.getDouble(3)
+                    try {
+                        result = statement.executeQuery("SELECT `#FirstName`,`#LastName`,`#CurrentPrice` FROM INITIALSTOCKPRICES WHERE `#LastName`='" + lastName + "' AND `#FirstName`='" + firstName + "'");
+                        while ( result.next() ) {
+                            price = result.getDouble(3)
+                        }
+                    }
+                    catch (SQLException e) {
+                        System.out.println("Cannot retrieve price for " + firstName + " " + lastName)
+                        System.out.println(e.getMessage())
+                        transaction.balanceBefore = previousBalance
+                        transaction.tStatus = "failed"
+                        transaction.save(flush: true)
+                        continue
                     }
 
                     System.out.println("The price of " + firstName + " " + lastName + " is "+ price)
-                    if (transaction.tType == "sell") {
+                    if (transaction.tType == "sell" && transaction.tStatus != "failed") {
                         transaction.stockPrice = price
                         transaction.transactionClosed = currentDate
                         user.balance = previousBalance + transaction.stockPrice*transaction.stockQuantity
@@ -116,7 +140,7 @@ class TransactionService {
                             user.save(flush: true)
                         }
                     }
-                    else if (transaction.tType == "buy") {
+                    else if (transaction.tType == "buy" && transaction.tStatus != "failed") {
                         transaction.stockPrice = price
                         transaction.transactionClosed = currentDate
                         user.balance = previousBalance - transaction.stockPrice*transaction.stockQuantity
