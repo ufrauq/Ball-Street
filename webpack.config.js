@@ -5,7 +5,8 @@ module.exports = {
         index: './src/main/js/index.js',
         leagues : './src/main/js/leagues.js',
         player: './src/main/js/player.js',
-        home: './src/main/js/home.js'
+        home: './src/main/js/home.js',
+        transaction: './src/main/js/transaction.js'
     },
     output: {
         path: './grails-app/assets/javascripts',

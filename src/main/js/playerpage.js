@@ -28,6 +28,37 @@ const testPlayerData = [
     {Date: 'Day 10', price: -3.36},
 ]
 
+var UpdateData = React.createClass({
+    componentDidMount() {
+        let token = JSON.parse(localStorage.authObject).access_token;
+        fetch('http://localhost:8080/player/getPlayersByKeyword?keyword=' + keyword, {
+            method: 'POST',
+            headers: {'Authorization': 'Bearer ' + token}
+        })
+            .then(response => {
+                if (response.ok) {
+                    response.json().then(json => {
+                        let result = [];
+                        result.push(<thead>
+                        <tr>
+                            <th>First Name:</th>
+                            <th>Last Name:</th>
+                            <th>Previous Price:</th>
+                            <th>Price:</th>
+                        </tr>
+                        </thead>);
+                        for (let i = 0; i < json.length; i++) {
+                            result.push(<PlayerEntry firstName={json[i].firstName} lastName={json[i].lastName}
+                                                     pPrice={json[i].previousDayPrice} price={json[i].currentPrice}/>);
+                        }
+                        this.setState({playerData: result});
+                        this.setState({playerData: result});
+                    })
+                }
+            });
+    },
+})
+
 var LineGraph = React.createClass({
     render () {
         return (
