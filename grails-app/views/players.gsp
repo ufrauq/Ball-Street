@@ -12,6 +12,7 @@
     <link rel = "stylesheet"
           type = "text/css"
           href="${resource(dir: 'css', file: 'stocks.css')}" />
+    <link rel="stylesheet" href="https://unpkg.com/react-select/dist/react-select.css">
 
     <script>
         function checkAuth() {
@@ -71,6 +72,12 @@
     <div id="contentArea" class="areas">
 
 
+
+
+        <div id="chartContainer"></div>
+        <asset:javascript src="player.bundle.js"/>
+
+        <!--
         <div float="left">
             <h1>Players</h1>
         </div>
@@ -83,11 +90,6 @@
         <div style="padding: 20px">
             <h2 align="left"> Suggested Players...</h2>
         </div>
-
-        <div id="chartContainer"></div>
-        <asset:javascript src="player.bundle.js"/>
-
-        <!--
 
         <div id="player">
             <div class="image-cropper" id="pPic" >
