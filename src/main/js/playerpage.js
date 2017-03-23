@@ -29,6 +29,8 @@ const testPlayerData = [
 ];
 
 var LineGraph = React.createClass({
+
+
     render () {
         return (
             <LineChart width={400} height={300} data={testPlayerData}>
