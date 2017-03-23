@@ -5,6 +5,9 @@
     <link rel = "stylesheet"
           type = "text/css"
           href="${resource(dir: 'css', file: 'generalStyle.css')}" />
+    <link rel = "stylesheet"
+          type = "text/css"
+          href="${resource(dir: 'css', file: 'market.css')}" />
     <script>
         function checkAuth() {
             if (localStorage.getItem("authObject") === null) {
@@ -60,12 +63,9 @@
         <marquee>Welcome to BallStreet!  Past game scores will be displayed here!</marquee>
     </div>
     <br>
-
-
-
-
     <div id="contentArea" class="areas">
-        <h1>Stock Market (get from Umar)</h1>
+        <div id="marketPage"></div>
+        <asset:javascript src="market.bundle.js"/>
     </div>
 </div>
 </body>

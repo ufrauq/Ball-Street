@@ -140,5 +140,92 @@ class PlayerController {
         }
     }
 
+    def getSuggestedPlayers() {
+        Connection connection = null;
+        try {
+            String url = "jdbc:mysql://team5-compsci2212.cgndepqzlosf.us-east-1.rds.amazonaws.com/Initialized_Players"
+            connection = DriverManager.getConnection(url, "Zain", "password")
+            Statement statement = connection.createStatement()
+            ResultSet result
+            result = statement.executeQuery("SELECT * FROM topfiveplayers")
+            PlayerSummary [] rtrn = new PlayerSummary[5]
+            int i = 0
+            while (result.next() && i < 5) {
+                rtrn[i] = new PlayerSummary(firstName: result.getString(5), lastName: result.getString(4), team: result.getString(8), currentPrice: result.getInt(14)) //user current price to store daily fantasy points
+                i = i + 1
+            }
+            respond rtrn
+        }
+        catch (SQLException e) {
+            System.out.println(e.getMessage())
+            response.status = 501 //connection or query issue
+        }
+        finally {
+            if (connection != null) {
+                try {
+                    connection.close()
+                }
+                catch (SQLException e) {
+                    System.out.println(e.getMessage())
+                    response.status = 501 //connection or query issue
+                }
+            }
+        }
+    }
+
+    def getPlayerPriceHistory() {
+        Connection connection = null;
+        try {
+            String firstName = params.firstName
+            String lastName = params.lastName
+            String url = "jdbc:mysql://team5-compsci2212.cgndepqzlosf.us-east-1.rds.amazonaws.com/Initialized_Players"
+            connection = DriverManager.getConnection(url, "Zain", "password")
+            Statement statement = connection.createStatement()
+            ResultSet result
+            result = statement.executeQuery("SELECT * FROM INITIALSTOCKPRICES WHERE `#LastName`='" + lastName + "' AND `#FirstName`='" + firstName + "'");
+            int rows = 0
+            if (result.last()) {
+                rows = result.getRow()
+                // Move to beginning
+                result.beforeFirst()
+            }
+            System.out.println("The numbers of rows is " + rows + " so...")
+            if (rows == 1) {
+                double [] rtrn = new double[10];
+                while (result.next()) {
+                    for (int i=9; i>0; i--) {
+                        double price = result.getDouble(24+i)
+                        if (price == null) {
+                            rtrn[i] = 0
+                        }
+                        else {
+                            rtrn[i] = price
+                        }
+                    }
+                    rtrn[0] = result.getDouble(23)
+                }
+                respond rtrn
+            }
+            else {
+                response.status = 502 //player does not exist
+            }
+        }
+        catch (SQLException e) {
+            System.out.println(e.getMessage())
+            response.status = 501 //connection or query issue
+        }
+        finally {
+            if (connection != null) {
+                try {
+                    connection.close()
+                }
+                catch (SQLException e) {
+                    System.out.println(e.getMessage())
+                    response.status = 501 //connection or query issue
+                }
+            }
+        }
+    }
+
     def index() { }
 }
