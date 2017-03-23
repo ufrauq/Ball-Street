@@ -1,4 +1,10 @@
-button {
+body{
+    background-color: white;
+    font-family: "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    margin-bottom: auto;
+}
+
+button{
     background-color: #dddddd;
     padding: 10px 70px;
     font-size: 14px;
@@ -16,7 +22,6 @@ button:hover {
     border-radius: 10px;
     border: solid red;
     /*border: 1px solid dimgrey;*/
-
 }
 
 .profile{
@@ -24,17 +29,18 @@ button:hover {
 }
 
 #left{
-
     width: 40%;
     float: left;
     padding: 20px;
     height: 100%;
+    padding-top: 80px;
 }
 
 #left-top{
     float: left;
     width:100%;
     margin-top: 5px;
+    margin-left: 80px;
 }
 
 #chartContainer {
@@ -46,8 +52,13 @@ button:hover {
     align: center;
     text-align: left;
     float:left;
-    margin-left: 200px;
+    margin-left: 180px;
+    padding-top: 50px;
+}
 
+#chartTitle{
+    padding-top: 350px;
+    padding-left: 650px;
 }
 
 #left-down{
@@ -62,9 +73,8 @@ button:hover {
     margin-left: 100px;
 }
 #right-top{
-
     float: left;
-
+    margin-left: 100px;
 }
 
 #bottom{
@@ -90,8 +100,6 @@ th {
     font-size: 18px;
     background-color: #dddddd;
     -webkit-transition-duration: 0.4s; /* translations */
-
-
 }
 
 td {
@@ -102,7 +110,4 @@ td {
     color: #808080;
     font-size: 17px;
     -webkit-transition-duration: 0.4s; /* translations */
-
-
-
 }

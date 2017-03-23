@@ -92,6 +92,10 @@
         <div id="chartContainer"></div>
         <asset:javascript src="home.bundle.js"/>
 
+        <div id ="chartTitle">
+            <p>Net Worth over the Last 10 Days</p>
+        </div>
+
     </div>
 </div>
 </body>
