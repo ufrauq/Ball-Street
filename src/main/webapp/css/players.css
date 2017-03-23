@@ -1,4 +1,45 @@
+body{
+    background-color: white;
+    font-family: "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    margin-bottom: auto;
+}
 
+#chartContainer{
+    display: block;
+
+    padding-left:0px;
+    width:1000px;
+}
+#container{
+    padding:100px;
+    text-align: center;
+
+
+}
+
+.selectBar{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1000px;
+    padding-bottom: 15px;
+    padding-top: 50px;
+}
+
+.playerTable{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    padding-right: 10px;
+}
+
+.chartTitle{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 /* When the input field gets focus, change its width to 100% */
 input[type=text] {
@@ -17,7 +58,7 @@ input[type=text] {
 }
 
 input[type=text]:focus {
-    width: 90%;
+    <!--width: 90%; -->
     margin-left:20px;
     margin-right:20px;
 }

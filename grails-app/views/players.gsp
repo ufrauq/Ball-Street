@@ -71,11 +71,13 @@
     <br>
     <div id="contentArea" class="areas">
 
-
+        <div id="container">
 
 
         <div id="chartContainer"></div>
         <asset:javascript src="player.bundle.js"/>
+
+
 
         <!--
         <div float="left">
@@ -150,6 +152,7 @@
             </div>
             <!--<div id="arrow-up" float="right" >
             </div> -->
+        </div>
 
         </div>
 
