@@ -9,7 +9,7 @@ module.exports = {
         transaction: './src/main/js/transaction.js'
     },
     output: {
-        path: './grails-app/assets/javascripts',
+        path: path.join(__dirname, './grails-app/assets/javascripts'),
         publicPath: '/assets/',
         filename: '[name].bundle.js'
     },

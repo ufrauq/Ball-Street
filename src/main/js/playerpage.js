@@ -26,7 +26,7 @@ const testPlayerData = [
     {Date: 'Day 8', price: 1.76},
     {Date: 'Day 9', price: 0.31},
     {Date: 'Day 10', price: -3.36},
-]
+];
 
 var UpdateData = React.createClass({
     componentDidMount() {
@@ -71,7 +71,7 @@ var LineGraph = React.createClass({
             </LineChart>
         );
     }
-})
+});
 
 export class Graph extends React.Component {
     constructor() {

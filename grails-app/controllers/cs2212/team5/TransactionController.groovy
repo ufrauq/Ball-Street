@@ -22,7 +22,7 @@ class TransactionController extends RestfulController {
             respond user.transactions.findAll{it.tStatus == "closed" || it.tStatus == "failed"}.sort{it.transactionID}
         }
         else {
-            response.status = 501
+            response.status = 501 //user does not exist
         }
     }
 
@@ -33,7 +33,7 @@ class TransactionController extends RestfulController {
             respond user.transactions.findAll{it.tStatus == "open"}.sort{it.transactionID}
         }
         else {
-            response.status = 501
+            response.status = 501 //user does not exist
         }
     }
 
@@ -43,7 +43,7 @@ class TransactionController extends RestfulController {
         def user = UserAccount.find{username == userName}
         def transaction = user.transactions.find{transactionID = id}
         if (user == null) {
-            response.status = 501
+            response.status = 501 //user doesnt exist
         }
         else if (transaction != null) {
             def cost = transaction.stockPrice*transaction.stockQuantity
@@ -67,7 +67,7 @@ class TransactionController extends RestfulController {
             }
         }
         else {
-            response.status = 503
+            response.status = 503 //transaction is null
         }
     }
 
@@ -79,8 +79,11 @@ class TransactionController extends RestfulController {
         def tType = params.tType
         def userName = springSecurityService.currentUser.username
         def user = UserAccount.find{username == userName}
-        if (user == null) {
-            response.status = 501
+        if (quantity <= 0) {
+            response.status = 506 //invalid quantity
+        }
+        else if (user == null) {
+            response.status = 501 //user does not exist
         }
         else {
             if (tType == "buy") {
@@ -99,7 +102,6 @@ class TransactionController extends RestfulController {
                 }
             }
             else if (tType == "sell") {
-                System.out.println(user.portfolio)
                 def stock = user.portfolio.find{it.stockFirstName == fName && it.stockLastName == lName}
                 if (stock != null) {
                     if (quantity > stock.quantityOwned) {
@@ -115,11 +117,11 @@ class TransactionController extends RestfulController {
                     }
                 }
                 else {
-                    response.status = 504
+                    response.status = 504 //do not own stock
                 }
             }
             else {
-                response.status = 505
+                response.status = 505 //incorrect type
             }
         }
     }
