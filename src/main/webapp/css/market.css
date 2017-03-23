@@ -1,0 +1,64 @@
+#marketPage {
+    padding-top: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-bottom: 25px;
+}
+
+.searchbar {
+    float: left;
+    padding: 20px;
+}
+.navigator {
+    float: right;
+}
+.navButton {
+    background-color: #dddddd;
+    padding: 8px 8px 8px 8px;
+    font-size: 14px;
+
+    color: red;
+    cursor: pointer;
+    border: solid lightgrey;
+    border-radius: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.navButton:hover {
+    background-color: red;
+    color: white;
+    border-radius: 10px;
+    border: solid red;
+    padding: 8px 8px 8px 8px;
+}
+
+.marketList {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table{
+    border-radius: 20px;
+    -webkit-transition-duration: 0.4s; /* translations */
+}
+
+th {
+    border: 5px solid lightgrey;
+    text-align: left;
+    padding: 8px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: red;
+    font-size: 18px;
+    background-color: #dddddd;
+    -webkit-transition-duration: 0.4s; /* translations */
+}
+
+td {
+    border: 5px solid lightgrey;
+    text-align: left;
+    padding: 8px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #808080;
+    font-size: 17px;
+    -webkit-transition-duration: 0.4s; /* translations */
+}

@@ -65,7 +65,9 @@
     <br>
     <div id="contentArea" class="areas">
         <h1>My Stocks</h1>
-
+        <div id="stockPage"></div>
+        <asset:javascript src="stocks.bundle.js"/>
+        <script>/*
         <div id="player">
             <div class="image-cropper" id="pPic" >
                 <img src="http://www.trbimg.com/img-55b10e35/turbine/la-et-mn-lebron-james-space-jam-2-warner-bros-20150722" width="150px" >
@@ -78,7 +80,7 @@
             </div>
 
 
-             <!--Will be implementing a javascript method to change the arrow colours and colour of price-->
+            <!--Will be implementing a javascript method to change the arrow colours and colour of price-->
             <div float="left" align="left">
                 <h3 id="pChange"  >
                     +50
@@ -249,8 +251,8 @@
                 <h2>Next Page >></h2>
             </div>
 
-        </div>
-
+        </div>*/
+        </script>
 
 
     </div>

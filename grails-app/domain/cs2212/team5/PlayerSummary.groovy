@@ -11,5 +11,6 @@ class PlayerSummary {
 
     static constraints = {
         quantityOwned nullable: true
+        previousDayPrice nullable: true
     }
 }
