@@ -17,8 +17,6 @@ const testPlayerData = [
     {Date: 'Day 10', price: -3.36},
 ];
 
-
-
 var LineGraph = React.createClass({
     getInitialState () {
         return {
