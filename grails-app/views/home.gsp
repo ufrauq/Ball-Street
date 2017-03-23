@@ -76,35 +76,17 @@
             <div id="left-top">
                 <img class="profile" src="https://openclipart.org/download/247319/abstract-user-flat-3.svg" width = "200px" align="left">
 
-
-                <h2 id="moneY" align="right" >Networth:</h2>
+                <h2 id="money_id" align = "right">Net Worth:</h2>
                 <script>
-                    document.getElementById("moneY").innerHTML = "Networth: $" + sessionStorage.getItem("netWorth");
+                    document.getElementById("money_id").innerHTML = "Net Worth: $" + sessionStorage.getItem("netWorth");
                 </script>
 
 
-                <h2 id="mAv" align="right">Cash:</h2>
+                <h2 id="cash_id" align="right">Cash:</h2>
                 <script>
-                    document.getElementById("mAv").innerHTML = "Money: $" + sessionStorage.getItem("cash");
+                    document.getElementById("cash_id").innerHTML = "Money: $" + sessionStorage.getItem("cash");
                 </script>
             </div>
-        </div>
-
-        <div id="right">
-
-            <br>
-
-            <div id="right-top">
-                <h2>Transaction Requests:</h2>
-
-            </div>
-
-            <br><br><br><br><br><br><br><br><br><br>
-
-            <div id="right-down">
-                <h2>Transaction History:</h2>
-            </div>
-
         </div>
 
         <div id="chartContainer"></div>
