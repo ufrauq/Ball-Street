@@ -12,6 +12,7 @@ The project was started originally in January and the project duration will be a
 <ul>
 <li><i>User Profile</i></li>
 <ul><li>Users will be able to login and conduct their trades, and watch the market.</li>
+<li>User can view their networth and balance histories in a graph form. </li>
 <li>Additional feature:  using data visualization and reporting tools/APIs, each user will be able to create various dashboards tailored to their needs, based on available data (Difficulty in implementing:  medium)</li></ul><br><br>
 <li><i>Execution of Trades:</i></li>
 <ul><li>Users will be able to buy, sell, and trade player stock with the market or other users </li>
@@ -34,6 +35,7 @@ For the authorization of logging in, BallStreet will be using local verification
     <li><b>Added Features</b> - Leagues: Can create a league with 25 members, join leagues, leave leagues and set passwords   for said leagues. Currently, the leagues page requires refreshing buttons.</li>
 
 <li><b>Adjusted Features:</b> Twitter authentication for login changed to local login authorization due to lack of public URL callback as the project must run locally. </li>
+</ul>
 
 <li><b>Features to be be implemented:</b></li>
 <ul>
@@ -42,11 +44,16 @@ For the authorization of logging in, BallStreet will be using local verification
   <li>Execution of Trades</li>
   </ul>
   
-  <li> Final Updates </li>
+  <li> <i>Final Updates: </i></li>
   <ul>
   <li>SQL Database Implementation </li>
-  <li>Buying and Selling of Stocks</li>
-  <li>View Player Data </li>
+  <li>Local Authentification Instated </li>
+  <li>Marquee Displaying Past Game Scores </li>
+  <li>Buying and Selling of Stocks and Verifications</li>
+  <li>View Player Data (called info. from database)</li>
+  </ul>
+  Overall, we have implemented all features for the users stories and overcome and adjusted our project according to our
+  challenges. 
 
 
 </ul>
