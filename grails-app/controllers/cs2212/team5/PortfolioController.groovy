@@ -59,7 +59,7 @@ class PortfolioController {
                 for (s in user.portfolio) {
                     result = statement.executeQuery("SELECT * FROM INITIALSTOCKPRICES WHERE `#LastName`='" + s.stockLastName + "' AND `#FirstName`='" + s.stockFirstName + "'");
                     while (result.next()) {
-                        rtrn[i] = new PlayerSummary(firstName: result.getString(4), lastName: result.getString(3), team: result.getString(15), previousDayPrice: result.getDouble(days+23), currentPrice: result.getDouble(23), quantityOwned: s.quantityOwned)
+                        rtrn[i] = new PlayerSummary(firstName: result.getString("#FirstName"), lastName: result.getString("#LastName"), team: result.getString("#Team Abbr."), previousDayPrice: result.getDouble(days+23), currentPrice: result.getDouble("#CurrentPrice"), quantityOwned: s.quantityOwned)
                         i = i + 1
                     }
                 }

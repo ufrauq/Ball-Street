@@ -36,7 +36,7 @@ class PlayerController {
             PlayerSummary[] rtrn = new PlayerSummary[rows]
             int i = 0
             while (result.next()) {
-                rtrn[i] = new PlayerSummary(firstName: result.getString(4), lastName: result.getString(3), team: result.getString(15), previousDayPrice: result.getDouble(days+23), currentPrice: result.getDouble(23))
+                rtrn[i] = new PlayerSummary(firstName: result.getString("#FirstName"), lastName: result.getString("#LastName"), team: result.getString("#Team Abbr."), previousDayPrice: result.getDouble(days+23), currentPrice: result.getDouble("#CurrentPrice"))
                 i = i + 1
             }
             respond rtrn
@@ -77,7 +77,7 @@ class PlayerController {
             PlayerSummary [] rtrn = new PlayerSummary[rows]
             int i = 0
             while (result.next()) {
-                rtrn[i] = new PlayerSummary(firstName: result.getString(4), lastName: result.getString(3), team: result.getString(15), previousDayPrice: result.getDouble(days+23), currentPrice: result.getDouble(23))
+                rtrn[i] = new PlayerSummary(firstName: result.getString("#FirstName"), lastName: result.getString("#LastName"), team: result.getString("#Team Abbr."), previousDayPrice: result.getDouble(days+23), currentPrice: result.getDouble("#CurrentPrice"))
                 i = i + 1
             }
             respond rtrn
@@ -120,7 +120,7 @@ class PlayerController {
             if (rows == 1) {
                 PlayerProfile rtrn
                 while (result.next()) {
-                    rtrn = new PlayerProfile(firstName: result.getString(4), lastName: result.getString(3), jerseyNumber: result.getString(5), position: result.getString(6), height: result.getString(7), weight: result.getString(8), age: result.getInt(10), teamCity: result.getString(16), teamName: result.getString(17), gp: result.getInt(18), reb: result.getDouble(19), ast: result.getDouble(20), pts: result.getDouble(21), previousDayPrice: result.getDouble(days+23), currentPrice: result.getDouble(23))
+                    rtrn = new PlayerProfile(firstName: result.getString("#FirstName"), lastName: result.getString("#LastName"), jerseyNumber: result.getString("#Jersey Num"), position: result.getString("#Position"), height: result.getString("#Height"), weight: result.getString("#Weight"), age: result.getInt("#Age"), teamCity: result.getString("#Team City"), teamName: result.getString("#Team Name"), gp: result.getInt("#GamesPlayed"), reb: result.getDouble("#RebPerGame"), ast: result.getDouble("#AstPerGame"), pts: result.getDouble("#PtsPerGame"), previousDayPrice: result.getDouble(days+23), currentPrice: result.getDouble("#CurrentPrice"))
                 }
                 respond rtrn
             }
@@ -156,7 +156,7 @@ class PlayerController {
             PlayerSummary [] rtrn = new PlayerSummary[5]
             int i = 0
             while (result.next() && i < 5) {
-                rtrn[i] = new PlayerSummary(firstName: result.getString(6), lastName: result.getString(5), team: result.getString(9), currentPrice: result.getInt(15)) //user current price to store daily fantasy points
+                rtrn[i] = new PlayerSummary(firstName: result.getString("#FirstName"), lastName: result.getString("#LastName"), team: result.getString("#Team Abbr."), currentPrice: result.getInt("#FANTASYPOINTS")) //user current price to store daily fantasy points
                 i = i + 1
             }
             respond rtrn

@@ -13,20 +13,6 @@ class Application extends GrailsAutoConfiguration {
 
     static void main(String[] args) {
         GrailsApp.run(Application, args)
-        /*String url = "jdbc:mysql://team5-compsci2212.cgndepqzlosf.us-east-1.rds.amazonaws.com/Initialized_Players";
-        Connection connection = DriverManager.getConnection(url, "Zain", "password");
-        Statement statement = connection.createStatement();
-        ResultSet result;
-        String lastName = "James";
-        String firstName = "LeBron";
-        result = statement.executeQuery("SELECT `#FirstName`,`#LastName`,`#CurrentPrice` FROM INITIALSTOCKPRICES WHERE `#LastName`='" + lastName + "' AND `#FirstName`='" + firstName + "'");
-        while ( result.next() ) {
-            for (int i = 1; i <= 3; i++) {
-                System.out.print(result.getString(i) + " ");
-            }
-            System.out.println();
-        }
-        connection.close();*/
         while (true) {
             sleep(60000);
             def currentTime = new Date();

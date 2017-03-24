@@ -76,14 +76,6 @@ class TransactionService {
         def hours = currentDate.getHours()
         def minutes = currentDate.getMinutes()
         for (user in allUsers) {
-            if (minutes %2 == 0) {
-                for (int i = 9; i > 0; i --) {
-                    user.netWorthHistory[i] = user.netWorthHistory[i-1]
-                    user.balanceHistory[i] = user.balanceHistory[i-1]
-                }
-                user.netWorthHistory[0] = user.netWorth
-                user.balanceHistory[0] = user.balance
-            }
             def pendingTransactions = user.transactions.findAll{it.tStatus == "open"}.sort{it.transactionID}
             if (pendingTransactions.size() > 0) {
                 double previousBalance = pendingTransactions.get(0).balanceBefore
@@ -168,6 +160,14 @@ class TransactionService {
                 calculateNetWorth(user, statement, result)
                 user.save(flush: true)
             } //end if (checking if user has pending transactions)
+            if (minutes %2 == 0) {
+                for (int i = 9; i > 0; i --) {
+                    user.netWorthHistory[i] = user.netWorthHistory[i-1]
+                    user.balanceHistory[i] = user.balanceHistory[i-1]
+                }
+                user.netWorthHistory[0] = user.netWorth
+                user.balanceHistory[0] = user.balance
+            }
         } //end user loop
 
         connection.close();
