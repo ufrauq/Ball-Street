@@ -159,10 +159,11 @@ class TransactionService {
                     stock.quantityBefore = stock.quantityOwned
                     stock.save(flush: true)
                 }
-                calculateNetWorth(user, statement, result)
                 user.save(flush: true)
             } //end if (checking if user has pending transactions)
-            if (minutes %2 == 0) { //store networth and balance in history mechanisms
+            calculateNetWorth(user, statement, result)
+            user.save(flush: true)
+            if (minutes %2 == 0) { //store networth and balance in history mechanisms, every two minutes
                 for (int i = 9; i > 0; i --) {
                     user.netWorthHistory[i] = user.netWorthHistory[i-1]
                     user.balanceHistory[i] = user.balanceHistory[i-1]

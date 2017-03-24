@@ -67,9 +67,7 @@ class TransactionController extends RestfulController {
                     user.transactionCount = user.transactionCount + 1
                     //create buy transaction
                     def newTransaction = new Transaction(tType: "buy", tStatus: "open", transactionOpened: currentDate, stockFirstName: fName, stockLastName: lName, stockPrice: price, stockQuantity: quantity, transactionID: user.transactionCount, balanceBefore: user.balance, creator: user).save()
-                    System.out.println(user.balance)
                     user.balance = user.balance - quantity*price
-                    System.out.println(user.balance)
                     user.addToTransactions(newTransaction).save(flush: true)
                     addToPortfolio(user, fName, lName, quantity)
                 }
@@ -103,10 +101,9 @@ class TransactionController extends RestfulController {
     def addToPortfolio(UserAccount user, String fName, String lName, int quantity) {
         //adds stock to user's portfolio
         def stock = user.portfolio.find{it.stockFirstName == fName && it.stockLastName == lName}
-        System.out.println("add " + stock)
+        //System.out.println("add " + stock)
         if (stock != null) {
             stock.quantityOwned = stock.quantityOwned + quantity
-            System.out.println(stock.quantityOwned)
             stock.save(flush: true)
         }
         else {
@@ -118,7 +115,7 @@ class TransactionController extends RestfulController {
     def removeFromPortfolio(UserAccount user, String fName, String lName, int quantity) {
         //removes stock from user's portfolio
         def stock = user.portfolio.find{it.stockFirstName == fName && it.stockLastName == lName}
-        System.out.println("remove " + stock)
+        //System.out.println("remove " + stock)
         stock.quantityOwned = stock.quantityOwned - quantity
         stock.save(flush: true)
     }

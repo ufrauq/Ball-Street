@@ -19,7 +19,7 @@ class Application extends GrailsAutoConfiguration {
             def hours = currentTime.getHours()
             def minutes = currentTime.getMinutes()
             System.out.println("The current time  is " + hours + ":" + minutes)
-            if (minutes%2==0) {
+            if (minutes%2==0) { //flush transaction queue every two minutes
                 System.out.println("Flushing Queue...")
                 String url2 = "http://localhost:8080/update/updateTransactions";
 

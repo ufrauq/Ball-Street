@@ -22206,13 +22206,8 @@ var PlayerEntry = _react2.default.createClass({
     displayName: 'PlayerEntry',
     getInitialState: function getInitialState() {
         return {
-            change: 0,
             quantity: 0
         };
-    },
-    componentDidMount: function componentDidMount() {
-        var change = this.props.price - this.props.pPrice;
-        this.setState({ change: change });
     },
     qtyChange: function qtyChange(e) {
         e.preventDefault();
@@ -22277,7 +22272,7 @@ var PlayerEntry = _react2.default.createClass({
                 _react2.default.createElement(
                     'td',
                     null,
-                    this.state.change.toFixed(2)
+                    this.props.change.toFixed(2)
                 ),
                 _react2.default.createElement(
                     'td',
@@ -22315,6 +22310,7 @@ var Market = _react2.default.createClass({
     componentDidMount: function componentDidMount() {
         var _this = this;
 
+        //initialized options and display all players
         var token = JSON.parse(localStorage.authObject).access_token;
         fetch('http://localhost:8080/player/getAllPlayers', { method: 'POST', headers: { 'Authorization': 'Bearer ' + token } }).then(function (response) {
             if (response.ok) {
@@ -22359,7 +22355,7 @@ var Market = _react2.default.createClass({
                         )
                     ));
                     for (var i = 0; i < json.length && i < 50; i++) {
-                        result.push(_react2.default.createElement(PlayerEntry, { firstName: json[i].firstName, lastName: json[i].lastName, pPrice: json[i].previousDayPrice, price: json[i].currentPrice, team: json[i].team }));
+                        result.push(_react2.default.createElement(PlayerEntry, { firstName: json[i].firstName, lastName: json[i].lastName, change: json[i].currentPrice - json[i].previousDayPrice, price: json[i].currentPrice, team: json[i].team }));
                     }
                     _this.setState({ playerData: result, allData: json });
                 });
@@ -22389,6 +22385,7 @@ var Market = _react2.default.createClass({
     callAPI: function callAPI(e) {
         var _this2 = this;
 
+        //filter results by keyword
         e.preventDefault();
         var keyword = this.state.keyword;
         console.log(keyword + ": calling api with this keyword");
@@ -22437,7 +22434,7 @@ var Market = _react2.default.createClass({
                             )
                         ));
                         for (var i = 0; i < json.length; i++) {
-                            result.push(_react2.default.createElement(PlayerEntry, { firstName: json[i].firstName, lastName: json[i].lastName, pPrice: json[i].previousDayPrice, price: json[i].currentPrice, team: json[i].team }));
+                            result.push(_react2.default.createElement(PlayerEntry, { firstName: json[i].firstName, lastName: json[i].lastName, change: json[i].currentPrice - json[i].previousDayPrice, price: json[i].currentPrice, team: json[i].team }));
                         }
                         var pageLength = 50;
                         if (json.length < 50) {
@@ -22455,6 +22452,7 @@ var Market = _react2.default.createClass({
         this.setState({ keyword: e.target.value });
     },
     next: function next(e) {
+        //update to next 50 players on page
         e.preventDefault();
         var current = this.state.pageStatus;
         var total = this.state.totalResults;
@@ -22506,13 +22504,14 @@ var Market = _react2.default.createClass({
                 )
             ));
             for (var i = current + 50; i < json.length && i < current + 50 + size; i++) {
-                result.push(_react2.default.createElement(PlayerEntry, { firstName: json[i].firstName, lastName: json[i].lastName, pPrice: json[i].previousDayPrice, price: json[i].currentPrice, team: json[i].team }));
+                result.push(_react2.default.createElement(PlayerEntry, { firstName: json[i].firstName, lastName: json[i].lastName, change: json[i].currentPrice - json[i].previousDayPrice, price: json[i].currentPrice, team: json[i].team }));
             }
             this.setState({ playerData: [] });
             this.setState({ playerData: result, pageStatus: current + 50, pageSize: size });
         }
     },
     previous: function previous(e) {
+        //update to previous 50 players on page
         e.preventDefault();
         var current = this.state.pageStatus;
         var size = this.state.pageSize;
@@ -22559,7 +22558,7 @@ var Market = _react2.default.createClass({
                 )
             ));
             for (var i = current - 50; i < json.length && i < current; i++) {
-                result.push(_react2.default.createElement(PlayerEntry, { firstName: json[i].firstName, lastName: json[i].lastName, pPrice: json[i].previousDayPrice, price: json[i].currentPrice, team: json[i].team }));
+                result.push(_react2.default.createElement(PlayerEntry, { firstName: json[i].firstName, lastName: json[i].lastName, change: json[i].currentPrice - json[i].previousDayPrice, price: json[i].currentPrice, team: json[i].team }));
             }
             this.setState({ playerData: [] });
             this.setState({ playerData: result, pageStatus: current - 50, pageSize: 50 });

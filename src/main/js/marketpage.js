@@ -3,14 +3,8 @@ import React from 'react';
 var PlayerEntry = React.createClass({
     getInitialState() {
         return {
-            change: 0,
             quantity: 0
         }
-    },
-
-    componentDidMount() {
-        let change = this.props.price-this.props.pPrice;
-        this.setState({change: change});
     },
 
     qtyChange(e) {
@@ -51,7 +45,7 @@ var PlayerEntry = React.createClass({
                 <td>{this.props.lastName}</td>
                 <td>{this.props.team}</td>
                 <td>{this.props.price.toFixed(2)}</td>
-                <td>{this.state.change.toFixed(2)}</td>
+                <td>{this.props.change.toFixed(2)}</td>
                 <td>
                     <form onSubmit={this.handleSubmit}>
                         <input type="text" placeholder="Quantity" onChange={this.qtyChange}/>
@@ -94,7 +88,7 @@ var Market = React.createClass({
                         let result = [];
                         result.push(<thead><tr><th>First Name:</th><th>Last Name:</th><th>Team:</th><th>Price:</th><th>Change:</th><th>Buy!</th></tr></thead>);
                         for (let i = 0; i < json.length && i < 50; i++) {
-                            result.push(<PlayerEntry firstName={json[i].firstName} lastName={json[i].lastName} pPrice={json[i].previousDayPrice} price={json[i].currentPrice} team={json[i].team}/>);
+                            result.push(<PlayerEntry firstName={json[i].firstName} lastName={json[i].lastName} change={json[i].currentPrice-json[i].previousDayPrice} price={json[i].currentPrice} team={json[i].team}/>);
                         }
                         this.setState({playerData: result, allData: json});
                     })
@@ -128,7 +122,7 @@ var Market = React.createClass({
                             let result = [];
                             result.push(<thead><tr><th>First Name:</th><th>Last Name:</th><th>Team:</th><th>Price:</th><th>Change:</th><th>Buy!</th></tr></thead>);
                             for (let i = 0; i < json.length; i++) {
-                                result.push(<PlayerEntry firstName={json[i].firstName} lastName={json[i].lastName} pPrice={json[i].previousDayPrice} price={json[i].currentPrice} team={json[i].team}/>);
+                                result.push(<PlayerEntry firstName={json[i].firstName} lastName={json[i].lastName} change={json[i].currentPrice-json[i].previousDayPrice} price={json[i].currentPrice} team={json[i].team}/>);
                             }
                             let pageLength = 50;
                             if (json.length < 50) {
@@ -164,7 +158,7 @@ var Market = React.createClass({
             let result = [];
             result.push(<thead><tr><th>First Name:</th><th>Last Name:</th><th>Team:</th><th>Price:</th><th>Change:</th><th>Buy!</th></tr></thead>);
             for (let i = current+50; i < json.length && i < current+50+size; i++) {
-                result.push(<PlayerEntry firstName={json[i].firstName} lastName={json[i].lastName} pPrice={json[i].previousDayPrice} price={json[i].currentPrice} team={json[i].team}/>);
+                result.push(<PlayerEntry firstName={json[i].firstName} lastName={json[i].lastName} change={json[i].currentPrice-json[i].previousDayPrice} price={json[i].currentPrice} team={json[i].team}/>);
             }
             this.setState({playerData: []});
             this.setState({playerData: result, pageStatus: current + 50, pageSize: size});
@@ -182,7 +176,7 @@ var Market = React.createClass({
             let result = [];
             result.push(<thead><tr><th>First Name:</th><th>Last Name:</th><th>Team:</th><th>Price:</th><th>Change:</th><th>Buy!</th></tr></thead>);
             for (let i = current-50; i < json.length && i < current; i++) {
-                result.push(<PlayerEntry firstName={json[i].firstName} lastName={json[i].lastName} pPrice={json[i].previousDayPrice} price={json[i].currentPrice} team={json[i].team}/>);
+                result.push(<PlayerEntry firstName={json[i].firstName} lastName={json[i].lastName} change={json[i].currentPrice-json[i].previousDayPrice} price={json[i].currentPrice} team={json[i].team}/>);
             }
             this.setState({playerData: []});
             this.setState({playerData: result, pageStatus: current - 50, pageSize: 50});
