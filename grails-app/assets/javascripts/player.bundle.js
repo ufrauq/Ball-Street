@@ -59263,57 +59263,57 @@ var LineGraph = _react2.default.createClass({
                         null,
                         _react2.default.createElement(
                             'th',
-                            null,
+                            { className: 'number' },
                             '#'
                         ),
                         _react2.default.createElement(
                             'th',
-                            null,
+                            { className: 'position' },
                             'POS'
                         ),
                         _react2.default.createElement(
                             'th',
-                            null,
+                            { className: 'height' },
                             'Height'
                         ),
                         _react2.default.createElement(
                             'th',
-                            null,
+                            { className: 'weight' },
                             'Weight'
                         ),
                         _react2.default.createElement(
                             'th',
-                            null,
+                            { className: 'age' },
                             'Age'
                         ),
                         _react2.default.createElement(
                             'th',
-                            null,
+                            { className: 'city' },
                             'City'
                         ),
                         _react2.default.createElement(
                             'th',
-                            null,
+                            { className: 'team' },
                             'Team'
                         ),
                         _react2.default.createElement(
                             'th',
-                            null,
+                            { className: 'gp' },
                             'GP'
                         ),
                         _react2.default.createElement(
                             'th',
-                            null,
+                            { className: 'reb' },
                             'REB/GP'
                         ),
                         _react2.default.createElement(
                             'th',
-                            null,
+                            { className: 'ast' },
                             'AST/GP'
                         ),
                         _react2.default.createElement(
                             'th',
-                            null,
+                            { className: 'pts' },
                             'PTS/GP'
                         )
                     ));

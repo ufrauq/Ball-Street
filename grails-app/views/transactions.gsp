@@ -76,6 +76,7 @@
     <div id="contentArea" class="areas">
         <div id="transactionPage" align="left"></div>
         <asset:javascript src="transaction.bundle.js"/>
+        <br><br>
     </div>
 </div>
 </body>
