@@ -5,6 +5,9 @@
     <link rel = "stylesheet"
           type = "text/css"
           href="${resource(dir: 'css', file: 'generalStyle.css')}" />
+    <link rel = "stylesheet"
+          type = "text/css"
+          href="${resource(dir: 'css', file: 'market.css')}" />
     <script>
         function checkAuth() {
             if (localStorage.getItem("authObject") === null) {
@@ -31,37 +34,38 @@
                 <li onclick="window.location.href='/settings'">
                     Settings
                 </li>
-                <li id="money2" style=" width:12%; text-align:center">
-                    Networth: $
+                <li id="netWorth" style=" width:12%; text-align:center">
                     <script>
-                        document.getElementById("money2").innerHTML = "Net Worth: $" + sessionStorage.getItem("netWorth");
+                        document.getElementById("netWorth").innerHTML = "Net Worth: $" + sessionStorage.getItem("netWorth");
                     </script>
 
                 </li>
-                <li id="money" style=" width:10%; text-align:center">
-                    Cash: $
+                <li id="balance" style=" width:10%; text-align:center">
                     <script>
-                        document.getElementById("money").innerHTML = "Cash: $" + sessionStorage.getItem("cash");
+                        document.getElementById("balance").innerHTML = "Balance: $" + sessionStorage.getItem("balance");
                     </script>
                 </li>
-                <li onclick="window.location.href='/trades'">
-                    Stock Trades
+                <li onclick="window.location.href='/transactions'">
+                    Transactions
                 </li>
             </ul>
         </div>
     </div>
-    <div>
-        <marquee>Welcome to BallStreet!  Past game scores will be displayed here!</marquee>
-    </div>
+
     <div id="sideMenu" class="areas" >
         <button type="button" class="sideButtons" onclick="window.location.href='/stocks'">Stocks</button>
         <button type="button" class="sideButtons" onclick="window.location.href='/leagues'">Leagues</button>
         <button type="button" class="sideButtons" onclick="window.location.href='/players'">Players</button>
         <button type="button" class="selectedSide" onclick="window.location.href='/market'">Stock Market</button>
     </div>
+
+    <div>
+        <marquee>Welcome to BallStreet!  Past game scores will be displayed here!</marquee>
+    </div>
     <br>
     <div id="contentArea" class="areas">
-        <h1>Market: coming soon...</h1>
+        <div id="marketPage"></div>
+        <asset:javascript src="market.bundle.js"/>
     </div>
 </div>
 </body>

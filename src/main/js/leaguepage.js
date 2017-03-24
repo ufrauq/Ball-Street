@@ -12,7 +12,7 @@ var UserEntry = React.createClass({
                 <tr className="standingsRow">
                     <td>{this.props.rank}</td>
                     <td>{this.props.userName}</td>
-                    <td>{this.props.money}</td>
+                    <td>{this.props.balance}</td>
                     <td>{this.props.netWorth}</td>
                 </tr>
             </tbody>
@@ -140,10 +140,10 @@ var LeagueEntry = React.createClass({
                     response.json().then(json => {
                         let results = [];
                         //creates table heading
-                        results.push(<tr><th className="rank">Rank:</th><th>Username:</th><th>Cash:</th><th>Net Worth:</th></tr>);
+                        results.push(<tr><th className="rank">Rank:</th><th>Username:</th><th>Balance:</th><th>Net Worth:</th></tr>);
                         let x = json.length;
                         for (let i = x-1; i >= 0; i--) {
-                            results.push(<UserEntry rank={x-i} userName={json[i].username} money={json[i].money} netWorth={json[i].netWorth}/>);
+                            results.push(<UserEntry rank={x-i} userName={json[i].username} balance={json[i].balance} netWorth={json[i].netWorth}/>);
                         }
                         this.setState({userEntries: results, buttonStatus: "-"});
                         //makes standings a table inside of a row of the league list

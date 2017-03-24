@@ -60,6 +60,9 @@ dependencies {
     testRuntime "net.sourceforge.htmlunit:htmlunit:2.18"
 
     compile("org.grails.plugins:spring-security-rest:2.0.0.M2")
+    // https://mvnrepository.com/artifact/mysql/mysql-connector-java
+    compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.13'
+
 }
 
 bootRun {

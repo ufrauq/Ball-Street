@@ -5,6 +5,9 @@
     <link rel = "stylesheet"
           type = "text/css"
           href="${resource(dir: 'css', file: 'generalStyle.css')}" />
+    <link rel = "stylesheet"
+          type = "text/css"
+          href="${resource(dir: 'css', file: 'home.css')}" />
     <script>
         function checkAuth() {
             if (localStorage.getItem("authObject") === null) {
@@ -25,43 +28,74 @@
                 <li style="float: left;width: 15%" onclick="window.location.href='/home'" id="username">
                     <img src="http://downloadicons.net/sites/default/files/basketball-icon-23146.png" width="15px">
                     <script>
+                        /*document.getElementById("username").innerHTML = document.getElementById("username").innerHTML + "       "+ sessionStorage.getItem("username");*/
                         document.getElementById("username").innerHTML = sessionStorage.getItem("username");
                     </script>
                 </li>
                 <li onclick="window.location.href='/settings'">
                     Settings
                 </li>
-                <li id="money2" style=" width:12%; text-align:center">
-                    Networth: $
+                <li id="netWorth" style=" width:12%; text-align:center">
                     <script>
-                        document.getElementById("money2").innerHTML = "Net Worth: $" + sessionStorage.getItem("netWorth");
+                        document.getElementById("netWorth").innerHTML = "Net Worth: $" + sessionStorage.getItem("netWorth");
                     </script>
 
                 </li>
-                <li id="money" style=" width:10%; text-align:center">
-                    Cash: $
+                <li id="balance" style=" width:10%; text-align:center">
                     <script>
-                        document.getElementById("money").innerHTML = "Cash: $" + sessionStorage.getItem("cash");
+                        document.getElementById("balance").innerHTML = "Balance: $" + sessionStorage.getItem("balance");
                     </script>
                 </li>
-                <li onclick="window.location.href='/trades'">
-                    Stock Trades
+                <li onclick="window.location.href='/transactions'">
+                    Transactions
                 </li>
             </ul>
         </div>
     </div>
-    <div>
-        <marquee>Welcome to BallStreet!  Past game scores will be displayed here!</marquee>
-    </div>
+
     <div id="sideMenu" class="areas" >
         <button type="button" class="sideButtons" onclick="window.location.href='/stocks'">Stocks</button>
         <button type="button" class="sideButtons" onclick="window.location.href='/leagues'">Leagues</button>
         <button type="button" class="sideButtons" onclick="window.location.href='/players'">Players</button>
         <button type="button" class="sideButtons" onclick="window.location.href='/market'">Stock Market</button>
     </div>
+
+    <div>
+        <marquee>Welcome to BallStreet!  Past game scores will be displayed here!</marquee>
+    </div>
     <br>
     <div id="contentArea" class="areas">
-        <h1>Profile: coming soon...</h1>
+
+        <h1 id="profileName">Profile:</h1>
+        <script>
+            /*document.getElementById("username").innerHTML = document.getElementById("username").innerHTML + "       "+ sessionStorage.getItem("username");*/
+            document.getElementById("profileName").innerHTML =  sessionStorage.getItem("username");
+        </script>
+
+        <div id="left" >
+            <div id="left-top">
+                <img class="profile" src="https://openclipart.org/download/247319/abstract-user-flat-3.svg" width = "200px" align="left">
+
+                <h2 id="money_id" align = "right">Net Worth:</h2>
+                <script>
+                    document.getElementById("money_id").innerHTML = "Net Worth: $" + sessionStorage.getItem("netWorth");
+                </script>
+
+
+                <h2 id="cash_id" align="right">Cash:</h2>
+                <script>
+                    document.getElementById("cash_id").innerHTML = "Money: $" + sessionStorage.getItem("cash");
+                </script>
+            </div>
+        </div>
+
+        <div id="chartContainer"></div>
+        <asset:javascript src="home.bundle.js"/>
+
+        <div id ="chartTitle">
+            <p>Net Worth over the Last 10 Days</p>
+        </div>
+
     </div>
 </div>
 </body>

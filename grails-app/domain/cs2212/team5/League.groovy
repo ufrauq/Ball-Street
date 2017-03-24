@@ -6,13 +6,12 @@ class League {
     String password
     int numMembers
     int maxMembers
-    UserAccount owner
 
     static hasMany = [members : UserAccount]
+    static belongsTo = UserAccount
 
     static constraints = {
         members nullable: true
-        owner nullable: true
         password nullable: true
     }
 }

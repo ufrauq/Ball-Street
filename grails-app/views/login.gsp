@@ -16,7 +16,7 @@
             Afterwards, you can use your credentials to Login to your account.
         </p>
 
-        <div id = "subheading">Login!</div>
+        <div id = "subheading" align = "center">Login!</div>
 
         <div id="loginForm"></div>
 		<asset:javascript src="index.bundle.js"/>

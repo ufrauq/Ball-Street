@@ -32,7 +32,7 @@ class LeagueController extends RestfulController {
         //testing if user with given username exists
         def user = UserAccount.find{username == name}
         if (user != null) { //if user exists
-            respond user.mydata.leagues.sort{it.id}
+            respond user.leagues.sort{it.id}
         }
         else {
             response.status = 501 //user does not exist (failure)
@@ -53,21 +53,21 @@ class LeagueController extends RestfulController {
 
         //if both user and league exist and the league is not full (or maxMembers is -1 implies infinite size league)
         if (user != null && league != null && (league.numMembers < league.maxMembers || league.maxMembers == -1)) {
-            if (league in user.mydata.leagues) {
+            if (league in user.leagues) {
                 response.status = 501 //user is already in the league (failure)
             }
             else {
                 if (league.password == "" || league.password == null) { //if league had no password, add user (success)
                     league.numMembers = league.numMembers + 1;
                     league.addToMembers(user).save(flush: true)
-                    user.mydata.addToLeagues(league).save(flush: true)
+                    user.addToLeagues(league).save(flush: true)
                     response.status = 200
                 }
                 else { //else league has password
                     if (league.password == pass) { //is password is correct, add user (success)
                         league.numMembers = league.numMembers + 1;
                         league.addToMembers(user).save(flush: true)
-                        user.mydata.addToLeagues(league).save(flush: true)
+                        user.addToLeagues(league).save(flush: true)
                         response.status = 200
                     }
                     else {
@@ -93,8 +93,8 @@ class LeagueController extends RestfulController {
         def user = UserAccount.find{username == userName}
 
         if (user != null && league != null) { //if user and league exist
-            if (league in user.mydata.leagues) { //if user is in leagues, remove user (success)
-                user.mydata.removeFromLeagues(league).save(flush: true)
+            if (league in user.leagues) { //if user is in leagues, remove user (success)
+                user.removeFromLeagues(league).save(flush: true)
                 if (league.numMembers == 1) { //if the user is the last user in the league, then delete league
                     league.delete(flush: true)
                 }
@@ -134,21 +134,22 @@ class LeagueController extends RestfulController {
      */
     def createLeague() {
         def leagueName = params.leagueName
-        def ownerName = springSecurityService.currentUser.username
+        def creatorName = springSecurityService.currentUser.username
         def pass = params.password
         //testing if league does not exist and owner does exist
         def league = League.find{name == leagueName}
-        def leagueOwner = UserAccount.find{username == ownerName}
+        def leagueCreator = UserAccount.find{username == creatorName}
 
         if (leagueName == "") {
             response.status = 501
         }
-        else if (leagueOwner == null) {
-            response.status = 502 //owner does not exist (failure)
+        else if (leagueCreator == null) {
+            response.status = 502 //user does not exist (failure)
         }
         else if (league == null) { //if league does not exist and owner exists, create new league (success)
-            def newLeague = new League(owner: leagueOwner, numMembers: 1, maxMembers: 25, name: leagueName, password : pass).addToMembers(leagueOwner).save(flush: true)
-            leagueOwner.mydata.addToLeagues(newLeague).save(flush: true)
+            def newLeague = new League(numMembers: 1, maxMembers: 25, name: leagueName, password : pass).save()
+            newLeague.addToMembers(leagueCreator).save(flush: true)
+            leagueCreator.addToLeagues(newLeague).save(flush: true)
             response.status = 200
         }
         else {
