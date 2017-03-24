@@ -56802,7 +56802,7 @@ var LineGraph = _react2.default.createClass({
             _react2.default.createElement(_recharts.YAxis, null),
             _react2.default.createElement(_recharts.Tooltip, null),
             _react2.default.createElement(_recharts.CartesianGrid, { stroke: '#f5f5f5' }),
-            _react2.default.createElement(_recharts.Line, { type: 'monotone', dataKey: 'price', stroke: '#ff7300' })
+            _react2.default.createElement(_recharts.Line, { type: 'monotone', dataKey: 'price', stroke: 'red' })
         );
     }
 });

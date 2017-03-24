@@ -140,8 +140,8 @@ var TransactionList = React.createClass({
                 <table className="transactionList">
                     {this.state.transactions}
                 </table>
-                <button onClick={this.buy}>Buy</button>
-                <button onClick={this.sell}>Sell</button>
+                <button className="button1" onClick={this.buy}>Buy</button>
+                <button className="button1" onClick={this.sell}>Sell</button>
             </div>
         )
     }
@@ -225,7 +225,7 @@ var Transaction = React.createClass({
                             let result = [];
                             result.push(<thead><tr><th>First Name:</th><th>Last Name:</th><th>Previous Price:</th><th>Price:</th></tr></thead>);
                             for (let i = 0; i < json.length; i++) {
-                                result.push(<PlayerEntry firstName={json[i].firstName} lastName={json[i].lastName} pPrice={json[i].previousDayPrice} price={json[i].currentPrice}/>);
+                                result.push(<tr><td><PlayerEntry firstName={json[i].firstName} lastName={json[i].lastName} pPrice={json[i].previousDayPrice} price={json[i].currentPrice}/></td></tr>);
                             }
                             this.setState({playerData: []});
                             this.setState({playerData: result});
@@ -316,9 +316,9 @@ var Transaction = React.createClass({
         return(
             <div>
                 <h1>Pending Transactions</h1>
-                <TransactionList type="opened" url="getPendingTransactions" refresh={this.state.refresh} callback={this.refreshData}/>
+                <TransactionList type="opened" url="getPendingTransactions" refresh={this.state.refresh} callback={this.refreshData}/><br/><br/>
                 <h1>Transaction History</h1>
-                <TransactionList type="closed" url="getPastTransactions" refresh={this.state.refresh} callback={this.refreshData}/>
+                <TransactionList type="closed" url="getPastTransactions" refresh={this.state.refresh} callback={this.refreshData}/><br/><br/>
                 <Select value={this.state.selected} options={this.state.options} onChange={this.logChange}/>
                 <table>
                    {this.state.playerData2}

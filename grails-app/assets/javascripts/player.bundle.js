@@ -59256,131 +59256,125 @@ var LineGraph = _react2.default.createClass({
             if (response.ok) {
                 response.json().then(function (json) {
                     var result = [];
+                    //creating table headings
+
                     result.push(_react2.default.createElement(
-                        'thead',
+                        'tr',
                         null,
                         _react2.default.createElement(
-                            'tr',
+                            'th',
                             null,
-                            _react2.default.createElement(
-                                'th',
-                                null,
-                                '#'
-                            ),
-                            _react2.default.createElement(
-                                'th',
-                                null,
-                                'POS'
-                            ),
-                            _react2.default.createElement(
-                                'th',
-                                null,
-                                'Height'
-                            ),
-                            _react2.default.createElement(
-                                'th',
-                                null,
-                                'Weight'
-                            ),
-                            _react2.default.createElement(
-                                'th',
-                                null,
-                                'Age'
-                            ),
-                            _react2.default.createElement(
-                                'th',
-                                null,
-                                'City'
-                            ),
-                            _react2.default.createElement(
-                                'th',
-                                null,
-                                'Name'
-                            ),
-                            _react2.default.createElement(
-                                'th',
-                                null,
-                                'GP'
-                            ),
-                            _react2.default.createElement(
-                                'th',
-                                null,
-                                'REB/GP'
-                            ),
-                            _react2.default.createElement(
-                                'th',
-                                null,
-                                'AST/GP'
-                            ),
-                            _react2.default.createElement(
-                                'th',
-                                null,
-                                'PTS/GP'
-                            )
+                            '#'
+                        ),
+                        _react2.default.createElement(
+                            'th',
+                            null,
+                            'POS'
+                        ),
+                        _react2.default.createElement(
+                            'th',
+                            null,
+                            'Height'
+                        ),
+                        _react2.default.createElement(
+                            'th',
+                            null,
+                            'Weight'
+                        ),
+                        _react2.default.createElement(
+                            'th',
+                            null,
+                            'Age'
+                        ),
+                        _react2.default.createElement(
+                            'th',
+                            null,
+                            'City'
+                        ),
+                        _react2.default.createElement(
+                            'th',
+                            null,
+                            'Team'
+                        ),
+                        _react2.default.createElement(
+                            'th',
+                            null,
+                            'GP'
+                        ),
+                        _react2.default.createElement(
+                            'th',
+                            null,
+                            'REB/GP'
+                        ),
+                        _react2.default.createElement(
+                            'th',
+                            null,
+                            'AST/GP'
+                        ),
+                        _react2.default.createElement(
+                            'th',
+                            null,
+                            'PTS/GP'
                         )
                     ));
                     var change = json.currentPrice - json.previousDayPrice;
                     result.push(_react2.default.createElement(
-                        'tbody',
+                        'tr',
                         null,
                         _react2.default.createElement(
-                            'tr',
+                            'td',
                             null,
-                            _react2.default.createElement(
-                                'td',
-                                null,
-                                json.jerseyNumber
-                            ),
-                            _react2.default.createElement(
-                                'td',
-                                null,
-                                json.position
-                            ),
-                            _react2.default.createElement(
-                                'td',
-                                null,
-                                json.height
-                            ),
-                            _react2.default.createElement(
-                                'td',
-                                null,
-                                json.weight
-                            ),
-                            _react2.default.createElement(
-                                'td',
-                                null,
-                                json.age
-                            ),
-                            _react2.default.createElement(
-                                'td',
-                                null,
-                                json.teamCity
-                            ),
-                            _react2.default.createElement(
-                                'td',
-                                null,
-                                json.teamName
-                            ),
-                            _react2.default.createElement(
-                                'td',
-                                null,
-                                json.gp
-                            ),
-                            _react2.default.createElement(
-                                'td',
-                                null,
-                                json.reb
-                            ),
-                            _react2.default.createElement(
-                                'td',
-                                null,
-                                json.ast
-                            ),
-                            _react2.default.createElement(
-                                'td',
-                                null,
-                                json.pts
-                            )
+                            json.jerseyNumber
+                        ),
+                        _react2.default.createElement(
+                            'td',
+                            null,
+                            json.position
+                        ),
+                        _react2.default.createElement(
+                            'td',
+                            null,
+                            json.height
+                        ),
+                        _react2.default.createElement(
+                            'td',
+                            null,
+                            json.weight
+                        ),
+                        _react2.default.createElement(
+                            'td',
+                            null,
+                            json.age
+                        ),
+                        _react2.default.createElement(
+                            'td',
+                            null,
+                            json.teamCity
+                        ),
+                        _react2.default.createElement(
+                            'td',
+                            null,
+                            json.teamName
+                        ),
+                        _react2.default.createElement(
+                            'td',
+                            null,
+                            json.gp
+                        ),
+                        _react2.default.createElement(
+                            'td',
+                            null,
+                            json.reb
+                        ),
+                        _react2.default.createElement(
+                            'td',
+                            null,
+                            json.ast
+                        ),
+                        _react2.default.createElement(
+                            'td',
+                            null,
+                            json.pts
                         )
                     ));
                     var name = json.firstName + " " + json.lastName;
@@ -59411,8 +59405,15 @@ var LineGraph = _react2.default.createClass({
         return _react2.default.createElement(
             'div',
             null,
-            this.state.name,
             _react2.default.createElement(_reactSelect2.default, { className: 'selectBar', value: this.state.selected, options: this.state.options, onChange: this.logChange }),
+            _react2.default.createElement(
+                'h2',
+                null,
+                this.state.name
+            ),
+            _react2.default.createElement('br', null),
+            _react2.default.createElement('br', null),
+            _react2.default.createElement('br', null),
             _react2.default.createElement(
                 'table',
                 { className: 'playerTable' },
@@ -59425,7 +59426,7 @@ var LineGraph = _react2.default.createClass({
                 _react2.default.createElement(_recharts.YAxis, null),
                 _react2.default.createElement(_recharts.Tooltip, null),
                 _react2.default.createElement(_recharts.CartesianGrid, { stroke: '#f5f5f5' }),
-                _react2.default.createElement(_recharts.Line, { type: 'monotone', dataKey: 'price', stroke: '#ff7300' })
+                _react2.default.createElement(_recharts.Line, { type: 'monotone', dataKey: 'price', stroke: 'red' })
             ),
             this.state.text
         );

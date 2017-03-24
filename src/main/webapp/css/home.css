@@ -31,9 +31,9 @@ button:hover {
 #left{
     width: 40%;
     float: left;
-    padding: 20px;
+    padding: 0px;
     height: 100%;
-    padding-top: 80px;
+    padding-top: 60px;
 }
 
 #left-top{

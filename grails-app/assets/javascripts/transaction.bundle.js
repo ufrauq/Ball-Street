@@ -25085,7 +25085,15 @@ var Transaction = _react2.default.createClass({
                             )
                         ));
                         for (var i = 0; i < json.length; i++) {
-                            result.push(_react2.default.createElement(PlayerEntry, { firstName: json[i].firstName, lastName: json[i].lastName, pPrice: json[i].previousDayPrice, price: json[i].currentPrice }));
+                            result.push(_react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'td',
+                                    null,
+                                    _react2.default.createElement(PlayerEntry, { firstName: json[i].firstName, lastName: json[i].lastName, pPrice: json[i].previousDayPrice, price: json[i].currentPrice })
+                                )
+                            ));
                         }
                         _this3.setState({ playerData: [] });
                         _this3.setState({ playerData: result });

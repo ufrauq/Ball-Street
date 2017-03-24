@@ -47,7 +47,7 @@
                         document.getElementById("balance").innerHTML = "Balance: $" + sessionStorage.getItem("balance");
                     </script>
                 </li>
-                <li onclick="window.location.href='/transactions'">
+                <li onclick="window.location.href='/transactions'" class="selectedTop">
                     Transactions
                 </li>
             </ul>

@@ -74,10 +74,9 @@ var LineGraph = React.createClass({
                 if (response.ok) {
                     response.json().then(json => {
                         let result = [];
-                        result.push(<thead><tr>
-                            <th>#</th>
-                            <th>POS</th>
-                            <th>Height</th>
+                        //creating table headings
+
+                        result.push(<tr><th>#</th><th>POS</th><th>Height</th>
                             <th>Weight</th>
                             <th>Age</th>
                             <th>City</th>
@@ -87,9 +86,9 @@ var LineGraph = React.createClass({
                             <th>AST/GP</th>
                             <th>PTS/GP</th>
 
-                        </tr></thead>);
+                        </tr>);
                         let change = json.currentPrice-json.previousDayPrice;
-                        result.push(<tbody><tr>
+                        result.push(<tr>
                             <td>{json.jerseyNumber}</td>
                             <td>{json.position}</td>
                             <td>{json.height}</td>
@@ -102,7 +101,7 @@ var LineGraph = React.createClass({
                             <td>{json.ast}</td>
                             <td>{json.pts}</td>
 
-                        </tr></tbody>);
+                        </tr>);
                         let name = json.firstName + " " + json.lastName
                         this.setState({playerData2: []});
                         this.setState({playerData2: result, text: "Player Stock Price over Past 10 Days", name: name});
@@ -145,8 +144,9 @@ var LineGraph = React.createClass({
     render () {
         return (
             <div>
-                {this.state.name}
+
                 <Select className= "selectBar" value={this.state.selected} options={this.state.options} onChange={this.logChange}/>
+                <h2>{this.state.name}</h2><br/><br/><br/>
                 <table className= "playerTable">
                     {this.state.playerData2}
                 </table>
@@ -155,7 +155,7 @@ var LineGraph = React.createClass({
                     <YAxis />
                     <Tooltip />
                     <CartesianGrid stroke='#f5f5f5'/>
-                    <Line type='monotone' dataKey='price' stroke='#ff7300'/>
+                    <Line type='monotone' dataKey='price' stroke='red'/>
                 </LineChart>
                 {this.state.text}
             </div>
