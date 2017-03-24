@@ -24759,7 +24759,7 @@ var TransactionEntry = _react2.default.createClass({
                 _react2.default.createElement(
                     'td',
                     null,
-                    this.props.stockPrice
+                    this.props.stockPrice.toFixed(2)
                 ),
                 _react2.default.createElement(
                     'td',
@@ -24876,16 +24876,30 @@ var TransactionList = _react2.default.createClass({
                         )
                     ));
                     if (url == "getPendingTransactions") {
-                        for (var i = 0; i < json.length; i++) {
+                        for (var i = json.length - 1; i > -1; i--) {
                             results.push(_react2.default.createElement(TransactionEntry, { id: json[i].transactionID, tDate: json[i].transactionOpened, tType: json[i].tType, tStatus: json[i].tStatus, stockName: json[i].stockFirstName + " " + json[i].stockLastName, stockPrice: json[i].stockPrice, stockQuantity: json[i].stockQuantity, balanceBefore: json[i].balanceBefore }));
                         }
                     } else {
-                        for (var _i = 0; _i < json.length; _i++) {
+                        for (var _i = json.length - 1; _i > -1; _i--) {
                             results.push(_react2.default.createElement(TransactionEntry, { id: json[_i].transactionID, tDate: json[_i].transactionClosed, tType: json[_i].tType, tStatus: json[_i].tStatus, stockName: json[_i].stockFirstName + " " + json[_i].stockLastName, stockPrice: json[_i].stockPrice, stockQuantity: json[_i].stockQuantity, balanceBefore: json[_i].balanceBefore }));
                         }
                     }
-                    //this.setState({transactions: []});
-                    _this.setState({ transactions: results });
+                    if (json.length == 0) {
+                        var _results = [];
+                        _results.push(_react2.default.createElement(
+                            'tr',
+                            null,
+                            _react2.default.createElement(
+                                'td',
+                                null,
+                                'No Transactions...'
+                            )
+                        ));
+                        _this.setState({ transactions: _results });
+                    } else {
+                        _this.setState({ transactions: [] });
+                        _this.setState({ transactions: results });
+                    }
                 });
             } else {
                 _this.setState({ transactions: [] });
@@ -24902,18 +24916,6 @@ var TransactionList = _react2.default.createClass({
         console.log("here");
     },*/
 
-    sell: function sell() {
-        var token = JSON.parse(localStorage.authObject).access_token;
-        fetch('http://localhost:8080/transaction/createTransaction?firstName=LeBron&lastName=James&price=11&quantity=30&tType=sell', { method: 'POST', headers: { 'Authorization': 'Bearer ' + token } }).then(function (response) {
-            console.log(response.status);
-        });
-    },
-    buy: function buy() {
-        var token = JSON.parse(localStorage.authObject).access_token;
-        fetch('http://localhost:8080/transaction/createTransaction?firstName=LeBron&lastName=James&price=11&quantity=30&tType=buy', { method: 'POST', headers: { 'Authorization': 'Bearer ' + token } }).then(function (response) {
-            console.log(response.status);
-        });
-    },
     render: function render() {
         //creates table of league entries
         return _react2.default.createElement(
@@ -24923,55 +24925,6 @@ var TransactionList = _react2.default.createClass({
                 'table',
                 { className: 'transactionList' },
                 this.state.transactions
-            ),
-            _react2.default.createElement('br', null),
-            _react2.default.createElement('br', null),
-            _react2.default.createElement(
-                'button',
-                { className: 'button1', onClick: this.buy },
-                'Buy'
-            ),
-            _react2.default.createElement(
-                'button',
-                { className: 'button1', onClick: this.sell },
-                'Sell'
-            )
-        );
-    }
-});
-
-var PlayerEntry = _react2.default.createClass({
-    displayName: 'PlayerEntry',
-    getInitialState: function getInitialState() {
-        return {};
-    },
-    render: function render() {
-        return _react2.default.createElement(
-            'tbody',
-            null,
-            _react2.default.createElement(
-                'tr',
-                null,
-                _react2.default.createElement(
-                    'td',
-                    null,
-                    this.props.firstName
-                ),
-                _react2.default.createElement(
-                    'td',
-                    null,
-                    this.props.lastName
-                ),
-                _react2.default.createElement(
-                    'td',
-                    null,
-                    this.props.pPrice
-                ),
-                _react2.default.createElement(
-                    'td',
-                    null,
-                    this.props.price
-                )
             )
         );
     }
@@ -24981,337 +24934,15 @@ var Transaction = _react2.default.createClass({
     displayName: 'Transaction',
     getInitialState: function getInitialState() {
         return {
-            refresh: 1,
-            playerData: [],
-            playerData2: [],
-            options: null,
-            selected: ""
+            refresh: 1
         };
     },
     refreshData: function refreshData() {
         var ref = this.state.refresh + 1;
         this.setState({ refresh: ref });
     },
-    componentDidMount: function componentDidMount() {
-        var _this2 = this;
-
-        var options = [];
-        fetch('http://localhost:8080/player/getAllPlayers', { method: 'POST', headers: { 'Authorization': 'Bearer ' + token } }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (json) {
-                    for (var i = 0; i < json.length; i++) {
-                        options.push({ label: json[i].firstName + " " + json[i].lastName, value: json[i].firstName + " " + json[i].lastName, firstName: json[i].firstName, lastName: json[i].lastName });
-                    }
-                    _this2.setState({ options: options });
-                });
-            }
-        });
-        var token = JSON.parse(localStorage.authObject).access_token;
-        fetch('http://localhost:8080/player/getAllPlayers', { method: 'POST', headers: { 'Authorization': 'Bearer ' + token } }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (json) {
-                    var result = [];
-                    result.push(_react2.default.createElement(
-                        'thead',
-                        null,
-                        _react2.default.createElement(
-                            'tr',
-                            null,
-                            _react2.default.createElement(
-                                'th',
-                                null,
-                                'First Name:'
-                            ),
-                            _react2.default.createElement(
-                                'th',
-                                null,
-                                'Last Name:'
-                            ),
-                            _react2.default.createElement(
-                                'th',
-                                null,
-                                'Previous Price:'
-                            ),
-                            _react2.default.createElement(
-                                'th',
-                                null,
-                                'Price:'
-                            )
-                        )
-                    ));
-                    for (var i = 0; i < json.length; i++) {
-                        result.push(_react2.default.createElement(PlayerEntry, { firstName: json[i].firstName, lastName: json[i].lastName, pPrice: json[i].previousDayPrice, price: json[i].currentPrice }));
-                    }
-                    _this2.setState({ playerData: result });
-                });
-            }
-        });
-    },
-    callAPI: function callAPI(e) {
-        var _this3 = this;
-
-        var keyword = e.target.value;
-        console.log(keyword + ": calling api with this keyword");
-        if (true) {
-            var token = JSON.parse(localStorage.authObject).access_token;
-            fetch('http://localhost:8080/player/getPlayersByKeyword?keyword=' + keyword, { method: 'POST', headers: { 'Authorization': 'Bearer ' + token } }).then(function (response) {
-                if (response.ok) {
-                    response.json().then(function (json) {
-                        var result = [];
-                        result.push(_react2.default.createElement(
-                            'thead',
-                            null,
-                            _react2.default.createElement(
-                                'tr',
-                                null,
-                                _react2.default.createElement(
-                                    'th',
-                                    null,
-                                    'First Name:'
-                                ),
-                                _react2.default.createElement(
-                                    'th',
-                                    null,
-                                    'Last Name:'
-                                ),
-                                _react2.default.createElement(
-                                    'th',
-                                    null,
-                                    'Previous Price:'
-                                ),
-                                _react2.default.createElement(
-                                    'th',
-                                    null,
-                                    'Price:'
-                                )
-                            )
-                        ));
-                        for (var i = 0; i < json.length; i++) {
-                            result.push(_react2.default.createElement(
-                                'tr',
-                                null,
-                                _react2.default.createElement(
-                                    'td',
-                                    null,
-                                    _react2.default.createElement(PlayerEntry, { firstName: json[i].firstName, lastName: json[i].lastName, pPrice: json[i].previousDayPrice, price: json[i].currentPrice })
-                                )
-                            ));
-                        }
-                        _this3.setState({ playerData: [] });
-                        _this3.setState({ playerData: result });
-                    });
-                }
-            });
-        }
-    },
-    callAPI2: function callAPI2(firstName, lastName) {
-        var _this4 = this;
-
-        var token = JSON.parse(localStorage.authObject).access_token;
-        fetch('http://localhost:8080/player/getPlayer?lastName=' + lastName + "&firstName=" + firstName, { method: 'POST', headers: { 'Authorization': 'Bearer ' + token } }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (json) {
-                    var result = [];
-                    result.push(_react2.default.createElement(
-                        'thead',
-                        null,
-                        _react2.default.createElement(
-                            'tr',
-                            null,
-                            _react2.default.createElement(
-                                'th',
-                                null,
-                                'First'
-                            ),
-                            _react2.default.createElement(
-                                'th',
-                                null,
-                                'Last'
-                            ),
-                            _react2.default.createElement(
-                                'th',
-                                null,
-                                '#'
-                            ),
-                            _react2.default.createElement(
-                                'th',
-                                null,
-                                'POS'
-                            ),
-                            _react2.default.createElement(
-                                'th',
-                                null,
-                                'Height'
-                            ),
-                            _react2.default.createElement(
-                                'th',
-                                null,
-                                'Weight'
-                            ),
-                            _react2.default.createElement(
-                                'th',
-                                null,
-                                'Age'
-                            ),
-                            _react2.default.createElement(
-                                'th',
-                                null,
-                                'City'
-                            ),
-                            _react2.default.createElement(
-                                'th',
-                                null,
-                                'Name'
-                            ),
-                            _react2.default.createElement(
-                                'th',
-                                null,
-                                'GP'
-                            ),
-                            _react2.default.createElement(
-                                'th',
-                                null,
-                                'REB/GP'
-                            ),
-                            _react2.default.createElement(
-                                'th',
-                                null,
-                                'AST/GP'
-                            ),
-                            _react2.default.createElement(
-                                'th',
-                                null,
-                                'PTS/GP'
-                            ),
-                            _react2.default.createElement(
-                                'th',
-                                null,
-                                'Price'
-                            ),
-                            _react2.default.createElement(
-                                'th',
-                                null,
-                                'Change'
-                            )
-                        )
-                    ));
-                    var change = json.currentPrice - json.previousDayPrice;
-                    result.push(_react2.default.createElement(
-                        'tbody',
-                        null,
-                        _react2.default.createElement(
-                            'tr',
-                            null,
-                            _react2.default.createElement(
-                                'td',
-                                null,
-                                json.firstName
-                            ),
-                            _react2.default.createElement(
-                                'td',
-                                null,
-                                json.lastName
-                            ),
-                            _react2.default.createElement(
-                                'td',
-                                null,
-                                json.jerseyNumber
-                            ),
-                            _react2.default.createElement(
-                                'td',
-                                null,
-                                json.position
-                            ),
-                            _react2.default.createElement(
-                                'td',
-                                null,
-                                json.height
-                            ),
-                            _react2.default.createElement(
-                                'td',
-                                null,
-                                json.weight
-                            ),
-                            _react2.default.createElement(
-                                'td',
-                                null,
-                                json.age
-                            ),
-                            _react2.default.createElement(
-                                'td',
-                                null,
-                                json.teamCity
-                            ),
-                            _react2.default.createElement(
-                                'td',
-                                null,
-                                json.teamName
-                            ),
-                            _react2.default.createElement(
-                                'td',
-                                null,
-                                json.gp
-                            ),
-                            _react2.default.createElement(
-                                'td',
-                                null,
-                                json.reb
-                            ),
-                            _react2.default.createElement(
-                                'td',
-                                null,
-                                json.ast
-                            ),
-                            _react2.default.createElement(
-                                'td',
-                                null,
-                                json.pts
-                            ),
-                            _react2.default.createElement(
-                                'td',
-                                null,
-                                json.currentPrice
-                            ),
-                            _react2.default.createElement(
-                                'td',
-                                null,
-                                change
-                            )
-                        )
-                    ));
-                    _this4.setState({ playerData2: [] });
-                    _this4.setState({ playerData2: result });
-                });
-            }
-        });
-    },
-    logChange: function logChange(val) {
-        var x = val.value;
-        console.log("Selected: " + x);
-        this.setState({ selected: x });
-        this.callAPI2(val.firstName, val.lastName);
-    },
-    loadOptions: function loadOptions() {
-        var _this5 = this;
-
-        var options = [];
-        if (this.state.options == null) {
-            var token = JSON.parse(localStorage.authObject).access_token;
-            fetch('http://localhost:8080/player/getAllPlayers', { method: 'POST', headers: { 'Authorization': 'Bearer ' + token } }).then(function (response) {
-                if (response.ok) {
-                    response.json().then(function (json) {
-                        for (var i = 0; i < json.length; i++) {
-                            options.push({ label: json[i].firstName + " " + json[i].lastName, value: json[i].firstName + " " + json[i].lastName, firstName: json[i].firstName, lastName: json[i].lastName });
-                        }
-                        _this5.setState({ options: options });
-                    });
-                }
-            });
-        }
-    },
     render: function render() {
         //puts together all the different components
-        this.loadOptions();
         return _react2.default.createElement(
             'div',
             null,
@@ -25328,25 +24959,7 @@ var Transaction = _react2.default.createClass({
                 null,
                 'Transaction History'
             ),
-            _react2.default.createElement(TransactionList, { type: 'closed', url: 'getPastTransactions', refresh: this.state.refresh, callback: this.refreshData }),
-            _react2.default.createElement('br', null),
-            _react2.default.createElement('br', null),
-            _react2.default.createElement(_reactSelect2.default, { value: this.state.selected, options: this.state.options, onChange: this.logChange }),
-            _react2.default.createElement(
-                'table',
-                null,
-                this.state.playerData2
-            ),
-            _react2.default.createElement(
-                'form',
-                null,
-                _react2.default.createElement('input', { type: 'text', onChange: this.callAPI })
-            ),
-            _react2.default.createElement(
-                'table',
-                null,
-                this.state.playerData
-            )
+            _react2.default.createElement(TransactionList, { type: 'closed', url: 'getPastTransactions', refresh: this.state.refresh, callback: this.refreshData })
         );
     }
 });

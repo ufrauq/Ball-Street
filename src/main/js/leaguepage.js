@@ -12,8 +12,8 @@ var UserEntry = React.createClass({
                 <tr className="standingsRow">
                     <td>{this.props.rank}</td>
                     <td>{this.props.userName}</td>
-                    <td>{this.props.balance}</td>
-                    <td>{this.props.netWorth}</td>
+                    <td>{this.props.balance.toFixed(2)}</td>
+                    <td>{this.props.netWorth.toFixed(2)}</td>
                 </tr>
             </tbody>
         );

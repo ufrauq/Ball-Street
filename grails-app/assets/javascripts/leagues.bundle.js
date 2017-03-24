@@ -22227,12 +22227,12 @@ var UserEntry = _react2.default.createClass({
                 _react2.default.createElement(
                     'td',
                     null,
-                    this.props.balance
+                    this.props.balance.toFixed(2)
                 ),
                 _react2.default.createElement(
                     'td',
                     null,
-                    this.props.netWorth
+                    this.props.netWorth.toFixed(2)
                 )
             )
         );
