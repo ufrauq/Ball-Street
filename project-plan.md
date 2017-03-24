@@ -41,6 +41,12 @@ For the authorization of logging in, BallStreet will be using local verification
   <li>Data-Mining</li>
   <li>Execution of Trades</li>
   </ul>
+  
+  <li> Final Updates </li>
+  <ul>
+  <li>SQL Database Implementation </li>
+  <li>Buying and Selling of Stocks</li>
+  <li>View Player Data </li>
 
 
 </ul>
