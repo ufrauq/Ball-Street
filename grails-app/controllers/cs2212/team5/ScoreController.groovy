@@ -28,7 +28,7 @@ class ScoreController {
             String [] r = new String[rows]
             int i = 0
             while (result.next()) {
-                r[i] = result.getString(9) + " vs. " + result.getString(13) + " " + result.getString(17) + "-"+ result.getString(18) + "   "
+                r[i] = result.getString(9) + " vs. " + result.getString(13) + " " + result.getString(17) + "-"+ result.getString(18) + " &nbsp&nbsp&nbsp"
                 i++
             }
             respond r

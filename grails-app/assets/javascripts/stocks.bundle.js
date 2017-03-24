@@ -22226,7 +22226,7 @@ var PlayerEntry = _react2.default.createClass({
         fetch('http://localhost:8080/transaction/createTransaction?firstName=' + this.props.firstName + '&lastName=' + this.props.lastName + '&price=' + this.props.price + '&quantity=' + this.state.quantity + '&tType=sell', { method: 'POST', headers: { 'Authorization': 'Bearer ' + token } }).then(function (response) {
             console.log(response.status);
             if (response.ok) {
-                alert("Successfully bought");
+                alert("Successfully sold");
             } else {
                 var msg = "Error: " + response.status;
                 switch (response.status) {

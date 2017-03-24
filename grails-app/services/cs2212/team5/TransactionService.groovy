@@ -76,8 +76,8 @@ class TransactionService {
         def hours = currentDate.getHours()
         def minutes = currentDate.getMinutes()
         for (user in allUsers) {
-            if (hours == 9 && minutes == 0) {
-                for (int i = 9; i > 0; i ++) {
+            if (minutes %2 == 0) {
+                for (int i = 9; i > 0; i --) {
                     user.netWorthHistory[i] = user.netWorthHistory[i-1]
                     user.balanceHistory[i] = user.balanceHistory[i-1]
                 }

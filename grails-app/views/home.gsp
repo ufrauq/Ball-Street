@@ -85,21 +85,28 @@
             document.getElementById("profileName").innerHTML =  sessionStorage.getItem("username");
         </script>
 
-        <div id="left" >
-            <div id="left-top">
-                <img class="profile" src="https://openclipart.org/download/247319/abstract-user-flat-3.svg" width = "200px" align="left">
-
-                <br><br><h2 id="money_id" align = "right">Net Worth:</h2>
-
-                <h2 id="cash_id" align="right">Cash:</h2>
-            </div>
-        </div>
 
         <div id="chartContainer"></div>
         <asset:javascript src="home.bundle.js"/>
 
+        <div id="left" >
+        <img class="profile" src="https://openclipart.org/download/247319/abstract-user-flat-3.svg" width = "200px" align="center">
+            <div id="bottom">
+                <br>
+                <h2 id="money_id" align = "right">Net Worth:</h2>
+                <script>
+                    document.getElementById("money_id").innerHTML = "Net Worth: $" + sessionStorage.getItem("netWorth");
+                </script>
+
+                <h2 id="cash_id" align="right">Cash:</h2>
+                <script>
+                    document.getElementById("cash_id").innerHTML = "Balance: $" + sessionStorage.getItem("balance");
+                </script>
+            </div>
+        </div>
+
         <div id ="chartTitle">
-            <p>Net Worth over the Last 10 Days</p>
+            <p>Net Worth over the Last 20 minutes &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspBalance over the Last 20 minutes</p>
         </div>
 
     </div>
