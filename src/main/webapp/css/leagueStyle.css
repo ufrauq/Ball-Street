@@ -4,6 +4,13 @@
     padding-right: 25px;
     padding-bottom: 25px;
 }
+
+body{
+    background-color: white;
+    font-family: "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    margin-bottom: auto;
+}
+
 .userList {
     border-collapse: collapse;
     width: 100%;
@@ -26,8 +33,6 @@ th {
     font-size: 18px;
     background-color: #dddddd;
     -webkit-transition-duration: 0.4s; /* translations */
-
-
 }
 
 td {
@@ -38,10 +43,8 @@ td {
     color: #808080;
     font-size: 17px;
     -webkit-transition-duration: 0.4s; /* translations */
-
-
-
 }
+
 .rank {
     width: 15%;
 }

@@ -54,7 +54,7 @@
                 </li>
                 <li id="balance" style=" width:10%; text-align:center" onclick={updateData()}>
                 </li>
-                <li onclick="window.location.href='/transactions'">
+                <li onclick="window.location.href='/transactions'" class="selectedTop">
                     Transactions
                 </li>
             </ul>

@@ -76,7 +76,9 @@
     </div>
     <br>
     <div id="contentArea" class="areas">
+        <h1>Stock Market</h1>
         <div id="marketPage"></div>
+
         <asset:javascript src="market.bundle.js"/>
     </div>
 </div>

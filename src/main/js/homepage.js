@@ -58,7 +58,7 @@ var LineGraph = React.createClass({
                 <YAxis />
                 <Tooltip />
                 <CartesianGrid stroke='#f5f5f5'/>
-                <Line type='monotone' dataKey='price' stroke='#ff7300'/>
+                <Line type='monotone' dataKey='price' stroke='red'/>
             </LineChart>
         );
     }

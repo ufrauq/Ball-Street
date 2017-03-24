@@ -55,7 +55,7 @@ var PlayerEntry = React.createClass({
                 <td>
                     <form onSubmit={this.handleSubmit}>
                         <input type="text" placeholder="Quantity" onChange={this.qtyChange}/>
-                        <input type="submit" defaultValue="Buy!"/>
+                        <input type="submit" defaultValue="Buy!" className="buyButton"/>
                     </form>
                 </td>
             </tr>
@@ -189,14 +189,14 @@ var Market = React.createClass({
         //puts together all the different components
         return(
             <div>
-                <div>{this.state.topPlayers}</div>
+                <div><h2>{this.state.topPlayers}</h2></div>
                 <br/>
-                <form onSubmit={this.callAPI} className="searchbar">
+                <form onSubmit={this.callAPI} className="searchbar" default="Search">
                     <input type="text" onChange={this.updateKeyword}/>
                 </form>
                 <div className="navigator">
                     <button onClick={this.previous} className="navButton">Previous</button>
-                    {this.state.pageStatus+1}-{this.state.pageStatus+this.state.pageSize} of {this.state.totalResults}
+                    <h4>{this.state.pageStatus+1}-{this.state.pageStatus+this.state.pageSize} of {this.state.totalResults}</h4>
                     <button onClick={this.next} className="navButton">Next</button>
                 </div>
                 <table className="marketList">

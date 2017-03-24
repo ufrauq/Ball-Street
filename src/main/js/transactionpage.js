@@ -157,7 +157,7 @@ var Transaction = React.createClass({
         return(
             <div>
                 <h1>Pending Transactions</h1>
-                <TransactionList type="opened" url="getPendingTransactions" refresh={this.state.refresh} callback={this.refreshData}/>
+                <TransactionList type="opened" url="getPendingTransactions" refresh={this.state.refresh} callback={this.refreshData}/><br/><br/>
                 <h1>Transaction History</h1>
                 <TransactionList type="closed" url="getPastTransactions" refresh={this.state.refresh} callback={this.refreshData}/>
             </div>

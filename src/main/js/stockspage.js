@@ -56,7 +56,7 @@ var PlayerEntry = React.createClass({
                 <td>
                     <form onSubmit={this.handleSubmit}>
                         <input type="text" placeholder="Quantity" onChange={this.qtyChange}/>
-                        <input type="submit" defaultValue="Sell!"/>
+                        <input className = "sellButton" type="submit" defaultValue="Sell!"/>
                     </form>
                 </td>
             </tr>

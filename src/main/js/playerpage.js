@@ -16,7 +16,7 @@ const dummyData = [
     {name: 'Page G', uv: 3490, pv: 4300, amt: 2100},
 ];
 
-const testPlayerData = [
+const testPlayerData2 = [
     {Date: 'Day 1', price: 3.36},
     {Date: 'Day 2', price: 3.4},
     {Date: 'Day 3', price: 3.76},
@@ -29,6 +29,8 @@ const testPlayerData = [
     {Date: 'Day 10', price: -3.36},
 ];
 
+const testPlayerData = null;
+
 var LineGraph = React.createClass({
     getInitialState() {
         return {
@@ -36,7 +38,9 @@ var LineGraph = React.createClass({
             playerData2: [],
             options: null,
             selected: "",
-            graphData: testPlayerData
+            graphData: testPlayerData,
+            text: "",
+            name: ""
         }
     },
 
@@ -70,27 +74,21 @@ var LineGraph = React.createClass({
                 if (response.ok) {
                     response.json().then(json => {
                         let result = [];
-                        result.push(<thead><tr>
-                            <th>First</th>
-                            <th>Last</th>
-                            <th>#</th>
-                            <th>POS</th>
-                            <th>Height</th>
+                        //creating table headings
+
+                        result.push(<tr><th>#</th><th>POS</th><th>Height</th>
                             <th>Weight</th>
                             <th>Age</th>
                             <th>City</th>
-                            <th>Name</th>
+                            <th>Team</th>
                             <th>GP</th>
                             <th>REB/GP</th>
                             <th>AST/GP</th>
                             <th>PTS/GP</th>
-                            <th>Price</th>
-                            <th>Change</th>
-                        </tr></thead>);
+
+                        </tr>);
                         let change = json.currentPrice-json.previousDayPrice;
-                        result.push(<tbody><tr>
-                            <td>{json.firstName}</td>
-                            <td>{json.lastName}</td>
+                        result.push(<tr>
                             <td>{json.jerseyNumber}</td>
                             <td>{json.position}</td>
                             <td>{json.height}</td>
@@ -102,11 +100,11 @@ var LineGraph = React.createClass({
                             <td>{json.reb}</td>
                             <td>{json.ast}</td>
                             <td>{json.pts}</td>
-                            <td>{json.currentPrice}</td>
-                            <td>{change}</td>
-                        </tr></tbody>);
+
+                        </tr>);
+                        let name = json.firstName + " " + json.lastName
                         this.setState({playerData2: []});
-                        this.setState({playerData2: result});
+                        this.setState({playerData2: result, text: "Player Stock Price over Past 10 Days", name: name});
                     })
                 }
             });
@@ -145,19 +143,21 @@ var LineGraph = React.createClass({
 
     render () {
         return (
-
             <div>
-                <Select value={this.state.selected} options={this.state.options} onChange={this.logChange}/>
-                <table>
+
+                <Select className= "selectBar" value={this.state.selected} options={this.state.options} onChange={this.logChange}/>
+                <h2>{this.state.name}</h2><br/><br/><br/>
+                <table className= "playerTable">
                     {this.state.playerData2}
                 </table>
-                <LineChart width={400} height={300} data={this.state.graphData}>
+                <LineChart width={1000} height={300} data={this.state.graphData}>
                     <XAxis dataKey= "Date" />
                     <YAxis />
                     <Tooltip />
                     <CartesianGrid stroke='#f5f5f5'/>
-                    <Line type='monotone' dataKey='price' stroke='#ff7300'/>
+                    <Line type='monotone' dataKey='price' stroke='red'/>
                 </LineChart>
+                {this.state.text}
             </div>
         );
     }
