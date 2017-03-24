@@ -121,22 +121,23 @@ var LineGraph = React.createClass({
 
     render () {
         return (
-            <div>
+            <div id="info">
 
                 <Select className= "selectBar" value={this.state.selected} options={this.state.options} onChange={this.logChange}/>
                   <br/><br/>
                 <table className = "playerTable">
                     {this.state.playerData2}
                 </table>
-                <br/><br/><br/><br/>
-                <LineChart width={800} height={300} data={this.state.graphData}>
+                <br/><br/>
+                <LineChart width={800} height={200} data={this.state.graphData} className="line">
                     <XAxis dataKey= "Date" />
                     <YAxis />
                     <Tooltip />
                     <CartesianGrid stroke='#f5f5f5'/>
                     <Line type='monotone' dataKey='price' stroke='red'/>
                 </LineChart>
-                {this.state.text}
+                <h3 id="chartTitle">{this.state.text} </h3>
+
             </div>
         );
     }

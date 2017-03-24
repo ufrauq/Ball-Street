@@ -59398,7 +59398,7 @@ var LineGraph = _react2.default.createClass({
     render: function render() {
         return _react2.default.createElement(
             'div',
-            null,
+            { id: 'info' },
             _react2.default.createElement(_reactSelect2.default, { className: 'selectBar', value: this.state.selected, options: this.state.options, onChange: this.logChange }),
             _react2.default.createElement('br', null),
             _react2.default.createElement('br', null),
@@ -59409,18 +59409,21 @@ var LineGraph = _react2.default.createClass({
             ),
             _react2.default.createElement('br', null),
             _react2.default.createElement('br', null),
-            _react2.default.createElement('br', null),
-            _react2.default.createElement('br', null),
             _react2.default.createElement(
                 _recharts.LineChart,
-                { width: 800, height: 300, data: this.state.graphData },
+                { width: 800, height: 200, data: this.state.graphData, className: 'line' },
                 _react2.default.createElement(_recharts.XAxis, { dataKey: 'Date' }),
                 _react2.default.createElement(_recharts.YAxis, null),
                 _react2.default.createElement(_recharts.Tooltip, null),
                 _react2.default.createElement(_recharts.CartesianGrid, { stroke: '#f5f5f5' }),
                 _react2.default.createElement(_recharts.Line, { type: 'monotone', dataKey: 'price', stroke: 'red' })
             ),
-            this.state.text
+            _react2.default.createElement(
+                'h3',
+                { id: 'chartTitle' },
+                this.state.text,
+                ' '
+            )
         );
     }
 });

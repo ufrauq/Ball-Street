@@ -93,12 +93,12 @@
         <img class="profile" src="https://openclipart.org/download/247319/abstract-user-flat-3.svg" width = "200px" align="center">
             <div id="bottom">
                 <br>
-                <h2 id="money_id" align = "right">Net Worth:</h2>
+                <h2 id="money_id" align = "left">Net Worth:</h2>
                 <script>
                     document.getElementById("money_id").innerHTML = "Net Worth: $" + sessionStorage.getItem("netWorth");
                 </script>
 
-                <h2 id="cash_id" align="right">Cash:</h2>
+                <h2 id="cash_id" align="left">Cash:</h2>
                 <script>
                     document.getElementById("cash_id").innerHTML = "Balance: $" + sessionStorage.getItem("balance");
                 </script>

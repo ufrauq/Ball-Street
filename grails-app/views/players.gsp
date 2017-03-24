@@ -84,7 +84,7 @@
     <div id="contentArea" class="areas">
 
         <div id="container">
-        <h1> Players</h1>
+
         <div id="chartContainer"></div>
         <asset:javascript src="player.bundle.js"/><br><br><br><br>
         </div>
