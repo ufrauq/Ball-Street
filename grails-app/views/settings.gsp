@@ -96,7 +96,7 @@
             <br><br>
         </div>
         <div id="bottom">
-            <button type="submit" onclick="logout()">Logout</button>
+            <button type="submit" class="button1" onclick="logout()">Logout</button>
             <script>
                 function logout() {
                     localStorage.removeItem("authObject");

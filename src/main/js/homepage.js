@@ -65,20 +65,27 @@ var LineGraph = React.createClass({
     render () {
         return (
         <div>
-            <LineChart width={400} height={300} data={this.state.graphData} className="worthChart">
-                <XAxis dataKey= "Date" />
-                <YAxis />
-                <Tooltip />
-                <CartesianGrid stroke='#f5f5f5'/>
-                <Line type='monotone' dataKey='price' stroke='red'/>
-            </LineChart>
-            <LineChart width={400} height={300} data={this.state.graphData2} className="balanceChart">
-                <XAxis dataKey= "Date" />
-                <YAxis />
-                <Tooltip />
-                <CartesianGrid stroke='#f5f5f5'/>
-                <Line type='monotone' dataKey='price' stroke='red'/>
-            </LineChart>
+            <div id="chart1">
+                <LineChart width={300} height={300} data={this.state.graphData} className="worthChart">
+                    <XAxis dataKey= "Date" />
+                    <YAxis />
+                    <Tooltip />
+                    <CartesianGrid stroke='#f5f5f5'/>
+                    <Line type='monotone' dataKey='price' stroke='red'/>
+                </LineChart>
+                <h3 id="networthTitle"> Networth over the <br/>past 20 minutes</h3>
+            </div>
+
+            <div id="chart2">
+                <LineChart width={300} height={300} data={this.state.graphData2} className="balanceChart">
+                    <XAxis dataKey= "Date" />
+                    <YAxis />
+                    <Tooltip />
+                    <CartesianGrid stroke='#f5f5f5'/>
+                    <Line type='monotone' dataKey='price' stroke='red'/>
+                </LineChart>
+                <h3 id="balanceTitle"> Balance over the <br/>past 20 minutes</h3>
+            </div>
         </div>
         );
     }

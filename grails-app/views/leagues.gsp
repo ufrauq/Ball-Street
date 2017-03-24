@@ -78,6 +78,7 @@
     <div id="contentArea" class="areas">
         <div id="leaguePage" align="left"></div>
         <asset:javascript src="leagues.bundle.js"/>
+        <br>
     </div>
 </div>
 </body>

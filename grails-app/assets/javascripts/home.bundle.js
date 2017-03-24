@@ -56809,22 +56809,44 @@ var LineGraph = _react2.default.createClass({
             'div',
             null,
             _react2.default.createElement(
-                _recharts.LineChart,
-                { width: 400, height: 300, data: this.state.graphData, className: 'worthChart' },
-                _react2.default.createElement(_recharts.XAxis, { dataKey: 'Date' }),
-                _react2.default.createElement(_recharts.YAxis, null),
-                _react2.default.createElement(_recharts.Tooltip, null),
-                _react2.default.createElement(_recharts.CartesianGrid, { stroke: '#f5f5f5' }),
-                _react2.default.createElement(_recharts.Line, { type: 'monotone', dataKey: 'price', stroke: 'red' })
+                'div',
+                { id: 'chart1' },
+                _react2.default.createElement(
+                    _recharts.LineChart,
+                    { width: 300, height: 300, data: this.state.graphData, className: 'worthChart' },
+                    _react2.default.createElement(_recharts.XAxis, { dataKey: 'Date' }),
+                    _react2.default.createElement(_recharts.YAxis, null),
+                    _react2.default.createElement(_recharts.Tooltip, null),
+                    _react2.default.createElement(_recharts.CartesianGrid, { stroke: '#f5f5f5' }),
+                    _react2.default.createElement(_recharts.Line, { type: 'monotone', dataKey: 'price', stroke: 'red' })
+                ),
+                _react2.default.createElement(
+                    'h3',
+                    { id: 'networthTitle' },
+                    ' Networth over the ',
+                    _react2.default.createElement('br', null),
+                    'past 20 minutes'
+                )
             ),
             _react2.default.createElement(
-                _recharts.LineChart,
-                { width: 400, height: 300, data: this.state.graphData2, className: 'balanceChart' },
-                _react2.default.createElement(_recharts.XAxis, { dataKey: 'Date' }),
-                _react2.default.createElement(_recharts.YAxis, null),
-                _react2.default.createElement(_recharts.Tooltip, null),
-                _react2.default.createElement(_recharts.CartesianGrid, { stroke: '#f5f5f5' }),
-                _react2.default.createElement(_recharts.Line, { type: 'monotone', dataKey: 'price', stroke: 'red' })
+                'div',
+                { id: 'chart2' },
+                _react2.default.createElement(
+                    _recharts.LineChart,
+                    { width: 300, height: 300, data: this.state.graphData2, className: 'balanceChart' },
+                    _react2.default.createElement(_recharts.XAxis, { dataKey: 'Date' }),
+                    _react2.default.createElement(_recharts.YAxis, null),
+                    _react2.default.createElement(_recharts.Tooltip, null),
+                    _react2.default.createElement(_recharts.CartesianGrid, { stroke: '#f5f5f5' }),
+                    _react2.default.createElement(_recharts.Line, { type: 'monotone', dataKey: 'price', stroke: 'red' })
+                ),
+                _react2.default.createElement(
+                    'h3',
+                    { id: 'balanceTitle' },
+                    ' Balance over the ',
+                    _react2.default.createElement('br', null),
+                    'past 20 minutes'
+                )
             )
         );
     }

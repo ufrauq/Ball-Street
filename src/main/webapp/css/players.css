@@ -6,14 +6,15 @@ body{
 
 #chartContainer{
     display: block;
+    margin-left: auto;
+    margin-right: auto;
 
-    padding-left:0px;
-    width:1000px;
+    
 }
 #container{
-    padding-left:50px;
-    padding-right: 50px;
-    text-align: center;
+
+    margin-left: auto;
+    margin-right: auto;
 
 
 }
@@ -22,9 +23,9 @@ body{
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 1000px;
+    width: 900px;
     padding-left: 50px;
-    padding-right: 20px;
+    padding-right: 50px;
     padding-bottom: 15px;
     padding-top: 50px;
 }
@@ -35,8 +36,12 @@ body{
     margin-right: auto;
     padding-right:20px;
     padding-left: 50px;
-    width:1000px;
+    width:800px;
+    border-collapse: collapse;
+    text-align: center;
 }
+
+
 
 .chartTitle{
     display: block;
@@ -46,7 +51,7 @@ body{
 
 /* When the input field gets focus, change its width to 100% */
 input[type=text] {
-    width: 300px;
+    width: 100%;
     box-sizing: border-box;
     border: 2px solid #ccc;
     border-radius: 4px;
@@ -60,11 +65,6 @@ input[type=text] {
     transition: width 0.4s ease-in-out;
 }
 
-input[type=text]:focus {
-    <!--width: 90%; -->
-    margin-left:20px;
-    margin-right:20px;
-}
 
 table{
     text-align:right;
@@ -73,13 +73,25 @@ table{
 }
 th {
     border: 5px solid lightgrey;
-    text-align: left;
+    text-align: center;
     padding: 8px;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: red;
     font-size: 18px;
     background-color: #dddddd;
 
+}
+
+.number{
+    width: 50px;
+}
+
+.position{
+    width: 74%;
+}
+
+.height{
+    width: 7%;
 }
 
 td {
@@ -90,4 +102,16 @@ td {
     color: #808080;
     font-size: 16px;
 
+}
+
+#info{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 50px;
+}
+
+.line{
+    margin-left: auto;
+    margin-right: auto;
 }

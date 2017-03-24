@@ -1,4 +1,4 @@
-button {
+.button1 {
     background-color: #dddddd;
     padding: 10px 70px;
     font-size: 14px;
@@ -10,7 +10,7 @@ button {
     /*border: 1px solid dimgrey; */
 }
 
-button:hover {
+.button1:hover {
     background-color: red;
     color: white;
     border-radius: 10px;

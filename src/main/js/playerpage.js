@@ -51,15 +51,18 @@ var LineGraph = React.createClass({
                         let result = [];
                         //creating table headings
 
-                        result.push(<tr><th>#</th><th>POS</th><th>Height</th>
-                            <th>Weight</th>
-                            <th>Age</th>
-                            <th>City</th>
-                            <th>Team</th>
-                            <th>GP</th>
-                            <th>REB/GP</th>
-                            <th>AST/GP</th>
-                            <th>PTS/GP</th>
+                        result.push(<tr>
+                            <th className="number">#</th>
+                            <th className="position">POS</th>
+                            <th className="height">Height</th>
+                            <th className="weight">Weight</th>
+                            <th className="age">Age</th>
+                            <th className="city">City</th>
+                            <th className="team">Team</th>
+                            <th className="gp">GP</th>
+                            <th className="reb">REB/GP</th>
+                            <th className="ast">AST/GP</th>
+                            <th className="pts">PTS/GP</th>
 
                         </tr>);
                         let change = json.currentPrice-json.previousDayPrice;
@@ -118,21 +121,23 @@ var LineGraph = React.createClass({
 
     render () {
         return (
-            <div>
+            <div id="info">
 
                 <Select className= "selectBar" value={this.state.selected} options={this.state.options} onChange={this.logChange}/>
-                <h2>{this.state.name}</h2><br/><br/><br/>
-                <table className= "playerTable">
+                  <br/><br/>
+                <table className = "playerTable">
                     {this.state.playerData2}
                 </table>
-                <LineChart width={1000} height={300} data={this.state.graphData}>
+                <br/><br/>
+                <LineChart width={800} height={200} data={this.state.graphData} className="line">
                     <XAxis dataKey= "Date" />
                     <YAxis />
                     <Tooltip />
                     <CartesianGrid stroke='#f5f5f5'/>
                     <Line type='monotone' dataKey='price' stroke='red'/>
                 </LineChart>
-                {this.state.text}
+                <h3 id="chartTitle">{this.state.text} </h3>
+
             </div>
         );
     }

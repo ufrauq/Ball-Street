@@ -22372,16 +22372,13 @@ var Market = _react2.default.createClass({
                     for (var i = 0; i < json.length; i++) {
                         result.push(_react2.default.createElement(
                             'div',
-                            null,
+                            { className: 'topP' },
                             i + 1,
                             ': ',
                             json[i].firstName,
                             ' ',
                             json[i].lastName,
-                            ' ',
-                            json[i].team,
-                            ' ',
-                            json[i].currentPrice
+                            ' '
                         ));
                     }
                     _this.setState({ topPlayers: result });
@@ -22575,40 +22572,60 @@ var Market = _react2.default.createClass({
             null,
             _react2.default.createElement(
                 'div',
-                null,
+                { id: 'topPlayers' },
+                _react2.default.createElement(
+                    'h2',
+                    null,
+                    'Suggested Players'
+                ),
                 _react2.default.createElement(
                     'h2',
                     null,
                     this.state.topPlayers
                 )
             ),
-            _react2.default.createElement('br', null),
             _react2.default.createElement(
-                'form',
-                { onSubmit: this.callAPI, className: 'searchbar', 'default': 'Search' },
-                _react2.default.createElement('input', { type: 'text', onChange: this.updateKeyword })
+                'div',
+                null,
+                _react2.default.createElement(
+                    'form',
+                    { onSubmit: this.callAPI, className: 'searchbar' },
+                    _react2.default.createElement('input', { type: 'text', placeholder: 'Search for a Player', onChange: this.updateKeyword })
+                )
             ),
             _react2.default.createElement(
                 'div',
-                { className: 'navigator' },
+                { className: 'navigator', id: 'pages' },
                 _react2.default.createElement(
-                    'button',
-                    { onClick: this.previous, className: 'navButton' },
-                    'Previous'
+                    'div',
+                    { id: 'prevB' },
+                    _react2.default.createElement(
+                        'button',
+                        { onClick: this.previous, className: 'navButton' },
+                        'Previous'
+                    )
                 ),
                 _react2.default.createElement(
-                    'h4',
-                    null,
-                    this.state.pageStatus + 1,
-                    '-',
-                    this.state.pageStatus + this.state.pageSize,
-                    ' of ',
-                    this.state.totalResults
+                    'div',
+                    { id: 'pageNumbers' },
+                    _react2.default.createElement(
+                        'h4',
+                        null,
+                        this.state.pageStatus + 1,
+                        '-',
+                        this.state.pageStatus + this.state.pageSize,
+                        ' of ',
+                        this.state.totalResults
+                    )
                 ),
                 _react2.default.createElement(
-                    'button',
-                    { onClick: this.next, className: 'navButton' },
-                    'Next'
+                    'div',
+                    { id: 'nextB' },
+                    _react2.default.createElement(
+                        'button',
+                        { onClick: this.next, className: 'navButton' },
+                        'Next'
+                    )
                 )
             ),
             _react2.default.createElement(
