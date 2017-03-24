@@ -22220,6 +22220,24 @@ var UserAccountCreator = _react2.default.createClass({
             password: ""
         };
     },
+    componentDidMount: function componentDidMount() {
+        //get score data and store in browser storage
+        fetch("http://localhost:8080/score/getScore", { method: 'POST' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (json) {
+                    //creates table heading
+                    var result = "";
+                    for (var i = 0; i < json.length; i++) {
+                        result = result + json[i];
+                    }
+                    sessionStorage.setItem("marquee", result);
+                });
+            } else {
+                console.log("Error: " + response.status);
+                sessionStorage.setItem("marquee", "Error retrieving scores...");
+            }
+        });
+    },
     handleNameChange: function handleNameChange(e) {
         e.preventDefault();
         this.setState({ userName: e.target.value });
@@ -22283,8 +22301,8 @@ var UserAccountCreator = _react2.default.createClass({
             if (response.ok) {
                 response.json().then(function (json) {
                     //if successful then store name, balance and netWorth (to be accessed by other pages) and link to home page
-                    sessionStorage.setItem("balance", json.balance);
-                    sessionStorage.setItem("netWorth", json.netWorth);
+                    sessionStorage.setItem("balance", json.balance.toFixed(2));
+                    sessionStorage.setItem("netWorth", json.netWorth.toFixed(2));
                     sessionStorage.setItem("username", name);
                     window.location.href = '/home';
                     _this2.setState({ message: name + " successfully logged in!" });

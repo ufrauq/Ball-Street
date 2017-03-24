@@ -7,6 +7,8 @@ import java.sql.DriverManager
 import java.sql.ResultSet
 import java.sql.SQLException
 import java.sql.Statement
+import java.text.ParseException
+import java.text.SimpleDateFormat
 
 @Secured(['ROLE_USER'])
 class PortfolioController {
@@ -53,10 +55,11 @@ class PortfolioController {
                 ResultSet result
                 PlayerSummary [] rtrn = new PlayerSummary[user.portfolio.size()]
                 int i = 0
+                int days = numDays()
                 for (s in user.portfolio) {
                     result = statement.executeQuery("SELECT * FROM INITIALSTOCKPRICES WHERE `#LastName`='" + s.stockLastName + "' AND `#FirstName`='" + s.stockFirstName + "'");
                     while (result.next()) {
-                        rtrn[i] = new PlayerSummary(firstName: result.getString(4), lastName: result.getString(3), team: result.getString(17), previousDayPrice: result.getDouble(22), currentPrice: result.getDouble(23), quantityOwned: s.quantityOwned)
+                        rtrn[i] = new PlayerSummary(firstName: result.getString(4), lastName: result.getString(3), team: result.getString(15), previousDayPrice: result.getDouble(days+23), currentPrice: result.getDouble(23), quantityOwned: s.quantityOwned)
                         i = i + 1
                     }
                 }
@@ -80,6 +83,19 @@ class PortfolioController {
                     response.status = 501 //connection or query issue
                 }
             }
+        }
+    }
+
+    def numDays() {
+        try {
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            Date f = df.parse("2017-03-19");
+            Date t = new Date();
+            return ((t.getTime() - f.getTime()) / (1000 * 60 * 60 * 24))
+        }
+        catch (ParseException e) {
+            System.out.println(e.getMessage())
+            return -1
         }
     }
 

@@ -7,11 +7,13 @@ import java.sql.DriverManager
 import java.sql.ResultSet
 import java.sql.SQLException
 import java.sql.Statement
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 @Secured(['ROLE_USER'])
 class PlayerController {
 
-    static allowedMethods = [getAllPlayers: 'POST', getPlayersByKeyword: 'POST', getPlayer: 'POST']
+    static allowedMethods = [getAllPlayers: 'POST', getPlayersByKeyword: 'POST', getPlayer: 'POST', getSuggestedPlayers: 'POST', getPlayerPriceHistory: 'POST']
     static responseFormats = ['json']
 
     def getPlayersByKeyword() {
@@ -30,10 +32,11 @@ class PlayerController {
                 result.beforeFirst()
             }
             System.out.println("The numbers of rows is " + rows + " with keyword " + keyword)
+            int days = numDays()
             PlayerSummary[] rtrn = new PlayerSummary[rows]
             int i = 0
             while (result.next()) {
-                rtrn[i] = new PlayerSummary(firstName: result.getString(4), lastName: result.getString(3), team: result.getString(15), previousDayPrice: result.getDouble(22), currentPrice: result.getDouble(23))
+                rtrn[i] = new PlayerSummary(firstName: result.getString(4), lastName: result.getString(3), team: result.getString(15), previousDayPrice: result.getDouble(days+23), currentPrice: result.getDouble(23))
                 i = i + 1
             }
             respond rtrn
@@ -70,10 +73,11 @@ class PlayerController {
                 result.beforeFirst()
             }
             System.out.println("The numbers of rows is " + rows)
+            int days = numDays()
             PlayerSummary [] rtrn = new PlayerSummary[rows]
             int i = 0
             while (result.next()) {
-                rtrn[i] = new PlayerSummary(firstName: result.getString(4), lastName: result.getString(3), team: result.getString(15), previousDayPrice: result.getDouble(22), currentPrice: result.getDouble(23))
+                rtrn[i] = new PlayerSummary(firstName: result.getString(4), lastName: result.getString(3), team: result.getString(15), previousDayPrice: result.getDouble(days+23), currentPrice: result.getDouble(23))
                 i = i + 1
             }
             respond rtrn
@@ -112,10 +116,11 @@ class PlayerController {
                 result.beforeFirst()
             }
             System.out.println("The numbers of rows is " + rows + " so...")
+            int days = numDays()
             if (rows == 1) {
                 PlayerProfile rtrn
                 while (result.next()) {
-                    rtrn = new PlayerProfile(firstName: result.getString(4), lastName: result.getString(3), jerseyNumber: result.getString(5), position: result.getString(6), height: result.getString(7), weight: result.getString(8), age: result.getInt(10), teamCity: result.getString(16), teamName: result.getString(17), gp: result.getInt(18), reb: result.getDouble(19), ast: result.getDouble(20), pts: result.getDouble(21), previousDayPrice: result.getDouble(22), currentPrice: result.getDouble(23))
+                    rtrn = new PlayerProfile(firstName: result.getString(4), lastName: result.getString(3), jerseyNumber: result.getString(5), position: result.getString(6), height: result.getString(7), weight: result.getString(8), age: result.getInt(10), teamCity: result.getString(16), teamName: result.getString(17), gp: result.getInt(18), reb: result.getDouble(19), ast: result.getDouble(20), pts: result.getDouble(21), previousDayPrice: result.getDouble(days+23), currentPrice: result.getDouble(23))
                 }
                 respond rtrn
             }
@@ -151,7 +156,7 @@ class PlayerController {
             PlayerSummary [] rtrn = new PlayerSummary[5]
             int i = 0
             while (result.next() && i < 5) {
-                rtrn[i] = new PlayerSummary(firstName: result.getString(5), lastName: result.getString(4), team: result.getString(8), currentPrice: result.getInt(14)) //user current price to store daily fantasy points
+                rtrn[i] = new PlayerSummary(firstName: result.getString(6), lastName: result.getString(5), team: result.getString(9), currentPrice: result.getInt(15)) //user current price to store daily fantasy points
                 i = i + 1
             }
             respond rtrn
@@ -189,18 +194,23 @@ class PlayerController {
                 // Move to beginning
                 result.beforeFirst()
             }
+            int days = numDays()
             System.out.println("The numbers of rows is " + rows + " so...")
             if (rows == 1) {
                 double [] rtrn = new double[10];
+                int i
                 while (result.next()) {
-                    for (int i=9; i>0; i--) {
-                        double price = result.getDouble(24+i)
+                    for (i=0; i<9 && (23-i+days > 23); i++) {
+                        double price = result.getDouble(23+days-i)
                         if (price == null) {
-                            rtrn[i] = 0
+                            rtrn[i+1] = 0
                         }
                         else {
-                            rtrn[i] = price
+                            rtrn[i+1] = price
                         }
+                    }
+                    for (int j = i; j < 9; j++) {
+                        rtrn[j+1] = 0
                     }
                     rtrn[0] = result.getDouble(23)
                 }
@@ -224,6 +234,19 @@ class PlayerController {
                     response.status = 501 //connection or query issue
                 }
             }
+        }
+    }
+
+    def numDays() {
+        try {
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            Date f = df.parse("2017-03-19");
+            Date t = new Date();
+            return ((t.getTime() - f.getTime()) / (1000 * 60 * 60 * 24))
+        }
+        catch (ParseException e) {
+            System.out.println(e.getMessage())
+            return -1
         }
     }
 
