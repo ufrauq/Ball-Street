@@ -67,6 +67,7 @@ td {
 input[type=text], select {
     width: 60%;
     padding: 5px ;
+    font-family: "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     font-size: 16px;
     display: inline-block;
     border: 1px solid #ccc;
@@ -77,9 +78,27 @@ input[type=text], select {
 input[type=password], select {
     width: 60%;
     padding: 5px ;
+    font-family: "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     font-size: 16px;
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 2px;
     box-sizing: border-box;
+}
+
+.selectBar{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1000px;
+    padding-left: 50px;
+    padding-right: 20px;
+    padding-bottom: 15px;
+    padding-top: 50px;
+}
+
+body{
+    background-color: white;
+    font-family: "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    margin-bottom: auto;
 }

@@ -24924,14 +24924,16 @@ var TransactionList = _react2.default.createClass({
                 { className: 'transactionList' },
                 this.state.transactions
             ),
+            _react2.default.createElement('br', null),
+            _react2.default.createElement('br', null),
             _react2.default.createElement(
                 'button',
-                { onClick: this.buy },
+                { className: 'button1', onClick: this.buy },
                 'Buy'
             ),
             _react2.default.createElement(
                 'button',
-                { onClick: this.sell },
+                { className: 'button1', onClick: this.sell },
                 'Sell'
             )
         );
@@ -25319,12 +25321,16 @@ var Transaction = _react2.default.createClass({
                 'Pending Transactions'
             ),
             _react2.default.createElement(TransactionList, { type: 'opened', url: 'getPendingTransactions', refresh: this.state.refresh, callback: this.refreshData }),
+            _react2.default.createElement('br', null),
+            _react2.default.createElement('br', null),
             _react2.default.createElement(
                 'h1',
                 null,
                 'Transaction History'
             ),
             _react2.default.createElement(TransactionList, { type: 'closed', url: 'getPastTransactions', refresh: this.state.refresh, callback: this.refreshData }),
+            _react2.default.createElement('br', null),
+            _react2.default.createElement('br', null),
             _react2.default.createElement(_reactSelect2.default, { value: this.state.selected, options: this.state.options, onChange: this.logChange }),
             _react2.default.createElement(
                 'table',

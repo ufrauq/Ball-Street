@@ -8,9 +8,11 @@
 .searchbar {
     float: left;
     padding: 20px;
+    width: 40%;
 }
 .navigator {
-    float: right;
+    float: left;
+    width: 10%;
 }
 .navButton {
     background-color: #dddddd;
@@ -61,4 +63,48 @@ td {
     color: #808080;
     font-size: 17px;
     -webkit-transition-duration: 0.4s; /* translations */
+}
+
+input[type=text], select {
+    width: 60%;
+    padding: 5px ;
+    font-size: 16px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    box-sizing: border-box;
+}
+
+input[type=password], select {
+    width: 60%;
+    padding: 5px ;
+    font-size: 16px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    box-sizing: border-box;
+}
+
+.buyButton {
+    background-color: #dddddd;
+    padding: 8px 25px 8px 25px;
+    font-size: 14px;
+
+    color: red;
+    cursor: pointer;
+    border: solid lightgrey;
+    border-radius: 10px;
+    margin-left: 10px;
+    /*border: 1px solid dimgrey; */
+}
+
+.buyButton:hover {
+    background-color: red;
+    color: white;
+    border-radius: 10px;
+    border: solid red;
+    padding: 8px 25px 8px 25px;
+
+
+
 }

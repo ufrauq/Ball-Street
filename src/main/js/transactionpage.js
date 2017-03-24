@@ -140,6 +140,7 @@ var TransactionList = React.createClass({
                 <table className="transactionList">
                     {this.state.transactions}
                 </table>
+                <br/><br/>
                 <button className="button1" onClick={this.buy}>Buy</button>
                 <button className="button1" onClick={this.sell}>Sell</button>
             </div>
