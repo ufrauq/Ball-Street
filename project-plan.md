@@ -34,10 +34,10 @@ For the authorization of logging in, BallStreet will be using local verification
     <ul>
     <li><b>Added Features</b> - Leagues: Can create a league with 25 members, join leagues, leave leagues and set passwords   for said leagues. Currently, the leagues page requires refreshing buttons.</li>
 
-<li><b>Adjusted Features:</b> Twitter authentication for login changed to local login authorization due to lack of public URL callback as the project must run locally. </li>
-</ul>
+<li><b>Adjusted Features:</b> Twitter authentication for login changed to local login authorization due to lack of public URL callback as the project must run locally. </li><br><br>
 
-<li><i>Features to be be implemented:</i></li>
+
+<li><b>Features to be be implemented:</b></li>
 <ul>
   <li>Local Authorization</li>
   <li>Data-Mining</li>
