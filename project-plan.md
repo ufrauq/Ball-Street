@@ -19,6 +19,10 @@ The project was started originally in January and the project duration will be a
 <li>Additional feature:  implementation of various financial instruments, such as options and futures using available data (difficulty in implementing:  medium)</li>
 <li>Additional feature:  implementation of machine learning algorithms to assist in optimizing a parameter in the user’s profile, such as maintaining portfolio volatility or maximum portfolio value (difficulty in implementing:  hard)</li></ul><br><br>
 
+<li><i>View Player Information</i></li>
+<ul><li>Users will be able to view information about players in addition to their current stock price and networth. </li>
+</ul><br><br>
+
 <a href="https://pfindan.github.io/CS2212-Team5/assets/images/2212_Project_Plan.pdf">
 <img src= "/CS2212-Team5/assets/images/ganttchart.png" align = "left"/>
 <br>
@@ -51,10 +55,20 @@ For the authorization of logging in, BallStreet will be using local verification
   <hr> 
   <ul>
   <li>SQL Database Implementation </li>
+  <li>SQL Query Calls </li>
+  <li>Calling MySportsFeeds.com API</li>
   <li>Local Authentification Instated </li>
+  <li>Auto Page Refreshing </li>
   <li>Marquee Displaying Past Game Scores </li>
   <li>Buying and Selling of Stocks and Verifications</li>
   <li>View Player Data (called info. from database)</li>
+  <li>User Profile</li>
+  <ul>
+  <li>User can login and log out</li>
+  <li>A new user can be created</li>
+  <li>User can buy and sell stocks to from the market</li>
+  </ul>
+  <li>Suggested Players</li>
   </ul><br><br>
   Overall, we have implemented all features for the users stories and overcome and adjusted our project according to our
   challenges. 
