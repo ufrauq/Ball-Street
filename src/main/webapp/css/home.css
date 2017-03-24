@@ -16,20 +16,16 @@ body{
     padding: 0px;
     height: 100%;
     padding-top: 60px;
+
 }
 
-#bottom{
-    align: center;
-    width:100%;
-    margin-top: 5px;
-}
 
 #chartContainer {
     box-sizing: border-box;
-    padding: 10px;
+
     width: 65%;
     float: right;
-    height: 300px;
+    height: 30px;
     background-color: #fff;
     text-align: left;
     margin-left: 0px;
@@ -41,10 +37,7 @@ body{
     padding-left: 480px;
 }
 
-#left-down{
-    align: center;
-    float: bottom;
-}
+
 
 #right{
     width: 30%;
@@ -57,11 +50,7 @@ body{
     margin-left: 100px;
 }
 
-#bottom{
-    padding:20px;
-    width: 80%;
-    float: bottom;
-}
+
 
 profile:hover  {
     color: red;
@@ -72,4 +61,27 @@ profile:hover  {
 }
 .balanceChart {
     float: right;
+}
+
+
+#chart1{
+    float: left;
+    text-align: center;
+}
+
+#chart2{
+    float: left;
+    text-align: center;
+
+}
+#networthTitle{
+    padding-left: 70px;
+}
+
+#balanceTitle{
+    padding-left: 70px;
+}
+
+#contentArea{
+    overflow-y: hidden;
 }

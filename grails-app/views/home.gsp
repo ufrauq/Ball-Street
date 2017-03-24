@@ -106,7 +106,7 @@
         </div>
 
         <div id ="chartTitle">
-            <p>Net Worth over the Last 20 minutes &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspBalance over the Last 20 minutes</p>
+
         </div>
 
     </div>
