@@ -8,6 +8,30 @@
     <link rel = "stylesheet"
           type = "text/css"
           href="${resource(dir: 'css', file: 'leagueStyle.css')}" />
+    <script>
+        function updateData() {
+            let token = JSON.parse(localStorage.authObject).access_token;
+            fetch("http://localhost:8080/userAccount/getUser?userName=" + name, {method: 'POST', headers: {'Authorization': 'Bearer ' + token}}).then(response => {
+                console.log(response.status);
+                if (response.ok) {
+                    response.json().then(json => {
+                        //if successful then store name, balance and netWorth (to be accessed by other pages) and link to home page
+                        sessionStorage.setItem("balance", json.balance.toFixed(2));
+                        sessionStorage.setItem("netWorth", json.netWorth.toFixed(2));
+                        document.getElementById("netWorth").innerHTML = "Net Worth: $" + sessionStorage.getItem("netWorth");
+                        document.getElementById("balance").innerHTML = "Balance: $" + sessionStorage.getItem("balance");
+                        console.log("Succesfully updated user balance and networth...")
+                    });
+                }
+            });
+        }
+        if (localStorage.getItem("authObject") === null) {
+            window.location.href='/login'
+        }
+        else {
+            updateData();
+        }
+    </script>
 </head>
 <body>
 <div id="main">
@@ -20,45 +44,41 @@
                 <li style="float: left;width: 15%" onclick="window.location.href='/home'" id="username">
                     <img src="http://downloadicons.net/sites/default/files/basketball-icon-23146.png" width="15px">
                     <script>
-                        /*document.getElementById("username").innerHTML = document.getElementById("username").innerHTML + "       "+ sessionStorage.getItem("username");*/
                         document.getElementById("username").innerHTML = sessionStorage.getItem("username");
                     </script>
                 </li>
                 <li onclick="window.location.href='/settings'">
                     Settings
                 </li>
-                <li id="money2" style=" width:12%; text-align:center">
-                    Networth: $
-                    <script>
-                        document.getElementById("money2").innerHTML = "Net Worth: $" + sessionStorage.getItem("netWorth");
-                    </script>
-
+                <li id="netWorth" style=" width:12%; text-align:center" onclick={updateData()}>
                 </li>
-                <li id="money" style=" width:10%; text-align:center">
-                    Cash: $
-                    <script>
-                        document.getElementById("money").innerHTML = "Cash: $" + sessionStorage.getItem("cash");
-                    </script>
+                <li id="balance" style=" width:10%; text-align:center" onclick={updateData()}>
                 </li>
-                <li onclick="window.location.href='/trades'">
-                    Stock Trades
+                <li onclick="window.location.href='/transactions'">
+                    Transactions
                 </li>
             </ul>
         </div>
     </div>
-    <div>
-        <marquee>Click the refresh button to see league changes!</marquee>
-    </div>
+
     <div id="sideMenu" class="areas" >
         <button type="button" class="sideButtons" onclick="window.location.href='/stocks'">Stocks</button>
         <button type="button" class="selectedSide" onclick="window.location.href='/leagues'">Leagues</button>
         <button type="button" class="sideButtons" onclick="window.location.href='/players'">Players</button>
         <button type="button" class="sideButtons" onclick="window.location.href='/market'">Stock Market</button>
     </div>
+
+    <div>
+        <marquee id="scoresList"></marquee>
+        <script>
+            document.getElementById("scoresList").innerHTML = "Last Night's Scores: " + sessionStorage.getItem("marquee");
+        </script>
+    </div>
     <br>
     <div id="contentArea" class="areas">
         <div id="leaguePage" align="left"></div>
         <asset:javascript src="leagues.bundle.js"/>
+        <br>
     </div>
 </div>
 </body>
