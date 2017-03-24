@@ -42,9 +42,9 @@ For the authorization of logging in, BallStreet will be using local verification
   <li>Local Authorization</li>
   <li>Data-Mining</li>
   <li>Execution of Trades</li>
-  </ul>
+  </ul><br><br>
   
-  <li> <i>Final Updates: </i></li>
+  <li> <i><b>Final Updates: </b></i></li>
   <ul>
   <li>SQL Database Implementation </li>
   <li>Local Authentification Instated </li>
