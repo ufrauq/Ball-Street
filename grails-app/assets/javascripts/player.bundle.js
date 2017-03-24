@@ -59406,11 +59406,15 @@ var LineGraph = _react2.default.createClass({
             'div',
             null,
             _react2.default.createElement(_reactSelect2.default, { className: 'selectBar', value: this.state.selected, options: this.state.options, onChange: this.logChange }),
+            _react2.default.createElement('br', null),
+            _react2.default.createElement('br', null),
             _react2.default.createElement(
                 'table',
                 { className: 'playerTable' },
                 this.state.playerData2
             ),
+            _react2.default.createElement('br', null),
+            _react2.default.createElement('br', null),
             _react2.default.createElement('br', null),
             _react2.default.createElement('br', null),
             _react2.default.createElement(

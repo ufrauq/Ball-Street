@@ -149,11 +149,11 @@ var LineGraph = React.createClass({
             <div>
 
                 <Select className= "selectBar" value={this.state.selected} options={this.state.options} onChange={this.logChange}/>
-
+                  <br/><br/>
                 <table className = "playerTable">
                     {this.state.playerData2}
                 </table>
-                <br/><br/>
+                <br/><br/><br/><br/>
                 <LineChart width={800} height={300} data={this.state.graphData}>
                     <XAxis dataKey= "Date" />
                     <YAxis />

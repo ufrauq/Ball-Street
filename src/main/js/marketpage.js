@@ -105,7 +105,7 @@ var Market = React.createClass({
                     response.json().then(json => {
                         let result = [];
                         for (let i = 0; i < json.length; i++) {
-                            result.push(<div>{i+1}: {json[i].firstName} {json[i].lastName} {json[i].team} {json[i].currentPrice}</div>);
+                            result.push(<div className="topP">{i+1}: {json[i].firstName} {json[i].lastName} </div>);
                         }
                         this.setState({topPlayers: result});
                     })
@@ -189,15 +189,29 @@ var Market = React.createClass({
         //puts together all the different components
         return(
             <div>
-                <div><h2>{this.state.topPlayers}</h2></div>
-                <br/>
-                <form onSubmit={this.callAPI} className="searchbar" default="Search">
-                    <input type="text" onChange={this.updateKeyword}/>
+                <div id="topPlayers">
+                    <h2>Suggested Players</h2>
+                    <h2>{this.state.topPlayers}</h2>
+                </div>
+
+                <div >
+                <form onSubmit={this.callAPI} className="searchbar" >
+                    <input type="text" placeholder="Search for a Player" onChange={this.updateKeyword}/>
                 </form>
-                <div className="navigator">
-                    <button onClick={this.previous} className="navButton">Previous</button>
-                    <h4>{this.state.pageStatus+1}-{this.state.pageStatus+this.state.pageSize} of {this.state.totalResults}</h4>
-                    <button onClick={this.next} className="navButton">Next</button>
+                </div>
+
+                <div className="navigator" id="pages">
+                    <div id="prevB">
+                        <button onClick={this.previous} className="navButton">Previous</button>
+                    </div>
+
+                    <div id="pageNumbers">
+                        <h4>{this.state.pageStatus+1}-{this.state.pageStatus+this.state.pageSize} of {this.state.totalResults}</h4>
+                    </div>
+
+                    <div id="nextB">
+                         <button onClick={this.next} className="navButton">Next</button>
+                    </div>
                 </div>
                 <table className="marketList">
                     {this.state.playerData}
