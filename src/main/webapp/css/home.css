@@ -4,25 +4,7 @@ body{
     margin-bottom: auto;
 }
 
-button{
-    background-color: #dddddd;
-    padding: 10px 70px;
-    font-size: 14px;
-    border: solid #dddddd;
-    color: red;
-    cursor: pointer;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    border-radius: 25px;
-    /*border: 1px solid dimgrey; */
-}
 
-button:hover {
-    background-color: red;
-    color: white;
-    border-radius: 10px;
-    border: solid red;
-    /*border: 1px solid dimgrey;*/
-}
 
 .profile{
     color-overlay: red;

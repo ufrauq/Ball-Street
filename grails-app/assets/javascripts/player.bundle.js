@@ -59407,21 +59407,15 @@ var LineGraph = _react2.default.createClass({
             null,
             _react2.default.createElement(_reactSelect2.default, { className: 'selectBar', value: this.state.selected, options: this.state.options, onChange: this.logChange }),
             _react2.default.createElement(
-                'h2',
-                null,
-                this.state.name
-            ),
-            _react2.default.createElement('br', null),
-            _react2.default.createElement('br', null),
-            _react2.default.createElement('br', null),
-            _react2.default.createElement(
                 'table',
                 { className: 'playerTable' },
                 this.state.playerData2
             ),
+            _react2.default.createElement('br', null),
+            _react2.default.createElement('br', null),
             _react2.default.createElement(
                 _recharts.LineChart,
-                { width: 1000, height: 300, data: this.state.graphData },
+                { width: 800, height: 300, data: this.state.graphData },
                 _react2.default.createElement(_recharts.XAxis, { dataKey: 'Date' }),
                 _react2.default.createElement(_recharts.YAxis, null),
                 _react2.default.createElement(_recharts.Tooltip, null),
