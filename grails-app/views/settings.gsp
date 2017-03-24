@@ -9,12 +9,29 @@
           type = "text/css"
           href="${resource(dir: 'css', file: 'settings.css')}" />
     <script>
-        function checkAuth() {
-            if (localStorage.getItem("authObject") === null) {
-                window.location.href='/login'
-            }
+        function updateData() {
+            let token = JSON.parse(localStorage.authObject).access_token;
+            fetch("http://localhost:8080/userAccount/getUser?userName=" + name, {method: 'POST', headers: {'Authorization': 'Bearer ' + token}}).then(response => {
+                console.log(response.status);
+                if (response.ok) {
+                    response.json().then(json => {
+                        //if successful then store name, balance and netWorth (to be accessed by other pages) and link to home page
+                        sessionStorage.setItem("balance", json.balance.toFixed(2));
+                        sessionStorage.setItem("netWorth", json.netWorth.toFixed(2));
+                        document.getElementById("netWorth").innerHTML = "Net Worth: $" + sessionStorage.getItem("netWorth");
+                        document.getElementById("balance").innerHTML = "Balance: $" + sessionStorage.getItem("balance");
+                        document.getElementById("moneY").innerHTML = "Networth: $" + sessionStorage.getItem("netWorth");
+                        console.log("Succesfully updated user balance and networth...")
+                    });
+                }
+            });
         }
-        window.onload = checkAuth;
+        if (localStorage.getItem("authObject") === null) {
+            window.location.href='/login'
+        }
+        else {
+            updateData();
+        }
     </script>
 </head>
 <body>
@@ -35,16 +52,9 @@
                 <li onclick="window.location.href='/settings'" class="selectedTop">
                     Settings
                 </li>
-                <li id="netWorth" style=" width:12%; text-align:center">
-                    <script>
-                        document.getElementById("netWorth").innerHTML = "Net Worth: $" + sessionStorage.getItem("netWorth");
-                    </script>
-
+                <li id="netWorth" style=" width:12%; text-align:center" onclick={updateData()}>
                 </li>
-                <li id="balance" style=" width:10%; text-align:center">
-                    <script>
-                        document.getElementById("balance").innerHTML = "Balance: $" + sessionStorage.getItem("balance");
-                    </script>
+                <li id="balance" style=" width:10%; text-align:center" onclick={updateData()}>
                 </li>
                 <li onclick="window.location.href='/transactions'">
                     Transactions
@@ -61,10 +71,9 @@
     </div>
 
     <div>
-        <marquee id="settingMessage">Setting Page</marquee>
+        <marquee id="scoresList"></marquee>
         <script>
-            /*document.getElementById("username").innerHTML = document.getElementById("username").innerHTML + "       "+ sessionStorage.getItem("username");*/
-            document.getElementById("settingMessage").innerHTML = "Welcome " + sessionStorage.getItem("username");
+            document.getElementById("scoresList").innerHTML = "Last Night's Scores: " + sessionStorage.getItem("marquee");
         </script>
     </div>
     <br>
@@ -84,13 +93,10 @@
             </script>
 
             <h2 id="moneY">Networth:</h2>
-            <script>
-                document.getElementById("moneY").innerHTML = "Networth: $" + sessionStorage.getItem("netWorth");
-            </script>
             <br><br>
         </div>
         <div id="bottom">
-            <button type="submit" onclick="logout()">Logout</button>
+            <button type="submit" class="button1" onclick="logout()">Logout</button>
             <script>
                 function logout() {
                     localStorage.removeItem("authObject");

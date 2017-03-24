@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "/assets/";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 682);
+/******/ 	return __webpack_require__(__webpack_require__.s = 686);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -22175,7 +22175,11 @@ module.exports = onlyChild;
 /* 672 */,
 /* 673 */,
 /* 674 */,
-/* 675 */
+/* 675 */,
+/* 676 */,
+/* 677 */,
+/* 678 */,
+/* 679 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22184,7 +22188,7 @@ module.exports = onlyChild;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.LoginPage = undefined;
+exports.StockPage = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -22200,201 +22204,220 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var checkStatus = function checkStatus(response) {
-    console.log(response.status);
-    if (response.status >= 200 && response.status < 300) {
-        return response.json();
-    } else {
-        var error = new Error(response.status == 401 ? "Invalid username and/or password" : response.statusText);
-        error.response = response;
-        throw error;
-    }
-};
-
-var UserAccountCreator = _react2.default.createClass({
-    displayName: "UserAccountCreator",
+var PlayerEntry = _react2.default.createClass({
+    displayName: 'PlayerEntry',
     getInitialState: function getInitialState() {
         return {
-            userName: "",
-            message: "",
-            password: ""
+            change: 0,
+            quantity: 0
         };
     },
     componentDidMount: function componentDidMount() {
-        //get score data and store in browser storage
-        fetch("http://localhost:8080/score/getScore", { method: 'POST' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (json) {
-                    //creates table heading
-                    var result = "";
-                    for (var i = 0; i < json.length; i++) {
-                        result = result + json[i];
-                    }
-                    if (json.length == 0) {
-                        result = "None...";
-                    }
-                    sessionStorage.setItem("marquee", result);
-                });
-            } else {
-                console.log("Error: " + response.status);
-                sessionStorage.setItem("marquee", "Error retrieving scores...");
-            }
-        });
+        var change = this.props.price - this.props.pPrice;
+        this.setState({ change: change });
     },
-    handleNameChange: function handleNameChange(e) {
+    qtyChange: function qtyChange(e) {
         e.preventDefault();
-        this.setState({ userName: e.target.value });
+        this.setState({ quantity: e.target.value });
     },
-    handlePasswordChange: function handlePasswordChange(e) {
+    handleSubmit: function handleSubmit(e) {
         e.preventDefault();
-        this.setState({ password: e.target.value });
-    },
-    handleSignup: function handleSignup(e) {
-        var _this = this;
-
-        e.preventDefault();
-        var name = this.state.userName;
-        var password = this.state.password;
-        //make call to controller method attempting to create a user and display message based on success or failure status
-        fetch("http://localhost:8080/userAccount/createUser?userName=" + name + "&password=" + password, { method: 'POST', headers: { "Content-Type": "application/json" } }).then(function (response) {
-            console.log(response.status);
-            if (response.ok) {
-                _this.setState({ message: name + " was created successfully!" });
-            } else {
-                var msg = "Error: " + response.status;
-                switch (response.status) {
-                    case 401:
-                        msg = "Unauthorized";break;
-                    case 501:
-                        msg = "Missing username field...";break;
-                    case 502:
-                        msg = "Missing password field...";break;
-                    case 503:
-                        msg = name + " is taken";break;
-                }
-                _this.setState({ message: msg });
-            }
-        });
-    },
-    handleLogin: function handleLogin(e) {
-        e.preventDefault();
-        var name = this.state.userName;
-        var password = this.state.password;
-        fetch("/api/login", {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ username: name, password: password })
-        }).then(checkStatus).then(this.success.bind(this)).catch(this.fail.bind(this));
-    },
-    success: function success(authObject) {
-        var _this2 = this;
-
-        console.log("Signed in", authObject);
-        var name = this.state.userName;
-        if (authObject) {
-            localStorage.authObject = JSON.stringify(authObject);
-        }
         var token = JSON.parse(localStorage.authObject).access_token;
-        //make call to controller method attempting to login and display message if failure, otherwise link to home page
-        fetch("http://localhost:8080/userAccount/getUser?userName=" + name, { method: 'POST', headers: { 'Authorization': 'Bearer ' + token } }).then(function (response) {
+        fetch('http://localhost:8080/transaction/createTransaction?firstName=' + this.props.firstName + '&lastName=' + this.props.lastName + '&price=' + this.props.price + '&quantity=' + this.state.quantity + '&tType=sell', { method: 'POST', headers: { 'Authorization': 'Bearer ' + token } }).then(function (response) {
             console.log(response.status);
             if (response.ok) {
-                response.json().then(function (json) {
-                    //if successful then store name, balance and netWorth (to be accessed by other pages) and link to home page
-                    sessionStorage.setItem("balance", json.balance.toFixed(2));
-                    sessionStorage.setItem("netWorth", json.netWorth.toFixed(2));
-                    sessionStorage.setItem("username", name);
-                    window.location.href = '/home';
-                    _this2.setState({ message: name + " successfully logged in!" });
-                });
+                alert("Successfully sold");
             } else {
                 var msg = "Error: " + response.status;
                 switch (response.status) {
                     case 401:
                         msg = "Unauthorized";break;
                     case 501:
-                        msg = "User does not exist...";break;
+                        msg = "Invalid User...";break;
+                    case 502:
+                        msg = "Insufficient balance...";break;
+                    case 503:
+                        msg = "Insufficient quantity...";break;
+                    case 504:
+                        msg = "Stock is no longer owned...";break;
+                    case 505:
+                        msg = "Incorrect transaction type...";break;
+                    case 506:
+                        msg = "Invalid quantity...";break;
                 }
-                _this2.setState({ message: msg });
+                alert(msg);
             }
         });
-    },
-    fail: function fail(res) {
-        console.log("Failed to sign in" + res);
-        this.setState({ message: res.message });
     },
     render: function render() {
-        //sets up a form for login data input
         return _react2.default.createElement(
-            "div",
+            'tbody',
             null,
             _react2.default.createElement(
-                "form",
-                { onSubmit: this.handleSubmit },
+                'tr',
+                null,
                 _react2.default.createElement(
-                    "p",
-                    { className: "control is-small" },
-                    _react2.default.createElement("input", { className: "input", type: "text", placeholder: "Username", defaultValue: this.state.userName, onChange: this.handleNameChange })
+                    'td',
+                    null,
+                    this.props.firstName
                 ),
                 _react2.default.createElement(
-                    "p",
-                    { className: "control is-small" },
-                    _react2.default.createElement("input", { className: "input", type: "password", placeholder: "Password", defaultValue: this.state.password, onChange: this.handlePasswordChange }),
-                    this.state.message
-                )
-            ),
-            _react2.default.createElement(
-                "p",
-                { className: "control is-grouped" },
-                _react2.default.createElement(
-                    "a",
-                    { className: "button is-outlined is-danger", onClick: this.handleSignup },
-                    "Sign Up"
+                    'td',
+                    null,
+                    this.props.lastName
                 ),
                 _react2.default.createElement(
-                    "a",
-                    { className: "button is-outlined is-success", onClick: this.handleLogin },
-                    "Login"
+                    'td',
+                    null,
+                    this.props.team
+                ),
+                _react2.default.createElement(
+                    'td',
+                    null,
+                    this.props.price.toFixed(2)
+                ),
+                _react2.default.createElement(
+                    'td',
+                    null,
+                    this.state.change.toFixed(2)
+                ),
+                _react2.default.createElement(
+                    'td',
+                    null,
+                    this.props.quantity
+                ),
+                _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement(
+                        'form',
+                        { onSubmit: this.handleSubmit },
+                        _react2.default.createElement('input', { type: 'text', placeholder: 'Quantity', onChange: this.qtyChange }),
+                        _react2.default.createElement('input', { className: 'sellButton', type: 'submit', defaultValue: 'Sell!' })
+                    )
                 )
             )
         );
     }
 });
 
-var LoginPage = exports.LoginPage = function (_React$Component) {
-    _inherits(LoginPage, _React$Component);
+var Stocks = _react2.default.createClass({
+    displayName: 'Stocks',
+    getInitialState: function getInitialState() {
+        return {
+            refresh: 1,
+            playerData: []
+        };
+    },
+    refreshData: function refreshData() {
+        var ref = this.state.refresh + 1;
+        this.setState({ refresh: ref });
+    },
+    componentDidMount: function componentDidMount() {
+        var _this = this;
 
-    function LoginPage() {
-        _classCallCheck(this, LoginPage);
+        var token = JSON.parse(localStorage.authObject).access_token;
+        fetch('http://localhost:8080/portfolio/getPortfolio', { method: 'POST', headers: { 'Authorization': 'Bearer ' + token } }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (json) {
+                    var result = [];
+                    result.push(_react2.default.createElement(
+                        'thead',
+                        null,
+                        _react2.default.createElement(
+                            'tr',
+                            null,
+                            _react2.default.createElement(
+                                'th',
+                                null,
+                                'First Name:'
+                            ),
+                            _react2.default.createElement(
+                                'th',
+                                null,
+                                'Last Name:'
+                            ),
+                            _react2.default.createElement(
+                                'th',
+                                null,
+                                'Team:'
+                            ),
+                            _react2.default.createElement(
+                                'th',
+                                null,
+                                'Price:'
+                            ),
+                            _react2.default.createElement(
+                                'th',
+                                null,
+                                'Change:'
+                            ),
+                            _react2.default.createElement(
+                                'th',
+                                null,
+                                'Qty:'
+                            ),
+                            _react2.default.createElement(
+                                'th',
+                                null,
+                                'Sell!'
+                            )
+                        )
+                    ));
+                    for (var i = 0; i < json.length; i++) {
+                        result.push(_react2.default.createElement(PlayerEntry, { firstName: json[i].firstName, lastName: json[i].lastName, pPrice: json[i].previousDayPrice, price: json[i].currentPrice, team: json[i].team, quantity: json[i].quantityOwned }));
+                    }
+                    _this.setState({ playerData: result });
+                });
+            }
+        });
+    },
+    render: function render() {
+        //puts together all the different components
+        return _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement('br', null),
+            _react2.default.createElement(
+                'table',
+                { className: 'stocksList' },
+                this.state.playerData
+            )
+        );
+    }
+});
 
-        return _possibleConstructorReturn(this, (LoginPage.__proto__ || Object.getPrototypeOf(LoginPage)).call(this));
+var StockPage = exports.StockPage = function (_React$Component) {
+    _inherits(StockPage, _React$Component);
+
+    function StockPage() {
+        _classCallCheck(this, StockPage);
+
+        return _possibleConstructorReturn(this, (StockPage.__proto__ || Object.getPrototypeOf(StockPage)).call(this));
     }
 
-    _createClass(LoginPage, [{
-        key: "render",
+    _createClass(StockPage, [{
+        key: 'render',
         value: function render() {
             return _react2.default.createElement(
-                "div",
+                'div',
                 null,
-                _react2.default.createElement(UserAccountCreator, null)
+                _react2.default.createElement(Stocks, null)
             );
         }
     }]);
 
-    return LoginPage;
+    return StockPage;
 }(_react2.default.Component);
 
 /***/ }),
-/* 676 */,
-/* 677 */,
-/* 678 */,
-/* 679 */,
 /* 680 */,
 /* 681 */,
-/* 682 */
+/* 682 */,
+/* 683 */,
+/* 684 */,
+/* 685 */,
+/* 686 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22408,15 +22431,15 @@ var _reactDom = __webpack_require__(66);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _indexpage = __webpack_require__(675);
+var _stockspage = __webpack_require__(679);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _reactDom2.default.render(_react2.default.createElement(
     'div',
     null,
-    _react2.default.createElement(_indexpage.LoginPage, null)
-), document.getElementById('loginForm'));
+    _react2.default.createElement(_stockspage.StockPage, null)
+), document.getElementById('stockPage'));
 
 /***/ })
 /******/ ]);

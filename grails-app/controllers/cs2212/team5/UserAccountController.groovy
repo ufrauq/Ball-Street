@@ -56,7 +56,7 @@ class UserAccountController extends RestfulController {
     def getUser(){
         if (springSecurityService.currentUser != null) {
             def userName = springSecurityService.currentUser.username
-            System.out.println(userName + " logged in!")
+            //System.out.println(userName + " logged in!")
             def user = UserAccount.find{username == userName} //attempts to find user with userName
             if(user != null){ //if user found, respond with user data
                 respond user

@@ -3,14 +3,8 @@ import React from 'react';
 var PlayerEntry = React.createClass({
     getInitialState() {
         return {
-            change: 0,
             quantity: 0
         }
-    },
-
-    componentDidMount() {
-        let change = this.props.price-this.props.pPrice;
-        this.setState({change: change});
     },
 
     qtyChange(e) {
@@ -51,11 +45,11 @@ var PlayerEntry = React.createClass({
                 <td>{this.props.lastName}</td>
                 <td>{this.props.team}</td>
                 <td>{this.props.price.toFixed(2)}</td>
-                <td>{this.state.change.toFixed(2)}</td>
+                <td>{this.props.change.toFixed(2)}</td>
                 <td>
                     <form onSubmit={this.handleSubmit}>
                         <input type="text" placeholder="Quantity" onChange={this.qtyChange}/>
-                        <input type="submit" defaultValue="Buy!"/>
+                        <input type="submit" defaultValue="Buy!" className="buyButton"/>
                     </form>
                 </td>
             </tr>
@@ -85,6 +79,7 @@ var Market = React.createClass({
     },
 
     componentDidMount() {
+        //initialized options and display all players
         let token = JSON.parse(localStorage.authObject).access_token;
         fetch('http://localhost:8080/player/getAllPlayers', {method: 'POST', headers: {'Authorization': 'Bearer ' + token}})
             .then(response => {
@@ -93,7 +88,7 @@ var Market = React.createClass({
                         let result = [];
                         result.push(<thead><tr><th>First Name:</th><th>Last Name:</th><th>Team:</th><th>Price:</th><th>Change:</th><th>Buy!</th></tr></thead>);
                         for (let i = 0; i < json.length && i < 50; i++) {
-                            result.push(<PlayerEntry firstName={json[i].firstName} lastName={json[i].lastName} pPrice={json[i].previousDayPrice} price={json[i].currentPrice} team={json[i].team}/>);
+                            result.push(<PlayerEntry firstName={json[i].firstName} lastName={json[i].lastName} change={json[i].currentPrice-json[i].previousDayPrice} price={json[i].currentPrice} team={json[i].team}/>);
                         }
                         this.setState({playerData: result, allData: json});
                     })
@@ -105,7 +100,7 @@ var Market = React.createClass({
                     response.json().then(json => {
                         let result = [];
                         for (let i = 0; i < json.length; i++) {
-                            result.push(<div>{i+1}: {json[i].firstName} {json[i].lastName} {json[i].team} {json[i].currentPrice}</div>);
+                            result.push(<div className="topP">{i+1}: {json[i].firstName} {json[i].lastName} </div>);
                         }
                         this.setState({topPlayers: result});
                     })
@@ -114,6 +109,7 @@ var Market = React.createClass({
     },
 
     callAPI(e) {
+        //filter results by keyword
         e.preventDefault();
         let keyword = this.state.keyword;
         console.log(keyword + ": calling api with this keyword");
@@ -126,7 +122,7 @@ var Market = React.createClass({
                             let result = [];
                             result.push(<thead><tr><th>First Name:</th><th>Last Name:</th><th>Team:</th><th>Price:</th><th>Change:</th><th>Buy!</th></tr></thead>);
                             for (let i = 0; i < json.length; i++) {
-                                result.push(<PlayerEntry firstName={json[i].firstName} lastName={json[i].lastName} pPrice={json[i].previousDayPrice} price={json[i].currentPrice} team={json[i].team}/>);
+                                result.push(<PlayerEntry firstName={json[i].firstName} lastName={json[i].lastName} change={json[i].currentPrice-json[i].previousDayPrice} price={json[i].currentPrice} team={json[i].team}/>);
                             }
                             let pageLength = 50;
                             if (json.length < 50) {
@@ -146,6 +142,7 @@ var Market = React.createClass({
     },
 
     next(e) {
+        //update to next 50 players on page
         e.preventDefault();
         let current = this.state.pageStatus;
         let total = this.state.totalResults;
@@ -161,7 +158,7 @@ var Market = React.createClass({
             let result = [];
             result.push(<thead><tr><th>First Name:</th><th>Last Name:</th><th>Team:</th><th>Price:</th><th>Change:</th><th>Buy!</th></tr></thead>);
             for (let i = current+50; i < json.length && i < current+50+size; i++) {
-                result.push(<PlayerEntry firstName={json[i].firstName} lastName={json[i].lastName} pPrice={json[i].previousDayPrice} price={json[i].currentPrice} team={json[i].team}/>);
+                result.push(<PlayerEntry firstName={json[i].firstName} lastName={json[i].lastName} change={json[i].currentPrice-json[i].previousDayPrice} price={json[i].currentPrice} team={json[i].team}/>);
             }
             this.setState({playerData: []});
             this.setState({playerData: result, pageStatus: current + 50, pageSize: size});
@@ -169,6 +166,7 @@ var Market = React.createClass({
     },
 
     previous(e) {
+        //update to previous 50 players on page
         e.preventDefault();
         let current = this.state.pageStatus;
         let size = this.state.pageSize;
@@ -178,7 +176,7 @@ var Market = React.createClass({
             let result = [];
             result.push(<thead><tr><th>First Name:</th><th>Last Name:</th><th>Team:</th><th>Price:</th><th>Change:</th><th>Buy!</th></tr></thead>);
             for (let i = current-50; i < json.length && i < current; i++) {
-                result.push(<PlayerEntry firstName={json[i].firstName} lastName={json[i].lastName} pPrice={json[i].previousDayPrice} price={json[i].currentPrice} team={json[i].team}/>);
+                result.push(<PlayerEntry firstName={json[i].firstName} lastName={json[i].lastName} change={json[i].currentPrice-json[i].previousDayPrice} price={json[i].currentPrice} team={json[i].team}/>);
             }
             this.setState({playerData: []});
             this.setState({playerData: result, pageStatus: current - 50, pageSize: 50});
@@ -189,15 +187,29 @@ var Market = React.createClass({
         //puts together all the different components
         return(
             <div>
-                <div>{this.state.topPlayers}</div>
-                <br/>
-                <form onSubmit={this.callAPI} className="searchbar">
-                    <input type="text" onChange={this.updateKeyword}/>
+                <div id="topPlayers">
+                    <h2>Suggested Players</h2>
+                    <h2>{this.state.topPlayers}</h2>
+                </div>
+
+                <div >
+                <form onSubmit={this.callAPI} className="searchbar" >
+                    <input type="text" placeholder="Search for a Player" onChange={this.updateKeyword}/>
                 </form>
-                <div className="navigator">
-                    <button onClick={this.previous} className="navButton">Previous</button>
-                    {this.state.pageStatus+1}-{this.state.pageStatus+this.state.pageSize} of {this.state.totalResults}
-                    <button onClick={this.next} className="navButton">Next</button>
+                </div>
+
+                <div className="navigator" id="pages">
+                    <div id="prevB">
+                        <button onClick={this.previous} className="navButton">Previous</button>
+                    </div>
+
+                    <div id="pageNumbers">
+                        <h4>{this.state.pageStatus+1}-{this.state.pageStatus+this.state.pageSize} of {this.state.totalResults}</h4>
+                    </div>
+
+                    <div id="nextB">
+                         <button onClick={this.next} className="navButton">Next</button>
+                    </div>
                 </div>
                 <table className="marketList">
                     {this.state.playerData}

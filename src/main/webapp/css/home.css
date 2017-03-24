@@ -4,67 +4,45 @@ body{
     margin-bottom: auto;
 }
 
-button{
-    background-color: #dddddd;
-    padding: 10px 70px;
-    font-size: 14px;
-    border: solid #dddddd;
-    color: red;
-    cursor: pointer;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    border-radius: 25px;
-    /*border: 1px solid dimgrey; */
-}
 
-button:hover {
-    background-color: red;
-    color: white;
-    border-radius: 10px;
-    border: solid red;
-    /*border: 1px solid dimgrey;*/
-}
 
 .profile{
     color-overlay: red;
 }
 
 #left{
-    width: 40%;
+    width: 25%;
     float: left;
-    padding: 20px;
+    padding: 0px;
     height: 100%;
-    padding-top: 80px;
+    padding-top: 60px;
+
+
+}
+#bottom{
+    text-align:left;
+    padding-left: 35px;
 }
 
-#left-top{
-    float: left;
-    width:100%;
-    margin-top: 5px;
-    margin-left: 80px;
-}
 
 #chartContainer {
     box-sizing: border-box;
-    padding: 10px;
-    width: 300px;
-    height: 300px;
+
+    width: 65%;
+    float: right;
+    height: 30px;
     background-color: #fff;
-    align: center;
     text-align: left;
-    float:left;
-    margin-left: 180px;
+    margin-left: 0px;
     padding-top: 50px;
 }
 
 #chartTitle{
     padding-top: 350px;
-    padding-left: 650px;
+    padding-left: 480px;
 }
 
-#left-down{
-    align: center;
-    float: bottom;
-}
+
 
 #right{
     width: 30%;
@@ -77,37 +55,38 @@ button:hover {
     margin-left: 100px;
 }
 
-#bottom{
-    padding:20px;
-    width: 80%;
-    float: bottom;
-}
+
 
 profile:hover  {
     color: red;
 }
 
-table{
-    border-radius: 20px;
-    -webkit-transition-duration: 0.4s; /* translations */
+.worthChart {
+    float: left;
 }
-th {
-    border: 5px solid lightgrey;
-    text-align: left;
-    padding: 8px;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: red;
-    font-size: 18px;
-    background-color: #dddddd;
-    -webkit-transition-duration: 0.4s; /* translations */
+.balanceChart {
+    float: right;
 }
 
-td {
-    border: 5px solid lightgrey;
-    text-align: left;
-    padding: 8px;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: #808080;
-    font-size: 17px;
-    -webkit-transition-duration: 0.4s; /* translations */
+
+#chart1{
+    float: left;
+    text-align: center;
+}
+
+#chart2{
+    float: left;
+    text-align: center;
+
+}
+#networthTitle{
+    padding-left: 70px;
+}
+
+#balanceTitle{
+    padding-left: 70px;
+}
+
+#contentArea{
+    overflow-y: hidden;
 }
