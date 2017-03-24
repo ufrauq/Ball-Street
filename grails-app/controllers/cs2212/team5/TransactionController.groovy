@@ -18,7 +18,7 @@ class TransactionController extends RestfulController {
     def getPastTransactions() {
         def userName = springSecurityService.currentUser.username
         def user = UserAccount.find{username == userName}
-        if (user != null) {
+        if (user != null) { //if user exists reutrn their transactions sorted by id
             respond user.transactions.findAll{it.tStatus == "closed" || it.tStatus == "failed"}.sort{it.transactionID}
         }
         else {
@@ -29,7 +29,7 @@ class TransactionController extends RestfulController {
     def getPendingTransactions() {
         def userName = springSecurityService.currentUser.username
         def user = UserAccount.find{username == userName}
-        if (user != null) {
+        if (user != null) { //if user exists reutrn their transactions sorted by id
             respond user.transactions.findAll{it.tStatus == "open"}.sort{it.transactionID}
         }
         else {
@@ -62,9 +62,10 @@ class TransactionController extends RestfulController {
                 if (user.balance < price*quantity) {
                     response.status = 502 //insufficient funds
                 }
-                else {
+                else { //sufficient funds
                     def currentDate = new Date()
                     user.transactionCount = user.transactionCount + 1
+                    //create buy transaction
                     def newTransaction = new Transaction(tType: "buy", tStatus: "open", transactionOpened: currentDate, stockFirstName: fName, stockLastName: lName, stockPrice: price, stockQuantity: quantity, transactionID: user.transactionCount, balanceBefore: user.balance, creator: user).save()
                     System.out.println(user.balance)
                     user.balance = user.balance - quantity*price
@@ -79,9 +80,10 @@ class TransactionController extends RestfulController {
                     if (quantity > stock.quantityOwned) {
                         response.status = 503 //insufficient quantity
                     }
-                    else {
+                    else { //sufficient quantity
                         def currentDate = new Date()
                         user.transactionCount = user.transactionCount + 1
+                        //create sell transaction
                         def newTransaction = new Transaction(tType: "sell", tStatus: "open", transactionOpened: currentDate, stockFirstName: fName, stockLastName: lName, stockPrice: price, stockQuantity: quantity, transactionID: user.transactionCount, balanceBefore: user.balance, creator: user).save()
                         user.balance = user.balance + quantity*price
                         user.addToTransactions(newTransaction).save(flush: true)
@@ -99,6 +101,7 @@ class TransactionController extends RestfulController {
     }
 
     def addToPortfolio(UserAccount user, String fName, String lName, int quantity) {
+        //adds stock to user's portfolio
         def stock = user.portfolio.find{it.stockFirstName == fName && it.stockLastName == lName}
         System.out.println("add " + stock)
         if (stock != null) {
@@ -113,6 +116,7 @@ class TransactionController extends RestfulController {
     }
 
     def removeFromPortfolio(UserAccount user, String fName, String lName, int quantity) {
+        //removes stock from user's portfolio
         def stock = user.portfolio.find{it.stockFirstName == fName && it.stockLastName == lName}
         System.out.println("remove " + stock)
         stock.quantityOwned = stock.quantityOwned - quantity

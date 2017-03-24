@@ -85,6 +85,7 @@ var Market = React.createClass({
     },
 
     componentDidMount() {
+        //initialized options and display all players
         let token = JSON.parse(localStorage.authObject).access_token;
         fetch('http://localhost:8080/player/getAllPlayers', {method: 'POST', headers: {'Authorization': 'Bearer ' + token}})
             .then(response => {
@@ -114,6 +115,7 @@ var Market = React.createClass({
     },
 
     callAPI(e) {
+        //filter results by keyword
         e.preventDefault();
         let keyword = this.state.keyword;
         console.log(keyword + ": calling api with this keyword");
@@ -146,6 +148,7 @@ var Market = React.createClass({
     },
 
     next(e) {
+        //update to next 50 players on page
         e.preventDefault();
         let current = this.state.pageStatus;
         let total = this.state.totalResults;
@@ -169,6 +172,7 @@ var Market = React.createClass({
     },
 
     previous(e) {
+        //update to previous 50 players on page
         e.preventDefault();
         let current = this.state.pageStatus;
         let size = this.state.pageSize;

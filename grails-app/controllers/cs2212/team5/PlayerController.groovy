@@ -17,6 +17,7 @@ class PlayerController {
     static responseFormats = ['json']
 
     def getPlayersByKeyword() {
+        //methods returns players which contain keyword from SQL DB
         Connection connection = null;
         try {
             String keyword = params.keyword
@@ -24,6 +25,7 @@ class PlayerController {
             connection = DriverManager.getConnection(url, "Zain", "password")
             Statement statement = connection.createStatement()
             ResultSet result
+            //SQL Query
             result = statement.executeQuery("SELECT * FROM INITIALSTOCKPRICES WHERE `#LastName` LIKE '%" + keyword + "%' OR `#FirstName` LIKE '%" + keyword + "%'");
             int rows = 0
             if (result.last()) {
@@ -59,12 +61,14 @@ class PlayerController {
     }
 
     def getAllPlayers() {
+        //method returns all players from SQL DB
         Connection connection = null;
         try {
             String url = "jdbc:mysql://team5-compsci2212.cgndepqzlosf.us-east-1.rds.amazonaws.com/Initialized_Players"
             connection = DriverManager.getConnection(url, "Zain", "password")
             Statement statement = connection.createStatement()
             ResultSet result
+            //SQL Query
             result = statement.executeQuery("SELECT * FROM INITIALSTOCKPRICES")
             int rows = 0
             if (result.last()) {
@@ -100,6 +104,7 @@ class PlayerController {
     }
 
     def getPlayer() {
+        //method returns play with given first and last name from SQL DB
         Connection connection = null;
         try {
             String firstName = params.firstName
@@ -108,6 +113,7 @@ class PlayerController {
             connection = DriverManager.getConnection(url, "Zain", "password")
             Statement statement = connection.createStatement()
             ResultSet result
+            //SQL Query
             result = statement.executeQuery("SELECT * FROM INITIALSTOCKPRICES WHERE `#LastName`='" + lastName + "' AND `#FirstName`='" + firstName + "'");
             int rows = 0
             if (result.last()) {
@@ -146,12 +152,14 @@ class PlayerController {
     }
 
     def getSuggestedPlayers() {
+        //method to return suggested players from SQL DB
         Connection connection = null;
         try {
             String url = "jdbc:mysql://team5-compsci2212.cgndepqzlosf.us-east-1.rds.amazonaws.com/Initialized_Players"
             connection = DriverManager.getConnection(url, "Zain", "password")
             Statement statement = connection.createStatement()
             ResultSet result
+            //SQL Query
             result = statement.executeQuery("SELECT * FROM topfiveplayers")
             PlayerSummary [] rtrn = new PlayerSummary[5]
             int i = 0
@@ -179,6 +187,7 @@ class PlayerController {
     }
 
     def getPlayerPriceHistory() {
+        //method to return players price history from SQL DB
         Connection connection = null;
         try {
             String firstName = params.firstName
@@ -187,6 +196,7 @@ class PlayerController {
             connection = DriverManager.getConnection(url, "Zain", "password")
             Statement statement = connection.createStatement()
             ResultSet result
+            //SQL Query
             result = statement.executeQuery("SELECT * FROM INITIALSTOCKPRICES WHERE `#LastName`='" + lastName + "' AND `#FirstName`='" + firstName + "'");
             int rows = 0
             if (result.last()) {
@@ -238,6 +248,7 @@ class PlayerController {
     }
 
     def numDays() {
+        //method that calculates days since DB was created - in order to figure out column of current date in DB
         try {
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
             Date f = df.parse("2017-03-19");

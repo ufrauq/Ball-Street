@@ -12,6 +12,7 @@ class ScoreController {
     static responseFormats = ['json']
 
     def getScore(){
+        //method which returns a formatted string array summarizing last night's games
         Connection connection = null;
         try {
             String url = "jdbc:mysql://team5-compsci2212.cgndepqzlosf.us-east-1.rds.amazonaws.com/Initialized_Players"

@@ -12,6 +12,7 @@ import java.sql.Statement
 class TransactionService {
 
     def addToPortfolio(UserAccount user, String fName, String lName, int quantity) {
+        //adds stock to user's portfolio
         def stock = user.portfolio.find{it.stockFirstName == fName && it.stockLastName == lName}
         if (stock != null) {
             stock.quantityOwned = stock.quantityOwned + quantity
@@ -25,6 +26,7 @@ class TransactionService {
     }
 
     def removeFromPortfolio(UserAccount user, String fName, String lName, int quantity) {
+        //removes stock from user's portfolio and deletes if 0 quantity
         def stock = user.portfolio.find{it.stockFirstName == fName && it.stockLastName == lName}
         if (stock.quantityOwned == quantity) {
             user.removeFromPortfolio(stock)
@@ -75,20 +77,20 @@ class TransactionService {
         def currentDate = new Date()
         def hours = currentDate.getHours()
         def minutes = currentDate.getMinutes()
-        for (user in allUsers) {
+        for (user in allUsers) { //for each user
             def pendingTransactions = user.transactions.findAll{it.tStatus == "open"}.sort{it.transactionID}
-            if (pendingTransactions.size() > 0) {
-                double previousBalance = pendingTransactions.get(0).balanceBefore
+            if (pendingTransactions.size() > 0) { //if they have pending transactions
+                double previousBalance = pendingTransactions.get(0).balanceBefore //adjust balance to before first enqueue
                 System.out.println(user.username)
                 for (stock in  user.portfolio) {
-                    stock.quantityOwned = stock.quantityBefore
+                    stock.quantityOwned = stock.quantityBefore //set quantity to quantity before transaction enqueued
                     stock.save(flush: true)
                 }
-                for (transaction in pendingTransactions) {
+                for (transaction in pendingTransactions) { //for each transaction
                     def price = 0
                     String lastName = transaction.stockLastName
                     String firstName = transaction.stockFirstName
-                    try {
+                    try { //execute query and get price
                         result = statement.executeQuery("SELECT `#FirstName`,`#LastName`,`#CurrentPrice` FROM INITIALSTOCKPRICES WHERE `#LastName`='" + lastName + "' AND `#FirstName`='" + firstName + "'");
                         while ( result.next() ) {
                             price = result.getDouble(3)
@@ -104,19 +106,19 @@ class TransactionService {
                     }
 
                     System.out.println("The price of " + firstName + " " + lastName + " is "+ price)
-                    if (transaction.tType == "sell" && transaction.tStatus != "failed") {
+                    if (transaction.tType == "sell" && transaction.tStatus != "failed") { //if sell type
                         transaction.stockPrice = price
                         transaction.transactionClosed = currentDate
                         user.balance = previousBalance + transaction.stockPrice*transaction.stockQuantity
                         def stock = user.portfolio.find{it.stockFirstName == transaction.stockFirstName && it.stockLastName == transaction.stockLastName}
-                        if (stock == null) {
+                        if (stock == null) { //if stock does not exist
                             transaction.balanceBefore = previousBalance
                             transaction.tStatus = "failed"
                             transaction.save(flush: true)
                             user.balance = previousBalance
                             user.save(flush: true)
                         }
-                        else if (stock.quantityOwned >= transaction.stockQuantity) {
+                        else if (stock.quantityOwned >= transaction.stockQuantity) { //if sufficient quantity
                             user.save(flush: true)
                             transaction.balanceBefore = previousBalance
                             transaction.tStatus = "closed"
@@ -124,7 +126,7 @@ class TransactionService {
                             previousBalance = user.balance
                             removeFromPortfolio(user, transaction.stockFirstName, transaction.stockLastName, transaction.stockQuantity)
                         }
-                        else {
+                        else { //otherwise transaction failed
                             transaction.balanceBefore = previousBalance
                             transaction.tStatus = "failed"
                             transaction.save(flush: true)
@@ -132,11 +134,11 @@ class TransactionService {
                             user.save(flush: true)
                         }
                     }
-                    else if (transaction.tType == "buy" && transaction.tStatus != "failed") {
+                    else if (transaction.tType == "buy" && transaction.tStatus != "failed") { //if buy type
                         transaction.stockPrice = price
                         transaction.transactionClosed = currentDate
                         user.balance = previousBalance - transaction.stockPrice*transaction.stockQuantity
-                        if (user.balance >= 0) {
+                        if (user.balance >= 0) { //if sufficient balance
                             user.save(flush: true)
                             transaction.balanceBefore = previousBalance
                             transaction.tStatus = "closed"
@@ -144,7 +146,7 @@ class TransactionService {
                             previousBalance = user.balance
                             addToPortfolio(user, transaction.stockFirstName, transaction.stockLastName, transaction.stockQuantity)
                         }
-                        else {
+                        else { //otherwise transaction failed
                             transaction.balanceBefore = previousBalance
                             transaction.tStatus = "failed"
                             transaction.save(flush: true)
@@ -153,14 +155,14 @@ class TransactionService {
                         }
                     }
                 } //end transaction loop
-                for (stock in  user.portfolio) {
+                for (stock in  user.portfolio) { //set stock quantityOwned to quantityBefore enqueueing
                     stock.quantityBefore = stock.quantityOwned
                     stock.save(flush: true)
                 }
                 calculateNetWorth(user, statement, result)
                 user.save(flush: true)
             } //end if (checking if user has pending transactions)
-            if (minutes %2 == 0) {
+            if (minutes %2 == 0) { //store networth and balance in history mechanisms
                 for (int i = 9; i > 0; i --) {
                     user.netWorthHistory[i] = user.netWorthHistory[i-1]
                     user.balanceHistory[i] = user.balanceHistory[i-1]
