@@ -56769,25 +56769,35 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 */
 
 
-var testPlayerData = [{ Date: 'Day 1', price: 3.36 }, { Date: 'Day 2', price: 3.4 }, { Date: 'Day 3', price: 3.76 }, { Date: 'Day 4', price: 3.12 }, { Date: 'Day 5', price: 3.94 }, { Date: 'Day 6', price: 6.32 }, { Date: 'Day 7', price: 10.26 }, { Date: 'Day 8', price: 1.76 }, { Date: 'Day 9', price: 0.31 }, { Date: 'Day 10', price: -3.36 }];
-
 var LineGraph = _react2.default.createClass({
     displayName: 'LineGraph',
     getInitialState: function getInitialState() {
         return {
-            graphData: null
+            graphData: null,
+            graphData2: null
         };
     },
     componentDidMount: function componentDidMount() {
         var _this = this;
 
         var token = JSON.parse(localStorage.authObject).access_token;
+        fetch("http://localhost:8080/portfolio/getNetWorthHistory", { method: 'POST', headers: { 'Authorization': 'Bearer ' + token } }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (json) {
+                    //creates table heading
+                    var testData = [{ Date: '20', price: json[9] }, { Date: '18', price: json[8] }, { Date: '16', price: json[7] }, { Date: '14', price: json[6] }, { Date: '12', price: json[5] }, { Date: '10', price: json[4] }, { Date: '8', price: json[3] }, { Date: '6', price: json[2] }, { Date: '4', price: json[1] }, { Date: '2', price: json[0] }];
+                    _this.setState({ graphData: testData });
+                });
+            } else {
+                var msg = "Error: " + response.status;
+            }
+        });
         fetch("http://localhost:8080/portfolio/getBalanceHistory", { method: 'POST', headers: { 'Authorization': 'Bearer ' + token } }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (json) {
                     //creates table heading
-                    var testData = [{ Date: 'Day 1', price: json[9] }, { Date: 'Day 2', price: json[8] }, { Date: 'Day 3', price: json[7] }, { Date: 'Day 4', price: json[6] }, { Date: 'Day 5', price: json[5] }, { Date: 'Day 6', price: json[4] }, { Date: 'Day 7', price: json[3] }, { Date: 'Day 8', price: json[2] }, { Date: 'Day 9', price: json[1] }, { Date: 'Day 10', price: json[0] }];
-                    _this.setState({ graphData: testData });
+                    var testData = [{ Date: '20', price: json[9] }, { Date: '18', price: json[8] }, { Date: '16', price: json[7] }, { Date: '14', price: json[6] }, { Date: '12', price: json[5] }, { Date: '10', price: json[4] }, { Date: '8', price: json[3] }, { Date: '6', price: json[2] }, { Date: '4', price: json[1] }, { Date: '2', price: json[0] }];
+                    _this.setState({ graphData2: testData });
                 });
             } else {
                 var msg = "Error: " + response.status;
@@ -56796,13 +56806,26 @@ var LineGraph = _react2.default.createClass({
     },
     render: function render() {
         return _react2.default.createElement(
-            _recharts.LineChart,
-            { width: 400, height: 300, data: this.state.graphData },
-            _react2.default.createElement(_recharts.XAxis, { dataKey: 'Date' }),
-            _react2.default.createElement(_recharts.YAxis, null),
-            _react2.default.createElement(_recharts.Tooltip, null),
-            _react2.default.createElement(_recharts.CartesianGrid, { stroke: '#f5f5f5' }),
-            _react2.default.createElement(_recharts.Line, { type: 'monotone', dataKey: 'price', stroke: 'red' })
+            'div',
+            null,
+            _react2.default.createElement(
+                _recharts.LineChart,
+                { width: 400, height: 300, data: this.state.graphData, className: 'worthChart' },
+                _react2.default.createElement(_recharts.XAxis, { dataKey: 'Date' }),
+                _react2.default.createElement(_recharts.YAxis, null),
+                _react2.default.createElement(_recharts.Tooltip, null),
+                _react2.default.createElement(_recharts.CartesianGrid, { stroke: '#f5f5f5' }),
+                _react2.default.createElement(_recharts.Line, { type: 'monotone', dataKey: 'price', stroke: 'red' })
+            ),
+            _react2.default.createElement(
+                _recharts.LineChart,
+                { width: 400, height: 300, data: this.state.graphData2, className: 'balanceChart' },
+                _react2.default.createElement(_recharts.XAxis, { dataKey: 'Date' }),
+                _react2.default.createElement(_recharts.YAxis, null),
+                _react2.default.createElement(_recharts.Tooltip, null),
+                _react2.default.createElement(_recharts.CartesianGrid, { stroke: '#f5f5f5' }),
+                _react2.default.createElement(_recharts.Line, { type: 'monotone', dataKey: 'price', stroke: 'red' })
+            )
         );
     }
 });

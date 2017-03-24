@@ -11,36 +11,34 @@ body{
 }
 
 #left{
-    width: 40%;
+    width: 25%;
     float: left;
     padding: 0px;
     height: 100%;
     padding-top: 60px;
 }
 
-#left-top{
-    float: left;
+#bottom{
+    align: center;
     width:100%;
     margin-top: 5px;
-    margin-left: 80px;
 }
 
 #chartContainer {
     box-sizing: border-box;
     padding: 10px;
-    width: 300px;
+    width: 65%;
+    float: right;
     height: 300px;
     background-color: #fff;
-    align: center;
     text-align: left;
-    float:left;
-    margin-left: 180px;
+    margin-left: 0px;
     padding-top: 50px;
 }
 
 #chartTitle{
     padding-top: 350px;
-    padding-left: 650px;
+    padding-left: 480px;
 }
 
 #left-down{
@@ -69,27 +67,9 @@ profile:hover  {
     color: red;
 }
 
-table{
-    border-radius: 20px;
-    -webkit-transition-duration: 0.4s; /* translations */
+.worthChart {
+    float: left;
 }
-th {
-    border: 5px solid lightgrey;
-    text-align: left;
-    padding: 8px;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: red;
-    font-size: 18px;
-    background-color: #dddddd;
-    -webkit-transition-duration: 0.4s; /* translations */
-}
-
-td {
-    border: 5px solid lightgrey;
-    text-align: left;
-    padding: 8px;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: #808080;
-    font-size: 17px;
-    -webkit-transition-duration: 0.4s; /* translations */
+.balanceChart {
+    float: right;
 }

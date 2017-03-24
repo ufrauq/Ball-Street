@@ -22230,6 +22230,9 @@ var UserAccountCreator = _react2.default.createClass({
                     for (var i = 0; i < json.length; i++) {
                         result = result + json[i];
                     }
+                    if (json.length == 0) {
+                        result = "None...";
+                    }
                     sessionStorage.setItem("marquee", result);
                 });
             } else {

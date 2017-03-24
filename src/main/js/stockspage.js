@@ -25,7 +25,7 @@ var PlayerEntry = React.createClass({
             .then(response => {
                 console.log(response.status);
                 if (response.ok) {
-                    alert("Successfully bought");
+                    alert("Successfully sold");
                 }
                 else {
                     let msg = "Error: " + response.status;
