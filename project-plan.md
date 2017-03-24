@@ -43,6 +43,7 @@ For the authorization of logging in, BallStreet will be using local verification
   <li>Data-Mining</li>
   <li>Execution of Trades</li>
   </ul><br><br>
+  </ul>
   
   <hr>
   
@@ -54,7 +55,7 @@ For the authorization of logging in, BallStreet will be using local verification
   <li>Marquee Displaying Past Game Scores </li>
   <li>Buying and Selling of Stocks and Verifications</li>
   <li>View Player Data (called info. from database)</li>
-  </ul>
+  </ul><br><br>
   Overall, we have implemented all features for the users stories and overcome and adjusted our project according to our
   challenges. 
 
