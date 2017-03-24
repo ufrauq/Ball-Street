@@ -27,9 +27,9 @@ For more details, please see the attached <a href="https://pfindan.github.io/CS2
 <br><br>
 For the authorization of logging in, BallStreet will be using local verification. This is due to the fact that the Twitter API requires a public URL for callback and our project requires running locally. Additionally, BallStreet will use data collected from the MySportsFeeds.com via their API to determine stock prices of players based on game stats, injuries and team wins.<br><br>
 
-
+<hr>
   <li>   
-    <i>Update:</i>
+    <i>Stage 2 Update:</i>
    </li>
     <ul>
     <li><b>Added Features</b> - Leagues: Can create a league with 25 members, join leagues, leave leagues and set passwords   for said leagues. Currently, the leagues page requires refreshing buttons.</li>
@@ -44,6 +44,8 @@ For the authorization of logging in, BallStreet will be using local verification
   <li>Execution of Trades</li>
   </ul><br><br>
   
+  <hr>
+  
   <li> <i><b>Final Updates: </b></i></li>
   <ul>
   <li>SQL Database Implementation </li>
@@ -56,7 +58,7 @@ For the authorization of logging in, BallStreet will be using local verification
   challenges. 
 
 
-</ul>
+
 
 
 
