@@ -77,7 +77,7 @@ For the authorization of logging in, BallStreet will be using local verification
   </ul>
   </ul><br><br>
   Overall, we have implemented all features for the users stories and overcome and adjusted our project according to our
-  challenges. For more information on our stage 3 updates, <a href="stage3Updates" target="_blank">visit our homepage, understand the stage 3 section.</a>
+  challenges. For more information on our stage 3 updates, <a href="https://pfindan.github.io/CS2212-Team5/#stage3Updates" target="_blank">visit our homepage, understand the stage 3 section.</a>
 
 
 
