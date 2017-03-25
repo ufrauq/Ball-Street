@@ -75,7 +75,7 @@ For stage three of our project, we implemented the remaining features completing
 adding functionality to our application. The features we implemented consisted of a stock market page, a user stocks page,
 a players page, a transaction page and a user porfile page in which is viewed when the user first logs in. <br><br>
 
-To add fucntionallity to our project, we created an SQL database hosted with Microsft Azure to hold all player data, stock
+To add fucntionallity to our project, we created an SQL database hosted with Amazon Web Services to hold all player data, stock
 price information and past game information. Our database collects and stores all the information by calling the MySportsFeeds
 API. We have implemented a local authentification in which user information is stored
 (login and usernames) in addition to storing the user's networth and cash balances. To best display this information, we have
@@ -104,7 +104,15 @@ pages as their stock prices are tracked. <br><br>
    processed every 2 minutes. </p>
    <li> <h4> User Profile Page </h4></li>
    <p> The user profile page now contains a temporary profile image, the user's current balance and networth in addition
-      to two graphs displaying the user's balance and networth changes for the past 20 minutes. 
+      to two graphs displaying the user's balance and networth changes for the past 20 minutes. </p>
+   <li>Database</li>
+   
+      
+    <p> Our database is hosted on Amazon Web Services and is updated once daily with stats from basketball games played
+       the previous day. Currently, scripts are run on the SQL server and data is feed in manually as after tremendous
+       efforts to automate the process, we were unable to automate the MySportsFeed.com API data into SQL table process.
+       
+      </p>
 
 
 <!--{% for post in site.posts limit: 5 %}
