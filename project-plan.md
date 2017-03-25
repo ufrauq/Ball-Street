@@ -69,9 +69,15 @@ For the authorization of logging in, BallStreet will be using local verification
   <li>User can buy and sell stocks to from the market</li>
   </ul>
   <li>Suggested Players</li>
+  <li>Transactions</li>
+  <ul>
+  <li>Pending Transactions (updated every 2 min.)</li>
+  <li>Record of all past stock purchases and re-sales</li>
+  <li>Linked to graphs on user profile (graphs update when transactions update)</li>
+  </ul>
   </ul><br><br>
   Overall, we have implemented all features for the users stories and overcome and adjusted our project according to our
-  challenges. 
+  challenges. For more information on our stage 3 updates, <a href="">visit our homepage, understand the stage 3 section.</a>
 
 
 
