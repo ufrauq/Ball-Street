@@ -18,7 +18,7 @@ Each person worked on their own development branch, called 'zain_dev' or 'madi_d
 <br><br>
 <b><i>What development tools/frameworks did your project use?</i></b>
 <br>
-ReactJS, Gradle, grails, groovy, HTML, CSS, recharts, bulma 
+For our development tools/frameworks, we used a combination od ReactJS, Gradle, Grails and Groovy. To power our front-end, we implement HTML/GSP and CSS in addition to ReCharts for our graphs with bulma being used for our login screen. 
 <br><br>
 
 <b><i>How effectively did your team manage task distribution among team members?</i></b>
@@ -31,6 +31,35 @@ Our team effectively managed task distribution among members as tasks were assig
 <h3> MVC / Design Patterns </h3>
 <hr>
 <p>  MVC / Design Patterns information here. </p>
+
+<b><i>What is the relationship between user interfaces, application logic, and data in your project?</i></b>
+<br>
+
+<b><i>Did you implement your server-side program as a REST API?</i></b>
+<br>
+
+Our front end communicates directly with our back-end through the use of  .gsp (html) files calling JavaScript files made up of the REACT components. These REACT components then call the controller classes which fetch the data directly from the back-end. 
+
+
+<b><i>Which collection of classes serve as the M, V, and C in MVC?</i></b>
+<br>
+M(odel):
+V(iew):
+C(ontroller):
+<br><br>
+
+
+<b><i>How do these classes communicate with each other? Give an example based on a user action.</i></b>
+<br>
+For our project, BallStreet, we had a limited number of classes as the majority of our back-end was powered by our SQL database. Our classes communicate via API calls? 
+
+<br><br>
+
+<b><i>If you were to start the project again today, what aspects of code organization could be improved in your project?</i></b>
+<br>
+Actually need to write something here.
+
+<br><br>
 
 <br>
 
