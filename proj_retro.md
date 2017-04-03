@@ -52,14 +52,13 @@ C(ontroller):
 <b><i>How do these classes communicate with each other? Give an example based on a user action.</i></b>
 <br>
 For our project, BallStreet, we had a limited number of classes as the majority of our back-end was powered by our SQL database. Our classes communicate via API calls? 
-
-<br><br>
+<br>
 
 <b><i>If you were to start the project again today, what aspects of code organization could be improved in your project?</i></b>
 <br>
 Actually need to write something here.
 
-<br><br>
+
 
 <br>
 
