@@ -1,5 +1,5 @@
 ---
-bg: "planningMainImage.jpeg"
+bg: "luckyCharms.jpeg"
 layout: page
 title: "Project Retrospective"
 crawlertitle: "BallStreet | Project Retrospective"
@@ -9,8 +9,9 @@ active: Project-Retrospective
 ---
 # Project Retrospective
 
-<h3> WorkFlow </h3>
+<h3> WorkFlow 
 <hr>
+</h3>
 <p> <b><i>What was the process or branching model each person used to pull, develop and push? </i></b>
 <br>
 Each person worked on their own development branch, called 'zain_dev' or 'madi_dev', then pushed their changes to GitHub to maintain version control. We fetched and merged each other's branches to build on our features. With mostly complete features, that we wanted everyone to have, we merged to the 'rendezvous' branch. For each stage, we created a pull request from 'rendezvous' in to 'master', which Daniel had to approve in order to keep the master branch clean. Stable code and features live in the master branch.
