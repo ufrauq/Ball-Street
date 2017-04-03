@@ -5,12 +5,7 @@ crawlertitle: "BallStreet | Team 5"
 title: "BallStreet"
 summary: "Welcome to BallStreet<br> <i>The brainchild of Team 5 for CS2212</i>"
 ---
-<!--{% for post in site.posts limit: 5 %}
-   <article class="index-page">
-    <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
-    {{ post.excerpt }}
-</article>
-{% endfor %} -->
+
 <h1> 
    Welcome to BallStreet | By Team 5 in CS 2212
 </h1>
@@ -40,7 +35,90 @@ algorithm. <br><br>
 <hr>
 
 <h1>
-   Blog Posts will go here. 
+   Stage Updates 
 </h1>
+<hr>
+<br>
+<h3> Stage 1 </h3>
+For Stage 1 of our project, we created our project website, UI mockups, UML diagrams, developed user stories and set up 
+GitHub issues. For our website, we created a Home Page, a Team Roster Page, Software Design Page, UI Design Page and 
+Project Plan Page. Our homepage consists of information about the CS2212 course and our web application. The Team Roaster page 
+consists of all our team members, their photos, their skills and their roles in the project. The Software Design page discusses
+the outline of our project and includes our UML diagrams. The UI Design page consists of a variety of mockups for our 
+application and what features each page includes. Lastly, our Project Plan page discusses all the features we hope to implement 
+and the timeline for each feature.<br>
+As for our user stories, we created a number of stories such as logging in, making trades and the creation of leagues. We will
+start working towards the completion of these stories in stages 2 and 3. 
+<br><br><hr>
+<h3> Stage 2 </h3>
 
+For the second stage of our project, we developed the majority of the front end of our application. This includes the 
+login page, the leagues page, and the logout button on the settings page. For the login page, we were initially were going to
+use the Twitter login API but after further research and working to intergate the API into our project,
+we discovered the Twitter API uses a public callback and our project must run on local machines. Hence, we will be implementing
+location verification, authorization and identication locally in Stage 3. Currently, a user can create an a account and then
+login. From there, they can check out their leagues or join a league, in addition to being able to logout from the setting page.<br><br>
+As for our leagues page, we have allowed for users to create leagues, join leagues and leave leagues. During the creation of
+the league, the user names the league and can choose to add a password to the league. There is a maxium of 25 users
+that can be added to each league. <br><br>
+Throughout the site, we have installed a top bar crawler that displays information to the user. Currently, it displays
+a few different messages but we hope to be able to display basketball game scores in the bar in the third stage of our
+project. The front-end uses a combination of HTML, CSS, JavaScript and React components to add functionality and allow for a
+simple and easy to interact with user interface.<br><br>
+
+As for the back end of our application, we have implemented 2 controller classes and 3 model classes. These elements were
+created through Grails using Groovy, React and JavaScript.
+<br><br><hr>
+
+<h3><a id="stage3Updates"></a> Stage 3 </h3>
+For stage three of our project, we implemented the remaining features completing our user stories in addition to
+adding functionality to our application. The features we implemented consisted of a stock market page, a user stocks page,
+a players page, a transaction page and a user porfile page in which is viewed when the user first logs in. <br><br>
+
+To add fucntionallity to our project, we created an SQL database hosted with Amazon Web Services to hold all player data, stock
+price information and past game information. Our database collects and stores all the information by calling the MySportsFeeds
+API. We have implemented a local authentification in which user information is stored
+(login and usernames) in addition to storing the user's networth and cash balances. To best display this information, we have
+used the graphing JavaScript functions, and displayed the graphs on the user profile page. This is also the case on the player 
+pages as their stock prices are tracked. <br><br>
+
+<h3>Front End Features</h3>
+<ul> 
+   <li> <h4>Stock Market Page </h4></li>
+   
+   <p> This page is where users can purchase stocks from various players. The Top 5 players with the most points are listed
+   at the top to notify users of the best players on the market. We have implemented a Search Bar on this page that allows
+   users to search for a desired player. The user can also browse all players alphabetically by scrolling down and switching 
+   between the next and previous pages.</p>
+   
+   <li> <h4>User Stock Page </h4></li>
+   
+   <p> The user stocks page displays all the player stocks they own and the shows the price at which they were
+   purchased and how many were bought. Additionally, users can sell their stocks on this page. </p>
+   <li> <h4> Players Page </h4></li>
+   <p> As for the players page, we have implemented a Search/Drop down bar in which the user selects/searchs for their 
+   desired player. Once the player has been selected, the player's infomation and past 10 day networth is displayed. </p>
+   <li> <h4>Transactions Page </h4></li>
+   <p> On the transactions page, users can view past histories of all the stocks they have purchased and sold. This page
+   also includes a "Pending Transactions" section which are transactions that are to be processed. The transactions are
+   processed every 2 minutes. </p>
+   <li> <h4> User Profile Page </h4></li>
+   <p> The user profile page now contains a temporary profile image, the user's current balance and networth in addition
+      to two graphs displaying the user's balance and networth changes for the past 20 minutes. </p>
+   <li><h4>Database</h4></li>
+   
+      
+    <p> Our database is hosted on Amazon Web Services and is updated once daily with stats from basketball games played
+       the previous day. Currently, scripts are run on the SQL server and data is feed in manually as after tremendous
+       efforts to automate the process, we were unable to automate the MySportsFeed.com API data into SQL table process.
+       
+      </p>
+
+
+<!--{% for post in site.posts limit: 5 %}
+   <article class="index-page">
+    <h2><a href="{{ CS2212-Team5/_posts/2017-03-03-Stage-2-Updates }}">{{ post.title }}</a></h2>
+    {{ post.excerpt }}
+</article>
+{% endfor %}-->
 <!-- Home page content goes in /_posts/whatever.md file. The home page is gonna display "blog posts", which are ordered chronologically. Blog posts can be used to showcase our project over time! Jekyll reads the .html files as how to display the .md files, so edit the files in the /_posts/ folder and it will show up on the homepage!-->

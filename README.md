@@ -1,5 +1,5 @@
 # Team 5 Website
-Our website is created through Github Pages and Jekyll. It's hosted on [https://zsirohey.github.io/CS2212-Team5/](https://zsirohey.github.io/CS2212-Team5/)
+Our website is created through Github Pages and Jekyll. It's hosted on [https://pfindan.github.io/CS2212-Team5/](https://pfindan.github.io/CS2212-Team5/)
 
 This README is a quick guide to Jekyll and how we'll be updating our website from now on. Feel free to reach out to Michelle on slack if you have questions!  
 
