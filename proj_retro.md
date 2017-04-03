@@ -9,23 +9,27 @@ active: Project-Retrospective
 ---
 # Project Retrospective
 
-<h1> WorkFlow </h1>
+<h3> WorkFlow </h3>
+<hr>
 <p> WorkFlow information here. </p>
 
 <br>
 
-<h1> MVC / Design Patterns </h1>
+<h3> MVC / Design Patterns </h3>
+<hr>
 <p>  MVC / Design Patterns information here. </p>
 
 <br>
 
-<h1> Refactor Retrospective </h1>
+<h3> Refactor Retrospective </h3>
+<hr>
 <p>  Refactor Retrospective information here. </p>
 
 <br>
 
 
-<h1> Project Retrospective </h1>
+<h3> Project Retrospective </h3>
+<hr>
 <p>  Project Retrospective information here. </p>
 
 <br>
