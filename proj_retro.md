@@ -8,10 +8,9 @@ summary: "Look back at Our Project"
 active: Project-Retrospective
 ---
 # Project Retrospective
-
-<iframe width="760" height="600" src="https://www.youtube.com/embed/H-_R2Tcgrr0" frameborder="0" allowfullscreen></iframe>
-
-
+<p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/H-_R2Tcgrr0" frameborder="0" allowfullscreen></iframe>
+</p>
 <h3> WorkFlow 
 <hr>
 </h3>
