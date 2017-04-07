@@ -10,7 +10,7 @@ active: Project-Retrospective
 # Project Retrospective
 
 
-<p style="text-align: center">
+<p>
 <iframe width="760" height="600" src="https://www.youtube.com/embed/H-_R2Tcgrr0" frameborder="0" allowfullscreen></iframe>
 </p>
 
@@ -60,13 +60,13 @@ The server-side of our program is implemented using a REST API. The user interfa
 <br>
 For our project, BallStreet, we had a limited number of domain (or model) classes as the large portion of our back-end was powered by our SQL database. As an example of interaction between our domain classes, when the user creates a League, the League is added to the UserAccount which has many Leagues, and the UserAccount is added to the League which has many UserAccounts (members).
 
-<br><br>
+<br>
 
 <b><i>If you were to start the project again today, what aspects of code organization could be improved in your project?</i></b>
 <br>
 One major change that would improve the project would be migrating all data storage to the SQL Server and bringing all application logic inside Grails to be called upon by the main method. This would simplify and streamline the organization of the project and allow transactions and other data to be directly linked to the player they are in relation to, instead of by name. This would also require redesigning our SQL implementation using proper SQL practices.
 
-<br>
+
 
 <h3> Refactor Retrospective </h3>
 <hr>
