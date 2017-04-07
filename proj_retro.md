@@ -11,7 +11,7 @@ active: Project-Retrospective
 
 
 <p>
-<iframe width="760" height="600" src="https://www.youtube.com/embed/H-_R2Tcgrr0" frameborder="0" allowfullscreen></iframe>
+<iframe width="760"  src="https://www.youtube.com/embed/H-_R2Tcgrr0" frameborder="0" allowfullscreen></iframe>
 </p>
 
 <h3> WorkFlow 
